@@ -1,8 +1,8 @@
 {
   "name": "aftc-modules",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "A collection of useful utilities / functions.",
-  "main": "index.js",
+  "main": "aftc-modules.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
