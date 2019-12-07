@@ -1,0 +1,22 @@
+{
+  "name": "aftc-modules",
+  "version": "1.0.0",
+  "description": "A collection of useful utilities / functions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarceyLloyd/aftc-modules.git"
+  },
+  "keywords": [
+    "aftc-modules.js"
+  ],
+  "author": "darcey.lloyd@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarceyLloyd/aftc-modules/issues"
+  },
+  "homepage": "https://github.com/DarceyLloyd/aftc-modules#readme"
+}
