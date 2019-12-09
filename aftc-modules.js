@@ -1,4 +1,4 @@
-// AFTC.JS ES6 Version 1.0.30
+// AFTC.JS ES6 Version 1.0.31
 // Author: Darcey@aftc.io
 
 
@@ -8,7 +8,7 @@ export function onReady(fn) {
         setTimeout(fn, 10);
     } else {
         if (document.addEventListener) {
-            document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("DOMContentLoaded", function(){
                 window.setTimeout(fn, 10);
             });
         }
