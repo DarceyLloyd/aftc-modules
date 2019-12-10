@@ -1,4 +1,4 @@
-// AFTC.JS ES6 Version 1.0.32
+// AFTC.JS ES6 Version 1.0.33
 // Author: Darcey@aftc.io
 
 
@@ -263,6 +263,11 @@ export function isInArray(needle, haystack) {
     if (haystack.indexOf(needle) > -1) { return true; } else { return false; }
 }
 
+export function arrayRemoveItem(arr, value) {
+    return arr.filter(function(item){
+        return item != value;
+    });
+}
 
 export function arrayEmpty(arr) {
     while (arr.length > 0) { arr.pop(); }
