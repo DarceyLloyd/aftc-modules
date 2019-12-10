@@ -40,6 +40,7 @@ npm i aftc-modules
 
 Full docs coming soon, quick list of available functions:
 - onReady(fn); // when the dom is ready
+- AnimationFrameStack(); // let stack = new AnimationFrameStack(); // stack.add(fn); stack.remove(fn); stack.stop(); stack.start()
 - getBrowserY(); // returns viewport y position
 - getBrowserX(); // returns viewport x position
 - normaliseRange(min,max,value); // will take min and and max and current value and return it as a value based on 0 to 1
