@@ -31,6 +31,7 @@ export function onReady(fn) {
  * @link:
  */
 export function AnimationFrameStack() {
+    var me = this;
 
     this.init = function(){
         if (!window){
@@ -76,9 +77,7 @@ export function AnimationFrameStack() {
             window.aftcAnimStack.stack[i]();
         }
 
-        window.requestAnimationFrame(()=>{
-            this.processFnStack();
-        });
+        window.requestAnimationFrame(me.processFnStack);
     }
 
     this.add = function(fn){
