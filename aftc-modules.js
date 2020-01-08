@@ -1,4 +1,4 @@
-// AFTC.JS ES6 Version 1.0.36
+// AFTC.JS ES6 Version 1.0.37
 // Author: Darcey@aftc.io
 
 
