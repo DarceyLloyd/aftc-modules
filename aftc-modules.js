@@ -1,4 +1,4 @@
-// AFTC.JS ES6 Version 1.0.35
+// AFTC.JS ES6 Version 1.0.36
 // Author: Darcey@aftc.io
 
 
@@ -40,7 +40,7 @@ export function AnimationFrameStack() {
             if (!window.aftcAnimStack){
                 window.aftcAnimStack = {
                     firstRun: true,
-                    running: true,
+                    enabled: true,
                     stack: [],
                     uid: Math.floor(Math.random()*99999)
                 }
@@ -54,40 +54,44 @@ export function AnimationFrameStack() {
     }
 
     this.start = function(){
-        window.aftcAnimStack.running = true;
+        window.aftcAnimStack.enabled = true;
         this.processFnStack();
     }
 
     this.stop = function(){
-        window.aftcAnimStack.running = false;
+        window.aftcAnimStack.enabled = false;
     }
 
     this.dispose = function(){
         if (window.aftcAnimStack){
-            window.aftcAnimStack.running = false;
-            delete window.aftcAnimStack.stack;
+            window.aftcAnimStack.enabled = false;
             window.aftcAnimStack.stack = [];
+            delete window.aftcAnimStack.stack;
         }
     }
 
     this.processFnStack = function(){
-        if (!window.aftcAnimStack.running){ return; }
+        if (!window.aftcAnimStack.enabled){ return; }
 
         for(let i=0; i < window.aftcAnimStack.stack.length; i++){
-            window.aftcAnimStack.stack[i]();
+            window.aftcAnimStack.stack[i].fn();
         }
 
         window.requestAnimationFrame(me.processFnStack);
     }
 
-    this.add = function(fn){
-        window.aftcAnimStack.stack.push(fn);
+    this.add = function(uid,fn){
+        window.aftcAnimStack.stack.push({
+            uid: uid,
+            fn: fn
+        });
     }
 
-    this.remove = function(fn){
+    this.remove = function(uid){
         for(let i=0; i < window.aftcAnimStack.stack.length; i++){
-            if (window.aftcAnimStack.stack[i] === fn){
-                window.aftcAnimStack.stack = arrayRemoveItem(window.aftcAnimStack.stack,fn);
+            if (window.aftcAnimStack.stack[i].uid === uid){
+                // window.aftcAnimStack.stack = arrayRemoveItem(window.aftcAnimStack.stack,fn);
+                window.aftcAnimStack.stack.splice(i,1);
             }
         }
     }
@@ -349,6 +353,10 @@ export function arrayRemoveItem(arr, value) {
     return arr.filter(function(item){
         return item != value;
     });
+}
+
+export function arrayRemoveIndex(arr,index){
+    arr.splice(index,1);
 }
 
 export function arrayEmpty(arr) {
