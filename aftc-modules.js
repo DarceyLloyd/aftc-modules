@@ -1,5 +1,10 @@
-// AFTC.JS ES6 Version 1.0.37
+// AFTC.JS ES6 Version 1.0.38
 // Author: Darcey@aftc.io
+
+export function ucFirst(s) {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 
 export function onReady(fn) {

@@ -16,12 +16,6 @@ Any and all donations to help keep active development and the lights on are more
 
 
 
- ## <b>aftc-modules.js</b> v1.0.30<br>
- <b>The ES6 / Modules version of aftc.js? Full migration is in progress but every repo got to start somewhere.</b>
-
-
-
-
 ## CDN
 
 - https://cdn.jsdelivr.net/npm/aftc-modules@latest/dist/aftc-module.js
@@ -136,4 +130,5 @@ Full docs coming soon, quick list of available functions:
 - setHTML(elementOrId, str)
 - getElementOffsetTop(elementId)
 - XHR()
+- ucFirst(str)
 
