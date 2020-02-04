@@ -1,0 +1,1 @@
+export function IsInString(find,source) { return source.indexOf(find) !== -1; }

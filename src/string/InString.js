@@ -1,0 +1,1 @@
+export function InString(find,source) { return source.indexOf(find) !== -1; }

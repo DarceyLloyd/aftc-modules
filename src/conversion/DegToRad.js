@@ -1,0 +1,1 @@
+export function DegToRad(input) { return input * (Math.PI / 180); }

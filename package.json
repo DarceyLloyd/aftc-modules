@@ -1,10 +1,10 @@
 {
   "name": "aftc-modules",
-  "version": "1.0.38",
+  "version": "1.1.0",
   "description": "A collection of useful utilities / functions.",
   "main": "aftc-modules.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/DarceyLloyd/aftc-modules/issues"
   },
-  "homepage": "https://github.com/DarceyLloyd/aftc-modules#readme"
+  "homepage": "https://github.com/DarceyLloyd/aftc-modules#readme",
+  "devDependencies": {
+    "aftc-node-tools": "^0.1.1",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-terser": "^1.2.0"
+  }
 }
