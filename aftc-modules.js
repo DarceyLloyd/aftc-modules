@@ -1,4 +1,4 @@
-// aftc-modules v1.1.2
+// aftc-modules v1.1.3
 // Author: Darcey@aftc.io
 
 /**
@@ -477,6 +477,53 @@ export function LogTo(elementOrId,msg){
 }
 
 
+export function GetElementPosition(el) {
+    let position = {
+        top: el.offsetTop,
+        left: el.offsetLeft
+    };
+
+    if (el.offsetParent) {
+        let parentPosition = {
+            top: el.offsetParent.offsetTop,
+            left: el.offsetParent.offsetLeft
+        };
+
+        position.top += parentPosition.top;
+        position.left += parentPosition.left;
+    }
+    return position;
+}
+
+
+export function IsDOM(obj) {
+    // this works for newer browsers
+    try { return obj instanceof HTMLElement; }
+
+        // this works for older browsers
+    catch (e) {
+        return (typeof obj === "object") &&
+            (obj.nodeType === 1) && (typeof obj.style === "object") &&
+            (typeof obj.ownerDocument === "object");
+    }
+};
+export function IsElement(o) {
+    let answer = (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+    );
+
+    if (answer != true) {
+        return false;
+    } else {
+        return true;
+    }
+}
+export function isElement2(element) {
+    // works on major browsers back to IE7
+    return element instanceof Element;
+}
+
 export function GetIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
@@ -770,53 +817,6 @@ export function IsSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
-export function GetElementPosition(el) {
-    let position = {
-        top: el.offsetTop,
-        left: el.offsetLeft
-    };
-
-    if (el.offsetParent) {
-        let parentPosition = {
-            top: el.offsetParent.offsetTop,
-            left: el.offsetParent.offsetLeft
-        };
-
-        position.top += parentPosition.top;
-        position.left += parentPosition.left;
-    }
-    return position;
-}
-
-
-export function IsDOM(obj) {
-    // this works for newer browsers
-    try { return obj instanceof HTMLElement; }
-
-        // this works for older browsers
-    catch (e) {
-        return (typeof obj === "object") &&
-            (obj.nodeType === 1) && (typeof obj.style === "object") &&
-            (typeof obj.ownerDocument === "object");
-    }
-};
-export function IsElement(o) {
-    let answer = (
-        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-    );
-
-    if (answer != true) {
-        return false;
-    } else {
-        return true;
-    }
-}
-export function isElement2(element) {
-    // works on major browsers back to IE7
-    return element instanceof Element;
-}
-
 export function GetElementOffsetTop(elementId) {
     let element = getElementById(elementId);
     let curtop = 0;
