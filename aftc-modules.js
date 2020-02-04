@@ -1,4 +1,4 @@
-// aftc-modules v1.1.0
+// aftc-modules v1.1.2
 // Author: Darcey@aftc.io
 
 /**
@@ -419,7 +419,7 @@ export function GetUSDate(dte){
 }
 
 
-export function AttachDebug(ele,no) {
+export function AttachDebug(no,ele) {
     // return id's not the div create elements as these are type of object and not html element
     let ids = [];
 
