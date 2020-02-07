@@ -1,5 +1,3 @@
-
-
 export function AttachDebug(no,ele) {
     // return id's not the div create elements as these are type of object and not html element
     let ids = [];

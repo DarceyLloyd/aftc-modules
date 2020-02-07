@@ -1,16 +1,5 @@
-// aftc-modules v1.1.5
+// aftc-modules v1.1.7
 // Author: Darcey@aftc.io
-
-/**
- * @function: AnimationFrameStack()
- * @desc: Gives easy access to a single requestAnimationFrame loop which you can add functions to process in each loop, note the function stack is stored on global window scope
- * @method add: add a function to the stack to be executed on animationFrameLoop
- * @method remove: remove a function from the stack
- * @method start: start the requestAnimationFrame loop
- * @method stop: stop the requestAnimationFrame loop
- * @method dispose: dispose of all functions in the function stack
- * @link:
- */
 export function AnimationFrameStack() {
     var me = this;
 
@@ -80,17 +69,15 @@ export function AnimationFrameStack() {
     this.init();
 }
 
-
-
 /**
- * @function: argsToObject(fArgs, obj, strict)
- * @desc: Quick and easy args to object
- * @param args object: arguments (from the function structure, typically code will always be 'arguments'
- * @param obj object: object to parse into
- * @param strict boolean: console.warn any args that have been supplied that don't exist in args
- * @return: null
- * @alias: argsTo
- * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
+ * @function: AnimationFrameStack()
+ * @desc: Gives easy access to a single requestAnimationFrame loop which you can add functions to process in each loop, note the function stack is stored on global window scope
+ * @method add: add a function to the stack to be executed on animationFrameLoop
+ * @method remove: remove a function from the stack
+ * @method start: start the requestAnimationFrame loop
+ * @method stop: stop the requestAnimationFrame loop
+ * @method dispose: dispose of all functions in the function stack
+ * @link:
  */
 export function ArgsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
@@ -116,6 +103,16 @@ export function ArgsToObject(fArgs, obj, strict) {
     }
 };
 
+/**
+ * @function: argsToObject(fArgs, obj, strict)
+ * @desc: Quick and easy args to object
+ * @param args object: arguments (from the function structure, typically code will always be 'arguments'
+ * @param obj object: object to parse into
+ * @param strict boolean: console.warn any args that have been supplied that don't exist in args
+ * @return: null
+ * @alias: argsTo
+ * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
+ */
 export function ArrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
@@ -204,7 +201,6 @@ export function GetBrowser () {
     }
     return M[0];
 }
-
 export function GetBrowserX(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
@@ -216,7 +212,6 @@ export function GetBrowserX(){
 }
 
 
-
 export function GetBrowserY(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
@@ -226,7 +221,6 @@ export function GetBrowserY(){
 
     return y;
 }
-
 
 export function IsInViewport(el){
     let top = el.offsetTop;
@@ -309,7 +303,6 @@ export function RGBToHex2 (r, g, b) {
     hex = hex.toUpperCase();
     return hex;
 }
-
 export function StringToBool (str) {
 
     if (!str || str === undefined || typeof (str) != "string") {
@@ -360,8 +353,6 @@ export function GetDaysBetween (startDateTime, endDateTime) {
     // Round to remove daylight saving errors
     return Math.round((ed - sd) / msPerDay);
 }
-
-
 
 export function GetMySQLDateTimeString() {
     let now = new Date();
@@ -417,8 +408,6 @@ export function GetUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
-
-
 export function AttachDebug(no,ele) {
     // return id's not the div create elements as these are type of object and not html element
     let ids = [];
@@ -453,7 +442,7 @@ export function log(arg) {
     console.log(arg);
 }
 
-export function LogTo(elementOrId,msg){
+export function logTo(elementOrId,msg){
     function isElement(o) {
         return (
             typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
@@ -481,7 +470,6 @@ export function GetIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
 }
-
 export function GetOS(testAgent) {
     let userAgent;
 
@@ -673,7 +661,6 @@ export function IsAndroid(){
     }
 }
 
-// NEED TO TEST THIS!
 export function IsChrome() {
     var isChromium = window.chrome;
     var winNav = window.navigator;
@@ -739,12 +726,6 @@ export function IsIOS() {
     return false;
 }
 
-/**
- * @function: isMobile()
- * @desc: Detects if the device you are using is a mobile or not
- * @return boolean
- * @link: https://codepen.io/AllForTheCode/pen/KRbLdm
- */
 export function IsMobile(){
     // Windows Phone must come first because its UA also contains "Android"!
     let ua = navigator.userAgent.toLowerCase();
@@ -758,6 +739,12 @@ export function IsMobile(){
         }
     }
 }
+/**
+ * @function: isMobile()
+ * @desc: Detects if the device you are using is a mobile or not
+ * @return boolean
+ * @link: https://codepen.io/AllForTheCode/pen/KRbLdm
+ */
 export function IsOpera() {
     // let isChromium = window.chrome;
     // let isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
@@ -812,7 +799,7 @@ export function IsElement(o) {
         return true;
     }
 }
-export function isElement2(element) {
+export function IsElement2(element) {
     // works on major browsers back to IE7
     return element instanceof Element;
 }
@@ -836,7 +823,6 @@ export function HasClass(elementOrId, c) {
         return getElementById(elementOrId).classList.contains(c);
     }
 }
-
 export function SetHTML(elementOrId, str) {
     let ele;
     if (typeof (elementOrId) === "string") {
@@ -851,8 +837,7 @@ export function SetHTML(elementOrId, str) {
         return "SetHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
-
-export function OnReady(fn) {
+export function onReady(fn) {
     // IE9+
     if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
         setTimeout(fn, 10);
@@ -878,9 +863,8 @@ export function WordLimiter(str, maxWords) {
     return { output: output, remaining: (maxWords - wordCount) };
 }
 
-// TODO: REWORK THIS TO SOMETHING NICE AND SHORT OR USE FETCH
-
 export function XHR() {
+    // TODO: REWORK THIS TO SOMETHING NICE AND SHORT OR USE FETCH
     let args = {
         url: false,
         method: false,
@@ -1206,14 +1190,6 @@ export function GetRandomFloat(min, max) {
 export function GetRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-/**
- * @function: getRandomThatsNot(min,max,not)
- * @desc: returns a random int betwen your specified min and max values but never the not value
- * @param min number: the minimum your random number is allowed to go
- * @param max number: the maximum your random number is allowed to go
- * @alias: getRandom
- * @link: https://codepen.io/AllForTheCode/pen/yEBZNq
- */
 export function GetRandomThatsNot(min,max,not){
     let r = not; let lim = 100; let runs = 0;
     while (r===not && runs < lim){
@@ -1226,16 +1202,13 @@ export function GetRandomThatsNot(min,max,not){
         return r;
     }
 }
-
-
-
-
 /**
- * @function: getWeightedRandom(odds, iterations)
- * @desc: Get a weighted random based on odds and iterations
- * @param odds array: array of odds
- * @param iterations number: number of iterations to run on each number test
- * @link: https://codepen.io/AllForTheCode/pen/RyvWjZ
+ * @function: getRandomThatsNot(min,max,not)
+ * @desc: returns a random int betwen your specified min and max values but never the not value
+ * @param min number: the minimum your random number is allowed to go
+ * @param max number: the maximum your random number is allowed to go
+ * @alias: getRandom
+ * @link: https://codepen.io/AllForTheCode/pen/yEBZNq
  */
 export function GetWeightedRandom(odds, iterations) {
     if (!odds) {
@@ -1280,7 +1253,13 @@ export function GetWeightedRandom(odds, iterations) {
     //log("wMax = " + wMax + "   iMax = " + iMax);
     return iMax;
 };
-
+/**
+ * @function: getWeightedRandom(odds, iterations)
+ * @desc: Get a weighted random based on odds and iterations
+ * @param odds array: array of odds
+ * @param iterations number: number of iterations to run on each number test
+ * @link: https://codepen.io/AllForTheCode/pen/RyvWjZ
+ */
 export function InertiaTo(current,target,amount){
     if (amount == 1) {
         return target;
@@ -1327,7 +1306,6 @@ export function ParseArrayToFloat(arr) {
     return arr;
 }
 
-
 export function ParseArrayToInt(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
@@ -1340,10 +1318,84 @@ export function ParseArrayToInt(arr) {
     }
     return arr;
 }
-
-
 export function RoundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
+}
+
+export class FPSMonitor {
+
+
+
+    constructor(ele) {
+
+        this.dom = {
+            fps: false
+        }
+
+        this.fpsStack = false;
+        this.stackSize = 60;
+        this.index = 0;
+
+        this.last = 0;
+        this.now = 0;
+
+        this.delta = 0;
+
+        this.currentFrameFps = 0;
+
+        this.total = 0;
+        this.averageFps = 0;
+
+        this.i = 0;
+
+        if (ele){
+            this.dom.fps = ele;
+        }
+
+        this.fpsStack = new Float32Array(this.stackSize);
+
+        this.update();
+    }
+
+
+
+
+    update(){
+        this.now = performance.now();
+
+        this.delta = (this.now - this.last) / 1000;
+        this.currentFrameFps = 1/this.delta;
+        // log("currentFrameFps = " + this.currentFrameFps);
+
+        this.fpsStack[this.index] = this.currentFrameFps;
+
+        this.total = 0;
+        for(this.i=0; this.i < this.stackSize; this.i++){
+            this.total += this.fpsStack[this.i];
+        }
+
+        this.averageFps = Math.round( this.total/this.stackSize );
+
+        if (this.dom.fps){
+            this.dom.fps.innerText = this.averageFps;
+        }
+
+        this.last = this.now;
+
+        this.index++;
+        if (this.index >= this.stackSize){
+            this.index = 0;
+        }
+
+        requestAnimationFrame(()=>{
+            this.update();
+        });
+    }
+
+
+    getFps(){
+        return this.averageFps;
+    }
 }
 
 export function GetGUID() {
@@ -1407,12 +1459,6 @@ export function EscapeHTML(str) {
         return replacements[character];
     });
 }
-/**
- * @function: GetAnchor(url)
- * @desc: Get anchor from url
- * @param string url: The url to get the anchor from
- * @link:
- */
 export function GetAnchor(url) {
     if (!url) { url = window.location.href; }
     let anchorAvailable = isInString("#", url);
@@ -1422,6 +1468,12 @@ export function GetAnchor(url) {
         return false;
     }
 }
+/**
+ * @function: GetAnchor(url)
+ * @desc: Get anchor from url
+ * @param string url: The url to get the anchor from
+ * @link:
+ */
 export function GetCleanJSONString (s) {
     // preserve newlines, etc - use valid JSON
     s = s.replace(/\\n/g, "\\n")
@@ -1439,8 +1491,8 @@ export function GetCleanJSONString (s) {
 export function GetFileExtension(input) {
     return input.slice((input.lastIndexOf(".") - 1 >>> 0) + 2);
 }
-// Needs improving
 export function GetFileExtension2(str) {
+    // Needs improving
     let ext = str.split('.').pop();
     return ext;
 }
@@ -1462,23 +1514,13 @@ export function GetRandomString(len) {
     return text;
 }
 
+export function GetStringBetween(str, start, end) {
+    return str.split(start).pop().split(end).shift().trim();
+}
 /**
  * @function: getStringBetween(input,start,end)
  * @desc: Gets a string between two other strings
  * @param string input: input string to check
- * @param string start: start string marker
- * @param string end: end string marker
- * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
- */
-export function GetStringBetween(str, start, end) {
-    return str.split(start).pop().split(end).shift().trim();
-}
-
-
-/**
- * @function: getStringsBetween(str,start,end)
- * @desc: Gets all strings between two other strings (multi match)
- * @param string str: input string to check
  * @param string start: start string marker
  * @param string end: end string marker
  * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
@@ -1529,7 +1571,14 @@ export function getStringsBetween2(str, start, end) {
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
+/**
+ * @function: getStringsBetween(str,start,end)
+ * @desc: Gets all strings between two other strings (multi match)
+ * @param string str: input string to check
+ * @param string start: start string marker
+ * @param string end: end string marker
+ * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
+ */
 export function InString(find,source) { return source.indexOf(find) !== -1; }
 export function IsInString(find,source) { return source.indexOf(find) !== -1; }
 export function LTrimBy(str, by) {

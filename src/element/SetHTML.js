@@ -1,4 +1,3 @@
-
 export function SetHTML(elementOrId, str) {
     let ele;
     if (typeof (elementOrId) === "string") {

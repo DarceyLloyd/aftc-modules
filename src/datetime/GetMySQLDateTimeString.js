@@ -1,5 +1,3 @@
-
-
 export function GetMySQLDateTimeString() {
     let now = new Date();
     let year = now.getFullYear();

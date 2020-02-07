@@ -1,4 +1,3 @@
-
 export function GetOS(testAgent) {
     let userAgent;
 

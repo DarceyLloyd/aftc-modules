@@ -1,13 +1,3 @@
-
-
-/**
- * @function: getStringsBetween(str,start,end)
- * @desc: Gets all strings between two other strings (multi match)
- * @param string str: input string to check
- * @param string start: start string marker
- * @param string end: end string marker
- * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
- */
 export function getStringsBetween2(str, start, end) {
     let orig = str;
     let results = [];
@@ -54,3 +44,11 @@ export function getStringsBetween2(str, start, end) {
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+/**
+ * @function: getStringsBetween(str,start,end)
+ * @desc: Gets all strings between two other strings (multi match)
+ * @param string str: input string to check
+ * @param string start: start string marker
+ * @param string end: end string marker
+ * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
+ */

@@ -1,4 +1,4 @@
-export function LogTo(elementOrId,msg){
+export function logTo(elementOrId,msg){
     function isElement(o) {
         return (
             typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2

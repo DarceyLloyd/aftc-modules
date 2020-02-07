@@ -1,4 +1,3 @@
-// NEED TO TEST THIS!
 export function IsChrome() {
     var isChromium = window.chrome;
     var winNav = window.navigator;

@@ -1,6 +1,6 @@
 {
   "name": "aftc-modules",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "description": "A collection of useful utilities / functions.",
   "main": "aftc-modules.js",
   "scripts": {
@@ -25,5 +25,9 @@
     "gulp-concat": "^2.6.1",
     "gulp-inject-string": "^1.1.2",
     "gulp-terser": "^1.2.0"
+  },
+  "dependencies": {
+    "async": "^3.1.1",
+    "line-reader": "^0.4.0"
   }
 }

@@ -1,14 +1,3 @@
-
-/**
- * @function: AnimationFrameStack()
- * @desc: Gives easy access to a single requestAnimationFrame loop which you can add functions to process in each loop, note the function stack is stored on global window scope
- * @method add: add a function to the stack to be executed on animationFrameLoop
- * @method remove: remove a function from the stack
- * @method start: start the requestAnimationFrame loop
- * @method stop: stop the requestAnimationFrame loop
- * @method dispose: dispose of all functions in the function stack
- * @link:
- */
 export function AnimationFrameStack() {
     var me = this;
 
@@ -78,4 +67,13 @@ export function AnimationFrameStack() {
     this.init();
 }
 
-
+/**
+ * @function: AnimationFrameStack()
+ * @desc: Gives easy access to a single requestAnimationFrame loop which you can add functions to process in each loop, note the function stack is stored on global window scope
+ * @method add: add a function to the stack to be executed on animationFrameLoop
+ * @method remove: remove a function from the stack
+ * @method start: start the requestAnimationFrame loop
+ * @method stop: stop the requestAnimationFrame loop
+ * @method dispose: dispose of all functions in the function stack
+ * @link:
+ */

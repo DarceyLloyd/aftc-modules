@@ -1,4 +1,3 @@
-
 export function IsInViewport(el){
     let top = el.offsetTop;
     let left = el.offsetLeft;

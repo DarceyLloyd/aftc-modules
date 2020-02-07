@@ -1,4 +1,3 @@
-
 export function StringToBool (str) {
 
     if (!str || str === undefined || typeof (str) != "string") {

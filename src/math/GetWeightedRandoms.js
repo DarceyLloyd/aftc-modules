@@ -1,14 +1,3 @@
-
-
-
-
-/**
- * @function: getWeightedRandom(odds, iterations)
- * @desc: Get a weighted random based on odds and iterations
- * @param odds array: array of odds
- * @param iterations number: number of iterations to run on each number test
- * @link: https://codepen.io/AllForTheCode/pen/RyvWjZ
- */
 export function GetWeightedRandom(odds, iterations) {
     if (!odds) {
         odds = [
@@ -52,3 +41,10 @@ export function GetWeightedRandom(odds, iterations) {
     //log("wMax = " + wMax + "   iMax = " + iMax);
     return iMax;
 };
+/**
+ * @function: getWeightedRandom(odds, iterations)
+ * @desc: Get a weighted random based on odds and iterations
+ * @param odds array: array of odds
+ * @param iterations number: number of iterations to run on each number test
+ * @link: https://codepen.io/AllForTheCode/pen/RyvWjZ
+ */

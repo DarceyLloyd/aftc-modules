@@ -1,5 +1,4 @@
-
-export function OnReady(fn) {
+export function onReady(fn) {
     // IE9+
     if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
         setTimeout(fn, 10);

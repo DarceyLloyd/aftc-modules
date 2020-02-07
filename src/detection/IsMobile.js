@@ -1,9 +1,3 @@
-/**
- * @function: isMobile()
- * @desc: Detects if the device you are using is a mobile or not
- * @return boolean
- * @link: https://codepen.io/AllForTheCode/pen/KRbLdm
- */
 export function IsMobile(){
     // Windows Phone must come first because its UA also contains "Android"!
     let ua = navigator.userAgent.toLowerCase();
@@ -17,3 +11,9 @@ export function IsMobile(){
         }
     }
 }
+/**
+ * @function: isMobile()
+ * @desc: Detects if the device you are using is a mobile or not
+ * @return boolean
+ * @link: https://codepen.io/AllForTheCode/pen/KRbLdm
+ */

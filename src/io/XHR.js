@@ -1,6 +1,5 @@
-// TODO: REWORK THIS TO SOMETHING NICE AND SHORT OR USE FETCH
-
 export function XHR() {
+    // TODO: REWORK THIS TO SOMETHING NICE AND SHORT OR USE FETCH
     let args = {
         url: false,
         method: false,

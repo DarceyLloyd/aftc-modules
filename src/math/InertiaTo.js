@@ -1,4 +1,3 @@
-
 export function InertiaTo(current,target,amount){
     if (amount == 1) {
         return target;
