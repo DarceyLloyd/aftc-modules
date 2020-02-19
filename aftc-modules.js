@@ -1,4 +1,4 @@
-// aftc-modules v1.1.7
+// aftc-modules v1.1.8
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -1579,6 +1579,9 @@ export function getStringsBetween2(str, start, end) {
  * @param string end: end string marker
  * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
  */
+export function GetWordCount(str) {
+    return str.split(/\S+/).length - 1;
+}
 export function InString(find,source) { return source.indexOf(find) !== -1; }
 export function IsInString(find,source) { return source.indexOf(find) !== -1; }
 export function LTrimBy(str, by) {

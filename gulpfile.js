@@ -23,28 +23,34 @@ msg += "// Author: Darcey@aftc.io" + "\n";
 
 
 // async function getList(){
-//     let numbers = [1,2,3,4,5,6,7,8,9,10];
-//     let out = [];
-//     for await (let n of numbers){
-//         setTimeout(()=>{
-//             // log(n);
-//             // log("pushing n " + n + " to out[]");
-//             out.push(n);
-//         },50);
-//     }
 
-//     return out;
+//     return new Promise( (resolve, reject) => {
+//         let out = [];
+
+//         for (let n=0; n <= 4; n++){
+//             // new Promise( (resolve, reject) => {});
+//             let time = (n+1) * 250;
+//             new Promise(resolve => setTimeout(()=>{
+//                 log(n);
+//                 out.push(n);
+//                 resolve();
+//             }, time));
+//         }
+
+//         // How do I get this resolve to run only once all the for looped promises are complete?
+//         resolve(out);
+//     });
 // }
 
-// async function test(){
+// function test(){
 //     let numbers = false;
 //     log("start");
 //     log(numbers); // logs false (correct);
 
-//     numbers = await getList();
-
-//     log("completed");
-//     log(numbers); // logs [] not [1,2,3,4,5,6,7,8,9,10]
+//     getList().then((v)=>{
+//         log("v = " + v);
+//         log("completed");
+//     })
 // }
 
 // console.clear();
