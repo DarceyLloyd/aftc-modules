@@ -145,8 +145,14 @@ getLines = function(){
         temp = temp.replace("export class ","");
         temp = temp.slice(0, temp.indexOf("{"));
         temp = temp.replace(" (","(");
-        temp = " - " + temp.trim() + "\n";
-        appendStr += temp;
+        temp = temp.replace("<","&#60;");
+        temp = temp.replace(">","&#62;");
+
+        if (temp != ""){
+            temp = " - " + temp.trim() + "\n";
+            appendStr += temp;
+        }
+
     });
 
     return appendStr;
@@ -191,3 +197,14 @@ let build = function (done) {
 }
 
 gulp.task("build", gulp.series(build, buildDocs));
+
+
+
+
+
+gulp.task("watch", function(){
+    gulp.watch([
+        "./src/**/*.js"
+    ], gulp.parallel(build, buildDocs));
+});
+

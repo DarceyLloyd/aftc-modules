@@ -30,6 +30,29 @@ Any and all donations to help keep active development and the lights on are more
 npm i aftc-modules
 ```
 <br>
-<hr>
 
-Available functions:
+----
+<br>
+
+
+### <b>Usage examples</b>
+See tests folder, but most of the functions are self explanitory.
+
+
+<br>
+
+----
+<br>
+
+### <b>Documentation</b>
+Coming soon.
+
+<br>
+
+----
+<br>
+
+
+
+### <b>Available functions:</b>
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aftc-modules - Tests</title>
+    <link rel="stylesheet" href="./includes/styles.css">
+    <script type="module">
+        // imports
+        import {log,logTo,appendTo,onReady,XHR} from "../aftc-modules.js";
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        // var defs
+        let request1 = false;
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        function init(){
+
+            appendTo("#out","<h2>Making GET request!</h2>");
+            appendTo("#out","<p>Remember to open console and check the log</p>");
+
+            request1 = new XHR({
+                url: "./php/xml-response.php",
+                method: "GET",
+                responseType: "document",
+
+                onError: (e)=>{
+                    log("onError()");
+                    log(e);
+                    appendTo("#out","<span style='color:#990000;'>ERROR</span>");
+                },
+
+                onProgress: (e)=>{
+                    log("onProgress()");
+                    // log(e);
+                    if (e.lengthComputable) {
+                        appendTo("#out",`<p>PROGRESS: ${e.loaded} of ${e.total} bytes</p>`);
+                    } else {
+                        appendTo("#out",`<p>PROGRESS: ${e.loaded} bytes</p>`);
+                    }
+                },
+
+                onComplete: (e)=>{
+                    log("onComplete()");
+                    // log(e);
+                    log(request1.xhr.response);
+
+                    // Get the XML Document
+                    let xmlDoc = request1.xhr.response;
+                    console.log("response = " + xmlDoc);
+
+                    // How to handle xml lists
+                    log("-------");
+                    // let books = xmlDoc.getElementsByTagName("book"); // If book exists anywhere else in XML this will pick them all up, dangerous to use
+                    let booksXML = xmlDoc.getElementsByTagName("books")[0]; // Lock on to the books root node
+                    let bookList = booksXML.getElementsByTagName("book"); // Get book list from booksXML
+                    log("Found " + bookList.length + " books!");
+                    // log(bookList);
+                    let bookHTML = "<ul>";
+                    for (let i = 0; i < bookList.length; i++) {
+                        let book = bookList[i];
+                        let title = book.innerHTML;
+                        let price = book.attributes.price.value;
+                        log("BOOK: " + title + " - " + price);
+                        bookHTML += "<li>" + title + " " + price + "</li>";
+                    }
+                    bookHTML += "</ul>";
+                    log("-------");
+
+
+
+                    // Process the response section of the xml response
+                    let responseXML = xmlDoc.getElementsByTagName("response")[0];
+                    let responseStatus = responseXML.getElementsByTagName("status")[0].innerHTML;
+                    let html = responseXML.getElementsByTagName("html")[0].innerHTML;
+
+                    appendTo("#out",`<h3 style='color:#009900;'>SUCCESS!</h3>
+                        <p>Response data type = ${typeof(xmlDoc)} (See console log)</p>
+                        <p>responseStatus = ${responseStatus}</p>
+                        <hr>
+                        <p>${html}</p>
+                        <hr>
+                        <h4>Books</h4>
+                        ${bookHTML}
+                    `);
+                },
+
+            }); // request1 ends
+
+
+
+        } // init function ends
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        onReady(function(){
+            log("DOM Ready()");
+            init();
+        });
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+    </script>
+</head>
+<body>
+
+    <div id="out" class="b0 m5"></div>
+
+</body>
+</html>

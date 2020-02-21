@@ -1,4 +1,4 @@
-// aftc-modules v1.1.8
+// aftc-modules v1.2.0
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -408,41 +408,7 @@ export function GetUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
-export function AttachDebug(no,ele) {
-    // return id's not the div create elements as these are type of object and not html element
-    let ids = [];
-
-    let debugContainer = document.createElement("div");
-    debugContainer.id = "debug-container";
-
-    for (let i = 0; i < no; i++) {
-        let r = Math.round(Math.random()*9999999999);
-        let id = "aftc-debug-container-" + r;
-        let div = document.createElement("div");
-        div.id = id;
-        div.classList.add("debug");
-        debugContainer.appendChild(div);
-        div.addEventListener("click", function (e) {
-            console.log(this.innerHTML);
-        });
-
-        ids.push(id);
-    }
-    if (ele){
-        ele.appendChild(debugContainer);
-    } else {
-        document.body.appendChild(debugContainer);
-    }
-
-    return ids;
-}
-
-
-export function log(arg) {
-    console.log(arg);
-}
-
-export function logTo(elementOrId,msg){
+export function appendTo(elementOrId,msg,endOfLine="<br>"){
     function isElement(o) {
         return (
             typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
@@ -452,15 +418,109 @@ export function logTo(elementOrId,msg){
 
     let ele = false;
     if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
         ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
     } else {
         ele = elementOrId;
     }
 
     if (isElement(ele)){
-        ele.innerHTML = msg;
+        ele.innerHTML = ele.innerHTML + msg + endOfLine;
+
     } else {
-        console.log("LogTo(): Unable to log to element or id provided!");
+        console.error("AppendTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
+export function AttachDebug(no,ele) {
+    // return id's not the div create elements as these are type of object and not html element
+    let ids = [];
+
+    let debugContainer = document.createElement("div");
+    debugContainer.id = "debug-container";
+    debugContainer.style.position = "absolute";
+    debugContainer.style.right = "5px";
+    debugContainer.style.top = "5px";
+    debugContainer.style.textAlgin = "right";
+
+
+    window.aftcDebug = [];
+
+    for (let i = 0; i < no; i++) {
+        let r = Math.round(Math.random()*9999999999);
+        let id = "aftc-debug-container-" + r;
+        let div = document.createElement("div");
+        div.id = id;
+        div.style.minWidth = "50px";
+        div.style.height = "22px";
+        div.style.marginBottom = "3px";
+        div.style.border = "1px dashed #999999";
+        div.style.background = "RGBA(255,255,255,0.9)";
+        div.classList.add("debug-row");
+        debugContainer.appendChild(div);
+        div.addEventListener("click", function (e) {
+            console.log(this.innerHTML);
+        });
+
+        window.aftcDebug.push(div);
+        ids.push(id);
+    }
+    if (ele){
+        ele.appendChild(debugContainer);
+    } else {
+        document.body.appendChild(debugContainer);
+    }
+
+    console.warn("AttachDebug(): Attached!");
+    console.warn("AttachDebug(): Use DebugTo(index,string) to write directly to debug elements.");
+    return ids;
+}
+export function DebugTo(index,str){
+    if (window.aftcDebug[index]){
+        window.aftcDebug[index].innerHTML = str;
+    }
+}
+export function log(arg) {
+    console.log(arg);
+}
+
+export function logTo(elementOrId,msg,append=false,endOfLine=""){
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        if (append === true){
+            ele.innerHTML = ele.innerHTML + msg + endOfLine;
+        } else {
+            ele.innerHTML = msg + endOfLine;
+        }
+
+    } else {
+        console.error("LogTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
         return false;
     }
 }
@@ -837,6 +897,49 @@ export function SetHTML(elementOrId, str) {
         return "SetHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
+export class EventManager {
+
+}
+
+/** jso {
+ * "Function": "EventManager.js",
+ * "Description": "A centralised event stack where you can hook your functions / class's into for centralised quick and easy event application event handling.",
+ * "Methods": [
+ *      {
+ *          "name": "list",
+ *          "description": "Lists which events have been created and available for dispatch in the EventManager.",
+  *          "returns": "console.log",
+ *      },
+ *      {
+ *          "name": "add",
+ *          "description": "Adds or creates a new event within the event manager and attached a callback function / listener object to be called on dispatch of this event.",
+ *          "parameters": [
+ *              {
+ *                  "name": "eventName",
+ *                  "required": "true",
+ *                  "description": "The name of the event to add.",
+ *              },
+ *              {
+ *                  "name": "callbackFunction",
+  *                  "required": "true",
+ *                  "description": "The listener object / function which gets called when the event is triggered.",
+ *              },
+ *          ],
+ *      },
+ *      {
+ *          "name": "dispatch",
+ *          "description": "Dispatches / Triggers an event by name from the EventManager.",
+ *          "parameters": [
+ *              {
+ *                  "name": "eventName",
+ *                  "required": "true",
+ *                  "description": "The name of the event to dispatch.",
+ *              }
+ *          ],
+ *      },
+ *  ]
+ * }
+ */
 export function onReady(fn) {
     // IE9+
     if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
@@ -863,322 +966,326 @@ export function WordLimiter(str, maxWords) {
     return { output: output, remaining: (maxWords - wordCount) };
 }
 
-export function XHR() {
-    // TODO: REWORK THIS TO SOMETHING NICE AND SHORT OR USE FETCH
-    let args = {
-        url: false,
-        method: false,
-        data: false,
-        dataType: false,
-        responseType: false,
-        onComplete: false,
-        onError: false,
-        onProgress: false,
-        onCancel: false
-    };
+export class XHR {
 
-    // Process arguments
-    if (arguments[0] && typeof (arguments[0]) === "object") {
-        for (let key in arguments[0]) {
-            if (args.hasOwnProperty(key)) {
-                args[key] = arguments[0][key];
+    constructor() {
+        //https://javascript.info/xmlhttprequest
+
+        // var defs
+        this.args = {
+            url: false,
+            method: false,
+            data: false,
+            dataType: false, // aka requestType this is either form or json xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            responseType: false, // for clientside processing response data type
+            timeout: 0,
+            onComplete: false,
+            onError: false, // only triggers if the request couldn't be made at all
+            onProgress: false,
+            onCancel: false,
+            username: false,
+            password: false
+        };
+
+        this.url = false;
+        this.urlParams = "";
+        this.xhr = false;
+
+        // Process arguments
+        if (arguments[0] && typeof (arguments[0]) === "object") {
+            for (let key in arguments[0]) {
+                if (this.args.hasOwnProperty(key)) {
+                    this.args[key] = arguments[0][key];
+                }
             }
+        }
+        console.log(this.args);
+
+        // Validate
+        let valid = true;
+
+        if (this.args.url === false) {
+            let msg = `XHR(): Usage error: Option "url" has not been set!
+Please enter a valid url to make a request to!`;
+            console.error(msg);
+            valid = false;
+            return false;
+        }
+
+        if (this.args.method === false) {
+            let msg = `XHR(): Usage error: Option "method" has not been set!
+Valid options are:
+    POST,
+    GET`;
+            console.error(msg);
+            valid = false;
+            return false;
+        }
+
+
+        if (this.args.data !== false && (
+            this.args.dataType.toLowerCase() !== "json" &&
+            this.args.dataType.toLowerCase() !== "form" &&
+            this.args.dataType.toLowerCase() !== "text"
+        )) {
+            let msg = `XHR(): Usage error: Invalid "dataType" has been set!
+Valid options are:
+    JSON        - send json string
+    FORM        - send form object
+    TEXT        - send url string
+`;
+            console.error(msg);
+            valid = false;
+            return false;
+        }
+
+
+        if (this.args.responseType === false) {
+            let msg =
+                `XHR(): Usage warning: Option "responseType" not set!
+Valid options are:
+    json \t\t\t JSON (parsed automatically)
+    document \t\t XML Document (XPath etc),
+    text \t\t\t string,
+    arraybuffer \t ArrayBuffer for binary data,
+    blob \t\t\t Blob for binary data,
+`;
+            console.error(msg);
+            valid = false;
+            return false;
+        }
+
+        if (
+            this.args.responseType.toLowerCase() != "text" &&
+            this.args.responseType.toLowerCase() != "document" &&
+            this.args.responseType.toLowerCase() != "json" &&
+            this.args.responseType.toLowerCase() != "arraybuffer" &&
+            this.args.responseType.toLowerCase() != "blob"
+        ) {
+            let msg =
+                `XHR(): Usage error: Not a valid "responseType" specified "${this.args.responseType}"
+Valid options are:
+    json \t\t\t JSON (parsed automatically)
+    document \t\t XML Document (XPath etc),
+    text \t\t\t string,
+    arraybuffer \t ArrayBuffer for binary data,
+    blob \t\t\t Blob for binary data,
+`;
+            console.error(msg);
+            valid = false;
+            return false;
+        }
+
+
+        if (this.args.onComplete === false) {
+            let msg = `XHR(): Usage error: Option "onComplete" has not been set!
+Your making a request but are not doing anything with the response? Make sure to supply an onComplete callback function.`;
+            console.error(msg);
+            valid = false;
+            return false;
+        }
+
+
+
+        if (valid) {
+            this.makeRequest();
         }
     }
-
-    let params = {
-        url: false,
-        requestHeader: false,
-        xhr: false,
-        readyState: false,
-        status: false,
-        responseType: false,
-        response: null,
-        percentComplete: 0,
-        isImage: false,
-        imageType: ""
-    };
-    // - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
+    makeRequest() {
+        this.xhr = new XMLHttpRequest();
 
-    // - - - - - - - - - - - - - - - - - - -
-    function init() {
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            params.xhr = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            params.xhr = new ActiveXObject("Microsoft.XMLHTTP");
-        }
+        this.xhr.timeout = this.args.timeout;
 
-        params.xhr.addEventListener("progress", updateProgress);
-        params.xhr.addEventListener("load", transferComplete);
-        params.xhr.addEventListener("error", transferFailed);
-        params.xhr.addEventListener("abort", transferCanceled);
 
-        // format and check args
-        if (!args.method) {
-            args.method = "GET";
-        } else {
-            args.method = String(args.method).toUpperCase();
-        }
+        // GET
+        // Append data variables to url string, only handle json, form and string
 
-        if (!args.dataType) {
-            args.dataType = "form";
-        } else {
-            args.dataType = String(args.dataType).toLowerCase();
-        }
+        // POST||PUT||DELETE||PATCH
+        // If json send json object
+        // If form send form object
+        // If text send string
 
-        if (args.method === "GET") {
+        if (this.args.method.toLowerCase() == "get") {
             // GET
-            if (args.dataType != "form") {
-                let msg = "AFTC.XHR: ERROR: GET only supports the 'form' data type (key value pairs eg a=1&b=2)";
-                console.error(msg);
-                if (args.onError) {
-                    args.onError(msg);
+            if (this.args.dataType !== false) {
+                switch (this.args.dataType.toLowerCase()) {
+                    case "text":
+                        this.url = this.args.url + "?" + this.args.data;
+                        break;
+                    case "form":
+                        this.url = this.args.url + "?";
+                        for (var key of this.args.data.keys()) {
+                            let v = this.args.data.get(key);
+                            // console.log(v);
+                            this.url = this.url + encodeURI(key) + "=" + encodeURI(v) + "&";
+                        }
+                        break;
+                    case "json":
+                        this.url = this.args.url + "?";
+                        for (let key in this.args.data) {
+                            // console.log(key);
+                            // console.log(this.args.data[key]);
+                            let v = this.args.data[key];
+                            // log(key);
+                            this.url = this.url + encodeURI(key) + "=" + encodeURI(v) + "&";
+                        }
+                        break;
                 }
-                return false;
-            }
-        } else {
-            // POST
-            if (args.dataType != "form" && args.dataType != "formdata" && args.dataType != "json" && args.dataType != "array" && args.dataType != "object") {
-                let msg = "AFTC.XHR: ERROR: The dataType option only supports 'form', 'formdata', 'json', 'array' or 'object'";
-                console.error(msg);
-                if (args.onError) {
-                    args.onError(msg);
-                }
-            }
-            return false;
-        }
-
-
-        if (!args.url) {
-            let msg = "AFTC.XHR: ERROR: Please specify a URL!";
-            console.error(msg);
-            if (args.onError) {
-                args.onError(msg);
-            }
-            return false;
-        }
-        // - - - -
-
-        // Set response headers
-        if (args.responseType) {
-            args.responseType = String(args.responseType).toLowerCase();
-            if (args.responseType.indexOf("json") != -1) {
-                params.xhr.responseType = 'json';
-            }
-        }
-        // - - - -
-
-        // Open, setRequestHeader, Send
-        if (!args.data) {
-            params.xhr.open(args.method, args.url, true);
-            params.xhr.send();
-        } else {
-            processData();
-
-            if (args.dataType === "form") {
-                params.requestHeader = "application/x-www-form-urlencoded; charset=utf-8";
-            } else if (args.dataType === "formdata") {
-                //params.requestHeader = "multipart/form-data";
-            } else if (args.dataType === "json") {
-                params.requestHeader = "application/json; charset=utf-8";
+                // console.log("this.url = " + this.url);
             } else {
-
+                this.url = this.args.url
             }
+        } else {
+            // POST || PUT || PATCH || DELETE
+            this.url = this.args.url
+        }
 
 
-            params.xhr.open(args.method, args.url, true);
-            if (params.requestHeader) {
-                params.xhr.setRequestHeader("Content-Type", params.requestHeader);
-            }
 
 
-            switch (args.method) {
-                case "GET":
-                    params.xhr.send();
+
+        // open
+        if (this.args.username !== false && this.args.password !== false) {
+            this.xhr.open(this.args.method, this.url, this.args.username, this.args.password);
+        } else {
+            this.xhr.open(this.args.method, this.url);
+        }
+
+        // responseType
+        this.xhr.responseType = this.args.responseType;
+
+
+
+
+        // Set requestHeader type aka dataType and send
+        if (this.args.dataType !== false && typeof(this.args.dataType) == "string") {
+            switch (this.args.dataType.toLowerCase()) {
+                case "json":
+                    this.xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                    this.xhr.send(JSON.stringify(this.args.data));
+                    break;
+                case "form":
+                    // for (var key of this.args.data.keys()) {
+                    //     let v = this.args.data.get(key);
+                    //     console.log(key + " = " + v);
+                    // }
+                    this.xhr.send(this.args.data);
+                    break;
+                case "text":
+                    this.xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    this.xhr.send(this.args.data);
                     break;
                 default:
-                    params.xhr.send(args.data);
+                    this.xhr.send();
                     break;
             }
-
-            // log("getResponseHeader = " + params.xhr.getResponseHeader("Content-Type"));
-
-        }
-        // - - - -
-
-    }
-    // - - - - - - - - - - - - - - - - - - -
-
-
-
-    // - - - - - - - - - - - - - - - - - - -
-    function responseError(msg, e) {
-        console.error(msg);
-        if (args.onError) {
-            if (!e) {
-                args.onError(params.xhr);
-            } else {
-                args.onError(e);
-            }
-        }
-        return false;
-    }
-    // - - - - - - - - - - - - - - - - - - -
-
-
-    // - - - - - - - - - - - - - - - - - - -
-    function updateProgress(e) {
-        params.percentComplete = 0;
-        if (e.lengthComputable) {
-            params.percentComplete = (100 / e.total) * e.loaded;
-            params.percentComplete = parseFloat(params.percentComplete.toFixed(2));
         } else {
-            params.percentComplete = 0;
+            this.xhr.send();
         }
-        if (args.onProgress) {
-            args.onProgress(params.percentComplete);
+
+
+        // Send
+        // if (this.args.data !== false && this.args.dataType !== false){
+        //     log("sending data");
+        //     this.xhr.send(this.args.data);
+        // } else {
+        //     this.xhr.send();
+        // }
+
+
+
+        // Event Listeners
+        this.xhr.addEventListener("progress", (e) => this.progressHandler(e), true);
+        this.xhr.addEventListener("load", (e) => this.onLoadHandler(e), true);
+        this.xhr.addEventListener("error", (e) => this.errorHandler(e), true);
+        this.xhr.addEventListener("abort", (e) => this.errorHandler(e), true);
+        this.xhr.addEventListener("timeout", (e) => this.errorHandler(e), true);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    errorHandler(e) {
+        // console.log("XHR.errorHandler()");
+        this.removeEventListeners();
+        if (this.args.onError) {
+            this.args.onError(e);
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    progressHandler(e) {
+        // console.log("XHR.progressHandler()");
+        // if (e.lengthComputable) {
+        //     console.log(`Received ${e.loaded} of ${e.total} bytes`);
+        // } else {
+        //     console.log(`Received ${e.loaded} bytes`); // no Content-Length
+        // }
+        // console.log(`Received ${event.loaded} of ${event.total}`);
+        if (this.args.onProgress) {
+            this.args.onProgress(e);
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    onLoadHandler(e) {
+        // console.log("XHR.onLoadHandler()");
+        // console.log(`Done, got ${this.xhr.response.length} bytes`);
+        // console.log(this.xhr.response);
+        this.removeEventListeners();
+
+        if (this.args.onComplete) {
+            this.args.onComplete(e);
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    getResponseHeader(name) {
+        if (this.xhr) {
+            return this.xhr.getResponseHeader(name);
         } else {
-            return params.percentComplete;
+            return null;
         }
     }
-    // - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-
-    // - - - - - - - - - - - - - - - - - - -
-    function transferComplete(e) {
-        // log("AFTC.XHR.transferComplete()");
-        if (params.xhr.readyState === 4) {
-            if (params.xhr.status === "404") {
-                responseError("AFTC.XHR: ERROR: Please check your URL [" + args.url + "] NOT FOUND.", params.xhr);
-            } else {
-                if (args.onComplete) {
-                    args.onComplete(params.xhr.responseText);
-                }
-            }
+    getAllResponseHeaders() {
+        if (this.xhr) {
+            return this.xhr.getAllResponseHeaders();
         } else {
-            responseError("AFTC.XHR: ERROR: Please review event details!", e);
+            return null;
         }
     }
-    // - - - - - - - - - - - - - - - - - - -
-    // - - - - - - - - - - - - - - - - - - -
-    function transferFailed(e) {
-        log("AFTC.XHR.transferFailed()");
-        if (args.onError) {
-            args.onError(e);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    getResponse() {
+        if (this.xhr) {
+            return this.xhr.response;
+        } else {
+            return null;
         }
     }
-    // - - - - - - - - - - - - - - - - - - -
-    // - - - - - - - - - - - - - - - - - - -
-    function transferCanceled(e) {
-        log("AFTC.XHR.transferCanceled()");
-        if (args.onCancel) {
-            args.onCancel(e);
-        }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    removeEventListeners() {
+        this.xhr.removeEventListener("progress", (e) => this.progressHandler(e));
+        this.xhr.removeEventListener("load", (e) => this.onLoadHandler(e));
+        this.xhr.removeEventListener("error", (e) => this.errorHandler(e));
+        this.xhr.removeEventListener("abort", (e) => this.errorHandler(e));
+        this.xhr.removeEventListener("timeout", (e) => this.errorHandler(e));
     }
-    // - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-
-
-    // - - - - - - - - - - - - - - - - - - -
-    function cleanUpEventListeners() {
-        try {
-            params.xhr.removeEventListener("progress", updateProgress);
-        } catch (e) { }
-        try {
-            params.xhr.removeEventListener("load", transferComplete);
-        } catch (e) { }
-        try {
-            params.xhr.removeEventListener("error", transferFailed);
-        } catch (e) { }
-        try {
-            params.xhr.removeEventListener("abort", transferCanceled);
-        } catch (e) { }
-    }
-    // - - - - - - - - - - - - - - - - - - -
-
-
-
-
-    // - - - - - - - - - - - - - - - - - - -
-    function processData() {
-        if (args.method === "GET" && args.data != false) {
-            args.url = args.url + "?" + args.data;
-            return true;
-        }
-
-        if (args.method === "POST") {
-            if (args.data.append) {
-                args.dataType = "formdata";
-            } else {
-                if (isArray(args.data) || typeof (args.data) === "object") {
-                    // Array || Object
-                    let data = "";
-                    let formData = new FormData();
-                    for (let key in args.data) {
-                        log(key + " = " + args.data[key]);
-                        formData.append(key, args.data[key]);
-                        data += "&" + key + "=" + args.data[key];
-                    }
-                    args.dataType = "form";
-                    args.data = data;
-                    return true;
-                }
-            }
-
-        }
-
-
-        // default
-        return true;
-    }
-    // - - - - - - - - - - - - - - - - - - -
-
-
-
-
-
-
-    // Constructor simulation
-    init();
-    // - - - - - - - - - - - - - - - - - - -
-
-
-    // utils
-    function isImage() {
-        let sfx = ["jpg","jpeg","png","gif"];
-        for (let i=0; i < sfx.length; i++){
-            if (args.url.indexOf(sfx[i]) > -1){
-                params.imageType = sfx[i];
-                params.isImage = true;
-                break;
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - -
-
-
-    // Return
-    return {
-        url: args.url,
-        method: args.method,
-        data: args.data,
-        dataType: args.dataType,
-        xhr: params.xhr,
-        readyState: params.readyState,
-        status: params.status,
-        response: params.response,
-        responseType: params.responseType
-    }
 }
-
-
 export function GetRandomBoolean(){
     return Math.random() >= 0.5;
 }

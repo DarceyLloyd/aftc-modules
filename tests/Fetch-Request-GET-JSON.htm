@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aftc-modules - Tests</title>
+    <link rel="stylesheet" href="./includes/styles.css">
+    <script type="module">
+        // imports
+        import { log, logTo, appendTo, onReady } from "../aftc-modules.js";
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        // var defs
+        let request1 = false;
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        function init() {
+
+            var request = new Request('./php/json-response.php', {
+                method: 'POST',
+                mode: 'cors',
+                redirect: 'follow',
+                headers: new Headers({
+                    'Content-Type': 'text/plain'
+                })
+            });
+
+            fetch(request)
+            .then(function (response) {
+                // Process response
+                // return response.text();
+                return response.json();
+            })
+            .then(function (text) {
+                // console.log('Request successful', text);
+                appendTo("#out", `<span style='color:#009900;'>
+                    <h3>SUCCESS!</h3>
+                    <p>response data type = ${typeof (text)}</p>
+                    <p>response data = ${JSON.stringify(text)}</p>
+                </span>`);
+
+            })
+            .catch(function (error) {
+                log('Request failed', error)
+            });
+
+
+
+
+        }
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        onReady(function () {
+            log("DOM Ready()");
+            init();
+        });
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+    </script>
+</head>
+
+<body>
+
+    <div id="out" class="b0 m5"></div>
+
+</body>
+
+</html>

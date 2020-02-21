@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.1.8</b>
+# <b>AFTC-MODULES v1.2.0</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of usefull everyday utilities / functions.
@@ -30,9 +30,32 @@ Any and all donations to help keep active development and the lights on are more
 npm i aftc-modules
 ```
 <br>
-<hr>
 
-Available functions:
+----
+<br>
+
+
+### <b>Usage examples</b>
+See tests folder, but most of the functions are self explanitory.
+
+
+<br>
+
+----
+<br>
+
+### <b>Documentation</b>
+Coming soon.
+
+<br>
+
+----
+<br>
+
+
+
+### <b>Available functions:</b>
+
  - AnimationFrameStack()
  - ArgsToObject(fArgs, obj, strict)
  - ArrayClear(arr)
@@ -69,9 +92,11 @@ Available functions:
  - GetUkDateFromDbDateTime(input)
  - GetUkDateTimeFromDbDateTime (input)
  - GetUSDate(dte)
+ - appendTo(elementOrId,msg,endOfLine="&#60;br&#62;")
  - AttachDebug(no,ele)
+ - DebugTo(index,str)
  - log(arg)
- - logTo(elementOrId,msg)
+ - logTo(elementOrId,msg,append=false,endOfLine="")
  - GetIEVersion()
  - GetOS(testAgent)
  - IsAndroid()
@@ -90,9 +115,10 @@ Available functions:
  - GetElementOffsetTop(elementId)
  - HasClass(elementOrId, c)
  - SetHTML(elementOrId, str)
+ - EventManager
  - onReady(fn)
  - WordLimiter(str, maxWords)
- - XHR()
+ - XHR
  - GetRandomBoolean()
  - GetRandomFloat(min, max)
  - GetRandomInt(min, max)

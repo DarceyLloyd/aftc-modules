@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aftc-modules - Tests</title>
+    <link rel="stylesheet" href="./includes/styles.css">
+    <script type="module">
+        // imports
+        import {log,logTo,onReady} from "../aftc-modules.js";
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        // var defs
+        let out1 = false;
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        function init(){
+            log("init()");
+
+            // Get the element and LogTo it
+            out1 = document.getElementById("out1");
+            logTo(out1,"Element Test"); // Supplied element
+
+
+            // or
+
+
+            // Log directly to the element id
+            logTo("#out2","ID Test"); // Supply id (Note # will get removed from strings supplied automatically as it uses getElementById)
+
+
+
+            // If you want to append to an element adding BR to the end
+            logTo("#out3","Append String to an element",true,"<br>");
+            logTo("#out3","And I appended some more!",true,"<br>");
+
+
+            // For the those who like their source to look nice...
+
+            // This will have a nice output in source but not in html
+            logTo("#out4","Line 1 to out 4.",false,"\n");
+            logTo("#out4","Line 2 appended.",true,"\n");
+            logTo("#out4","Line 3 appended.",true,"\n");
+            logTo("#out4","Line 4 appended (inspect source in dev tools and see new line formatting has been applied",true,"\n");
+
+            // Same as above just no newlines for html or source
+            logTo("#out5","Line 1 to out 5.",false);
+            logTo("#out5","Line 2 appended.",true);
+            logTo("#out5","Line 3 appended.",true);
+            logTo("#out5","Line 4 appended (inspect source in dev tools and see new line formatting has been applied");
+
+        }
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        onReady(function(){
+            log("DOM Ready()");
+            init();
+        });
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+    </script>
+</head>
+<body>
+
+    <div id="out1" class="b0 m5">Out1</div>
+    <div id="out2" class="b0 m5">Out2</div>
+    <div id="out3" class="b0 m5">Out3</div>
+    <div id="out4" class="b0 m5">Out4</div>
+    <div id="out5" class="b0 m5">Out5</div>
+
+</body>
+</html>

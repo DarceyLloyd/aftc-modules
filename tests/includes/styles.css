@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+    font-size: 1rem;
+}
+
+h1,h2,h3,h4,h5, p {
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+#debug-container {
+
+}
+
+#debug .debug-row {
+
+}
+
+.b0 {
+    border: 1px solid #000000;
+}
+
+#out {
+    padding: 10px;
+}
+
+.m5 { margin: 5px; }
+.m10 { margin: 10px; }
+
+.p5 { padding: 5px; }
+.p10 { padding: 10px; }
+
