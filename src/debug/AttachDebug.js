@@ -18,10 +18,12 @@ export function AttachDebug(no,ele) {
         let div = document.createElement("div");
         div.id = id;
         div.style.minWidth = "50px";
-        div.style.height = "22px";
+        // div.style.height = "20px";
         div.style.marginBottom = "3px";
         div.style.border = "1px dashed #999999";
-        div.style.background = "RGBA(255,255,255,0.9)";
+        div.style.padding = "1px 2px 2px 4px";
+        div.style.background = "RGBA(255,255,255,0.92)";
+        div.style.color = "#000000";
         div.classList.add("debug-row");
         debugContainer.appendChild(div);
         div.addEventListener("click", function (e) {
