@@ -31,7 +31,7 @@ export class XHR {
                 }
             }
         }
-        console.log(this.args);
+        // console.log(this.args);
 
         // Validate
         let valid = true;

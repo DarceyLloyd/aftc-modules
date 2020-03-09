@@ -1,4 +1,4 @@
-// aftc-modules v1.2.1
+// aftc-modules v1.2.2
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -113,6 +113,74 @@ export function ArgsToObject(fArgs, obj, strict) {
  * @alias: argsTo
  * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
  */
+export function GetBrowser () {
+    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE';
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/);
+        if (tem != null) {
+            return 'Opera';
+        }
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        M.splice(1, 1, tem[1]);
+    }
+    return M[0];
+}
+export function GetBrowserX(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return x;
+}
+
+
+export function GetBrowserY(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return y;
+}
+
+export function IsInViewport(el){
+    let top = el.offsetTop;
+    let left = el.offsetLeft;
+    let width = el.offsetWidth;
+    let height = el.offsetHeight;
+
+    while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+    }
+
+    return (
+        top < (window.pageYOffset + window.innerHeight) &&
+        left < (window.pageXOffset + window.innerWidth) &&
+        (top + height) > window.pageYOffset &&
+        (left + width) > window.pageXOffset
+    );
+
+
+    // let bounding = ele.getBoundingClientRect();
+    // return (
+    //     bounding.top >= 0 &&
+    //     bounding.left >= 0 &&
+    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    // );
+}
+
 export function ArrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
@@ -181,74 +249,6 @@ export function IsInArray(needle, haystack) {
 }
 export function IsStringInArray(needle, haystack) {
     return (new RegExp('(' + haystack.join('|').replace(/\./g, '\\.') + ')$')).test(needle);
-}
-
-export function GetBrowser () {
-    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if (/trident/i.test(M[1])) {
-        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return 'IE';
-    }
-    if (M[1] === 'Chrome') {
-        tem = ua.match(/\bOPR\/(\d+)/);
-        if (tem != null) {
-            return 'Opera';
-        }
-    }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-        M.splice(1, 1, tem[1]);
-    }
-    return M[0];
-}
-export function GetBrowserX(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return x;
-}
-
-
-export function GetBrowserY(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return y;
-}
-
-export function IsInViewport(el){
-    let top = el.offsetTop;
-    let left = el.offsetLeft;
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
-
-    while(el.offsetParent) {
-        el = el.offsetParent;
-        top += el.offsetTop;
-        left += el.offsetLeft;
-    }
-
-    return (
-        top < (window.pageYOffset + window.innerHeight) &&
-        left < (window.pageXOffset + window.innerWidth) &&
-        (top + height) > window.pageYOffset &&
-        (left + width) > window.pageXOffset
-    );
-
-
-    // let bounding = ele.getBoundingClientRect();
-    // return (
-    //     bounding.top >= 0 &&
-    //     bounding.left >= 0 &&
-    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    // );
 }
 
 export function BoolToString (bool) {
@@ -1001,7 +1001,7 @@ export class XHR {
                 }
             }
         }
-        console.log(this.args);
+        // console.log(this.args);
 
         // Validate
         let valid = true;
