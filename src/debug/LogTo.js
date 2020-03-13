@@ -1,4 +1,7 @@
 export function logTo(elementOrId,msg,append=false,endOfLine=""){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+
     function isElement(o) {
         return (
             typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2

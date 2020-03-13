@@ -45,7 +45,7 @@ See tests folder, but most of the functions are self explanitory.
 <br>
 
 ### <b>Documentation</b>
-Coming soon.
+Coming soon, but most of it should be pretty obvious from the class/functions list below.
 
 <br>
 
