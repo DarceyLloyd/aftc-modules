@@ -1,4 +1,4 @@
-// aftc-modules v1.2.5
+// aftc-modules v1.2.6
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -342,72 +342,6 @@ export function SetCookie(name, value) {
 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
 }
-export function GetDaysBetween (startDateTime, endDateTime) {
-    let msPerDay = 8.64e7;
-    // Copy dates so don't mess them up
-    let sd = new Date(startDateTime);
-    let ed = new Date(endDateTime);
-    // Set to noon - avoid DST errors
-    sd.setHours(12, 0, 0);
-    ed.setHours(12, 0, 0);
-    // Round to remove daylight saving errors
-    return Math.round((ed - sd) / msPerDay);
-}
-
-export function GetMySQLDateTimeString() {
-    let now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth() + 1;
-    let day = now.getDate();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let second = now.getSeconds();
-    if (month.toString().length === 1) {
-        month = '0' + month;
-    }
-    if (day.toString().length === 1) {
-        day = '0' + day;
-    }
-    if (hour.toString().length === 1) {
-        hour = '0' + hour;
-    }
-    if (minute.toString().length === 1) {
-        minute = '0' + minute;
-    }
-    if (second.toString().length === 1) {
-        second = '0' + second;
-    }
-    let str = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
-    return str;
-}
-
-export function GetUKDate(dte){
-    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
-    return output;
-}
-export function GetUkDateFromDbDateTime (input) {
-    // "2016-04-08 21:11:59" to UK date
-    if (input === "" || input === null) {
-        return "no input";
-    }
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    return UKDate;
-}
-export function GetUkDateTimeFromDbDateTime  (input) {
-    // "2016-04-08 21:11:59" to UK date time
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let TimeParts = DateTime[1].split(":");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    let Time = TimeParts[0] + ":" + TimeParts[1];
-    return (UKDate + " " + Time);
-}
-export function GetUSDate(dte){
-    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
-    return output;
-}
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -486,9 +420,11 @@ export function AttachDebug(no,ele) {
     console.warn("AttachDebug(): Use DebugTo(index,string) to write directly to debug elements.");
     return ids;
 }
-export function DebugTo(index,str){
-    if (window.aftcDebug[index]){
-        window.aftcDebug[index].innerHTML = str;
+export function DebugTo(index, str) {
+    if (window.aftcDebug) {
+        if (window.aftcDebug[index]) {
+            window.aftcDebug[index].innerHTML = str;
+        }
     }
 }
 export function log(arg) {
@@ -533,6 +469,72 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
 }
 
 
+export function GetDaysBetween (startDateTime, endDateTime) {
+    let msPerDay = 8.64e7;
+    // Copy dates so don't mess them up
+    let sd = new Date(startDateTime);
+    let ed = new Date(endDateTime);
+    // Set to noon - avoid DST errors
+    sd.setHours(12, 0, 0);
+    ed.setHours(12, 0, 0);
+    // Round to remove daylight saving errors
+    return Math.round((ed - sd) / msPerDay);
+}
+
+export function GetMySQLDateTimeString() {
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+    if (month.toString().length === 1) {
+        month = '0' + month;
+    }
+    if (day.toString().length === 1) {
+        day = '0' + day;
+    }
+    if (hour.toString().length === 1) {
+        hour = '0' + hour;
+    }
+    if (minute.toString().length === 1) {
+        minute = '0' + minute;
+    }
+    if (second.toString().length === 1) {
+        second = '0' + second;
+    }
+    let str = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
+    return str;
+}
+
+export function GetUKDate(dte){
+    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
+    return output;
+}
+export function GetUkDateFromDbDateTime (input) {
+    // "2016-04-08 21:11:59" to UK date
+    if (input === "" || input === null) {
+        return "no input";
+    }
+    let DateTime = input.split(" ");
+    let DateParts = DateTime[0].split("-");
+    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
+    return UKDate;
+}
+export function GetUkDateTimeFromDbDateTime  (input) {
+    // "2016-04-08 21:11:59" to UK date time
+    let DateTime = input.split(" ");
+    let DateParts = DateTime[0].split("-");
+    let TimeParts = DateTime[1].split(":");
+    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
+    let Time = TimeParts[0] + ":" + TimeParts[1];
+    return (UKDate + " " + Time);
+}
+export function GetUSDate(dte){
+    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
+    return output;
+}
 export function GetIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
@@ -962,18 +964,6 @@ export function onReady(fn) {
     }
 }
 
-export function WordLimiter(str, maxWords) {
-    let wordCount = str.split(/\S+/).length - 1;
-    let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
-    let output = "";
-    if (wordCount >= maxWords) {
-        output = str.match(re);
-    } else {
-        output = str;
-    }
-    return { output: output, remaining: (maxWords - wordCount) };
-}
-
 export class XHR {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js (new XHR())
@@ -1297,6 +1287,18 @@ Your making a request but are not doing anything with the response? Make sure to
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
+export function WordLimiter(str, maxWords) {
+    let wordCount = str.split(/\S+/).length - 1;
+    let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
+    let output = "";
+    if (wordCount >= maxWords) {
+        output = str.match(re);
+    } else {
+        output = str;
+    }
+    return { output: output, remaining: (maxWords - wordCount) };
+}
+
 export function GetRandomBoolean(){
     return Math.random() >= 0.5;
 }
