@@ -58,11 +58,27 @@ Valid options are:
         }
 
 
-        if (this.args.data !== false && (
-            this.args.dataType.toLowerCase() !== "json" &&
-            this.args.dataType.toLowerCase() !== "form" &&
-            this.args.dataType.toLowerCase() !== "text"
-        )) {
+
+
+        // log(this.args);
+        let showDataTypeError = false;
+        if (this.args.data !== false){
+            if (this.args.dataType === false){
+                showDataTypeError = true;
+            } else {
+                if (typeof(this.args.dataType) == "string"){
+                    if (
+                        this.args.dataType.toLowerCase() !== "json" &&
+                        this.args.dataType.toLowerCase() !== "form" &&
+                        this.args.dataType.toLowerCase() !== "text"){
+                            showDataTypeError = true;
+                    }
+                }
+            }
+        }
+
+
+        if (showDataTypeError) {
             let msg = `XHR(): Usage error: Invalid "dataType" has been set!
 Valid options are:
     JSON        - send json string
@@ -75,7 +91,28 @@ Valid options are:
         }
 
 
-        if (this.args.responseType === false) {
+
+
+
+        let showResponseTypeError = false;
+        if (this.args.responseType === false){
+            showResponseTypeError = true;
+        } else {
+            if (typeof(this.args.dataType) == "string"){
+                if (
+                    this.args.responseType.toLowerCase() != "text" &&
+                    this.args.responseType.toLowerCase() != "document" &&
+                    this.args.responseType.toLowerCase() != "json" &&
+                    this.args.responseType.toLowerCase() != "arraybuffer" &&
+                    this.args.responseType.toLowerCase() != "blob"){
+                        showResponseTypeError = true;
+                }
+            }
+        }
+
+
+
+        if (showResponseTypeError) {
             let msg =
                 `XHR(): Usage warning: Option "responseType" not set!
 Valid options are:
@@ -90,26 +127,9 @@ Valid options are:
             return false;
         }
 
-        if (
-            this.args.responseType.toLowerCase() != "text" &&
-            this.args.responseType.toLowerCase() != "document" &&
-            this.args.responseType.toLowerCase() != "json" &&
-            this.args.responseType.toLowerCase() != "arraybuffer" &&
-            this.args.responseType.toLowerCase() != "blob"
-        ) {
-            let msg =
-                `XHR(): Usage error: Not a valid "responseType" specified "${this.args.responseType}"
-Valid options are:
-    json \t\t\t JSON (parsed automatically)
-    document \t\t XML Document (XPath etc),
-    text \t\t\t string,
-    arraybuffer \t ArrayBuffer for binary data,
-    blob \t\t\t Blob for binary data,
-`;
-            console.error(msg);
-            valid = false;
-            return false;
-        }
+
+
+
 
 
         if (this.args.onComplete === false) {
