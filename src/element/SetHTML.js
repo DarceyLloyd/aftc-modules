@@ -1,7 +1,10 @@
 export function SetHTML(elementOrId, str) {
     let ele;
     if (typeof (elementOrId) === "string") {
-        ele = getElementById(elementOrId);
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            ele = document.querySelector(elementOrId);
+        }
     } else {
         ele = elementOrId;
     }

@@ -1,4 +1,4 @@
-// aftc-modules v1.2.7
+// aftc-modules v1.2.8
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -826,6 +826,42 @@ export function IsSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
+export function GetElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function HasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function SetHTML(elementOrId, str) {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+        ele.innerHTML = str;
+    } else {
+        return "SetHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export function GetElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -873,39 +909,6 @@ export function IsElement2(element) {
     return element instanceof Element;
 }
 
-export function GetElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function HasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function SetHTML(elementOrId, str) {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = getElementById(elementOrId);
-    } else {
-        ele = elementOrId;
-    }
-
-    if (ele) {
-        ele.innerHTML = str;
-    } else {
-        return "SetHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
