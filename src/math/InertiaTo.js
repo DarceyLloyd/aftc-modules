@@ -1,4 +1,4 @@
-export function InertiaTo(current,target,amount){
+export function inertiaTo(current,target,amount){
     if (amount == 1) {
         return target;
     }

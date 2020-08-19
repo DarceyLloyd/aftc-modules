@@ -1,3 +1,3 @@
-export function NumToHex (num) {
+export function numToHex (num) {
     return num.toString(16);
 }

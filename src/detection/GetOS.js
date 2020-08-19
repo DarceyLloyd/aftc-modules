@@ -1,4 +1,4 @@
-export function GetOS(testAgent) {
+export function getOS(testAgent) {
     let userAgent;
 
     if (!testAgent){

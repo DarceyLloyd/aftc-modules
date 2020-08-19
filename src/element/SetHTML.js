@@ -1,4 +1,4 @@
-export function SetHTML(elementOrId, str) {
+export function setHTML(elementOrId, str) {
     let ele;
     if (typeof (elementOrId) === "string") {
         ele = document.getElementById(elementOrId);
@@ -12,6 +12,6 @@ export function SetHTML(elementOrId, str) {
     if (ele) {
         ele.innerHTML = str;
     } else {
-        return "SetHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }

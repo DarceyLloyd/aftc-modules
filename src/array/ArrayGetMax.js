@@ -1,4 +1,4 @@
-export function ArrayGetMax(arr) {
+export function arrayGetMax(arr) {
     return Math.max.apply(Math, arr);
 }
 

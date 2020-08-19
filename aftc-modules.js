@@ -1,5 +1,6 @@
-// aftc-modules v1.2.8
+// aftc-modules v1.3.0
 // Author: Darcey@aftc.io
+// ToDo: Convert to
 export function AnimationFrameStack() {
     var me = this;
 
@@ -79,7 +80,7 @@ export function AnimationFrameStack() {
  * @method dispose: dispose of all functions in the function stack
  * @link:
  */
-export function ArgsToObject(fArgs, obj, strict) {
+export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
 
@@ -113,40 +114,40 @@ export function ArgsToObject(fArgs, obj, strict) {
  * @alias: argsTo
  * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
  */
-export function ArrayClear(arr) {
+export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
 
-export function ArrayContains(needle, haystack) {
+export function arrayContains(needle, haystack) {
     if (haystack.indexOf(needle) > -1) { return true; } else { return false; }
 }
 export function arrayEmpty(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
-export function ArrayGetMax(arr) {
+export function arrayGetMax(arr) {
     return Math.max.apply(Math, arr);
 }
 
 
-export function ArrayGetMin(arr) {
+export function arrayGetMin(arr) {
     return Math.min.apply(Math, arr);
 }
-export function ArrayMax(arr) {
+export function arrayMax(arr) {
     return Math.max.apply(Math, arr);
 }
-export function ArrayMin(arr) {
+export function arrayMin(arr) {
     return Math.min.apply(Math, arr);
 }
-export function ArrayRemoveIndex(arr,index){
+export function arrayRemoveIndex(arr,index){
     arr.splice(index,1);
 }
 
-export function ArrayRemoveItem(arr, value) {
+export function arrayRemoveItem(arr, value) {
     return arr.filter(function(item){
         return item != value;
     });
 }
-export function ArrayShuffle(arr) {
+export function arrayShuffle(arr) {
     let currentIndex = arr.length,
         temporaryValue, randomIndex;
 
@@ -166,7 +167,7 @@ export function ArrayShuffle(arr) {
     return arr;
 }
 
-export function ArrayShuffle2(a) {
+export function arrayShuffle2(a) {
     let x, t, r = new Uint32Array(1);
     for (let i = 0, c = a.length - 1, m = a.length; i < c; i++ , m--) {
         crypto.getRandomValues(r);
@@ -176,14 +177,14 @@ export function ArrayShuffle2(a) {
 
     return a;
 }
-export function IsInArray(needle, haystack) {
+export function isInArray(needle, haystack) {
     if (haystack.indexOf(needle) > -1) { return true; } else { return false; }
 }
-export function IsStringInArray(needle, haystack) {
+export function isStringInArray(needle, haystack) {
     return (new RegExp('(' + haystack.join('|').replace(/\./g, '\\.') + ')$')).test(needle);
 }
 
-export function GetBrowser () {
+export function getBrowser () {
     let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -201,7 +202,7 @@ export function GetBrowser () {
     }
     return M[0];
 }
-export function GetBrowserX(){
+export function getBrowserX(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
 
@@ -212,7 +213,7 @@ export function GetBrowserX(){
 }
 
 
-export function GetBrowserY(){
+export function getBrowserY(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
 
@@ -222,7 +223,7 @@ export function GetBrowserY(){
     return y;
 }
 
-export function IsInViewport(el){
+export function isInViewport(el){
     let top = el.offsetTop;
     let left = el.offsetLeft;
     let width = el.offsetWidth;
@@ -251,10 +252,10 @@ export function IsInViewport(el){
     // );
 }
 
-export function BoolToString (bool) {
+export function boolToString (bool) {
 
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
-        console.log("AFTC.js: Conversion.js: boolToString(str): Error - input is not a boolean!");
+        console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
         return "error";
     }
 
@@ -264,10 +265,10 @@ export function BoolToString (bool) {
         return "false";
     }
 }
-export function BoolToYesNo (b) {
+export function boolToYesNo (b) {
 
     if (!b || b === undefined || typeof (b) != "boolean") {
-        console.log("BoolToYesNo(str): Error - input is not a boolean!");
+        console.log("getYesNoFromBool(str): Error - input is not a boolean!");
         return "error";
     }
 
@@ -277,8 +278,8 @@ export function BoolToYesNo (b) {
         return "no";
     }
 }
-export function DegToRad(input) { return input * (Math.PI / 180); }
-export function HexToRgb (hex) {
+export function degToRad(input) { return input * (Math.PI / 180); }
+export function hexToRgb (hex) {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
@@ -286,10 +287,10 @@ export function HexToRgb (hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
-export function NumToHex (num) {
+export function numToHex (num) {
     return num.toString(16);
 }
-export function RadToDeg(input) { return input * (180 / Math.PI); }
+export function radToDeg(input) { return input * (180 / Math.PI); }
 export function RGBToHex (r, g, b) {
     return ((r << 16) | (g << 8) | b).toString(16);
 }
@@ -303,7 +304,7 @@ export function RGBToHex2 (r, g, b) {
     hex = hex.toUpperCase();
     return hex;
 }
-export function StringToBool (str) {
+export function stringToBool (str) {
 
     if (!str || str === undefined || typeof (str) != "string") {
         console.log("StringToBool(str): Error - input string is not valid!");
@@ -330,19 +331,29 @@ export function StringToBool (str) {
 }
 
 
-export function GetCookie(name) {
+export function getCookie(name) {
 	//return .cookie(name);
 	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
 	return keyValue ? keyValue[2] : null;
 }
-export function SetCookie(name, value) {
-	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-	//.cookie(name, value, {expires:365,path:'/cookies'});
-	var expires = new Date();
-	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+export function setCookie(cname, cvalue, exdays) {
+	// var expires = new Date();
+	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-export function GetDaysBetween (startDateTime, endDateTime) {
+
+// export function setCookie(name, value) {
+// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
+// 	//.cookie(name, value, {expires:365,path:'/cookies'});
+// 	var expires = new Date();
+// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+// }
+export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
     let sd = new Date(startDateTime);
@@ -354,7 +365,7 @@ export function GetDaysBetween (startDateTime, endDateTime) {
     return Math.round((ed - sd) / msPerDay);
 }
 
-export function GetMySQLDateTimeString() {
+export function getMySQLDateTimeString() {
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
@@ -381,11 +392,11 @@ export function GetMySQLDateTimeString() {
     return str;
 }
 
-export function GetUKDate(dte){
+export function getUKDate(dte){
     let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
     return output;
 }
-export function GetUkDateFromDbDateTime (input) {
+export function getUkDateFromDbDateTime (input) {
     // "2016-04-08 21:11:59" to UK date
     if (input === "" || input === null) {
         return "no input";
@@ -395,7 +406,7 @@ export function GetUkDateFromDbDateTime (input) {
     let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
     return UKDate;
 }
-export function GetUkDateTimeFromDbDateTime  (input) {
+export function getUkDateTimeFromDbDateTime  (input) {
     // "2016-04-08 21:11:59" to UK date time
     let DateTime = input.split(" ");
     let DateParts = DateTime[0].split("-");
@@ -404,7 +415,7 @@ export function GetUkDateTimeFromDbDateTime  (input) {
     let Time = TimeParts[0] + ":" + TimeParts[1];
     return (UKDate + " " + Time);
 }
-export function GetUSDate(dte){
+export function getUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
@@ -441,7 +452,7 @@ export function appendTo(elementOrId,msg,endOfLine="<br>"){
 }
 
 
-export function AttachDebug(no,ele) {
+export function attachDebug(no,ele) {
     // return id's not the div create elements as these are type of object and not html element
     let ids = [];
 
@@ -486,7 +497,7 @@ export function AttachDebug(no,ele) {
     console.warn("AttachDebug(): Use DebugTo(index,string) to write directly to debug elements.");
     return ids;
 }
-export function DebugTo(index, str) {
+export function debugTo(index, str) {
     if (window.aftcDebug) {
         if (window.aftcDebug[index]) {
             window.aftcDebug[index].innerHTML = str;
@@ -535,11 +546,11 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
 }
 
 
-export function GetIEVersion () {
+export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
 }
-export function GetOS(testAgent) {
+export function getOS(testAgent) {
     let userAgent;
 
     if (!testAgent){
@@ -720,7 +731,7 @@ export function GetOS(testAgent) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-export function IsAndroid(){
+export function isAndroid(){
     let ua = navigator.userAgent.toLowerCase();
     if (/windows phone/i.test(ua)) {
         return false;
@@ -730,7 +741,7 @@ export function IsAndroid(){
     }
 }
 
-export function IsChrome() {
+export function isChrome() {
     var isChromium = window.chrome;
     var winNav = window.navigator;
     var vendorName = winNav.vendor;
@@ -755,7 +766,7 @@ export function IsChrome() {
         return false;
     }
 }
-export function IsEdge () {
+export function isEdge () {
     //let isEdge = !isIE && !!window.StyleMedia; // Edge 20+
     let edge = false;
     if (/Edge\/\d./i.test(navigator.userAgent)) {
@@ -763,12 +774,12 @@ export function IsEdge () {
     }
     return edge;
 }
-export function IsFireFox () {
+export function isFireFox () {
     // let is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
     // return is_firefox;
     return (typeof InstallTrigger !== 'undefined');
 }
-export function IsIE () {
+export function isIE () {
     // let is_ie = navigator.userAgent.toLowerCase().indexOf('MSIE') > -1;
     // return is_ie;
     // params.isIE = navigator.userAgent.match(/MSIE|Trident/);
@@ -776,7 +787,7 @@ export function IsIE () {
     return /*@cc_on!@*/false || !!document.documentMode; // Internet Explorer 6-11
 }
 
-export function IsIOS() {
+export function isIOS() {
     let iDevices = [
         'iPad Simulator',
         'iPhone Simulator',
@@ -795,7 +806,7 @@ export function IsIOS() {
     return false;
 }
 
-export function IsMobile(){
+export function isMobile(){
     // Windows Phone must come first because its UA also contains "Android"!
     let ua = navigator.userAgent.toLowerCase();
     if (/windows phone/i.test(ua)) {
@@ -814,55 +825,19 @@ export function IsMobile(){
  * @return boolean
  * @link: https://codepen.io/AllForTheCode/pen/KRbLdm
  */
-export function IsOpera() {
+export function isOpera() {
     // let isChromium = window.chrome;
     // let isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
     // let isOpera = (navigator.userAgent.match(/Opera|OPR\//) ? true : false);
     let isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
     return isOpera;
 }
-export function IsSafari() {
+export function isSafari() {
     // let is_safari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
-export function GetElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function HasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function SetHTML(elementOrId, str) {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            ele = document.querySelector(elementOrId);
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (ele) {
-        ele.innerHTML = str;
-    } else {
-        return "SetHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
-export function GetElementPosition(el) {
+export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
         left: el.offsetLeft
@@ -881,7 +856,7 @@ export function GetElementPosition(el) {
 }
 
 
-export function IsDOM(obj) {
+export function isDOM(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }
 
@@ -892,7 +867,7 @@ export function IsDOM(obj) {
             (typeof obj.ownerDocument === "object");
     }
 };
-export function IsElement(o) {
+export function isElement(o) {
     let answer = (
         typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
             o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
@@ -904,11 +879,47 @@ export function IsElement(o) {
         return true;
     }
 }
-export function IsElement2(element) {
+export function isElement2(element) {
     // works on major browsers back to IE7
     return element instanceof Element;
 }
 
+export function getElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function setHTML(elementOrId, str) {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+        ele.innerHTML = str;
+    } else {
+        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -967,7 +978,7 @@ export function onReady(fn) {
     }
 }
 
-export function WordLimiter(str, maxWords) {
+export function getWordsFromString(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
     let output = "";
@@ -1322,18 +1333,18 @@ Your making a request but are not doing anything with the response? Make sure to
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
-export function GetRandomBoolean(){
+export function getRandomBoolean(){
     return Math.random() >= 0.5;
 }
-export function GetRandomFloat(min, max) {
+export function getRandomFloat(min, max) {
     // let r = from + (Math.random()* (to*2));
     return (Math.random() * (max - min) + min);
 };
 
-export function GetRandomInt(min, max) {
+export function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-export function GetRandomThatsNot(min,max,not){
+export function getRandomThatsNot(min,max,not){
     let r = not; let lim = 100; let runs = 0;
     while (r===not && runs < lim){
         runs++;
@@ -1353,7 +1364,7 @@ export function GetRandomThatsNot(min,max,not){
  * @alias: getRandom
  * @link: https://codepen.io/AllForTheCode/pen/yEBZNq
  */
-export function GetWeightedRandom(odds, iterations) {
+export function getWeightedRandom(odds, iterations) {
     if (!odds) {
         odds = [
             0.68, // 0
@@ -1403,7 +1414,7 @@ export function GetWeightedRandom(odds, iterations) {
  * @param iterations number: number of iterations to run on each number test
  * @link: https://codepen.io/AllForTheCode/pen/RyvWjZ
  */
-export function InertiaTo(current,target,amount){
+export function inertiaTo(current,target,amount){
     if (amount == 1) {
         return target;
     }
@@ -1417,14 +1428,14 @@ export function InertiaTo(current,target,amount){
     return delta;
 }
 
-export function IsEven(n) {
+export function isEven(n) {
     return n % 2 === 0;
 }
 
-export function IsOdd(n) {
+export function isOdd(n) {
     return Math.abs(n % 2) === 1;
 }
-export function NormaliseRange(min, max, v) {
+export function normaliseRange(min, max, v) {
     let range = max - min;
     let step = 1 / range;
     let r = (step * (v - min));
@@ -1436,7 +1447,7 @@ export function NormaliseRange(min, max, v) {
     return r;
 }
 
-export function ParseArrayToFloat(arr) {
+export function parseArrayToFloat(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
         converted = parseFloat(arr[i]);
@@ -1449,7 +1460,7 @@ export function ParseArrayToFloat(arr) {
     return arr;
 }
 
-export function ParseArrayToInt(arr) {
+export function parseArrayToInt(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
         converted = parseInt(arr[i]);
@@ -1461,7 +1472,7 @@ export function ParseArrayToInt(arr) {
     }
     return arr;
 }
-export function RoundTo(v, dec) {
+export function roundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
 }
 
@@ -1541,7 +1552,7 @@ export class FPSMonitor {
     }
 }
 
-export function GetGUID() {
+export function getGUID() {
     function Amiga() {
         return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
@@ -1551,44 +1562,44 @@ export function GetGUID() {
     return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
         Amiga() + '-' + Amiga() + Amiga() + Amiga();
 }
-export function GetUID(len) {
+export function getUID(len) {
     if (len > 34){
-        console.error("GetUID(length): Limit error: Length must be 34 or lower");
+        console.error("getUID(length): Limit error: Length must be 34 or lower");
     } else {
         return Math.random().toString(36).substr(2, len);
     }
 }
-export function IsAlphaNumeric(v) {
+export function isAlphaNumeric(v) {
     return !(/\W/.test(v));
 }
-export function IsArray(input) {
+export function isArray(input) {
     return !!input && input.constructor === Array;
     //return arr.constructor === Array;
 }
-export function IsBool(input) {
+export function isBool(input) {
     if (typeof (input) === "boolean") {
         return true;
     } else {
         return false;
     }
 }
-export function IsBoolean(input) {
+export function isBoolean(input) {
     if (typeof (input) === "boolean") {
         return true;
     } else {
         return false;
     }
 }
-export function IsNumber(n) {
+export function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
-export function IsNumeric(n) {
+export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
-export function CutStringTo(s, len) {
+export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
-export function EscapeHTML(str) {
+export function escapeHTML(str) {
     if (typeof (str) != "string") { console.error("escape(arg): usage error: arg needs to be a string!"); return false; }
 
     let replacements = {
@@ -1602,7 +1613,7 @@ export function EscapeHTML(str) {
         return replacements[character];
     });
 }
-export function GetAnchor(url) {
+export function getAnchor(url) {
     if (!url) { url = window.location.href; }
     let anchorAvailable = isInString("#", url);
     if (anchorAvailable) {
@@ -1617,7 +1628,7 @@ export function GetAnchor(url) {
  * @param string url: The url to get the anchor from
  * @link:
  */
-export function GetCleanJSONString (s) {
+export function getCleanJSONString (s) {
     // preserve newlines, etc - use valid JSON
     s = s.replace(/\\n/g, "\\n")
         .replace(/\\'/g, "\\'")
@@ -1631,22 +1642,22 @@ export function GetCleanJSONString (s) {
     s = s.replace(/[\u0000-\u0019]+/g, "");
     return s;
 }
-export function GetFileExtension(input) {
+export function getFileExtension(input) {
     return input.slice((input.lastIndexOf(".") - 1 >>> 0) + 2);
 }
-export function GetFileExtension2(str) {
+export function getFileExtension2(str) {
     // Needs improving
     let ext = str.split('.').pop();
     return ext;
 }
-export function GetLastPartOfUrl(url) {
+export function getLastPartOfUrl(url) {
     if (!url) {
         url = window.location.href;
     }
     let part = url.substring(url.lastIndexOf('/') + 1);
     return part;
 }
-export function GetRandomString(len) {
+export function getRandomString(len) {
     let text = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -1657,7 +1668,7 @@ export function GetRandomString(len) {
     return text;
 }
 
-export function GetStringBetween(str, start, end) {
+export function getStringBetween(str, start, end) {
     return str.split(start).pop().split(end).shift().trim();
 }
 /**
@@ -1722,31 +1733,31 @@ export function getStringsBetween2(str, start, end) {
  * @param string end: end string marker
  * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
  */
-export function GetWordCount(str) {
+export function getWordCount(str) {
     return str.split(/\S+/).length - 1;
 }
-export function InString(find,source) { return source.indexOf(find) !== -1; }
-export function IsInString(find,source) { return source.indexOf(find) !== -1; }
-export function LTrimBy(str, by) {
+export function inString(find,source) { return source.indexOf(find) !== -1; }
+export function isInString(find,source) { return source.indexOf(find) !== -1; }
+export function lTrimBy(str, by) {
     return str.substring(by, str.length);
 }
-export function RemoveFileFromPath(path) {
+export function removeFileFromPath(path) {
     //let pa = '/this/is/a/folder/aFile.txt';
     let r = /[^\/]*$/;
     path = path.replace(r, '');
     return path;
 }
-export function RTrimBy(str, trimBy) {
+export function rTrimBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
 }
-export function TrimStringBy(str, trimBy) {
+export function trimStringBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
 }
-export function UcFirst(s) {
+export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
-export function IsEmail (email) {
+export function isEmail (email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }

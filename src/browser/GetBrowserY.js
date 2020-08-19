@@ -1,4 +1,4 @@
-export function GetBrowserY(){
+export function getBrowserY(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
 

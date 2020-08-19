@@ -1,4 +1,4 @@
-export function IsOpera() {
+export function isOpera() {
     // let isChromium = window.chrome;
     // let isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
     // let isOpera = (navigator.userAgent.match(/Opera|OPR\//) ? true : false);

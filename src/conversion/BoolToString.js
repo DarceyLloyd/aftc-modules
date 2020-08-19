@@ -1,7 +1,7 @@
-export function BoolToString (bool) {
+export function boolToString (bool) {
 
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
-        console.log("AFTC.js: Conversion.js: boolToString(str): Error - input is not a boolean!");
+        console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
         return "error";
     }
 

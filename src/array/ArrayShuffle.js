@@ -1,4 +1,4 @@
-export function ArrayShuffle(arr) {
+export function arrayShuffle(arr) {
     let currentIndex = arr.length,
         temporaryValue, randomIndex;
 

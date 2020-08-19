@@ -1,4 +1,4 @@
-export function ParseArrayToFloat(arr) {
+export function parseArrayToFloat(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
         converted = parseFloat(arr[i]);

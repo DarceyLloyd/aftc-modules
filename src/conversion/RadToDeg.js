@@ -1,1 +1,1 @@
-export function RadToDeg(input) { return input * (180 / Math.PI); }
+export function radToDeg(input) { return input * (180 / Math.PI); }

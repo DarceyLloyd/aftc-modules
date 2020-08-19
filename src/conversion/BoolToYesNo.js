@@ -1,7 +1,7 @@
-export function BoolToYesNo (b) {
+export function boolToYesNo (b) {
 
     if (!b || b === undefined || typeof (b) != "boolean") {
-        console.log("BoolToYesNo(str): Error - input is not a boolean!");
+        console.log("getYesNoFromBool(str): Error - input is not a boolean!");
         return "error";
     }
 

@@ -1,4 +1,4 @@
-export function WordLimiter(str, maxWords) {
+export function getWordsFromString(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
     let output = "";

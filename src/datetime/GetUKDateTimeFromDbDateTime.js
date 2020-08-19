@@ -1,4 +1,4 @@
-export function GetUkDateTimeFromDbDateTime  (input) {
+export function getUkDateTimeFromDbDateTime  (input) {
     // "2016-04-08 21:11:59" to UK date time
     let DateTime = input.split(" ");
     let DateParts = DateTime[0].split("-");

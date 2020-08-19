@@ -1,4 +1,4 @@
-export function GetCleanJSONString (s) {
+export function getCleanJSONString (s) {
     // preserve newlines, etc - use valid JSON
     s = s.replace(/\\n/g, "\\n")
         .replace(/\\'/g, "\\'")

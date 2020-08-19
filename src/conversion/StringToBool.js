@@ -1,4 +1,4 @@
-export function StringToBool (str) {
+export function stringToBool (str) {
 
     if (!str || str === undefined || typeof (str) != "string") {
         console.log("StringToBool(str): Error - input string is not valid!");

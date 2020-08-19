@@ -1,4 +1,4 @@
-export function ArgsToObject(fArgs, obj, strict) {
+export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
 

@@ -1,1 +1,1 @@
-export function InString(find,source) { return source.indexOf(find) !== -1; }
+export function inString(find,source) { return source.indexOf(find) !== -1; }

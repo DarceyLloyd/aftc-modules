@@ -1,4 +1,4 @@
-export function IsMobile(){
+export function isMobile(){
     // Windows Phone must come first because its UA also contains "Android"!
     let ua = navigator.userAgent.toLowerCase();
     if (/windows phone/i.test(ua)) {

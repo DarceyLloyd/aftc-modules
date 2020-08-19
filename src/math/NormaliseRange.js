@@ -1,4 +1,4 @@
-export function NormaliseRange(min, max, v) {
+export function normaliseRange(min, max, v) {
     let range = max - min;
     let step = 1 / range;
     let r = (step * (v - min));

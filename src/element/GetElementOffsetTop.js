@@ -1,4 +1,4 @@
-export function GetElementOffsetTop(elementId) {
+export function getElementOffsetTop(elementId) {
     let element = getElementById(elementId);
     let curtop = 0;
     if (element.hasOwnProperty("offsetParent")){

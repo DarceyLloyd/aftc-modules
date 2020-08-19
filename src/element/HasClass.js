@@ -1,4 +1,4 @@
-export function HasClass(elementOrId, c) {
+export function hasClass(elementOrId, c) {
     if (isElement(elementOrId)) {
         return elementOrId.classList.contains(c);
     } else {

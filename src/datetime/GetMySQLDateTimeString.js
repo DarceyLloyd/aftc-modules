@@ -1,4 +1,4 @@
-export function GetMySQLDateTimeString() {
+export function getMySQLDateTimeString() {
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;

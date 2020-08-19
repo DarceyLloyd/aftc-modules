@@ -1,4 +1,4 @@
-export function GetElementPosition(el) {
+export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
         left: el.offsetLeft

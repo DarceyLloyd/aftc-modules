@@ -1,4 +1,4 @@
-export function ArrayShuffle2(a) {
+export function arrayShuffle2(a) {
     let x, t, r = new Uint32Array(1);
     for (let i = 0, c = a.length - 1, m = a.length; i < c; i++ , m--) {
         crypto.getRandomValues(r);

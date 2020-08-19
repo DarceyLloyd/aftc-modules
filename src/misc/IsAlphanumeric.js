@@ -1,3 +1,3 @@
-export function IsAlphaNumeric(v) {
+export function isAlphaNumeric(v) {
     return !(/\W/.test(v));
 }

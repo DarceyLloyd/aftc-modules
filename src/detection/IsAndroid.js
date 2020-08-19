@@ -1,4 +1,4 @@
-export function IsAndroid(){
+export function isAndroid(){
     let ua = navigator.userAgent.toLowerCase();
     if (/windows phone/i.test(ua)) {
         return false;

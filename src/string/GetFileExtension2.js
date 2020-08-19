@@ -1,4 +1,4 @@
-export function GetFileExtension2(str) {
+export function getFileExtension2(str) {
     // Needs improving
     let ext = str.split('.').pop();
     return ext;

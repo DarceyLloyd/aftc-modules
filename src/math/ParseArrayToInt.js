@@ -1,4 +1,4 @@
-export function ParseArrayToInt(arr) {
+export function parseArrayToInt(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
         converted = parseInt(arr[i]);

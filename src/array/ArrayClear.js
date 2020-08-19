@@ -1,3 +1,3 @@
-export function ArrayClear(arr) {
+export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }

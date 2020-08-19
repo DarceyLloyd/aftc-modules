@@ -1,4 +1,4 @@
-export function IsIOS() {
+export function isIOS() {
     let iDevices = [
         'iPad Simulator',
         'iPhone Simulator',

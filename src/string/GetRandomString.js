@@ -1,4 +1,4 @@
-export function GetRandomString(len) {
+export function getRandomString(len) {
     let text = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 

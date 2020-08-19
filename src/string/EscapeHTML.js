@@ -1,4 +1,4 @@
-export function EscapeHTML(str) {
+export function escapeHTML(str) {
     if (typeof (str) != "string") { console.error("escape(arg): usage error: arg needs to be a string!"); return false; }
 
     let replacements = {

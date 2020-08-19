@@ -1,3 +1,3 @@
-export function LTrimBy(str, by) {
+export function lTrimBy(str, by) {
     return str.substring(by, str.length);
 }

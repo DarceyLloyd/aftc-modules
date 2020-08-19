@@ -1,4 +1,4 @@
-export function GetDaysBetween (startDateTime, endDateTime) {
+export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
     let sd = new Date(startDateTime);

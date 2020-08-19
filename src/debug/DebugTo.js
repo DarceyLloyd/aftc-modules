@@ -1,4 +1,4 @@
-export function DebugTo(index, str) {
+export function debugTo(index, str) {
     if (window.aftcDebug) {
         if (window.aftcDebug[index]) {
             window.aftcDebug[index].innerHTML = str;

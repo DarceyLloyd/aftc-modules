@@ -1,4 +1,4 @@
-export function GetAnchor(url) {
+export function getAnchor(url) {
     if (!url) { url = window.location.href; }
     let anchorAvailable = isInString("#", url);
     if (anchorAvailable) {

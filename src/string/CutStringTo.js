@@ -1,3 +1,3 @@
-export function CutStringTo(s, len) {
+export function cutStringTo(s, len) {
     return s.substring(0, len);
 }

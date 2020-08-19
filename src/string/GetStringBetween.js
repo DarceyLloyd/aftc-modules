@@ -1,4 +1,4 @@
-export function GetStringBetween(str, start, end) {
+export function getStringBetween(str, start, end) {
     return str.split(start).pop().split(end).shift().trim();
 }
 /**

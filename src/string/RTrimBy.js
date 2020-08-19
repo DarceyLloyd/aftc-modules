@@ -1,3 +1,3 @@
-export function RTrimBy(str, trimBy) {
+export function rTrimBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
 }

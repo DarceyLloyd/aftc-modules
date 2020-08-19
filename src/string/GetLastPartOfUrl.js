@@ -1,4 +1,4 @@
-export function GetLastPartOfUrl(url) {
+export function getLastPartOfUrl(url) {
     if (!url) {
         url = window.location.href;
     }

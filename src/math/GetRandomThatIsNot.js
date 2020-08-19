@@ -1,4 +1,4 @@
-export function GetRandomThatsNot(min,max,not){
+export function getRandomThatsNot(min,max,not){
     let r = not; let lim = 100; let runs = 0;
     while (r===not && runs < lim){
         runs++;

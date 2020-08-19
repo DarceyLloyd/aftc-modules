@@ -1,4 +1,4 @@
-export function GetUkDateFromDbDateTime (input) {
+export function getUkDateFromDbDateTime (input) {
     // "2016-04-08 21:11:59" to UK date
     if (input === "" || input === null) {
         return "no input";

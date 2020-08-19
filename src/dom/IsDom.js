@@ -1,4 +1,4 @@
-export function IsDOM(obj) {
+export function isDOM(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }
 

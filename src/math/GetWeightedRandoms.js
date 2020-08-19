@@ -1,4 +1,4 @@
-export function GetWeightedRandom(odds, iterations) {
+export function getWeightedRandom(odds, iterations) {
     if (!odds) {
         odds = [
             0.68, // 0
