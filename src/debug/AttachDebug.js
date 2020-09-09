@@ -4,7 +4,8 @@ export function attachDebug(no,ele) {
 
     let debugContainer = document.createElement("div");
     debugContainer.id = "debug-container";
-    debugContainer.style.position = "absolute";
+    debugContainer.style.zIndex = "999999";
+    debugContainer.style.position = "fixed";
     debugContainer.style.right = "5px";
     debugContainer.style.top = "5px";
     debugContainer.style.textAlgin = "right";
