@@ -1,4 +1,4 @@
-// aftc-modules v1.3.1
+// aftc-modules v1.3.2
 // Author: Darcey@aftc.io
 // ToDo: Convert to
 export function AnimationFrameStack() {
@@ -419,6 +419,134 @@ export function getUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
+export function appendTo(elementOrId,msg,endOfLine="<br>"){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        ele.innerHTML = ele.innerHTML + msg + endOfLine;
+
+    } else {
+        console.error("AppendTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
+export function attachDebug(no,ele) {
+    // return id's not the div create elements as these are type of object and not html element
+    let ids = [];
+
+    let debugContainer = document.createElement("div");
+    debugContainer.id = "debug-container";
+    debugContainer.style.zIndex = "999999";
+    debugContainer.style.position = "fixed";
+    debugContainer.style.right = "5px";
+    debugContainer.style.top = "5px";
+    debugContainer.style.textAlgin = "right";
+
+
+    window.aftcDebug = [];
+
+    for (let i = 0; i < no; i++) {
+        let r = Math.round(Math.random()*9999999999);
+        let id = "aftc-debug-container-" + r;
+        let div = document.createElement("div");
+        div.id = id;
+        div.style.minWidth = "50px";
+        // div.style.height = "20px";
+        div.style.marginBottom = "3px";
+        div.style.border = "1px dashed #999999";
+        div.style.padding = "1px 2px 2px 4px";
+        div.style.background = "RGBA(255,255,255,0.92)";
+        div.style.color = "#000000";
+        div.classList.add("debug-row");
+        debugContainer.appendChild(div);
+        div.addEventListener("click", function (e) {
+            console.log(this.innerHTML);
+        });
+
+        window.aftcDebug.push(div);
+        ids.push(id);
+    }
+    if (ele){
+        ele.appendChild(debugContainer);
+    } else {
+        document.body.appendChild(debugContainer);
+    }
+
+    console.warn("AttachDebug(): Attached!");
+    console.warn("AttachDebug(): Use DebugTo(index,string) to write directly to debug elements.");
+    return ids;
+}
+export function debugTo(index, str) {
+    if (window.aftcDebug) {
+        if (window.aftcDebug[index]) {
+            window.aftcDebug[index].innerHTML = str;
+        }
+    }
+}
+export function log(arg) {
+    console.log(arg);
+}
+
+export function logTo(elementOrId,msg,append=false,endOfLine=""){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        if (append === true){
+            ele.innerHTML = ele.innerHTML + msg + endOfLine;
+        } else {
+            ele.innerHTML = msg + endOfLine;
+        }
+
+    } else {
+        console.error("LogTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
 export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
@@ -710,133 +838,61 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
-export function appendTo(elementOrId,msg,endOfLine="<br>"){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
+export function getElementPosition(el) {
+    let position = {
+        top: el.offsetTop,
+        left: el.offsetLeft
+    };
+
+    if (el.offsetParent) {
+        let parentPosition = {
+            top: el.offsetParent.offsetTop,
+            left: el.offsetParent.offsetLeft
+        };
+
+        position.top += parentPosition.top;
+        position.left += parentPosition.left;
     }
+    return position;
+}
 
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
+export function getElementPos(el) {
+    let x = 0;
+    let y = 0;
+    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+        x += el.offsetLeft - el.scrollLeft;
+        y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
     }
+    return { left: x, top: y };
+}
+export function isDOM(obj) {
+    // this works for newer browsers
+    try { return obj instanceof HTMLElement; }
 
-    if (isElement(ele)){
-        ele.innerHTML = ele.innerHTML + msg + endOfLine;
+        // this works for older browsers
+    catch (e) {
+        return (typeof obj === "object") &&
+            (obj.nodeType === 1) && (typeof obj.style === "object") &&
+            (typeof obj.ownerDocument === "object");
+    }
+};
+export function isElement(o) {
+    let answer = (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+    );
 
-    } else {
-        console.error("AppendTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
+    if (answer != true) {
         return false;
-    }
-}
-
-
-export function attachDebug(no,ele) {
-    // return id's not the div create elements as these are type of object and not html element
-    let ids = [];
-
-    let debugContainer = document.createElement("div");
-    debugContainer.id = "debug-container";
-    debugContainer.style.zIndex = "999999";
-    debugContainer.style.position = "fixed";
-    debugContainer.style.right = "5px";
-    debugContainer.style.top = "5px";
-    debugContainer.style.textAlgin = "right";
-
-
-    window.aftcDebug = [];
-
-    for (let i = 0; i < no; i++) {
-        let r = Math.round(Math.random()*9999999999);
-        let id = "aftc-debug-container-" + r;
-        let div = document.createElement("div");
-        div.id = id;
-        div.style.minWidth = "50px";
-        // div.style.height = "20px";
-        div.style.marginBottom = "3px";
-        div.style.border = "1px dashed #999999";
-        div.style.padding = "1px 2px 2px 4px";
-        div.style.background = "RGBA(255,255,255,0.92)";
-        div.style.color = "#000000";
-        div.classList.add("debug-row");
-        debugContainer.appendChild(div);
-        div.addEventListener("click", function (e) {
-            console.log(this.innerHTML);
-        });
-
-        window.aftcDebug.push(div);
-        ids.push(id);
-    }
-    if (ele){
-        ele.appendChild(debugContainer);
     } else {
-        document.body.appendChild(debugContainer);
-    }
-
-    console.warn("AttachDebug(): Attached!");
-    console.warn("AttachDebug(): Use DebugTo(index,string) to write directly to debug elements.");
-    return ids;
-}
-export function debugTo(index, str) {
-    if (window.aftcDebug) {
-        if (window.aftcDebug[index]) {
-            window.aftcDebug[index].innerHTML = str;
-        }
+        return true;
     }
 }
-export function log(arg) {
-    console.log(arg);
+export function isElement2(element) {
+    // works on major browsers back to IE7
+    return element instanceof Element;
 }
-
-export function logTo(elementOrId,msg,append=false,endOfLine=""){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        if (append === true){
-            ele.innerHTML = ele.innerHTML + msg + endOfLine;
-        } else {
-            ele.innerHTML = msg + endOfLine;
-        }
-
-    } else {
-        console.error("LogTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
 
 export function getElementOffsetTop(elementId) {
     let element = getElementById(elementId);
@@ -874,53 +930,6 @@ export function setHTML(elementOrId, str) {
         return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
-export function getElementPosition(el) {
-    let position = {
-        top: el.offsetTop,
-        left: el.offsetLeft
-    };
-
-    if (el.offsetParent) {
-        let parentPosition = {
-            top: el.offsetParent.offsetTop,
-            left: el.offsetParent.offsetLeft
-        };
-
-        position.top += parentPosition.top;
-        position.left += parentPosition.left;
-    }
-    return position;
-}
-
-
-export function isDOM(obj) {
-    // this works for newer browsers
-    try { return obj instanceof HTMLElement; }
-
-        // this works for older browsers
-    catch (e) {
-        return (typeof obj === "object") &&
-            (obj.nodeType === 1) && (typeof obj.style === "object") &&
-            (typeof obj.ownerDocument === "object");
-    }
-};
-export function isElement(o) {
-    let answer = (
-        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-    );
-
-    if (answer != true) {
-        return false;
-    } else {
-        return true;
-    }
-}
-export function isElement2(element) {
-    // works on major browsers back to IE7
-    return element instanceof Element;
-}
-
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
