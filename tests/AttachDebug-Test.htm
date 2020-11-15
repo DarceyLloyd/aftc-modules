@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./includes/styles.css">
     <script type="module">
         // imports
-        import {log,logTo,onReady,AttachDebug,DebugTo} from "../aftc-modules.js";
+        import {log,logTo,onReady,attachDebug,debugTo} from "../aftc-modules.js";
         // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -18,7 +18,7 @@
 
         function init(){
             // Test AttachDebug and DebugTo
-            AttachDebug(10);
+            attachDebug(10);
             animationFrameLoop();
         }
         // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -28,19 +28,19 @@
             t += 0.001;
 
             // Simple usage
-            DebugTo(0,"t = " + t.toFixed(0));
+            debugTo(0,"t = " + t.toFixed(0));
 
             // I setup 10 fields (see line 23) so we can log to any of them via index 0 to 9
-            DebugTo(1,"t = " + t.toFixed(1));
-            DebugTo(2,"t = " + t.toFixed(2));
-            DebugTo(3,"t = " + t.toFixed(3));
+            debugTo(1,"t = " + t.toFixed(1));
+            debugTo(2,"t = " + t.toFixed(2));
+            debugTo(3,"t = " + t.toFixed(3));
 
             // Using logTo to log directly to the global scope (window) div debug elements
             logTo(window.aftcDebug[4],"Using log to t = " + t.toFixed(3));
 
             // Log to them all in a loop, but I will only do 5 to 9
             for (let i=5; i <= 9; i++){
-                DebugTo(i,"i:" + i + " --- i*t = " + (t*i).toFixed(2));
+                debugTo(i,"i:" + i + " --- i*t = " + (t*i).toFixed(2));
             }
 
             // Re-run the loop via requestAnimationFrame

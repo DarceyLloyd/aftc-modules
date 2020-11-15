@@ -1,6 +1,264 @@
-// aftc-modules v1.3.2
+// aftc-modules v1.4.0
 // Author: Darcey@aftc.io
-// ToDo: Convert to
+// import { argsToObject, log } from "aftc-modules";
+// import { ItemVo } from "./ItemVo";
+// import { objectToObject } from "../conversion/objectToObject";
+// import { XHRLoader } from "./Utils/XHRLoader";
+
+
+
+
+
+export class AFTCPreloader {
+
+    onProgressHandler;
+    onCompleteHandler;
+
+    queue = [];
+    noOfFilesToLoad = 0;
+
+    json = false;
+
+    noOfThreads = 3;
+    thread = []; // [0] > [noOfThreads] = "available" || "filled"
+
+    queueCompleted;
+
+    timer = false;
+
+    ItemVo = function () {
+        this.id = false;
+        this.src = false;
+        this.ext = false;
+        this.loaded = false;
+        this.loading = false;
+        this.autoAttach = true;
+    }
+
+    XHRLoader = function (parent, threadIndex, queueIndex, src) {
+        // log("XHRLoader(parent, threadIndex, queueIndex, src)");
+        this.parent = parent;
+        this.threadIndex = threadIndex;
+        this.queueIndex = queueIndex;
+        this.src = src;
+
+        this.xhr = new XMLHttpRequest();
+        this.xhr.onload = (e) => {
+            this.onLoadHandler(e);
+        };
+
+        // this.xhr.addEventListener("progress", () => this.updateHandler, false);
+        // this.xhr.addEventListener("load", transferComplete);
+        // this.xhr.addEventListener("error", transferFailed);
+        // this.xhr.addEventListener("abort", transferCanceled);
+        // Detect abort, load, or error using the loadend event
+        // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
+
+        this.xhr.open('GET', this.src, true);
+        this.xhr.send();
+        this.updateHandler = function (e) {
+
+        }
+        // - - - - - - - - - - -
+
+        this.onLoadHandler = function (e) {
+            // log("XHRLoader.onLoadHandler(): " + this.src);
+            this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
+            this.xhr = null;
+        }
+        // - - - - - - - - - - -
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    constructor() {
+        log("AFTCPreloader()");
+        argsToObject(arguments, this, true);
+
+        this.head = document.getElementsByTagName('head')[0] || document.body;
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    help() {
+        let msg = "";
+        msg += "AFTCPreloader.help()" + "\n";
+        msg += "JSON: [ {src:path,autoAttach=true} ]" + "\n";
+        msg += "autoAttach is optional, defaults to true, only works for css and js file extensions" + "\n";
+        log(msg);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    add(id, src, autoAttach = true) {
+        // log("AFTCPreloader.add(id,src,autoAttach=true)");
+        let entry = this.ItemVo();
+        entry.id = id;
+        entry.src = src;
+        entry.autoAttach = autoAttach;
+        this.queue.push(entry);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    start(jsonPath) {
+        log("AFTCPreloader.start()");
+
+        // init
+        for (let i = 0; i < this.noOfThreads; i++) {
+            this.thread[i] = "available";
+        }
+
+        if (jsonPath) {
+            // Using JSON file to add files to the queue
+            this.loadConfig(jsonPath);
+        } else {
+            // Using add() to add files to the queue
+            this.noOfFilesToLoad = this.queue.length;
+            this.processThreadPool();
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    loadConfig(path) {
+        // log("AFTCPreloader.loadConfig(path:" + path + ")");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', path, true);
+
+        xhr.onreadystatechange = (e) => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                this.json = JSON.parse(xhr.responseText);
+                // log(this.json);
+                this.json.forEach(jsonEntry => {
+                    let vo = new this.ItemVo();
+                    new objectToObject(jsonEntry, vo, false)
+                    vo.ext = getFileExtension(vo.src);
+                    this.queue.push(vo);
+                });
+
+                // log(this.queue);
+                this.noOfFilesToLoad = this.queue.length;
+                this.processThreadPool();
+            }
+        };
+
+        xhr.send();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+
+
+
+
+    processThreadPool() {
+        // log("AFTCPreloader.processThreadPool()");
+
+        let activeThreads = 0;
+
+        for (let threadIndex = 0; threadIndex < this.noOfThreads; threadIndex++) {
+            if (this.thread[threadIndex] === "available") {
+                // Destructure
+                let queueIndex, itemVo;
+                [queueIndex, itemVo] = this.getNext();
+                // log(itemVo);
+                if (itemVo !== false) {
+                    // log("\n#### Thread ["+ threadIndex + "] -------");
+                    // log("threadIndex: " + threadIndex + "   queueIndex: " + queueIndex);
+                    // log(itemVo);
+                    this.thread[threadIndex] = "filled";
+                    itemVo.loading = true;
+                    new this.XHRLoader(this, threadIndex, queueIndex, itemVo.src);
+                    activeThreads++;
+                }
+            }
+        }
+
+        // log(this.queue);
+        // log(this.thread);
+
+        // If all threads are inactive then we are done
+        let preloaderComplete = true;
+        for (let i = 0; i < this.noOfThreads; i++) {
+            if (this.thread[i] !== "available") {
+                preloaderComplete = false;
+            }
+        }
+
+        if (preloaderComplete) {
+            log("AFTCPreloader(): Complete!");
+            if (this.onCompleteHandler) {
+                this.onCompleteHandler();
+            }
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    onFileLoaded(threadIndex, queueIndex) {
+        // log("AFTCPreloader.onFileLoaded(threadIndex:"+threadIndex+",queueIndex:"+queueIndex+")");
+        let vo = this.queue[queueIndex];
+        vo.loading = false;
+        vo.loaded = true;
+        this.thread[threadIndex] = "available";
+
+        // Handle attach to dom
+
+        if (this.queue[queueIndex].autoAttach === true) {
+            if (vo.ext == "js") {
+                // Attach JS to DOM
+                let script = document.createElement('script');
+                // script.onload = ()=> {
+                //     console.log("Script attached to DOM: " + vo.src);
+                // }
+                script.src = vo.src;
+                document.head.appendChild(script);
+
+            } else if (vo.ext == "css") {
+                // Attach CSS to DOM
+                let link  = document.createElement('link');
+                link.rel  = 'stylesheet';
+                link.type = 'text/css';
+                link.href = vo.src;
+                link.media = 'all';
+                this.head.appendChild( link );
+            }
+        }
+
+        if (this.onProgressHandler) {
+            let percent = 0;
+            let noOfFilesLoaded = 0;
+            this.queue.forEach(vo => {
+                if (vo.loaded) {
+                    noOfFilesLoaded++;
+                }
+            });
+            percent = Math.round((100 / this.noOfFilesToLoad) * noOfFilesLoaded);
+
+            this.onProgressHandler(percent, this.queue[queueIndex].src);
+        }
+
+
+
+        this.processThreadPool();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    getNext() {
+        let queueIndex = -1;
+        let itemVo = false;
+
+        for (let i = 0; i < this.queue.length; i++) {
+            let entry = this.queue[i];
+            if (entry.loaded === false && entry.loading === false) {
+                queueIndex = i;
+                itemVo = entry;
+                break;
+            }
+        }
+        return [queueIndex, itemVo];
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
 export function AnimationFrameStack() {
     var me = this;
 
@@ -79,40 +337,6 @@ export function AnimationFrameStack() {
  * @method stop: stop the requestAnimationFrame loop
  * @method dispose: dispose of all functions in the function stack
  * @link:
- */
-export function argsToObject(fArgs, obj, strict) {
-    if (fArgs[0] && typeof (fArgs[0]) === "object") {
-        let args = fArgs[0];
-
-        if (strict === undefined) {
-            strict = true;
-        }
-        if (args && typeof (args) === "object") {
-            for (let key in args) {
-                if (strict) {
-                    if (obj.hasOwnProperty(key)) {
-                        obj[key] = args[key];
-                    } else {
-                        console.warn("argsToObject(): Argument [" + key + "] is not supported.");
-                    }
-                } else {
-                    obj[key] = args[key];
-                }
-            }
-        }
-
-    }
-};
-
-/**
- * @function: argsToObject(fArgs, obj, strict)
- * @desc: Quick and easy args to object
- * @param args object: arguments (from the function structure, typically code will always be 'arguments'
- * @param obj object: object to parse into
- * @param strict boolean: console.warn any args that have been supplied that don't exist in args
- * @return: null
- * @alias: argsTo
- * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
  */
 export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
@@ -252,6 +476,40 @@ export function isInViewport(el){
     // );
 }
 
+export function argsToObject(fArgs, obj, strict) {
+    if (fArgs[0] && typeof (fArgs[0]) === "object") {
+        let args = fArgs[0];
+
+        if (strict === undefined) {
+            strict = true;
+        }
+        if (args && typeof (args) === "object") {
+            for (let key in args) {
+                if (strict) {
+                    if (obj.hasOwnProperty(key)) {
+                        obj[key] = args[key];
+                    } else {
+                        console.warn("argsToObject(): Argument [" + key + "] is not supported.");
+                    }
+                } else {
+                    obj[key] = args[key];
+                }
+            }
+        }
+
+    }
+};
+
+/**
+ * @function: argsToObject(fArgs, obj, strict)
+ * @desc: Quick and easy args to object
+ * @param args object: arguments (from the function structure, typically code will always be 'arguments'
+ * @param obj object: object to parse into
+ * @param strict boolean: console.warn any args that have been supplied that don't exist in args
+ * @return: null
+ * @alias: argsTo
+ * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
+ */
 export function boolToString (bool) {
 
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
@@ -289,6 +547,19 @@ export function hexToRgb (hex) {
 }
 export function numToHex (num) {
     return num.toString(16);
+}
+export function objectToObject(src, dest, strict = true) {
+    for (let key in src) {
+        if (strict) {
+            if (dest.hasOwnProperty(key)) {
+                dest[key] = src[key];
+            } else {
+                console.warn("ObjectToObject(): Destination object key doesn't exist [" + key + "].");
+            }
+        } else {
+            dest[key] = src[key];
+        }
+    }
 }
 export function radToDeg(input) { return input * (180 / Math.PI); }
 export function RGBToHex (r, g, b) {
@@ -913,11 +1184,11 @@ export function hasClass(elementOrId, c) {
         return getElementById(elementOrId).classList.contains(c);
     }
 }
-export function setHTML(elementOrId, str) {
+export function setHTML(elementOrId, str, mode = "set") {
     let ele;
     if (typeof (elementOrId) === "string") {
         ele = document.getElementById(elementOrId);
-        if (!ele){
+        if (!ele) {
             ele = document.querySelector(elementOrId);
         }
     } else {
@@ -925,7 +1196,21 @@ export function setHTML(elementOrId, str) {
     }
 
     if (ele) {
-        ele.innerHTML = str;
+
+        switch (mode) {
+            case "append":
+                ele.innerHTML += str + "<br>";
+                break;
+            case "prepend":
+                ele.innerHTML = str + "<br>" + ele.innerHTML;
+                break;
+            default:
+                ele.innerHTML = str;
+                break;
+        }
+
+     
+
     } else {
         return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
@@ -1000,6 +1285,51 @@ export function getWordsFromString(str, maxWords) {
     return { output: output, remaining: (maxWords - wordCount) };
 }
 
+export function loadScript(src, onComplete, onProgress){
+    let head = document.getElementsByTagName("head")[0] || document.body;
+
+    if (!head){
+        console.error("loadScript(): Unable to get DOM Head or DOM Body!");
+        return;
+    }
+
+    let script = document.createElement("script");
+
+    let xhr = new XMLHttpRequest();
+
+    // report progress events
+    xhr.addEventListener("progress", function(event) {
+        if (event.lengthComputable) {
+            var percentComplete = event.loaded / event.total;
+            // console.log(percentComplete);
+            if (onProgress){
+                onProgress(percentComplete);
+            }
+        } else {
+            // Unable to compute progress information since the total size is unknown
+            if (onProgress){
+                onProgress(false);
+            }
+        }
+    }, false);
+
+    // load responseText into a new script element
+    xhr.addEventListener("load", function(e) {
+        script.innerHTML = e.target.responseText;
+        document.documentElement.appendChild(script);
+
+        if (onComplete) {
+            onComplete();
+        }
+
+        // script.addEventListener("load", function() {
+        //     // this runs after the new script has been executed...
+        // });
+    }, false);
+
+    xhr.open("GET", src);
+    xhr.send();
+}
 export class XHR {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js (new XHR())
@@ -1374,6 +1704,9 @@ export function getRandomThatsNot(min,max,not){
  * @alias: getRandom
  * @link: https://codepen.io/AllForTheCode/pen/yEBZNq
  */
+export function getRange(a,b){
+    return Math.max(a, b) - Math.min(a, b);
+}
 export function getWeightedRandom(odds, iterations) {
     if (!odds) {
         odds = [
@@ -1654,11 +1987,8 @@ export function getCleanJSONString (s) {
 }
 export function getFileExtension(input) {
     return input.slice((input.lastIndexOf(".") - 1 >>> 0) + 2);
-}
-export function getFileExtension2(str) {
-    // Needs improving
-    let ext = str.split('.').pop();
-    return ext;
+    // return (input.match(/(?:.+..+[^\/]+$)/ig) != null) ? input.split('.').slice(-1) : 'null';
+
 }
 export function getLastPartOfUrl(url) {
     if (!url) {
@@ -1751,11 +2081,31 @@ export function isInString(find,source) { return source.indexOf(find) !== -1; }
 export function lTrimBy(str, by) {
     return str.substring(by, str.length);
 }
+export function regExReplaceAll(haystack, needle, rep) {
+    const special = ["-", "[", "]", "/", "{", "}", "(", ")", "*", "+", "?", ".", "\\", "^", "$", "|"];
+    if (needle.length == 1) {
+        if (isInArray(needle, special)) {
+            needle = "\\" + needle;
+        }
+    }
+    const searchRegExp = new RegExp(needle, 'g');
+    return haystack.replace(searchRegExp, rep);
+
+}
 export function removeFileFromPath(path) {
     //let pa = '/this/is/a/folder/aFile.txt';
     let r = /[^\/]*$/;
     path = path.replace(r, '');
     return path;
+}
+export function replaceAll(haystack,needle,replace){
+    return haystack.split(needle).join(replace);
+}
+export function replaceDoubleBackSlash(str,rep){
+    return str.replace(/\\\\/g, rep); // replaces all occurances of \\ with rep
+}
+export function replaceDoubleForwardSlash(str,rep){
+    return str.replace(/\/\//g, rep); // replaces all occurances of // with rep
 }
 export function rTrimBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
