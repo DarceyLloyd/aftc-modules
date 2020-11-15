@@ -850,6 +850,56 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
+export function getElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function setHTML(elementOrId, str, mode = "set") {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele) {
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+
+        switch (mode) {
+            case "append":
+                ele.innerHTML += str + "<br>";
+                break;
+            case "prepend":
+                ele.innerHTML = str + "<br>" + ele.innerHTML;
+                break;
+            default:
+                ele.innerHTML = str;
+                break;
+        }
+
+     
+
+    } else {
+        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -906,56 +956,6 @@ export function isElement2(element) {
     return element instanceof Element;
 }
 
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function hasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function setHTML(elementOrId, str, mode = "set") {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele) {
-            ele = document.querySelector(elementOrId);
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (ele) {
-
-        switch (mode) {
-            case "append":
-                ele.innerHTML += str + "<br>";
-                break;
-            case "prepend":
-                ele.innerHTML = str + "<br>" + ele.innerHTML;
-                break;
-            default:
-                ele.innerHTML = str;
-                break;
-        }
-
-     
-
-    } else {
-        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
