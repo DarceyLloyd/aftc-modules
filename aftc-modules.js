@@ -1,4 +1,4 @@
-// aftc-modules v1.4.1
+// aftc-modules v1.4.2
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -149,74 +149,6 @@ export function isStringInArray(needle, haystack) {
     return (new RegExp('(' + haystack.join('|').replace(/\./g, '\\.') + ')$')).test(needle);
 }
 
-export function getBrowser () {
-    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if (/trident/i.test(M[1])) {
-        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return 'IE';
-    }
-    if (M[1] === 'Chrome') {
-        tem = ua.match(/\bOPR\/(\d+)/);
-        if (tem != null) {
-            return 'Opera';
-        }
-    }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-        M.splice(1, 1, tem[1]);
-    }
-    return M[0];
-}
-export function getBrowserX(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return x;
-}
-
-
-export function getBrowserY(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return y;
-}
-
-export function isInViewport(el){
-    let top = el.offsetTop;
-    let left = el.offsetLeft;
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
-
-    while(el.offsetParent) {
-        el = el.offsetParent;
-        top += el.offsetTop;
-        left += el.offsetLeft;
-    }
-
-    return (
-        top < (window.pageYOffset + window.innerHeight) &&
-        left < (window.pageXOffset + window.innerWidth) &&
-        (top + height) > window.pageYOffset &&
-        (left + width) > window.pageXOffset
-    );
-
-
-    // let bounding = ele.getBoundingClientRect();
-    // return (
-    //     bounding.top >= 0 &&
-    //     bounding.left >= 0 &&
-    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    // );
-}
-
 export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
@@ -343,28 +275,74 @@ export function stringToBool (str) {
 }
 
 
-export function getCookie(name) {
-	//return .cookie(name);
-	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
-	return keyValue ? keyValue[2] : null;
+export function getBrowser () {
+    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE';
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/);
+        if (tem != null) {
+            return 'Opera';
+        }
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        M.splice(1, 1, tem[1]);
+    }
+    return M[0];
 }
-export function setCookie(cname, cvalue, exdays) {
-	// var expires = new Date();
-	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+export function getBrowserX(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return x;
 }
 
-// export function setCookie(name, value) {
-// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-// 	//.cookie(name, value, {expires:365,path:'/cookies'});
-// 	var expires = new Date();
-// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-// }
+
+export function getBrowserY(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return y;
+}
+
+export function isInViewport(el){
+    let top = el.offsetTop;
+    let left = el.offsetLeft;
+    let width = el.offsetWidth;
+    let height = el.offsetHeight;
+
+    while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+    }
+
+    return (
+        top < (window.pageYOffset + window.innerHeight) &&
+        left < (window.pageXOffset + window.innerWidth) &&
+        (top + height) > window.pageYOffset &&
+        (left + width) > window.pageXOffset
+    );
+
+
+    // let bounding = ele.getBoundingClientRect();
+    // return (
+    //     bounding.top >= 0 &&
+    //     bounding.left >= 0 &&
+    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    // );
+}
+
 export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
@@ -431,6 +409,28 @@ export function getUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
+export function getCookie(name) {
+	//return .cookie(name);
+	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
+	return keyValue ? keyValue[2] : null;
+}
+export function setCookie(cname, cvalue, exdays) {
+	// var expires = new Date();
+	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// export function setCookie(name, value) {
+// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
+// 	//.cookie(name, value, {expires:365,path:'/cookies'});
+// 	var expires = new Date();
+// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+// }
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -850,56 +850,6 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function hasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function setHTML(elementOrId, str, mode = "set") {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele) {
-            ele = document.querySelector(elementOrId);
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (ele) {
-
-        switch (mode) {
-            case "append":
-                ele.innerHTML += str + "<br>";
-                break;
-            case "prepend":
-                ele.innerHTML = str + "<br>" + ele.innerHTML;
-                break;
-            default:
-                ele.innerHTML = str;
-                break;
-        }
-
-     
-
-    } else {
-        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -956,6 +906,56 @@ export function isElement2(element) {
     return element instanceof Element;
 }
 
+export function getElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function setHTML(elementOrId, str, mode = "set") {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele) {
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+
+        switch (mode) {
+            case "append":
+                ele.innerHTML += str + "<br>";
+                break;
+            case "prepend":
+                ele.innerHTML = str + "<br>" + ele.innerHTML;
+                break;
+            default:
+                ele.innerHTML = str;
+                break;
+        }
+
+     
+
+    } else {
+        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -1414,6 +1414,126 @@ Your making a request but are not doing anything with the response? Make sure to
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
+export class FPSMonitor {
+    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
+    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
+
+    constructor(ele) {
+
+        this.dom = {
+            fps: false
+        }
+
+        this.fpsStack = false;
+        this.stackSize = 60;
+        this.index = 0;
+
+        this.last = 0;
+        this.now = 0;
+
+        this.delta = 0;
+
+        this.currentFrameFps = 0;
+
+        this.total = 0;
+        this.averageFps = 0;
+
+        this.i = 0;
+
+        if (ele){
+            this.dom.fps = ele;
+        }
+
+        this.fpsStack = new Float32Array(this.stackSize);
+
+        this.update();
+    }
+
+
+
+
+    update(){
+        this.now = performance.now();
+
+        this.delta = (this.now - this.last) / 1000;
+        this.currentFrameFps = 1/this.delta;
+        // log("currentFrameFps = " + this.currentFrameFps);
+
+        this.fpsStack[this.index] = this.currentFrameFps;
+
+        this.total = 0;
+        for(this.i=0; this.i < this.stackSize; this.i++){
+            this.total += this.fpsStack[this.i];
+        }
+
+        this.averageFps = Math.round( this.total/this.stackSize );
+
+        if (this.dom.fps){
+            this.dom.fps.innerText = this.averageFps;
+        }
+
+        this.last = this.now;
+
+        this.index++;
+        if (this.index >= this.stackSize){
+            this.index = 0;
+        }
+
+        requestAnimationFrame(()=>{
+            this.update();
+        });
+    }
+
+
+    getFps(){
+        return this.averageFps;
+    }
+}
+
+export function getGUID() {
+    function Amiga() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
+        Amiga() + '-' + Amiga() + Amiga() + Amiga();
+}
+export function getUID(len) {
+    if (len > 34){
+        console.error("getUID(length): Limit error: Length must be 34 or lower");
+    } else {
+        return Math.random().toString(36).substr(2, len);
+    }
+}
+export function isAlphaNumeric(v) {
+    return !(/\W/.test(v));
+}
+export function isArray(input) {
+    return !!input && input.constructor === Array;
+    //return arr.constructor === Array;
+}
+export function isBool(input) {
+    if (typeof (input) === "boolean") {
+        return true;
+    } else {
+        return false;
+    }
+}
+export function isBoolean(input) {
+    if (typeof (input) === "boolean") {
+        return true;
+    } else {
+        return false;
+    }
+}
+export function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+export function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
 }
@@ -1560,126 +1680,6 @@ export function roundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
 }
 
-export class FPSMonitor {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
-
-    constructor(ele) {
-
-        this.dom = {
-            fps: false
-        }
-
-        this.fpsStack = false;
-        this.stackSize = 60;
-        this.index = 0;
-
-        this.last = 0;
-        this.now = 0;
-
-        this.delta = 0;
-
-        this.currentFrameFps = 0;
-
-        this.total = 0;
-        this.averageFps = 0;
-
-        this.i = 0;
-
-        if (ele){
-            this.dom.fps = ele;
-        }
-
-        this.fpsStack = new Float32Array(this.stackSize);
-
-        this.update();
-    }
-
-
-
-
-    update(){
-        this.now = performance.now();
-
-        this.delta = (this.now - this.last) / 1000;
-        this.currentFrameFps = 1/this.delta;
-        // log("currentFrameFps = " + this.currentFrameFps);
-
-        this.fpsStack[this.index] = this.currentFrameFps;
-
-        this.total = 0;
-        for(this.i=0; this.i < this.stackSize; this.i++){
-            this.total += this.fpsStack[this.i];
-        }
-
-        this.averageFps = Math.round( this.total/this.stackSize );
-
-        if (this.dom.fps){
-            this.dom.fps.innerText = this.averageFps;
-        }
-
-        this.last = this.now;
-
-        this.index++;
-        if (this.index >= this.stackSize){
-            this.index = 0;
-        }
-
-        requestAnimationFrame(()=>{
-            this.update();
-        });
-    }
-
-
-    getFps(){
-        return this.averageFps;
-    }
-}
-
-export function getGUID() {
-    function Amiga() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-
-    return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
-        Amiga() + '-' + Amiga() + Amiga() + Amiga();
-}
-export function getUID(len) {
-    if (len > 34){
-        console.error("getUID(length): Limit error: Length must be 34 or lower");
-    } else {
-        return Math.random().toString(36).substr(2, len);
-    }
-}
-export function isAlphaNumeric(v) {
-    return !(/\W/.test(v));
-}
-export function isArray(input) {
-    return !!input && input.constructor === Array;
-    //return arr.constructor === Array;
-}
-export function isBool(input) {
-    if (typeof (input) === "boolean") {
-        return true;
-    } else {
-        return false;
-    }
-}
-export function isBoolean(input) {
-    if (typeof (input) === "boolean") {
-        return true;
-    } else {
-        return false;
-    }
-}
-export function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-export function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
