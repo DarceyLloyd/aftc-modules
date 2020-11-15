@@ -54,46 +54,6 @@ Coming soon / In progress, but most of it should be pretty obvious from the clas
 
 
 
-### AFTCPreloader
-See file ./tests/Preloader.htm for demo
-```
-import { 
-    onReady, log, setHTML,
-    AFTCPreloader   
-} from "../aftc-modules.js";
-
-onReady(() => {
-    log("DOM ready()");
-    startPreloader();
-});
-
-function startPreloader(){
-
-    const preloader = new AFTCPreloader({
-        onProgressHandler: onProgressHandler,
-        onCompleteHandler: onCompleteHandler
-    });
-
-    // Shows help info
-    preloader.help();
-
-    // Add files to be preloaded via json file, format [ {src:"file-path",autoAttach:true}], autoAttach is optional
-    preloader.start("./preloader.json");
-
-    function onProgressHandler(p,file) {
-        setHTML("status","Loading"); // Sets html element with id "status" to loading
-        setHTML("percent",p + "%"); // Sets html element with id "percent" to the loaded percent value
-        setHTML("files",file,"prepend"); // Sets html element with id "files" to list all files loade in prepend mode
-    }
-
-    function onCompleteHandler() {
-        setHTML("status","Loaded"); // Sets html element with id "status" to loaded
-    }
-}
-
-
-```
-
 
 
 
