@@ -11,9 +11,18 @@ export function setHTML(elementOrId, str, mode = "set") {
 
     if (ele) {
 
+        if (mode){
+            mode = mode.toLowerCase();
+        }
+
         switch (mode) {
             case "append":
-                ele.innerHTML += str + "<br>";
+                if (ele.innerHTML == ""){
+                    ele.innerHTML += str;
+                } else {
+                    ele.innerHTML += "<br>" + str;
+                }
+                
                 break;
             case "prepend":
                 ele.innerHTML = str + "<br>" + ele.innerHTML;
@@ -23,9 +32,7 @@ export function setHTML(elementOrId, str, mode = "set") {
                 break;
         }
 
-     
-
     } else {
-        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
