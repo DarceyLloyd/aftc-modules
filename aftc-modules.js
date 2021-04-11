@@ -1,4 +1,4 @@
-// aftc-modules v1.4.2
+// aftc-modules v1.4.4
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -79,6 +79,74 @@ export function AnimationFrameStack() {
  * @method dispose: dispose of all functions in the function stack
  * @link:
  */
+export function getBrowser () {
+    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE';
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/);
+        if (tem != null) {
+            return 'Opera';
+        }
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        M.splice(1, 1, tem[1]);
+    }
+    return M[0];
+}
+export function getBrowserX(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return x;
+}
+
+
+export function getBrowserY(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return y;
+}
+
+export function isInViewport(el){
+    let top = el.offsetTop;
+    let left = el.offsetLeft;
+    let width = el.offsetWidth;
+    let height = el.offsetHeight;
+
+    while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+    }
+
+    return (
+        top < (window.pageYOffset + window.innerHeight) &&
+        left < (window.pageXOffset + window.innerWidth) &&
+        (top + height) > window.pageYOffset &&
+        (left + width) > window.pageXOffset
+    );
+
+
+    // let bounding = ele.getBoundingClientRect();
+    // return (
+    //     bounding.top >= 0 &&
+    //     bounding.left >= 0 &&
+    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    // );
+}
+
 export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
@@ -275,74 +343,28 @@ export function stringToBool (str) {
 }
 
 
-export function getBrowser () {
-    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if (/trident/i.test(M[1])) {
-        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return 'IE';
-    }
-    if (M[1] === 'Chrome') {
-        tem = ua.match(/\bOPR\/(\d+)/);
-        if (tem != null) {
-            return 'Opera';
-        }
-    }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-        M.splice(1, 1, tem[1]);
-    }
-    return M[0];
+export function getCookie(name) {
+	//return .cookie(name);
+	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
+	return keyValue ? keyValue[2] : null;
 }
-export function getBrowserX(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return x;
+export function setCookie(cname, cvalue, exdays) {
+	// var expires = new Date();
+	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-
-export function getBrowserY(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return y;
-}
-
-export function isInViewport(el){
-    let top = el.offsetTop;
-    let left = el.offsetLeft;
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
-
-    while(el.offsetParent) {
-        el = el.offsetParent;
-        top += el.offsetTop;
-        left += el.offsetLeft;
-    }
-
-    return (
-        top < (window.pageYOffset + window.innerHeight) &&
-        left < (window.pageXOffset + window.innerWidth) &&
-        (top + height) > window.pageYOffset &&
-        (left + width) > window.pageXOffset
-    );
-
-
-    // let bounding = ele.getBoundingClientRect();
-    // return (
-    //     bounding.top >= 0 &&
-    //     bounding.left >= 0 &&
-    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    // );
-}
-
+// export function setCookie(name, value) {
+// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
+// 	//.cookie(name, value, {expires:365,path:'/cookies'});
+// 	var expires = new Date();
+// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+// }
 export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
@@ -409,156 +431,6 @@ export function getUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
-export function getCookie(name) {
-	//return .cookie(name);
-	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
-	return keyValue ? keyValue[2] : null;
-}
-export function setCookie(cname, cvalue, exdays) {
-	// var expires = new Date();
-	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-// export function setCookie(name, value) {
-// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-// 	//.cookie(name, value, {expires:365,path:'/cookies'});
-// 	var expires = new Date();
-// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-// }
-export function appendTo(elementOrId,msg,endOfLine="<br>"){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        ele.innerHTML = ele.innerHTML + msg + endOfLine;
-
-    } else {
-        console.error("AppendTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
-
-export function attachDebug(no,ele) {
-    // return id's not the div create elements as these are type of object and not html element
-    let ids = [];
-
-    let debugContainer = document.createElement("div");
-    debugContainer.id = "debug-container";
-    debugContainer.style.zIndex = "999999";
-    debugContainer.style.position = "fixed";
-    debugContainer.style.right = "5px";
-    debugContainer.style.top = "5px";
-    debugContainer.style.textAlgin = "right";
-
-
-    window.aftcDebug = [];
-
-    for (let i = 0; i < no; i++) {
-        let r = Math.round(Math.random()*9999999999);
-        let id = "aftc-debug-container-" + r;
-        let div = document.createElement("div");
-        div.id = id;
-        div.style.minWidth = "50px";
-        // div.style.height = "20px";
-        div.style.marginBottom = "3px";
-        div.style.border = "1px dashed #999999";
-        div.style.padding = "1px 2px 2px 4px";
-        div.style.background = "RGBA(255,255,255,0.92)";
-        div.style.color = "#000000";
-        div.classList.add("debug-row");
-        debugContainer.appendChild(div);
-        div.addEventListener("click", function (e) {
-            console.log(this.innerHTML);
-        });
-
-        window.aftcDebug.push(div);
-        ids.push(id);
-    }
-    if (ele){
-        ele.appendChild(debugContainer);
-    } else {
-        document.body.appendChild(debugContainer);
-    }
-
-    console.warn("AttachDebug(): Attached!");
-    console.warn("AttachDebug(): Use DebugTo(index,string) to write directly to debug elements.");
-    return ids;
-}
-export function debugTo(index, str) {
-    if (window.aftcDebug) {
-        if (window.aftcDebug[index]) {
-            window.aftcDebug[index].innerHTML = str;
-        }
-    }
-}
-export function log(arg) {
-    console.log(arg);
-}
-
-export function logTo(elementOrId,msg,append=false,endOfLine=""){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        if (append === true){
-            ele.innerHTML = ele.innerHTML + msg + endOfLine;
-        } else {
-            ele.innerHTML = msg + endOfLine;
-        }
-
-    } else {
-        console.error("LogTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
-
 export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
@@ -850,6 +722,151 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
+export function appendTo(elementOrId,msg,endOfLine="<br>"){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        ele.innerHTML = ele.innerHTML + msg + endOfLine;
+
+    } else {
+        console.error("AppendTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
+export function attachDebug(no, position, ele) {
+    let ids = [];
+
+    let debugContainer = document.createElement("div");
+    debugContainer.id = "debug-container";
+    debugContainer.style.zIndex = "999999";
+    debugContainer.style.position = "fixed";
+    
+    if (!position){
+        position = "left";
+    }
+    position = position.toLowerCase();
+
+    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
+        debugContainer.style.left = "5px";
+        debugContainer.style.top = "5px";
+        debugContainer.style.textAlgin = "left";
+    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
+        debugContainer.style.right = "5px";
+        debugContainer.style.top = "5px";
+        debugContainer.style.textAlgin = "right";
+    } else if (position == "bl" || position == "btm left") {
+        debugContainer.style.left = "5px";
+        debugContainer.style.bottom = "5px";
+        debugContainer.style.textAlgin = "left";
+    } else if (position == "br" || position == "btm right") {
+        debugContainer.style.right = "5px";
+        debugContainer.style.bottom = "5px";
+        debugContainer.style.textAlgin = "right";
+    }
+
+    window.aftcDebug = [];
+
+    for (let i = 0; i < no; i++) {
+        let r = Math.round(Math.random() * 9999999999);
+        let id = "aftc-debug-container-" + r;
+        let div = document.createElement("div");
+        div.id = id;
+        div.style.minWidth = "50px";
+        // div.style.height = "20px";
+        div.style.marginBottom = "3px";
+        div.style.border = "1px dashed #999999";
+        div.style.padding = "1px 2px 2px 4px";
+        div.style.background = "RGBA(255,255,255,0.92)";
+        div.style.color = "#000000";
+        div.classList.add("debug-row");
+        debugContainer.appendChild(div);
+        div.addEventListener("click", function (e) {
+            console.log(this.innerHTML);
+        });
+
+        window.aftcDebug.push(div);
+        ids.push(id);
+    }
+    if (ele) {
+        ele.appendChild(debugContainer);
+    } else {
+        document.body.appendChild(debugContainer);
+    }
+
+    console.warn("attachDebug(): Use debugTo(index,string) to write directly to debug elements.");
+    return debugContainer;
+}
+export function debugTo(index, str) {
+    if (window.aftcDebug) {
+        if (window.aftcDebug[index]) {
+            window.aftcDebug[index].innerHTML = str;
+        }
+    }
+}
+export function log(arg) {
+    console.log(arg);
+}
+
+export function logTo(elementOrId,msg,append=false,endOfLine=""){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        if (append === true){
+            ele.innerHTML = ele.innerHTML + msg + endOfLine;
+        } else {
+            ele.innerHTML = msg + endOfLine;
+        }
+
+    } else {
+        console.error("LogTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -938,9 +955,18 @@ export function setHTML(elementOrId, str, mode = "set") {
 
     if (ele) {
 
+        if (mode){
+            mode = mode.toLowerCase();
+        }
+
         switch (mode) {
             case "append":
-                ele.innerHTML += str + "<br>";
+                if (ele.innerHTML == ""){
+                    ele.innerHTML += str;
+                } else {
+                    ele.innerHTML += "<br>" + str;
+                }
+                
                 break;
             case "prepend":
                 ele.innerHTML = str + "<br>" + ele.innerHTML;
@@ -950,10 +976,8 @@ export function setHTML(elementOrId, str, mode = "set") {
                 break;
         }
 
-     
-
     } else {
-        return "setHTML(elementOrId, str): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
 export class EventManager {
@@ -1414,126 +1438,6 @@ Your making a request but are not doing anything with the response? Make sure to
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
-export class FPSMonitor {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
-
-    constructor(ele) {
-
-        this.dom = {
-            fps: false
-        }
-
-        this.fpsStack = false;
-        this.stackSize = 60;
-        this.index = 0;
-
-        this.last = 0;
-        this.now = 0;
-
-        this.delta = 0;
-
-        this.currentFrameFps = 0;
-
-        this.total = 0;
-        this.averageFps = 0;
-
-        this.i = 0;
-
-        if (ele){
-            this.dom.fps = ele;
-        }
-
-        this.fpsStack = new Float32Array(this.stackSize);
-
-        this.update();
-    }
-
-
-
-
-    update(){
-        this.now = performance.now();
-
-        this.delta = (this.now - this.last) / 1000;
-        this.currentFrameFps = 1/this.delta;
-        // log("currentFrameFps = " + this.currentFrameFps);
-
-        this.fpsStack[this.index] = this.currentFrameFps;
-
-        this.total = 0;
-        for(this.i=0; this.i < this.stackSize; this.i++){
-            this.total += this.fpsStack[this.i];
-        }
-
-        this.averageFps = Math.round( this.total/this.stackSize );
-
-        if (this.dom.fps){
-            this.dom.fps.innerText = this.averageFps;
-        }
-
-        this.last = this.now;
-
-        this.index++;
-        if (this.index >= this.stackSize){
-            this.index = 0;
-        }
-
-        requestAnimationFrame(()=>{
-            this.update();
-        });
-    }
-
-
-    getFps(){
-        return this.averageFps;
-    }
-}
-
-export function getGUID() {
-    function Amiga() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-
-    return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
-        Amiga() + '-' + Amiga() + Amiga() + Amiga();
-}
-export function getUID(len) {
-    if (len > 34){
-        console.error("getUID(length): Limit error: Length must be 34 or lower");
-    } else {
-        return Math.random().toString(36).substr(2, len);
-    }
-}
-export function isAlphaNumeric(v) {
-    return !(/\W/.test(v));
-}
-export function isArray(input) {
-    return !!input && input.constructor === Array;
-    //return arr.constructor === Array;
-}
-export function isBool(input) {
-    if (typeof (input) === "boolean") {
-        return true;
-    } else {
-        return false;
-    }
-}
-export function isBoolean(input) {
-    if (typeof (input) === "boolean") {
-        return true;
-    } else {
-        return false;
-    }
-}
-export function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-export function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
 }
@@ -1680,6 +1584,126 @@ export function roundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
 }
 
+export class FPSMonitor {
+    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
+    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
+
+    constructor(ele) {
+
+        this.dom = {
+            fps: false
+        }
+
+        this.fpsStack = false;
+        this.stackSize = 60;
+        this.index = 0;
+
+        this.last = 0;
+        this.now = 0;
+
+        this.delta = 0;
+
+        this.currentFrameFps = 0;
+
+        this.total = 0;
+        this.averageFps = 0;
+
+        this.i = 0;
+
+        if (ele){
+            this.dom.fps = ele;
+        }
+
+        this.fpsStack = new Float32Array(this.stackSize);
+
+        this.update();
+    }
+
+
+
+
+    update(){
+        this.now = performance.now();
+
+        this.delta = (this.now - this.last) / 1000;
+        this.currentFrameFps = 1/this.delta;
+        // log("currentFrameFps = " + this.currentFrameFps);
+
+        this.fpsStack[this.index] = this.currentFrameFps;
+
+        this.total = 0;
+        for(this.i=0; this.i < this.stackSize; this.i++){
+            this.total += this.fpsStack[this.i];
+        }
+
+        this.averageFps = Math.round( this.total/this.stackSize );
+
+        if (this.dom.fps){
+            this.dom.fps.innerText = this.averageFps;
+        }
+
+        this.last = this.now;
+
+        this.index++;
+        if (this.index >= this.stackSize){
+            this.index = 0;
+        }
+
+        requestAnimationFrame(()=>{
+            this.update();
+        });
+    }
+
+
+    getFps(){
+        return this.averageFps;
+    }
+}
+
+export function getGUID() {
+    function Amiga() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
+        Amiga() + '-' + Amiga() + Amiga() + Amiga();
+}
+export function getUID(len) {
+    if (len > 34){
+        console.error("getUID(length): Limit error: Length must be 34 or lower");
+    } else {
+        return Math.random().toString(36).substr(2, len);
+    }
+}
+export function isAlphaNumeric(v) {
+    return !(/\W/.test(v));
+}
+export function isArray(input) {
+    return !!input && input.constructor === Array;
+    //return arr.constructor === Array;
+}
+export function isBool(input) {
+    if (typeof (input) === "boolean") {
+        return true;
+    } else {
+        return false;
+    }
+}
+export function isBoolean(input) {
+    if (typeof (input) === "boolean") {
+        return true;
+    } else {
+        return false;
+    }
+}
+export function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+export function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }

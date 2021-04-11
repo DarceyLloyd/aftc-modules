@@ -7,4 +7,8 @@ backups
 beta
 tests
 gulpfile.js
+install.bat
+readme.md
+template.md
+node_modules
 #src
