@@ -1,4 +1,4 @@
-// aftc-modules v1.4.5
+// aftc-modules v1.5.0
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -79,74 +79,6 @@ export function AnimationFrameStack() {
  * @method dispose: dispose of all functions in the function stack
  * @link:
  */
-export function getBrowser () {
-    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if (/trident/i.test(M[1])) {
-        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return 'IE';
-    }
-    if (M[1] === 'Chrome') {
-        tem = ua.match(/\bOPR\/(\d+)/);
-        if (tem != null) {
-            return 'Opera';
-        }
-    }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-        M.splice(1, 1, tem[1]);
-    }
-    return M[0];
-}
-export function getBrowserX(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return x;
-}
-
-
-export function getBrowserY(){
-    let supportPageOffset = window.pageXOffset !== undefined;
-    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
-    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-    return y;
-}
-
-export function isInViewport(el){
-    let top = el.offsetTop;
-    let left = el.offsetLeft;
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
-
-    while(el.offsetParent) {
-        el = el.offsetParent;
-        top += el.offsetTop;
-        left += el.offsetLeft;
-    }
-
-    return (
-        top < (window.pageYOffset + window.innerHeight) &&
-        left < (window.pageXOffset + window.innerWidth) &&
-        (top + height) > window.pageYOffset &&
-        (left + width) > window.pageXOffset
-    );
-
-
-    // let bounding = ele.getBoundingClientRect();
-    // return (
-    //     bounding.top >= 0 &&
-    //     bounding.left >= 0 &&
-    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    // );
-}
-
 export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
@@ -217,6 +149,96 @@ export function isStringInArray(needle, haystack) {
     return (new RegExp('(' + haystack.join('|').replace(/\./g, '\\.') + ')$')).test(needle);
 }
 
+export function getBrowser () {
+    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE';
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/);
+        if (tem != null) {
+            return 'Opera';
+        }
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        M.splice(1, 1, tem[1]);
+    }
+    return M[0];
+}
+export function getBrowserX(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return x;
+}
+
+
+export function getBrowserY(){
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+
+    // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+    let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+    return y;
+}
+
+export function isInViewport(el){
+    let top = el.offsetTop;
+    let left = el.offsetLeft;
+    let width = el.offsetWidth;
+    let height = el.offsetHeight;
+
+    while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+    }
+
+    return (
+        top < (window.pageYOffset + window.innerHeight) &&
+        left < (window.pageXOffset + window.innerWidth) &&
+        (top + height) > window.pageYOffset &&
+        (left + width) > window.pageXOffset
+    );
+
+
+    // let bounding = ele.getBoundingClientRect();
+    // return (
+    //     bounding.top >= 0 &&
+    //     bounding.left >= 0 &&
+    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    // );
+}
+
+export function getCookie(name) {
+	//return .cookie(name);
+	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
+	return keyValue ? keyValue[2] : null;
+}
+export function setCookie(cname, cvalue, exdays) {
+	// var expires = new Date();
+	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// export function setCookie(name, value) {
+// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
+// 	//.cookie(name, value, {expires:365,path:'/cookies'});
+// 	var expires = new Date();
+// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+// }
 export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
@@ -343,28 +365,6 @@ export function stringToBool (str) {
 }
 
 
-export function getCookie(name) {
-	//return .cookie(name);
-	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
-	return keyValue ? keyValue[2] : null;
-}
-export function setCookie(cname, cvalue, exdays) {
-	// var expires = new Date();
-	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-// export function setCookie(name, value) {
-// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-// 	//.cookie(name, value, {expires:365,path:'/cookies'});
-// 	var expires = new Date();
-// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-// }
 export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
@@ -1050,6 +1050,19 @@ export function getWordsFromString(str, maxWords) {
     return { output: output, remaining: (maxWords - wordCount) };
 }
 
+export function loadCss(href, onComplete){
+    let link = document.createElement("link");
+    link.onload = function () {
+        if (onComplete) {
+            onComplete();
+        }
+    }
+    link.href = href;
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.media = "screen,print";
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
 export function loadJson(url) {
 
     // Might extend someday, ref link if you do or old xhr function or both
@@ -1125,6 +1138,68 @@ export function loadScript(src, onComplete, onProgress){
 
     xhr.open("GET", src);
     xhr.send();
+}
+export function promiseLoadCss(href) {
+
+    return new Promise(function (resolve, reject) {
+
+        let link = document.createElement("link");
+        link.onload = function () {
+                resolve(true);
+        }
+        link.onerror = (e) => {
+            reject(e);
+        }
+        link.href = href;
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.media = "screen,print";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    }
+}
+export class PromiseLoadImage {
+
+
+    constructor(ele, src) {
+        return new Promise((resolve, reject) => {
+            ele.onload = () => {
+                resolve(true);
+            }
+            ele.error = (e) => {
+                reject(false);
+            }
+            ele.src = src;
+        });
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
+export function promiseLoadScript(src) {
+
+    return new Promise(function (resolve, reject) {
+
+        let head = document.getElementsByTagName("head")[0] || document.body;
+
+        if (!head) {
+            console.error("promiseLoadScript(): Unable to get DOM Head or DOM Body!");
+            return;
+        }
+
+        let script = document.createElement("script");
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("load", function (e) {
+            script.innerHTML = e.target.responseText;
+            document.documentElement.appendChild(script);
+            resolve(true)
+        }, false);
+
+        xhr.open("GET", src);
+        xhr.send();
+
+
+    }
 }
 export class XHR {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
@@ -1917,3 +1992,48 @@ export function isEmail (email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
+
+import { loadJson } from "aftc-modules";
+
+export class PromiseAttachVideo {
+
+
+    constructor(video,src) {
+        return new Promise((resolve, reject) => {
+    
+            video.addEventListener("loadedmetadata", (e) => {
+                let width = video.videoWidth;
+                let height = video.videoWidth;
+                let duration = video.duration;
+                resolve({
+                    width,height,duration
+                });
+            }, false);
+
+            video.addEventListener("error", (e) => {
+                reject(e);
+                throw (e);
+            },false);
+    
+            video.src = src;  
+        });
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
+import { loadJson } from "aftc-modules";
+
+export class PromiseAttachVideo {
+
+    constructor(video) {
+        return new Promise((resolve, reject) => {
+            video.addEventListener('ended', (e) => {
+                resolve(true);
+            }); 
+        });
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
+
+
