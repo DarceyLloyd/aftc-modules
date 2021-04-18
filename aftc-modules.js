@@ -217,94 +217,6 @@ export function isInViewport(el){
     // );
 }
 
-export function getCookie(name) {
-	//return .cookie(name);
-	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
-	return keyValue ? keyValue[2] : null;
-}
-export function setCookie(cname, cvalue, exdays) {
-	// var expires = new Date();
-	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-// export function setCookie(name, value) {
-// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-// 	//.cookie(name, value, {expires:365,path:'/cookies'});
-// 	var expires = new Date();
-// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-// }
-export function getDaysBetween (startDateTime, endDateTime) {
-    let msPerDay = 8.64e7;
-    // Copy dates so don't mess them up
-    let sd = new Date(startDateTime);
-    let ed = new Date(endDateTime);
-    // Set to noon - avoid DST errors
-    sd.setHours(12, 0, 0);
-    ed.setHours(12, 0, 0);
-    // Round to remove daylight saving errors
-    return Math.round((ed - sd) / msPerDay);
-}
-
-export function getMySQLDateTimeString() {
-    let now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth() + 1;
-    let day = now.getDate();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let second = now.getSeconds();
-    if (month.toString().length === 1) {
-        month = '0' + month;
-    }
-    if (day.toString().length === 1) {
-        day = '0' + day;
-    }
-    if (hour.toString().length === 1) {
-        hour = '0' + hour;
-    }
-    if (minute.toString().length === 1) {
-        minute = '0' + minute;
-    }
-    if (second.toString().length === 1) {
-        second = '0' + second;
-    }
-    let str = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
-    return str;
-}
-
-export function getUKDate(dte){
-    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
-    return output;
-}
-export function getUkDateFromDbDateTime (input) {
-    // "2016-04-08 21:11:59" to UK date
-    if (input === "" || input === null) {
-        return "no input";
-    }
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    return UKDate;
-}
-export function getUkDateTimeFromDbDateTime  (input) {
-    // "2016-04-08 21:11:59" to UK date time
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let TimeParts = DateTime[1].split(":");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    let Time = TimeParts[0] + ":" + TimeParts[1];
-    return (UKDate + " " + Time);
-}
-export function getUSDate(dte){
-    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
-    return output;
-}
 export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
@@ -431,6 +343,94 @@ export function stringToBool (str) {
 }
 
 
+export function getCookie(name) {
+	//return .cookie(name);
+	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
+	return keyValue ? keyValue[2] : null;
+}
+export function setCookie(cname, cvalue, exdays) {
+	// var expires = new Date();
+	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// export function setCookie(name, value) {
+// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
+// 	//.cookie(name, value, {expires:365,path:'/cookies'});
+// 	var expires = new Date();
+// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+// }
+export function getDaysBetween (startDateTime, endDateTime) {
+    let msPerDay = 8.64e7;
+    // Copy dates so don't mess them up
+    let sd = new Date(startDateTime);
+    let ed = new Date(endDateTime);
+    // Set to noon - avoid DST errors
+    sd.setHours(12, 0, 0);
+    ed.setHours(12, 0, 0);
+    // Round to remove daylight saving errors
+    return Math.round((ed - sd) / msPerDay);
+}
+
+export function getMySQLDateTimeString() {
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+    if (month.toString().length === 1) {
+        month = '0' + month;
+    }
+    if (day.toString().length === 1) {
+        day = '0' + day;
+    }
+    if (hour.toString().length === 1) {
+        hour = '0' + hour;
+    }
+    if (minute.toString().length === 1) {
+        minute = '0' + minute;
+    }
+    if (second.toString().length === 1) {
+        second = '0' + second;
+    }
+    let str = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
+    return str;
+}
+
+export function getUKDate(dte){
+    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
+    return output;
+}
+export function getUkDateFromDbDateTime (input) {
+    // "2016-04-08 21:11:59" to UK date
+    if (input === "" || input === null) {
+        return "no input";
+    }
+    let DateTime = input.split(" ");
+    let DateParts = DateTime[0].split("-");
+    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
+    return UKDate;
+}
+export function getUkDateTimeFromDbDateTime  (input) {
+    // "2016-04-08 21:11:59" to UK date time
+    let DateTime = input.split(" ");
+    let DateParts = DateTime[0].split("-");
+    let TimeParts = DateTime[1].split(":");
+    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
+    let Time = TimeParts[0] + ":" + TimeParts[1];
+    return (UKDate + " " + Time);
+}
+export function getUSDate(dte){
+    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
+    return output;
+}
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -1036,6 +1036,18 @@ export function onReady(fn) {
         }
 
     }
+}
+
+export function getWordsFromString(str, maxWords) {
+    let wordCount = str.split(/\S+/).length - 1;
+    let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
+    let output = "";
+    if (wordCount >= maxWords) {
+        output = str.match(re);
+    } else {
+        output = str;
+    }
+    return { output: output, remaining: (maxWords - wordCount) };
 }
 
 export class AFTCPreloader {
@@ -1872,18 +1884,6 @@ Your making a request but are not doing anything with the response? Make sure to
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
-export function getWordsFromString(str, maxWords) {
-    let wordCount = str.split(/\S+/).length - 1;
-    let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
-    let output = "";
-    if (wordCount >= maxWords) {
-        output = str.match(re);
-    } else {
-        output = str;
-    }
-    return { output: output, remaining: (maxWords - wordCount) };
-}
-
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
 }
@@ -2359,11 +2359,6 @@ export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
 export class PromiseAttachVideo {
 
 
@@ -2404,3 +2399,8 @@ export class PromiseVideoEnd {
 }
 
 
+
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
