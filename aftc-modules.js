@@ -1,4 +1,4 @@
-// aftc-modules v1.7.0
+// aftc-modules v1.7.1
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -923,63 +923,6 @@ export function isElement2(element) {
     return element instanceof Element;
 }
 
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function hasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function setHTML(elementOrId, str, mode = "set") {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele) {
-            ele = document.querySelector(elementOrId);
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (ele) {
-
-        if (mode){
-            mode = mode.toLowerCase();
-        }
-
-        switch (mode) {
-            case "append":
-                if (ele.innerHTML == ""){
-                    ele.innerHTML += str;
-                } else {
-                    ele.innerHTML += "<br>" + str;
-                }
-                
-                break;
-            case "prepend":
-                ele.innerHTML = str + "<br>" + ele.innerHTML;
-                break;
-            default:
-                ele.innerHTML = str;
-                break;
-        }
-
-    } else {
-        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -1038,6 +981,63 @@ export function onReady(fn) {
     }
 }
 
+export function getElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function setHTML(elementOrId, str, mode = "set") {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele) {
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+
+        if (mode){
+            mode = mode.toLowerCase();
+        }
+
+        switch (mode) {
+            case "append":
+                if (ele.innerHTML == ""){
+                    ele.innerHTML += str;
+                } else {
+                    ele.innerHTML += "<br>" + str;
+                }
+                
+                break;
+            case "prepend":
+                ele.innerHTML = str + "<br>" + ele.innerHTML;
+                break;
+            default:
+                ele.innerHTML = str;
+                break;
+        }
+
+    } else {
+        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export function getWordsFromString(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
@@ -1052,48 +1052,7 @@ export function getWordsFromString(str, maxWords) {
 
 export class AFTCPreloader {
 
-    ItemVo = function () {
-        this.id = false;
-        this.src = false;
-        this.ext = false;
-        this.loaded = false;
-        this.loading = false;
-        this.autoAttach = false;
-    }
-
-    XHRLoader = function (parent, threadIndex, queueIndex, src) {
-        // log("XHRLoader(parent, threadIndex, queueIndex, src)");
-        this.parent = parent;
-        this.threadIndex = threadIndex;
-        this.queueIndex = queueIndex;
-        this.src = src;
-
-        this.xhr = new XMLHttpRequest();
-        this.xhr.onload = (e) => {
-            this.onLoadHandler(e);
-        };
-
-        // this.xhr.addEventListener("progress", () => this.updateHandler, false);
-        // this.xhr.addEventListener("load", transferComplete);
-        // this.xhr.addEventListener("error", transferFailed);
-        // this.xhr.addEventListener("abort", transferCanceled);
-        // Detect abort, load, or error using the loadend event
-        // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
-
-        this.xhr.open('GET', this.src, true);
-        this.xhr.send();
-        this.updateHandler = function (e) {
-
-        }
-        // - - - - - - - - - - -
-
-        this.onLoadHandler = function (e) {
-            // log("XHRLoader.onLoadHandler(): " + this.src);
-            this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
-            this.xhr = null;
-        }
-        // - - - - - - - - - - -
-    }
+    
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1115,6 +1074,49 @@ export class AFTCPreloader {
         this.thread = []; // [0] > [noOfThreads] = "available" || "filled"
 
         this.queueCompleted = false;
+
+        this.ItemVo = function () {
+            this.id = false;
+            this.src = false;
+            this.ext = false;
+            this.loaded = false;
+            this.loading = false;
+            this.autoAttach = false;
+        }
+    
+        this.XHRLoader = function (parent, threadIndex, queueIndex, src) {
+            // log("XHRLoader(parent, threadIndex, queueIndex, src)");
+            this.parent = parent;
+            this.threadIndex = threadIndex;
+            this.queueIndex = queueIndex;
+            this.src = src;
+    
+            this.xhr = new XMLHttpRequest();
+            this.xhr.onload = (e) => {
+                this.onLoadHandler(e);
+            };
+    
+            // this.xhr.addEventListener("progress", () => this.updateHandler, false);
+            // this.xhr.addEventListener("load", transferComplete);
+            // this.xhr.addEventListener("error", transferFailed);
+            // this.xhr.addEventListener("abort", transferCanceled);
+            // Detect abort, load, or error using the loadend event
+            // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
+    
+            this.xhr.open('GET', this.src, true);
+            this.xhr.send();
+            this.updateHandler = function (e) {
+    
+            }
+            // - - - - - - - - - - -
+    
+            this.onLoadHandler = function (e) {
+                // log("XHRLoader.onLoadHandler(): " + this.src);
+                this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
+                this.xhr = null;
+            }
+            // - - - - - - - - - - -
+        }
 
         argsToObject(arguments, this, true);
 
@@ -2359,6 +2361,11 @@ export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 export class PromiseAttachVideo {
 
 
@@ -2399,8 +2406,3 @@ export class PromiseVideoEnd {
 }
 
 
-
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}

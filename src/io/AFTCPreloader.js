@@ -1,47 +1,6 @@
 export class AFTCPreloader {
 
-    ItemVo = function () {
-        this.id = false;
-        this.src = false;
-        this.ext = false;
-        this.loaded = false;
-        this.loading = false;
-        this.autoAttach = false;
-    }
-
-    XHRLoader = function (parent, threadIndex, queueIndex, src) {
-        // log("XHRLoader(parent, threadIndex, queueIndex, src)");
-        this.parent = parent;
-        this.threadIndex = threadIndex;
-        this.queueIndex = queueIndex;
-        this.src = src;
-
-        this.xhr = new XMLHttpRequest();
-        this.xhr.onload = (e) => {
-            this.onLoadHandler(e);
-        };
-
-        // this.xhr.addEventListener("progress", () => this.updateHandler, false);
-        // this.xhr.addEventListener("load", transferComplete);
-        // this.xhr.addEventListener("error", transferFailed);
-        // this.xhr.addEventListener("abort", transferCanceled);
-        // Detect abort, load, or error using the loadend event
-        // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
-
-        this.xhr.open('GET', this.src, true);
-        this.xhr.send();
-        this.updateHandler = function (e) {
-
-        }
-        // - - - - - - - - - - -
-
-        this.onLoadHandler = function (e) {
-            // log("XHRLoader.onLoadHandler(): " + this.src);
-            this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
-            this.xhr = null;
-        }
-        // - - - - - - - - - - -
-    }
+    
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -63,6 +22,49 @@ export class AFTCPreloader {
         this.thread = []; // [0] > [noOfThreads] = "available" || "filled"
 
         this.queueCompleted = false;
+
+        this.ItemVo = function () {
+            this.id = false;
+            this.src = false;
+            this.ext = false;
+            this.loaded = false;
+            this.loading = false;
+            this.autoAttach = false;
+        }
+    
+        this.XHRLoader = function (parent, threadIndex, queueIndex, src) {
+            // log("XHRLoader(parent, threadIndex, queueIndex, src)");
+            this.parent = parent;
+            this.threadIndex = threadIndex;
+            this.queueIndex = queueIndex;
+            this.src = src;
+    
+            this.xhr = new XMLHttpRequest();
+            this.xhr.onload = (e) => {
+                this.onLoadHandler(e);
+            };
+    
+            // this.xhr.addEventListener("progress", () => this.updateHandler, false);
+            // this.xhr.addEventListener("load", transferComplete);
+            // this.xhr.addEventListener("error", transferFailed);
+            // this.xhr.addEventListener("abort", transferCanceled);
+            // Detect abort, load, or error using the loadend event
+            // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
+    
+            this.xhr.open('GET', this.src, true);
+            this.xhr.send();
+            this.updateHandler = function (e) {
+    
+            }
+            // - - - - - - - - - - -
+    
+            this.onLoadHandler = function (e) {
+                // log("XHRLoader.onLoadHandler(): " + this.src);
+                this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
+                this.xhr = null;
+            }
+            // - - - - - - - - - - -
+        }
 
         argsToObject(arguments, this, true);
 
