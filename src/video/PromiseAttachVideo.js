@@ -1,5 +1,3 @@
-import { loadJson } from "aftc-modules";
-
 export class PromiseAttachVideo {
 
 

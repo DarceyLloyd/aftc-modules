@@ -1,4 +1,4 @@
-// aftc-modules v1.5.0
+// aftc-modules v1.6.2
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -217,28 +217,6 @@ export function isInViewport(el){
     // );
 }
 
-export function getCookie(name) {
-	//return .cookie(name);
-	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
-	return keyValue ? keyValue[2] : null;
-}
-export function setCookie(cname, cvalue, exdays) {
-	// var expires = new Date();
-	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-// export function setCookie(name, value) {
-// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-// 	//.cookie(name, value, {expires:365,path:'/cookies'});
-// 	var expires = new Date();
-// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-// }
 export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
@@ -365,6 +343,28 @@ export function stringToBool (str) {
 }
 
 
+export function getCookie(name) {
+	//return .cookie(name);
+	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
+	return keyValue ? keyValue[2] : null;
+}
+export function setCookie(cname, cvalue, exdays) {
+	// var expires = new Date();
+	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// export function setCookie(name, value) {
+// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
+// 	//.cookie(name, value, {expires:365,path:'/cookies'});
+// 	var expires = new Date();
+// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
+// }
 export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
@@ -923,63 +923,6 @@ export function isElement2(element) {
     return element instanceof Element;
 }
 
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function hasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function setHTML(elementOrId, str, mode = "set") {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele) {
-            ele = document.querySelector(elementOrId);
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (ele) {
-
-        if (mode){
-            mode = mode.toLowerCase();
-        }
-
-        switch (mode) {
-            case "append":
-                if (ele.innerHTML == ""){
-                    ele.innerHTML += str;
-                } else {
-                    ele.innerHTML += "<br>" + str;
-                }
-                
-                break;
-            case "prepend":
-                ele.innerHTML = str + "<br>" + ele.innerHTML;
-                break;
-            default:
-                ele.innerHTML = str;
-                break;
-        }
-
-    } else {
-        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -1038,6 +981,63 @@ export function onReady(fn) {
     }
 }
 
+export function getElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function setHTML(elementOrId, str, mode = "set") {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele) {
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+
+        if (mode){
+            mode = mode.toLowerCase();
+        }
+
+        switch (mode) {
+            case "append":
+                if (ele.innerHTML == ""){
+                    ele.innerHTML += str;
+                } else {
+                    ele.innerHTML += "<br>" + str;
+                }
+                
+                break;
+            case "prepend":
+                ele.innerHTML = str + "<br>" + ele.innerHTML;
+                break;
+            default:
+                ele.innerHTML = str;
+                break;
+        }
+
+    } else {
+        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export function getWordsFromString(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
@@ -1067,11 +1067,10 @@ export function loadJson(url) {
 
     // Might extend someday, ref link if you do or old xhr function or both
     // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
-
-    let method = "GET";
-
+    
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
+        let method = "GET";
         xhr.open(method, url);
         xhr.onload = function () {
             if (this.status >= 200 && this.status < 300) {
@@ -1155,7 +1154,7 @@ export function promiseLoadCss(href) {
         link.rel = "stylesheet";
         link.media = "screen,print";
         document.getElementsByTagName("head")[0].appendChild(link);
-    }
+    });
 }
 export class PromiseLoadImage {
 
@@ -1199,7 +1198,7 @@ export function promiseLoadScript(src) {
         xhr.send();
 
 
-    }
+    });
 }
 export class XHR {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
@@ -1810,6 +1809,33 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+export function mouseScrollHandler(onScrollUp, onScrollDown) {
+    // var defs
+    let direction = false;
+
+    // Fn
+    let onScrollUpHandler = onScrollUp;
+    let onScrollDownHandler = onScrollDown;
+
+    window.addEventListener('wheel', (e) => {
+        if (e.deltaY < 0) {
+            if (this.onScrollUpHandler) {
+                this.onScrollUpHandler();
+            }
+        }
+        else if (e.deltaY > 0) {
+            if (this.onScrollDownHandler) {
+                this.onScrollDownHandler();
+            }
+        }
+    })
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
@@ -1988,13 +2014,6 @@ export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-import { loadJson } from "aftc-modules";
-
 export class PromiseAttachVideo {
 
 
@@ -2021,9 +2040,7 @@ export class PromiseAttachVideo {
     // - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
-import { loadJson } from "aftc-modules";
-
-export class PromiseAttachVideo {
+export class PromiseVideoEnd {
 
     constructor(video) {
         return new Promise((resolve, reject) => {

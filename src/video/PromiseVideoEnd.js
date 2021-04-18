@@ -1,6 +1,4 @@
-import { loadJson } from "aftc-modules";
-
-export class PromiseAttachVideo {
+export class PromiseVideoEnd {
 
     constructor(video) {
         return new Promise((resolve, reject) => {

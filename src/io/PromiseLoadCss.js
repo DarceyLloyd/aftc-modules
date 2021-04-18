@@ -14,5 +14,5 @@ export function promiseLoadCss(href) {
         link.rel = "stylesheet";
         link.media = "screen,print";
         document.getElementsByTagName("head")[0].appendChild(link);
-    }
+    });
 }
