@@ -1,22 +1,31 @@
-export function mouseScrollHandler(onScrollUp, onScrollDown) {
-    // var defs
-    let direction = false;
+export class MouseScrollHandler {
 
-    // Fn
-    let onScrollUpHandler = onScrollUp;
-    let onScrollDownHandler = onScrollDown;
+    constructor(onScrollUp,onScrollDown) {
+        // var defs
+        this.direction = false;
 
-    window.addEventListener('wheel', (e) => {
+        // Fn
+        this.onScrollUp = onScrollUp;
+        this.onScrollDown = onScrollDown;
+
+        window.addEventListener('wheel', (e) => {
+            this.scrollHandler(e);
+        })
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    scrollHandler(e) {
         if (e.deltaY < 0) {
-            if (this.onScrollUpHandler) {
-                this.onScrollUpHandler();
+            if (this.onScrollUp) {
+                this.onScrollUp();
             }
         }
         else if (e.deltaY > 0) {
-            if (this.onScrollDownHandler) {
-                this.onScrollDownHandler();
+            if (this.onScrollDown) {
+                this.onScrollDown();
             }
         }
-    })
+    }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }

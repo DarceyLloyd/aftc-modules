@@ -1,4 +1,4 @@
-// aftc-modules v1.6.2
+// aftc-modules v1.6.9
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -431,151 +431,6 @@ export function getUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
-export function appendTo(elementOrId,msg,endOfLine="<br>"){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        ele.innerHTML = ele.innerHTML + msg + endOfLine;
-
-    } else {
-        console.error("AppendTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
-
-export function attachDebug(no, position, ele) {
-    let ids = [];
-
-    let debugContainer = document.createElement("div");
-    debugContainer.id = "debug-container";
-    debugContainer.style.zIndex = "999999";
-    debugContainer.style.position = "fixed";
-    
-    if (!position){
-        position = "left";
-    }
-    position = position.toLowerCase();
-
-    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
-        debugContainer.style.left = "5px";
-        debugContainer.style.top = "5px";
-        debugContainer.style.textAlgin = "left";
-    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
-        debugContainer.style.right = "5px";
-        debugContainer.style.top = "5px";
-        debugContainer.style.textAlgin = "right";
-    } else if (position == "bl" || position == "btm left") {
-        debugContainer.style.left = "5px";
-        debugContainer.style.bottom = "5px";
-        debugContainer.style.textAlgin = "left";
-    } else if (position == "br" || position == "btm right") {
-        debugContainer.style.right = "5px";
-        debugContainer.style.bottom = "5px";
-        debugContainer.style.textAlgin = "right";
-    }
-
-    window.aftcDebug = [];
-
-    for (let i = 0; i < no; i++) {
-        let r = Math.round(Math.random() * 9999999999);
-        let id = "aftc-debug-container-" + r;
-        let div = document.createElement("div");
-        div.id = id;
-        div.style.minWidth = "50px";
-        // div.style.height = "20px";
-        div.style.marginBottom = "3px";
-        div.style.border = "1px dashed #999999";
-        div.style.padding = "1px 2px 2px 4px";
-        div.style.background = "RGBA(255,255,255,0.92)";
-        div.style.color = "#000000";
-        div.classList.add("debug-row");
-        debugContainer.appendChild(div);
-        div.addEventListener("click", function (e) {
-            console.log(this.innerHTML);
-        });
-
-        window.aftcDebug.push(div);
-        ids.push(id);
-    }
-    if (ele) {
-        ele.appendChild(debugContainer);
-    } else {
-        document.body.appendChild(debugContainer);
-    }
-
-    console.warn("attachDebug(): Use debugTo(index,string) to write directly to debug elements.");
-    return debugContainer;
-}
-export function debugTo(index, str) {
-    if (window.aftcDebug) {
-        if (window.aftcDebug[index]) {
-            window.aftcDebug[index].innerHTML = str;
-        }
-    }
-}
-export function log(arg) {
-    console.log(arg);
-}
-
-export function logTo(elementOrId,msg,append=false,endOfLine=""){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        if (append === true){
-            ele.innerHTML = ele.innerHTML + msg + endOfLine;
-        } else {
-            ele.innerHTML = msg + endOfLine;
-        }
-
-    } else {
-        console.error("LogTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
-
 export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
@@ -867,6 +722,151 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
+export function appendTo(elementOrId,msg,endOfLine="<br>"){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        ele.innerHTML = ele.innerHTML + msg + endOfLine;
+
+    } else {
+        console.error("AppendTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
+export function attachDebug(no, position, ele) {
+    let ids = [];
+
+    let debugContainer = document.createElement("div");
+    debugContainer.id = "debug-container";
+    debugContainer.style.zIndex = "999999";
+    debugContainer.style.position = "fixed";
+    
+    if (!position){
+        position = "left";
+    }
+    position = position.toLowerCase();
+
+    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
+        debugContainer.style.left = "5px";
+        debugContainer.style.top = "5px";
+        debugContainer.style.textAlgin = "left";
+    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
+        debugContainer.style.right = "5px";
+        debugContainer.style.top = "5px";
+        debugContainer.style.textAlgin = "right";
+    } else if (position == "bl" || position == "btm left") {
+        debugContainer.style.left = "5px";
+        debugContainer.style.bottom = "5px";
+        debugContainer.style.textAlgin = "left";
+    } else if (position == "br" || position == "btm right") {
+        debugContainer.style.right = "5px";
+        debugContainer.style.bottom = "5px";
+        debugContainer.style.textAlgin = "right";
+    }
+
+    window.aftcDebug = [];
+
+    for (let i = 0; i < no; i++) {
+        let r = Math.round(Math.random() * 9999999999);
+        let id = "aftc-debug-container-" + r;
+        let div = document.createElement("div");
+        div.id = id;
+        div.style.minWidth = "50px";
+        // div.style.height = "20px";
+        div.style.marginBottom = "3px";
+        div.style.border = "1px dashed #999999";
+        div.style.padding = "1px 2px 2px 4px";
+        div.style.background = "RGBA(255,255,255,0.92)";
+        div.style.color = "#000000";
+        div.classList.add("debug-row");
+        debugContainer.appendChild(div);
+        div.addEventListener("click", function (e) {
+            console.log(this.innerHTML);
+        });
+
+        window.aftcDebug.push(div);
+        ids.push(id);
+    }
+    if (ele) {
+        ele.appendChild(debugContainer);
+    } else {
+        document.body.appendChild(debugContainer);
+    }
+
+    console.warn("attachDebug(): Use debugTo(index,string) to write directly to debug elements.");
+    return debugContainer;
+}
+export function debugTo(index, str) {
+    if (window.aftcDebug) {
+        if (window.aftcDebug[index]) {
+            window.aftcDebug[index].innerHTML = str;
+        }
+    }
+}
+export function log(arg) {
+    console.log(arg);
+}
+
+export function logTo(elementOrId,msg,append=false,endOfLine=""){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (isElement(ele)){
+        if (append === true){
+            ele.innerHTML = ele.innerHTML + msg + endOfLine;
+        } else {
+            ele.innerHTML = msg + endOfLine;
+        }
+
+    } else {
+        console.error("LogTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -921,64 +921,6 @@ export function isElement(o) {
 export function isElement2(element) {
     // works on major browsers back to IE7
     return element instanceof Element;
-}
-
-export class EventManager {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
-}
-
-/** jso {
- * "Function": "EventManager.js",
- * "Description": "A centralised event stack where you can hook your functions / class's into for centralised quick and easy event application event handling.",
- * "Methods": [
- *      {
- *          "name": "list",
- *          "description": "Lists which events have been created and available for dispatch in the EventManager.",
-  *          "returns": "console.log",
- *      },
- *      {
- *          "name": "add",
- *          "description": "Adds or creates a new event within the event manager and attached a callback function / listener object to be called on dispatch of this event.",
- *          "parameters": [
- *              {
- *                  "name": "eventName",
- *                  "required": "true",
- *                  "description": "The name of the event to add.",
- *              },
- *              {
- *                  "name": "callbackFunction",
-  *                  "required": "true",
- *                  "description": "The listener object / function which gets called when the event is triggered.",
- *              },
- *          ],
- *      },
- *      {
- *          "name": "dispatch",
- *          "description": "Dispatches / Triggers an event by name from the EventManager.",
- *          "parameters": [
- *              {
- *                  "name": "eventName",
- *                  "required": "true",
- *                  "description": "The name of the event to dispatch.",
- *              }
- *          ],
- *      },
- *  ]
- * }
- */
-export function onReady(fn) {
-    // IE9+
-    if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
-        setTimeout(fn, 10);
-    } else {
-        if (document.addEventListener) {
-            document.addEventListener("DOMContentLoaded", function(){
-                window.setTimeout(fn, 10);
-            });
-        }
-
-    }
 }
 
 export function getElementOffsetTop(elementId) {
@@ -1038,6 +980,64 @@ export function setHTML(elementOrId, str, mode = "set") {
         return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
+export class EventManager {
+    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
+    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
+}
+
+/** jso {
+ * "Function": "EventManager.js",
+ * "Description": "A centralised event stack where you can hook your functions / class's into for centralised quick and easy event application event handling.",
+ * "Methods": [
+ *      {
+ *          "name": "list",
+ *          "description": "Lists which events have been created and available for dispatch in the EventManager.",
+  *          "returns": "console.log",
+ *      },
+ *      {
+ *          "name": "add",
+ *          "description": "Adds or creates a new event within the event manager and attached a callback function / listener object to be called on dispatch of this event.",
+ *          "parameters": [
+ *              {
+ *                  "name": "eventName",
+ *                  "required": "true",
+ *                  "description": "The name of the event to add.",
+ *              },
+ *              {
+ *                  "name": "callbackFunction",
+  *                  "required": "true",
+ *                  "description": "The listener object / function which gets called when the event is triggered.",
+ *              },
+ *          ],
+ *      },
+ *      {
+ *          "name": "dispatch",
+ *          "description": "Dispatches / Triggers an event by name from the EventManager.",
+ *          "parameters": [
+ *              {
+ *                  "name": "eventName",
+ *                  "required": "true",
+ *                  "description": "The name of the event to dispatch.",
+ *              }
+ *          ],
+ *      },
+ *  ]
+ * }
+ */
+export function onReady(fn) {
+    // IE9+
+    if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+        setTimeout(fn, 10);
+    } else {
+        if (document.addEventListener) {
+            document.addEventListener("DOMContentLoaded", function(){
+                window.setTimeout(fn, 10);
+            });
+        }
+
+    }
+}
+
 export function getWordsFromString(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
@@ -1063,36 +1063,34 @@ export function loadCss(href, onComplete){
     link.media = "screen,print";
     document.getElementsByTagName("head")[0].appendChild(link);
 }
-export function loadJson(url) {
+export function loadJson(url, onComplete, onError) {
 
-    // Might extend someday, ref link if you do or old xhr function or both
-    // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
-    
-    return new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        let method = "GET";
-        xhr.open(method, url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(JSON.parse(xhr.response));
-            } else {
-                reject({
+    let xhr = new XMLHttpRequest();
+    let method = "GET";
+    xhr.open(method, url);
+    xhr.onload = function () {
+        if (this.status >= 200 && this.status < 300) {
+            if (onComplete) {
+                onComplete(JSON.parse(xhr.response))
+            }
+        } else {
+            if (onError) {
+                onError({
                     status: this.status,
                     statusText: xhr.statusText
-                });
+                })
             }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
+        }
+    }
 
-    });
-
-}
+    xhr.onerror = function () {
+        reject({
+            status: this.status,
+            statusText: xhr.statusText
+        });
+    };
+    xhr.send();
+};
 export function loadScript(src, onComplete, onProgress){
     let head = document.getElementsByTagName("head")[0] || document.body;
 
@@ -1171,6 +1169,43 @@ export class PromiseLoadImage {
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
+export class PromiseLoadJson {
+
+    // Might extend someday, ref link if you do or old xhr function or both
+    // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
+
+    constructor(url){
+
+        return new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            let method = "GET";
+            xhr.open(method, url);
+            xhr.onload = function () {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                }
+            };
+            xhr.onerror = function () {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            };
+            xhr.send();
+    
+        });
+
+
+    }
+    
+    
 
 }
 export function promiseLoadScript(src) {
@@ -1809,33 +1844,6 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
-export function mouseScrollHandler(onScrollUp, onScrollDown) {
-    // var defs
-    let direction = false;
-
-    // Fn
-    let onScrollUpHandler = onScrollUp;
-    let onScrollDownHandler = onScrollDown;
-
-    window.addEventListener('wheel', (e) => {
-        if (e.deltaY < 0) {
-            if (this.onScrollUpHandler) {
-                this.onScrollUpHandler();
-            }
-        }
-        else if (e.deltaY > 0) {
-            if (this.onScrollDownHandler) {
-                this.onScrollDownHandler();
-            }
-        }
-    })
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-}
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
@@ -2014,6 +2022,42 @@ export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
+export class MouseScrollHandler {
+
+    constructor(onScrollUp,onScrollDown) {
+        // var defs
+        this.direction = false;
+
+        // Fn
+        this.onScrollUp = onScrollUp;
+        this.onScrollDown = onScrollDown;
+
+        window.addEventListener('wheel', (e) => {
+            this.scrollHandler(e);
+        })
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    scrollHandler(e) {
+        if (e.deltaY < 0) {
+            if (this.onScrollUp) {
+                this.onScrollUp();
+            }
+        }
+        else if (e.deltaY > 0) {
+            if (this.onScrollDown) {
+                this.onScrollDown();
+            }
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 export class PromiseAttachVideo {
 
 
@@ -2045,7 +2089,7 @@ export class PromiseVideoEnd {
     constructor(video) {
         return new Promise((resolve, reject) => {
             video.addEventListener('ended', (e) => {
-                resolve(true);
+                resolve(e);
             }); 
         });
     }
