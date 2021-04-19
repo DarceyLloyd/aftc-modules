@@ -10,8 +10,6 @@ export class SwipeHandler {
         // vars
         this.onSwipeLeft = onSwipeLeft;
         this.onSwipeRight = onSwipeRight;
-        this.onSwipeUp = onSwipeUp;
-        this.onSwipeDown = onSwipeDown;
 
         // var defs
         this.touchStartX = 0;

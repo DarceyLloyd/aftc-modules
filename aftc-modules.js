@@ -1,4 +1,4 @@
-// aftc-modules v1.7.5
+// aftc-modules v1.7.6
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -867,62 +867,6 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
-export function getElementPosition(el) {
-    let position = {
-        top: el.offsetTop,
-        left: el.offsetLeft
-    };
-
-    if (el.offsetParent) {
-        let parentPosition = {
-            top: el.offsetParent.offsetTop,
-            left: el.offsetParent.offsetLeft
-        };
-
-        position.top += parentPosition.top;
-        position.left += parentPosition.left;
-    }
-    return position;
-}
-
-export function getElementPos(el) {
-    let x = 0;
-    let y = 0;
-    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-        x += el.offsetLeft - el.scrollLeft;
-        y += el.offsetTop - el.scrollTop;
-        el = el.offsetParent;
-    }
-    return { left: x, top: y };
-}
-export function isDOM(obj) {
-    // this works for newer browsers
-    try { return obj instanceof HTMLElement; }
-
-        // this works for older browsers
-    catch (e) {
-        return (typeof obj === "object") &&
-            (obj.nodeType === 1) && (typeof obj.style === "object") &&
-            (typeof obj.ownerDocument === "object");
-    }
-};
-export function isElement(o) {
-    let answer = (
-        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-    );
-
-    if (answer != true) {
-        return false;
-    } else {
-        return true;
-    }
-}
-export function isElement2(element) {
-    // works on major browsers back to IE7
-    return element instanceof Element;
-}
-
 export function getElementOffsetTop(elementId) {
     let element = getElementById(elementId);
     let curtop = 0;
@@ -980,6 +924,62 @@ export function setHTML(elementOrId, str, mode = "set") {
         return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
+export function getElementPosition(el) {
+    let position = {
+        top: el.offsetTop,
+        left: el.offsetLeft
+    };
+
+    if (el.offsetParent) {
+        let parentPosition = {
+            top: el.offsetParent.offsetTop,
+            left: el.offsetParent.offsetLeft
+        };
+
+        position.top += parentPosition.top;
+        position.left += parentPosition.left;
+    }
+    return position;
+}
+
+export function getElementPos(el) {
+    let x = 0;
+    let y = 0;
+    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+        x += el.offsetLeft - el.scrollLeft;
+        y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { left: x, top: y };
+}
+export function isDOM(obj) {
+    // this works for newer browsers
+    try { return obj instanceof HTMLElement; }
+
+        // this works for older browsers
+    catch (e) {
+        return (typeof obj === "object") &&
+            (obj.nodeType === 1) && (typeof obj.style === "object") &&
+            (typeof obj.ownerDocument === "object");
+    }
+};
+export function isElement(o) {
+    let answer = (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+    );
+
+    if (answer != true) {
+        return false;
+    } else {
+        return true;
+    }
+}
+export function isElement2(element) {
+    // works on major browsers back to IE7
+    return element instanceof Element;
+}
+
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -2152,6 +2152,37 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+export class MouseScrollHandler {
+
+    constructor(onScrollUp,onScrollDown) {
+        // var defs
+        this.direction = false;
+
+        // Fn
+        this.onScrollUp = onScrollUp;
+        this.onScrollDown = onScrollDown;
+
+        window.addEventListener('wheel', (e) => {
+            this.scrollHandler(e);
+        })
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    scrollHandler(e) {
+        if (e.deltaY < 0) {
+            if (this.onScrollUp) {
+                this.onScrollUp();
+            }
+        }
+        else if (e.deltaY > 0) {
+            if (this.onScrollDown) {
+                this.onScrollDown();
+            }
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
@@ -2330,42 +2361,6 @@ export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
-export class MouseScrollHandler {
-
-    constructor(onScrollUp,onScrollDown) {
-        // var defs
-        this.direction = false;
-
-        // Fn
-        this.onScrollUp = onScrollUp;
-        this.onScrollDown = onScrollDown;
-
-        window.addEventListener('wheel', (e) => {
-            this.scrollHandler(e);
-        })
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-    scrollHandler(e) {
-        if (e.deltaY < 0) {
-            if (this.onScrollUp) {
-                this.onScrollUp();
-            }
-        }
-        else if (e.deltaY > 0) {
-            if (this.onScrollDown) {
-                this.onScrollDown();
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-}
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
 export class SwipeHandler {
 
 
@@ -2378,8 +2373,6 @@ export class SwipeHandler {
         // vars
         this.onSwipeLeft = onSwipeLeft;
         this.onSwipeRight = onSwipeRight;
-        this.onSwipeUp = onSwipeUp;
-        this.onSwipeDown = onSwipeDown;
 
         // var defs
         this.touchStartX = 0;
@@ -2480,6 +2473,11 @@ export class SwipeHandler {
 
 
 }
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 export class PromiseAttachVideo {
 
 
