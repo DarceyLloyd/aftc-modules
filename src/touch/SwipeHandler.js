@@ -31,11 +31,11 @@ export class SwipeHandler {
         this.distX = 0;
         this.distY = 0;
 
-        swipeDetected = false;
-        swipeDirection = "";
+        this.swipeDetected = false;
+        this.swipeDirection = "";
 
-        onSwipeLeft = false;
-        onSwipeRight = false;
+        this.onSwipeLeft = false;
+        this.onSwipeRight = false;
 
         // Event listeners
         document.addEventListener('touchstart', (e) => {
