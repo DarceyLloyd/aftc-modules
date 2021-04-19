@@ -1,39 +1,41 @@
 export class SwipeHandler {
 
-    // var defs
-    touchStartX = 0;
-    touchEndX = 0;
 
-    touchStartY = 0;
-    touchEndY = 0;
-
-    currentX = 0;
-    currentY = 0;
-
-    // dist to touch move on x before triggering a swipe
-    swipeXTolerance = 50;
-
-    direction = false;
-
-    distX = 0;
-    distY = 0;
-
-    swipeDetected = false;
-    swipeDirection = "";
-
-    onSwipeLeft = false;
-    onSwipeRight = false;
     // - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-    constructor(onSwipeLeft,onSwipeRight) {
+    constructor(onSwipeLeft, onSwipeRight) {
         // log("SwipeHandler(onSwipeLeft,onSwipeRight)");
 
-        // var ini
+        // vars
         this.onSwipeLeft = onSwipeLeft;
         this.onSwipeRight = onSwipeRight;
         this.onSwipeUp = onSwipeUp;
         this.onSwipeDown = onSwipeDown;
+
+        // var defs
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+
+        this.touchStartY = 0;
+        this.touchEndY = 0;
+
+        this.currentX = 0;
+        this.currentY = 0;
+
+        // dist to touch move on x before triggering a swipe
+        this.swipeXTolerance = 50;
+
+        this.direction = false;
+
+        this.distX = 0;
+        this.distY = 0;
+
+        swipeDetected = false;
+        swipeDirection = "";
+
+        onSwipeLeft = false;
+        onSwipeRight = false;
 
         // Event listeners
         document.addEventListener('touchstart', (e) => {
