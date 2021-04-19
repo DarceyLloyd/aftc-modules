@@ -1,4 +1,4 @@
-// aftc-modules v1.7.2
+// aftc-modules v1.7.5
 // Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
@@ -923,6 +923,63 @@ export function isElement2(element) {
     return element instanceof Element;
 }
 
+export function getElementOffsetTop(elementId) {
+    let element = getElementById(elementId);
+    let curtop = 0;
+    if (element.hasOwnProperty("offsetParent")){
+        do {
+            curtop += element.offsetTop;
+        } while (element = element.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
+}
+export function setHTML(elementOrId, str, mode = "set") {
+    let ele;
+    if (typeof (elementOrId) === "string") {
+        ele = document.getElementById(elementOrId);
+        if (!ele) {
+            ele = document.querySelector(elementOrId);
+        }
+    } else {
+        ele = elementOrId;
+    }
+
+    if (ele) {
+
+        if (mode){
+            mode = mode.toLowerCase();
+        }
+
+        switch (mode) {
+            case "append":
+                if (ele.innerHTML == ""){
+                    ele.innerHTML += str;
+                } else {
+                    ele.innerHTML += "<br>" + str;
+                }
+                
+                break;
+            case "prepend":
+                ele.innerHTML = str + "<br>" + ele.innerHTML;
+                break;
+            default:
+                ele.innerHTML = str;
+                break;
+        }
+
+    } else {
+        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
+    }
+}
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -981,63 +1038,18 @@ export function onReady(fn) {
     }
 }
 
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
-    let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
-        do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
-        return parseFloat([curtop]);
+export function getWordsFromString(str, maxWords) {
+    let wordCount = str.split(/\S+/).length - 1;
+    let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
+    let output = "";
+    if (wordCount >= maxWords) {
+        output = str.match(re);
     } else {
-        return false;
+        output = str;
     }
+    return { output: output, remaining: (maxWords - wordCount) };
 }
-export function hasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
-export function setHTML(elementOrId, str, mode = "set") {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele) {
-            ele = document.querySelector(elementOrId);
-        }
-    } else {
-        ele = elementOrId;
-    }
 
-    if (ele) {
-
-        if (mode){
-            mode = mode.toLowerCase();
-        }
-
-        switch (mode) {
-            case "append":
-                if (ele.innerHTML == ""){
-                    ele.innerHTML += str;
-                } else {
-                    ele.innerHTML += "<br>" + str;
-                }
-                
-                break;
-            case "prepend":
-                ele.innerHTML = str + "<br>" + ele.innerHTML;
-                break;
-            default:
-                ele.innerHTML = str;
-                break;
-        }
-
-    } else {
-        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
-}
 export class AFTCPreloader {
 
     
@@ -1874,18 +1886,6 @@ Your making a request but are not doing anything with the response? Make sure to
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
-export function getWordsFromString(str, maxWords) {
-    let wordCount = str.split(/\S+/).length - 1;
-    let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
-    let output = "";
-    if (wordCount >= maxWords) {
-        output = str.match(re);
-    } else {
-        output = str;
-    }
-    return { output: output, remaining: (maxWords - wordCount) };
-}
-
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
 }
@@ -2152,37 +2152,6 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
-export class MouseScrollHandler {
-
-    constructor(onScrollUp,onScrollDown) {
-        // var defs
-        this.direction = false;
-
-        // Fn
-        this.onScrollUp = onScrollUp;
-        this.onScrollDown = onScrollDown;
-
-        window.addEventListener('wheel', (e) => {
-            this.scrollHandler(e);
-        })
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-    scrollHandler(e) {
-        if (e.deltaY < 0) {
-            if (this.onScrollUp) {
-                this.onScrollUp();
-            }
-        }
-        else if (e.deltaY > 0) {
-            if (this.onScrollDown) {
-                this.onScrollDown();
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-}
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
@@ -2361,42 +2330,80 @@ export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
-export class SwipeHandler {
+export class MouseScrollHandler {
 
-    // var defs
-    touchStartX = 0;
-    touchEndX = 0;
+    constructor(onScrollUp,onScrollDown) {
+        // var defs
+        this.direction = false;
 
-    touchStartY = 0;
-    touchEndY = 0;
+        // Fn
+        this.onScrollUp = onScrollUp;
+        this.onScrollDown = onScrollDown;
 
-    currentX = 0;
-    currentY = 0;
-
-    // dist to touch move on x before triggering a swipe
-    swipeXTolerance = 50;
-
-    direction = false;
-
-    distX = 0;
-    distY = 0;
-
-    swipeDetected = false;
-    swipeDirection = "";
-
-    onSwipeLeft = false;
-    onSwipeRight = false;
+        window.addEventListener('wheel', (e) => {
+            this.scrollHandler(e);
+        })
+    }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-    constructor(onSwipeLeft,onSwipeRight) {
+    scrollHandler(e) {
+        if (e.deltaY < 0) {
+            if (this.onScrollUp) {
+                this.onScrollUp();
+            }
+        }
+        else if (e.deltaY > 0) {
+            if (this.onScrollDown) {
+                this.onScrollDown();
+            }
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+export class SwipeHandler {
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    constructor(onSwipeLeft, onSwipeRight) {
         // log("SwipeHandler(onSwipeLeft,onSwipeRight)");
 
-        // var ini
+        // vars
         this.onSwipeLeft = onSwipeLeft;
         this.onSwipeRight = onSwipeRight;
         this.onSwipeUp = onSwipeUp;
         this.onSwipeDown = onSwipeDown;
+
+        // var defs
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+
+        this.touchStartY = 0;
+        this.touchEndY = 0;
+
+        this.currentX = 0;
+        this.currentY = 0;
+
+        // dist to touch move on x before triggering a swipe
+        this.swipeXTolerance = 50;
+
+        this.direction = false;
+
+        this.distX = 0;
+        this.distY = 0;
+
+        this.swipeDetected = false;
+        this.swipeDirection = "";
+
+        this.onSwipeLeft = false;
+        this.onSwipeRight = false;
 
         // Event listeners
         document.addEventListener('touchstart', (e) => {
@@ -2473,11 +2480,6 @@ export class SwipeHandler {
 
 
 }
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
 export class PromiseAttachVideo {
 
 
