@@ -21,10 +21,8 @@
   "homepage": "https://github.com/DarceyLloyd/aftc-modules#readme",
   "devDependencies": {
     "aftc-node-tools": "^0.6.4",
-    "colors": "^1.4.0"
-  },
-  "dependencies": {
     "async": "^3.2.0",
+    "colors": "^1.4.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-inject-string": "^1.1.2",

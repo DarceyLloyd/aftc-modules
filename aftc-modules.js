@@ -365,72 +365,6 @@ export function setCookie(cname, cvalue, exdays) {
 // 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
 // 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
 // }
-export function getDaysBetween (startDateTime, endDateTime) {
-    let msPerDay = 8.64e7;
-    // Copy dates so don't mess them up
-    let sd = new Date(startDateTime);
-    let ed = new Date(endDateTime);
-    // Set to noon - avoid DST errors
-    sd.setHours(12, 0, 0);
-    ed.setHours(12, 0, 0);
-    // Round to remove daylight saving errors
-    return Math.round((ed - sd) / msPerDay);
-}
-
-export function getMySQLDateTimeString() {
-    let now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth() + 1;
-    let day = now.getDate();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let second = now.getSeconds();
-    if (month.toString().length === 1) {
-        month = '0' + month;
-    }
-    if (day.toString().length === 1) {
-        day = '0' + day;
-    }
-    if (hour.toString().length === 1) {
-        hour = '0' + hour;
-    }
-    if (minute.toString().length === 1) {
-        minute = '0' + minute;
-    }
-    if (second.toString().length === 1) {
-        second = '0' + second;
-    }
-    let str = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
-    return str;
-}
-
-export function getUKDate(dte){
-    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
-    return output;
-}
-export function getUkDateFromDbDateTime (input) {
-    // "2016-04-08 21:11:59" to UK date
-    if (input === "" || input === null) {
-        return "no input";
-    }
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    return UKDate;
-}
-export function getUkDateTimeFromDbDateTime  (input) {
-    // "2016-04-08 21:11:59" to UK date time
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let TimeParts = DateTime[1].split(":");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    let Time = TimeParts[0] + ":" + TimeParts[1];
-    return (UKDate + " " + Time);
-}
-export function getUSDate(dte){
-    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
-    return output;
-}
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -576,6 +510,72 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
 }
 
 
+export function getDaysBetween (startDateTime, endDateTime) {
+    let msPerDay = 8.64e7;
+    // Copy dates so don't mess them up
+    let sd = new Date(startDateTime);
+    let ed = new Date(endDateTime);
+    // Set to noon - avoid DST errors
+    sd.setHours(12, 0, 0);
+    ed.setHours(12, 0, 0);
+    // Round to remove daylight saving errors
+    return Math.round((ed - sd) / msPerDay);
+}
+
+export function getMySQLDateTimeString() {
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+    if (month.toString().length === 1) {
+        month = '0' + month;
+    }
+    if (day.toString().length === 1) {
+        day = '0' + day;
+    }
+    if (hour.toString().length === 1) {
+        hour = '0' + hour;
+    }
+    if (minute.toString().length === 1) {
+        minute = '0' + minute;
+    }
+    if (second.toString().length === 1) {
+        second = '0' + second;
+    }
+    let str = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
+    return str;
+}
+
+export function getUKDate(dte){
+    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
+    return output;
+}
+export function getUkDateFromDbDateTime (input) {
+    // "2016-04-08 21:11:59" to UK date
+    if (input === "" || input === null) {
+        return "no input";
+    }
+    let DateTime = input.split(" ");
+    let DateParts = DateTime[0].split("-");
+    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
+    return UKDate;
+}
+export function getUkDateTimeFromDbDateTime  (input) {
+    // "2016-04-08 21:11:59" to UK date time
+    let DateTime = input.split(" ");
+    let DateParts = DateTime[0].split("-");
+    let TimeParts = DateTime[1].split(":");
+    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
+    let Time = TimeParts[0] + ":" + TimeParts[1];
+    return (UKDate + " " + Time);
+}
+export function getUSDate(dte){
+    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
+    return output;
+}
 export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
@@ -867,6 +867,62 @@ export function isSafari() {
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
+export function getElementPosition(el) {
+    let position = {
+        top: el.offsetTop,
+        left: el.offsetLeft
+    };
+
+    if (el.offsetParent) {
+        let parentPosition = {
+            top: el.offsetParent.offsetTop,
+            left: el.offsetParent.offsetLeft
+        };
+
+        position.top += parentPosition.top;
+        position.left += parentPosition.left;
+    }
+    return position;
+}
+
+export function getElementPos(el) {
+    let x = 0;
+    let y = 0;
+    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+        x += el.offsetLeft - el.scrollLeft;
+        y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { left: x, top: y };
+}
+export function isDOM(obj) {
+    // this works for newer browsers
+    try { return obj instanceof HTMLElement; }
+
+        // this works for older browsers
+    catch (e) {
+        return (typeof obj === "object") &&
+            (obj.nodeType === 1) && (typeof obj.style === "object") &&
+            (typeof obj.ownerDocument === "object");
+    }
+};
+export function isElement(o) {
+    let answer = (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+    );
+
+    if (answer != true) {
+        return false;
+    } else {
+        return true;
+    }
+}
+export function isElement2(element) {
+    // works on major browsers back to IE7
+    return element instanceof Element;
+}
+
 export function getElementOffsetTop(elementId) {
     let element = getElementById(elementId);
     let curtop = 0;
@@ -924,62 +980,6 @@ export function setHTML(elementOrId, str, mode = "set") {
         return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
-export function getElementPosition(el) {
-    let position = {
-        top: el.offsetTop,
-        left: el.offsetLeft
-    };
-
-    if (el.offsetParent) {
-        let parentPosition = {
-            top: el.offsetParent.offsetTop,
-            left: el.offsetParent.offsetLeft
-        };
-
-        position.top += parentPosition.top;
-        position.left += parentPosition.left;
-    }
-    return position;
-}
-
-export function getElementPos(el) {
-    let x = 0;
-    let y = 0;
-    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-        x += el.offsetLeft - el.scrollLeft;
-        y += el.offsetTop - el.scrollTop;
-        el = el.offsetParent;
-    }
-    return { left: x, top: y };
-}
-export function isDOM(obj) {
-    // this works for newer browsers
-    try { return obj instanceof HTMLElement; }
-
-        // this works for older browsers
-    catch (e) {
-        return (typeof obj === "object") &&
-            (obj.nodeType === 1) && (typeof obj.style === "object") &&
-            (typeof obj.ownerDocument === "object");
-    }
-};
-export function isElement(o) {
-    let answer = (
-        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-    );
-
-    if (answer != true) {
-        return false;
-    } else {
-        return true;
-    }
-}
-export function isElement2(element) {
-    // works on major browsers back to IE7
-    return element instanceof Element;
-}
-
 export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -2032,6 +2032,37 @@ export function roundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
 }
 
+export class MouseScrollHandler {
+
+    constructor(onScrollUp,onScrollDown) {
+        // var defs
+        this.direction = false;
+
+        // Fn
+        this.onScrollUp = onScrollUp;
+        this.onScrollDown = onScrollDown;
+
+        window.addEventListener('wheel', (e) => {
+            this.scrollHandler(e);
+        })
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    scrollHandler(e) {
+        if (e.deltaY < 0) {
+            if (this.onScrollUp) {
+                this.onScrollUp();
+            }
+        }
+        else if (e.deltaY > 0) {
+            if (this.onScrollDown) {
+                this.onScrollDown();
+            }
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
 export class FPSMonitor {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
@@ -2151,37 +2182,6 @@ export function isNumber(n) {
 }
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
-}
-export class MouseScrollHandler {
-
-    constructor(onScrollUp,onScrollDown) {
-        // var defs
-        this.direction = false;
-
-        // Fn
-        this.onScrollUp = onScrollUp;
-        this.onScrollDown = onScrollDown;
-
-        window.addEventListener('wheel', (e) => {
-            this.scrollHandler(e);
-        })
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-    scrollHandler(e) {
-        if (e.deltaY < 0) {
-            if (this.onScrollUp) {
-                this.onScrollUp();
-            }
-        }
-        else if (e.deltaY > 0) {
-            if (this.onScrollDown) {
-                this.onScrollDown();
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
 }
 export function cutStringTo(s, len) {
     return s.substring(0, len);
@@ -2473,11 +2473,6 @@ export class SwipeHandler {
 
 
 }
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
 export class PromiseAttachVideo {
 
 
@@ -2518,3 +2513,8 @@ export class PromiseVideoEnd {
 }
 
 
+
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
