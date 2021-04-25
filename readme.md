@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.6</b>
+# <b>AFTC-MODULES v1.7.7</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of usefull everyday utilities / functions.
@@ -35,27 +35,25 @@ npm i aftc-modules
 <br>
 
 
-### <b>Usage examples</b>
-See tests folder, but most of the functions are self explanitory.
 
-
-<br>
-
-----
-<br>
-
-### <b>Documentation</b>
-Coming soon / In progress, but most of it should be pretty obvious from the class/functions list below.
-
-<br>
-
-----
-<br>
-
-
-
-
-
-
-### <b>Available functions:</b>
-
+### <b>arrayClear(arr,color)</b>
+<b>Information:</b><br>
+Clears an array<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> arr<br>
+<b>Type:</b> array<br>
+<b>Required:</b> false<br>
+<b>Default:</b> null<br>
+<b>Info:</b> Some array
+<br><br>
+- <b>Name:</b> color<br>
+<b>Type:</b> number<br>
+<b>Required:</b> true<br>
+<b>Default:</b> 0xFFCC00<br>
+<b>Info:</b> Orange colour
+<br><br>
+```
+line
+by line
+```
+<hr><br><br>

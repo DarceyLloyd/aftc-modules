@@ -1,8 +1,5 @@
-// aftc-modules v1.7.6
-// Author: Darcey@aftc.io
 export function AnimationFrameStack() {
     var me = this;
-
     this.init = function(){
         if (!window){
             console.error("AnimationFrameStack(): ERROR - Unable to access window!");
@@ -16,22 +13,18 @@ export function AnimationFrameStack() {
                 }
             }
         }
-
         if (window.aftcAnimStack.firstRun){
             window.aftcAnimStack.firstRun = false;
             this.processFnStack();
         }
     }
-
     this.start = function(){
         window.aftcAnimStack.enabled = true;
         this.processFnStack();
     }
-
     this.stop = function(){
         window.aftcAnimStack.enabled = false;
     }
-
     this.dispose = function(){
         if (window.aftcAnimStack){
             window.aftcAnimStack.enabled = false;
@@ -39,24 +32,19 @@ export function AnimationFrameStack() {
             delete window.aftcAnimStack.stack;
         }
     }
-
     this.processFnStack = function(){
         if (!window.aftcAnimStack.enabled){ return; }
-
         for(let i=0; i < window.aftcAnimStack.stack.length; i++){
             window.aftcAnimStack.stack[i].fn();
         }
-
         window.requestAnimationFrame(me.processFnStack);
     }
-
     this.add = function(uid,fn){
         window.aftcAnimStack.stack.push({
             uid: uid,
             fn: fn
         });
     }
-
     this.remove = function(uid){
         for(let i=0; i < window.aftcAnimStack.stack.length; i++){
             if (window.aftcAnimStack.stack[i].uid === uid){
@@ -65,10 +53,8 @@ export function AnimationFrameStack() {
             }
         }
     }
-
     this.init();
 }
-
 /**
  * @function: AnimationFrameStack()
  * @desc: Gives easy access to a single requestAnimationFrame loop which you can add functions to process in each loop, note the function stack is stored on global window scope
@@ -79,6 +65,32 @@ export function AnimationFrameStack() {
  * @method dispose: dispose of all functions in the function stack
  * @link:
  */
+// JSODOC = {
+//     "method": "arrayClear",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": false,
+//             "default": null,
+//             "info": "Some array"
+//         },
+//         {
+//             "name": "color",
+//             "type": "number",
+//             "required": true,
+//             "default": "0xFFCC00",
+//             "info": "Orange colour"
+//         }
+//     ],
+//     "returns": [
+//     ],
+//     "info": "Clears an array",
+//     "example": [
+//         "line",
+//         "by line"
+//     ]
+// } JSODOC
 export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
@@ -92,7 +104,6 @@ export function arrayEmpty(arr) {
 export function arrayGetMax(arr) {
     return Math.max.apply(Math, arr);
 }
-
 
 export function arrayGetMin(arr) {
     return Math.min.apply(Math, arr);
@@ -115,20 +126,16 @@ export function arrayRemoveItem(arr, value) {
 export function arrayShuffle(arr) {
     let currentIndex = arr.length,
         temporaryValue, randomIndex;
-
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-
         // And swap it with the current element.
         temporaryValue = arr[currentIndex];
         arr[currentIndex] = arr[randomIndex];
         arr[randomIndex] = temporaryValue;
     }
-
     return arr;
 }
 
@@ -139,7 +146,6 @@ export function arrayShuffle2(a) {
         x = Math.floor(r / 65536 / 65536 * m) + i;
         t = a[i], a[i] = a[x], a[x] = t;
     }
-
     return a;
 }
 export function isInArray(needle, haystack) {
@@ -170,21 +176,16 @@ export function getBrowser () {
 export function getBrowserX(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
     let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
     // let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
     return x;
 }
-
 
 export function getBrowserY(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-
     // let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
     let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
     return y;
 }
 
@@ -193,21 +194,17 @@ export function isInViewport(el){
     let left = el.offsetLeft;
     let width = el.offsetWidth;
     let height = el.offsetHeight;
-
     while(el.offsetParent) {
         el = el.offsetParent;
         top += el.offsetTop;
         left += el.offsetLeft;
     }
-
     return (
         top < (window.pageYOffset + window.innerHeight) &&
         left < (window.pageXOffset + window.innerWidth) &&
         (top + height) > window.pageYOffset &&
         (left + width) > window.pageXOffset
     );
-
-
     // let bounding = ele.getBoundingClientRect();
     // return (
     //     bounding.top >= 0 &&
@@ -220,7 +217,6 @@ export function isInViewport(el){
 export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
-
         if (strict === undefined) {
             strict = true;
         }
@@ -237,10 +233,8 @@ export function argsToObject(fArgs, obj, strict) {
                 }
             }
         }
-
     }
 };
-
 /**
  * @function: argsToObject(fArgs, obj, strict)
  * @desc: Quick and easy args to object
@@ -252,12 +246,10 @@ export function argsToObject(fArgs, obj, strict) {
  * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
  */
 export function boolToString (bool) {
-
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
         console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
         return "error";
     }
-
     if (bool) {
         return "true";
     } else {
@@ -265,12 +257,10 @@ export function boolToString (bool) {
     }
 }
 export function boolToYesNo (b) {
-
     if (!b || b === undefined || typeof (b) != "boolean") {
         console.log("getYesNoFromBool(str): Error - input is not a boolean!");
         return "error";
     }
-
     if (b) {
         return "yes";
     } else {
@@ -317,12 +307,10 @@ export function RGBToHex2 (r, g, b) {
     return hex;
 }
 export function stringToBool (str) {
-
     if (!str || str === undefined || typeof (str) != "string") {
         console.log("StringToBool(str): Error - input string is not valid!");
         return false;
     }
-
     switch (str.toLowerCase()) {
         case "y":
             return true;
@@ -342,7 +330,6 @@ export function stringToBool (str) {
     }
 }
 
-
 export function getCookie(name) {
 	//return .cookie(name);
 	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
@@ -357,7 +344,6 @@ export function setCookie(cname, cvalue, exdays) {
 	var expires = "expires=" + d.toUTCString();
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-
 // export function setCookie(name, value) {
 // 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
 // 	//.cookie(name, value, {expires:365,path:'/cookies'});
@@ -365,151 +351,6 @@ export function setCookie(cname, cvalue, exdays) {
 // 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
 // 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
 // }
-export function appendTo(elementOrId,msg,endOfLine="<br>"){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        ele.innerHTML = ele.innerHTML + msg + endOfLine;
-
-    } else {
-        console.error("AppendTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
-
-export function attachDebug(no, position, ele) {
-    let ids = [];
-
-    let debugContainer = document.createElement("div");
-    debugContainer.id = "debug-container";
-    debugContainer.style.zIndex = "999999";
-    debugContainer.style.position = "fixed";
-    
-    if (!position){
-        position = "left";
-    }
-    position = position.toLowerCase();
-
-    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
-        debugContainer.style.left = "5px";
-        debugContainer.style.top = "5px";
-        debugContainer.style.textAlgin = "left";
-    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
-        debugContainer.style.right = "5px";
-        debugContainer.style.top = "5px";
-        debugContainer.style.textAlgin = "right";
-    } else if (position == "bl" || position == "btm left") {
-        debugContainer.style.left = "5px";
-        debugContainer.style.bottom = "5px";
-        debugContainer.style.textAlgin = "left";
-    } else if (position == "br" || position == "btm right") {
-        debugContainer.style.right = "5px";
-        debugContainer.style.bottom = "5px";
-        debugContainer.style.textAlgin = "right";
-    }
-
-    window.aftcDebug = [];
-
-    for (let i = 0; i < no; i++) {
-        let r = Math.round(Math.random() * 9999999999);
-        let id = "aftc-debug-container-" + r;
-        let div = document.createElement("div");
-        div.id = id;
-        div.style.minWidth = "50px";
-        // div.style.height = "20px";
-        div.style.marginBottom = "3px";
-        div.style.border = "1px dashed #999999";
-        div.style.padding = "1px 2px 2px 4px";
-        div.style.background = "RGBA(255,255,255,0.92)";
-        div.style.color = "#000000";
-        div.classList.add("debug-row");
-        debugContainer.appendChild(div);
-        div.addEventListener("click", function (e) {
-            console.log(this.innerHTML);
-        });
-
-        window.aftcDebug.push(div);
-        ids.push(id);
-    }
-    if (ele) {
-        ele.appendChild(debugContainer);
-    } else {
-        document.body.appendChild(debugContainer);
-    }
-
-    console.warn("attachDebug(): Use debugTo(index,string) to write directly to debug elements.");
-    return debugContainer;
-}
-export function debugTo(index, str) {
-    if (window.aftcDebug) {
-        if (window.aftcDebug[index]) {
-            window.aftcDebug[index].innerHTML = str;
-        }
-    }
-}
-export function log(arg) {
-    console.log(arg);
-}
-
-export function logTo(elementOrId,msg,append=false,endOfLine=""){
-    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
-    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
-
-    function isElement(o) {
-        return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-        );
-    }
-
-    let ele = false;
-    if (typeof(elementOrId) == "string"){
-        elementOrId = elementOrId.replace("#","");
-        ele = document.getElementById(elementOrId);
-        if (!ele){
-            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
-            return false;
-        }
-    } else {
-        ele = elementOrId;
-    }
-
-    if (isElement(ele)){
-        if (append === true){
-            ele.innerHTML = ele.innerHTML + msg + endOfLine;
-        } else {
-            ele.innerHTML = msg + endOfLine;
-        }
-
-    } else {
-        console.error("LogTo(): Unable to log to element or id provided!");
-        console.error(elementOrId);
-        return false;
-    }
-}
-
-
 export function getDaysBetween (startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
@@ -576,24 +417,147 @@ export function getUSDate(dte){
     let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
     return output;
 }
+export function appendTo(elementOrId,msg,endOfLine="<br>"){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("AppendTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+    if (isElement(ele)){
+        ele.innerHTML = ele.innerHTML + msg + endOfLine;
+    } else {
+        console.error("AppendTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
+export function attachDebug(no, position, ele) {
+    let ids = [];
+    let debugContainer = document.createElement("div");
+    debugContainer.id = "debug-container";
+    debugContainer.style.zIndex = "999999";
+    debugContainer.style.position = "fixed";
+    if (!position){
+        position = "left";
+    }
+    position = position.toLowerCase();
+    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
+        debugContainer.style.left = "5px";
+        debugContainer.style.top = "5px";
+        debugContainer.style.textAlgin = "left";
+    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
+        debugContainer.style.right = "5px";
+        debugContainer.style.top = "5px";
+        debugContainer.style.textAlgin = "right";
+    } else if (position == "bl" || position == "btm left") {
+        debugContainer.style.left = "5px";
+        debugContainer.style.bottom = "5px";
+        debugContainer.style.textAlgin = "left";
+    } else if (position == "br" || position == "btm right") {
+        debugContainer.style.right = "5px";
+        debugContainer.style.bottom = "5px";
+        debugContainer.style.textAlgin = "right";
+    }
+    window.aftcDebug = [];
+    for (let i = 0; i < no; i++) {
+        let r = Math.round(Math.random() * 9999999999);
+        let id = "aftc-debug-container-" + r;
+        let div = document.createElement("div");
+        div.id = id;
+        div.style.minWidth = "50px";
+        // div.style.height = "20px";
+        div.style.marginBottom = "3px";
+        div.style.border = "1px dashed #999999";
+        div.style.padding = "1px 2px 2px 4px";
+        div.style.background = "RGBA(255,255,255,0.92)";
+        div.style.color = "#000000";
+        div.classList.add("debug-row");
+        debugContainer.appendChild(div);
+        div.addEventListener("click", function (e) {
+            console.log(this.innerHTML);
+        });
+        window.aftcDebug.push(div);
+        ids.push(id);
+    }
+    if (ele) {
+        ele.appendChild(debugContainer);
+    } else {
+        document.body.appendChild(debugContainer);
+    }
+    console.warn("attachDebug(): Use debugTo(index,string) to write directly to debug elements.");
+    return debugContainer;
+}
+export function debugTo(index, str) {
+    if (window.aftcDebug) {
+        if (window.aftcDebug[index]) {
+            window.aftcDebug[index].innerHTML = str;
+        }
+    }
+}
+export function log(arg) {
+    console.log(arg);
+}
+
+export function logTo(elementOrId,msg,append=false,endOfLine=""){
+    // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
+    // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
+    function isElement(o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        );
+    }
+    let ele = false;
+    if (typeof(elementOrId) == "string"){
+        elementOrId = elementOrId.replace("#","");
+        ele = document.getElementById(elementOrId);
+        if (!ele){
+            console.error("LogTo(): Unable to find ID '" + elementOrId + "' on the DOM!");
+            return false;
+        }
+    } else {
+        ele = elementOrId;
+    }
+    if (isElement(ele)){
+        if (append === true){
+            ele.innerHTML = ele.innerHTML + msg + endOfLine;
+        } else {
+            ele.innerHTML = msg + endOfLine;
+        }
+    } else {
+        console.error("LogTo(): Unable to log to element or id provided!");
+        console.error(elementOrId);
+        return false;
+    }
+}
+
 export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
 }
 export function getOS(testAgent) {
     let userAgent;
-
     if (!testAgent){
         userAgent = navigator.userAgent || navigator.vendor || window.opera;
     } else {
         userAgent = testAgent;
     }
-
     userAgent = userAgent.toLowerCase();
-
-
-
-
     // Windows Phone must come first because its UA also contains "Android"!
     if (/windows phone/i.test(userAgent)) {
         return {
@@ -601,7 +565,6 @@ export function getOS(testAgent) {
             userAgent:userAgent
         }
     }
-
     // Samsung Browser detection S8
     if (/samsungbrowser/i.test(userAgent)) {
         return {
@@ -609,25 +572,18 @@ export function getOS(testAgent) {
             userAgent:userAgent
         }
     }
-
-
-
     if (/android/i.test(userAgent)) {
         return {
             os:"android",
             userAgent:userAgent
         }
     }
-
     if (/ipad|iphone|ipod/i.test(userAgent)) {
         return {
             os:"ios",
             userAgent:userAgent
         }
     }
-
-
-
     // Windows Phone must come first because its UA also contains "Android"
     if (/win64|win32|win16|win95|win98|windows 2000|windows xp|msie|windows nt 6.3; trident|windows nt|windows/i.test(userAgent)) {
         return {
@@ -635,131 +591,102 @@ export function getOS(testAgent) {
             userAgent:userAgent
         }
     }
-
-
     if (/os x/i.test(userAgent)) {
         return {
             os:"osx",
             userAgent:userAgent
         }
     }
-
     if (/macintosh|osx/i.test(userAgent)) {
         return {
             os:"osx",
             userAgent:userAgent
         }
     }
-
     if (/openbsd/i.test(userAgent)) {
         return {
             os:"open bsd",
             userAgent:userAgent
         }
     }
-
-
     if (/sunos/i.test(userAgent)) {
         return {
             os:"sunos",
             userAgent:userAgent
         }
     }
-
-
-
-
-
-
     if (/crkey/i.test(userAgent)) {
         return {
             os:"chromecast",
             userAgent:userAgent
         }
     }
-
     if (/appletv/i.test(userAgent)) {
         return {
             os:"apple tv",
             userAgent:userAgent
         }
     }
-
     if (/wiiu/i.test(userAgent)) {
         return {
             os:"nintendo wiiu",
             userAgent:userAgent
         }
     }
-
     if (/nintendo 3ds/i.test(userAgent)) {
         return {
             os:"nintendo 3ds",
             userAgent:userAgent
         }
     }
-
     if (/playstation/i.test(userAgent)) {
         return {
             os:"playstation",
             userAgent:userAgent
         }
     }
-
     if (/kindle/i.test(userAgent)) {
         return {
             os:"amazon kindle",
             userAgent:userAgent
         }
     }
-
     if (/ cros /i.test(userAgent)) {
         return {
             os:"chrome os",
             userAgent:userAgent
         }
     }
-
-
-
     if (/ubuntu/i.test(userAgent)) {
         return {
             os:"ubuntu",
             userAgent:userAgent
         }
     }
-
-
     if (/googlebot/i.test(userAgent)) {
         return {
             os:"google bot",
             userAgent:userAgent
         }
     }
-
     if (/bingbot/i.test(userAgent)) {
         return {
             os:"bing bot",
             userAgent:userAgent
         }
     }
-
     if (/yahoo! slurp/i.test(userAgent)) {
         return {
             os:"yahoo bot",
             userAgent:userAgent
         }
     }
-
-
-
     return {
         os: false,
         userAgent:userAgent
     };
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 
 export function isAndroid(){
     let ua = navigator.userAgent.toLowerCase();
@@ -778,7 +705,6 @@ export function isChrome() {
     var isOpera = typeof window.opr !== "undefined";
     var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
     var isIOSChrome = winNav.userAgent.match("CriOS");
-
     if (isIOSChrome) {
         // is Google Chrome on IOS
         return true;
@@ -826,13 +752,11 @@ export function isIOS() {
         'iPhone',
         'iPod'
     ];
-
     if (!!navigator.platform) {
         while (iDevices.length) {
             if (navigator.platform === iDevices.pop()){ return true; }
         }
     }
-
     return false;
 }
 
@@ -872,19 +796,16 @@ export function getElementPosition(el) {
         top: el.offsetTop,
         left: el.offsetLeft
     };
-
     if (el.offsetParent) {
         let parentPosition = {
             top: el.offsetParent.offsetTop,
             left: el.offsetParent.offsetLeft
         };
-
         position.top += parentPosition.top;
         position.left += parentPosition.left;
     }
     return position;
 }
-
 export function getElementPos(el) {
     let x = 0;
     let y = 0;
@@ -898,7 +819,6 @@ export function getElementPos(el) {
 export function isDOM(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }
-
         // this works for older browsers
     catch (e) {
         return (typeof obj === "object") &&
@@ -911,7 +831,6 @@ export function isElement(o) {
         typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
             o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
     );
-
     if (answer != true) {
         return false;
     } else {
@@ -952,13 +871,10 @@ export function setHTML(elementOrId, str, mode = "set") {
     } else {
         ele = elementOrId;
     }
-
     if (ele) {
-
         if (mode){
             mode = mode.toLowerCase();
         }
-
         switch (mode) {
             case "append":
                 if (ele.innerHTML == ""){
@@ -966,7 +882,6 @@ export function setHTML(elementOrId, str, mode = "set") {
                 } else {
                     ele.innerHTML += "<br>" + str;
                 }
-                
                 break;
             case "prepend":
                 ele.innerHTML = str + "<br>" + ele.innerHTML;
@@ -975,7 +890,6 @@ export function setHTML(elementOrId, str, mode = "set") {
                 ele.innerHTML = str;
                 break;
         }
-
     } else {
         return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
@@ -984,7 +898,6 @@ export class EventManager {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
 }
-
 /** jso {
  * "Function": "EventManager.js",
  * "Description": "A centralised event stack where you can hook your functions / class's into for centralised quick and easy event application event handling.",
@@ -1034,7 +947,6 @@ export function onReady(fn) {
                 window.setTimeout(fn, 10);
             });
         }
-
     }
 }
 
@@ -1051,30 +963,19 @@ export function getWordsFromString(str, maxWords) {
 }
 
 export class AFTCPreloader {
-
-    
-
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     constructor() {
         // log("AFTCPreloader()");
-
         this.configFile = false;
         this.data = false;
-
         this.onProgressHandler = "";
         this.onCompleteHandler = "";
-
         this.queue = [];
         this.noOfFilesToLoad = 0;
-
         this.json = false;
-
         this.noOfThreads = 3;
         this.thread = []; // [0] > [noOfThreads] = "available" || "filled"
-
         this.queueCompleted = false;
-
         this.ItemVo = function () {
             this.id = false;
             this.src = false;
@@ -1083,33 +984,27 @@ export class AFTCPreloader {
             this.loading = false;
             this.autoAttach = false;
         }
-    
         this.XHRLoader = function (parent, threadIndex, queueIndex, src) {
             // log("XHRLoader(parent, threadIndex, queueIndex, src)");
             this.parent = parent;
             this.threadIndex = threadIndex;
             this.queueIndex = queueIndex;
             this.src = src;
-    
             this.xhr = new XMLHttpRequest();
             this.xhr.onload = (e) => {
                 this.onLoadHandler(e);
             };
-    
             // this.xhr.addEventListener("progress", () => this.updateHandler, false);
             // this.xhr.addEventListener("load", transferComplete);
             // this.xhr.addEventListener("error", transferFailed);
             // this.xhr.addEventListener("abort", transferCanceled);
             // Detect abort, load, or error using the loadend event
             // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
-    
             this.xhr.open('GET', this.src, true);
             this.xhr.send();
             this.updateHandler = function (e) {
-    
             }
             // - - - - - - - - - - -
-    
             this.onLoadHandler = function (e) {
                 // log("XHRLoader.onLoadHandler(): " + this.src);
                 this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
@@ -1117,16 +1012,10 @@ export class AFTCPreloader {
             }
             // - - - - - - - - - - -
         }
-
         argsToObject(arguments, this, true);
-
         this.head = document.getElementsByTagName('head')[0] || document.body;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
-
     // add(src, autoAttach = true) {
     //     // log("AFTCPreloader.add(id,src,autoAttach=true)");
     //     let entry = this.ItemVo();
@@ -1135,19 +1024,13 @@ export class AFTCPreloader {
     //     this.queue.push(entry);
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
     start() {
         // log("AFTCPreloader.start()");
-
         // init
         for (let i = 0; i < this.noOfThreads; i++) {
             this.thread[i] = "available";
         }
-
         // log(this);
-
         if (this.data) {
             // log("AFTCPreloader.start(): Processing supplied data var");
             this.data.forEach(file => {
@@ -1164,18 +1047,12 @@ export class AFTCPreloader {
         } else {
             console.error("AFTCPreloader(): Usage error, please either set file:preloader.json or data:[]. format: [{'src': 'assets/videos/f-1-2.mp4'}]");
         }
-
-
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     loadConfig() {
         // log("AFTCPreloader.loadConfig()");
-
         let xhr = new XMLHttpRequest();
         xhr.open('GET', this.configFile, true);
-
         xhr.onreadystatechange = (e) => {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 this.json = JSON.parse(xhr.responseText);
@@ -1186,25 +1063,17 @@ export class AFTCPreloader {
                     vo.ext = getFileExtension(vo.src);
                     this.queue.push(vo);
                 });
-
                 // log(this.queue);
                 this.noOfFilesToLoad = this.queue.length;
                 this.processThreadPool();
             }
         };
-
         xhr.send();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-
-
-
-
     processThreadPool() {
         // log("AFTCPreloader.processThreadPool()");
-
         let activeThreads = 0;
-
         for (let threadIndex = 0; threadIndex < this.noOfThreads; threadIndex++) {
             if (this.thread[threadIndex] === "available") {
                 // Destructure
@@ -1222,7 +1091,6 @@ export class AFTCPreloader {
                 }
             }
         }
-
         // If all threads are inactive then we are done
         let preloaderComplete = true;
         for (let i = 0; i < this.noOfThreads; i++) {
@@ -1230,7 +1098,6 @@ export class AFTCPreloader {
                 preloaderComplete = false;
             }
         }
-
         if (preloaderComplete) {
             // log("AFTCPreloader(): Complete!");
             if (this.onCompleteHandler) {
@@ -1239,16 +1106,13 @@ export class AFTCPreloader {
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     onFileLoaded(threadIndex, queueIndex) {
         // log("AFTCPreloader.onFileLoaded(threadIndex:"+threadIndex+",queueIndex:"+queueIndex+")");
         let vo = this.queue[queueIndex];
         vo.loading = false;
         vo.loaded = true;
         this.thread[threadIndex] = "available";
-
         // Handle attach to dom
-
         if (this.queue[queueIndex].autoAttach === true) {
             if (vo.ext == "js") {
                 // Attach JS to DOM
@@ -1258,7 +1122,6 @@ export class AFTCPreloader {
                 // }
                 script.src = vo.src;
                 document.head.appendChild(script);
-
             } else if (vo.ext == "css") {
                 // Attach CSS to DOM
                 let link = document.createElement('link');
@@ -1269,7 +1132,6 @@ export class AFTCPreloader {
                 this.head.appendChild(link);
             }
         }
-
         if (this.onProgressHandler) {
             let percent = 0;
             let noOfFilesLoaded = 0;
@@ -1279,24 +1141,18 @@ export class AFTCPreloader {
                 }
             });
             percent = Math.round((100 / this.noOfFilesToLoad) * noOfFilesLoaded);
-
             let progressObject = {
                 percent,
                 src: this.queue[queueIndex].src
             }
             this.onProgressHandler(progressObject);
         }
-
-
-
         this.processThreadPool();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     getNext() {
         let queueIndex = -1;
         let itemVo = false;
-
         for (let i = 0; i < this.queue.length; i++) {
             let entry = this.queue[i];
             if (entry.loaded === false && entry.loading === false) {
@@ -1308,12 +1164,9 @@ export class AFTCPreloader {
         return [queueIndex, itemVo];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     argsToObject(fArgs, obj, strict) {
         if (fArgs[0] && typeof (fArgs[0]) === "object") {
             let args = fArgs[0];
-    
             if (strict === undefined) {
                 strict = true;
             }
@@ -1330,11 +1183,9 @@ export class AFTCPreloader {
                     }
                 }
             }
-    
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     objectToObject(src, dest, strict = true) {
         for (let key in src) {
             if (strict) {
@@ -1349,14 +1200,10 @@ export class AFTCPreloader {
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     getFileExtension(file) {
         return file.slice((file.lastIndexOf(".") - 1 >>> 0) + 2);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
 }
 export function loadCss(href, onComplete){
     let link = document.createElement("link");
@@ -1372,7 +1219,6 @@ export function loadCss(href, onComplete){
     document.getElementsByTagName("head")[0].appendChild(link);
 }
 export function loadJson(url, onComplete, onError) {
-
     let xhr = new XMLHttpRequest();
     let method = "GET";
     xhr.open(method, url);
@@ -1390,7 +1236,6 @@ export function loadJson(url, onComplete, onError) {
             }
         }
     }
-
     xhr.onerror = function () {
         reject({
             status: this.status,
@@ -1401,16 +1246,12 @@ export function loadJson(url, onComplete, onError) {
 };
 export function loadScript(src, onComplete, onProgress){
     let head = document.getElementsByTagName("head")[0] || document.body;
-
     if (!head){
         console.error("loadScript(): Unable to get DOM Head or DOM Body!");
         return;
     }
-
     let script = document.createElement("script");
-
     let xhr = new XMLHttpRequest();
-
     // report progress events
     xhr.addEventListener("progress", function(event) {
         if (event.lengthComputable) {
@@ -1426,28 +1267,22 @@ export function loadScript(src, onComplete, onProgress){
             }
         }
     }, false);
-
     // load responseText into a new script element
     xhr.addEventListener("load", function(e) {
         script.innerHTML = e.target.responseText;
         document.documentElement.appendChild(script);
-
         if (onComplete) {
             onComplete();
         }
-
         // script.addEventListener("load", function() {
         //     // this runs after the new script has been executed...
         // });
     }, false);
-
     xhr.open("GET", src);
     xhr.send();
 }
 export function promiseLoadCss(href) {
-
     return new Promise(function (resolve, reject) {
-
         let link = document.createElement("link");
         link.onload = function () {
                 resolve(true);
@@ -1463,8 +1298,6 @@ export function promiseLoadCss(href) {
     });
 }
 export class PromiseLoadImage {
-
-
     constructor(ele, src) {
         return new Promise((resolve, reject) => {
             ele.onload = () => {
@@ -1477,15 +1310,11 @@ export class PromiseLoadImage {
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
 }
 export class PromiseLoadJson {
-
     // Might extend someday, ref link if you do or old xhr function or both
     // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
-
     constructor(url){
-
         return new Promise(function (resolve, reject) {
             let xhr = new XMLHttpRequest();
             let method = "GET";
@@ -1507,50 +1336,32 @@ export class PromiseLoadJson {
                 });
             };
             xhr.send();
-    
         });
-
-
     }
-    
-    
-
 }
 export function promiseLoadScript(src) {
-
     return new Promise(function (resolve, reject) {
-
         let head = document.getElementsByTagName("head")[0] || document.body;
-
         if (!head) {
             console.error("promiseLoadScript(): Unable to get DOM Head or DOM Body!");
             return;
         }
-
         let script = document.createElement("script");
-
         let xhr = new XMLHttpRequest();
-
         xhr.addEventListener("load", function (e) {
             script.innerHTML = e.target.responseText;
             document.documentElement.appendChild(script);
             resolve(true)
         }, false);
-
         xhr.open("GET", src);
         xhr.send();
-
-
     });
 }
 export class XHR {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js (new XHR())
-
-
     constructor() {
         //https://javascript.info/xmlhttprequest
-
         // var defs
         this.args = {
             url: false,
@@ -1566,11 +1377,9 @@ export class XHR {
             username: false,
             password: false
         };
-
         this.url = false;
         this.urlParams = "";
         this.xhr = false;
-
         // Process arguments
         if (arguments[0] && typeof (arguments[0]) === "object") {
             for (let key in arguments[0]) {
@@ -1580,10 +1389,8 @@ export class XHR {
             }
         }
         // console.log(this.args);
-
         // Validate
         let valid = true;
-
         if (this.args.url === false) {
             let msg = `XHR(): Usage error: Option "url" has not been set!
 Please enter a valid url to make a request to!`;
@@ -1591,7 +1398,6 @@ Please enter a valid url to make a request to!`;
             valid = false;
             return false;
         }
-
         if (this.args.method === false) {
             let msg = `XHR(): Usage error: Option "method" has not been set!
 Valid options are:
@@ -1601,10 +1407,6 @@ Valid options are:
             valid = false;
             return false;
         }
-
-
-
-
         // log(this.args);
         let showDataTypeError = false;
         if (this.args.data !== false){
@@ -1621,8 +1423,6 @@ Valid options are:
                 }
             }
         }
-
-
         if (showDataTypeError) {
             let msg = `XHR(): Usage error: Invalid "dataType" has been set!
 Valid options are:
@@ -1634,11 +1434,6 @@ Valid options are:
             valid = false;
             return false;
         }
-
-
-
-
-
         let showResponseTypeError = false;
         if (this.args.responseType === false){
             showResponseTypeError = true;
@@ -1654,9 +1449,6 @@ Valid options are:
                 }
             }
         }
-
-
-
         if (showResponseTypeError) {
             let msg =
                 `XHR(): Usage warning: Option "responseType" not set!
@@ -1671,12 +1463,6 @@ Valid options are:
             valid = false;
             return false;
         }
-
-
-
-
-
-
         if (this.args.onComplete === false) {
             let msg = `XHR(): Usage error: Option "onComplete" has not been set!
 Your making a request but are not doing anything with the response? Make sure to supply an onComplete callback function.`;
@@ -1684,31 +1470,20 @@ Your making a request but are not doing anything with the response? Make sure to
             valid = false;
             return false;
         }
-
-
-
         if (valid) {
             this.makeRequest();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
     makeRequest() {
         this.xhr = new XMLHttpRequest();
-
         this.xhr.timeout = this.args.timeout;
-
-
         // GET
         // Append data variables to url string, only handle json, form and string
-
         // POST||PUT||DELETE||PATCH
         // If json send json object
         // If form send form object
         // If text send string
-
         if (this.args.method.toLowerCase() == "get") {
             // GET
             if (this.args.dataType !== false) {
@@ -1743,24 +1518,14 @@ Your making a request but are not doing anything with the response? Make sure to
             // POST || PUT || PATCH || DELETE
             this.url = this.args.url
         }
-
-
-
-
-
         // open
         if (this.args.username !== false && this.args.password !== false) {
             this.xhr.open(this.args.method, this.url, this.args.username, this.args.password);
         } else {
             this.xhr.open(this.args.method, this.url);
         }
-
         // responseType
         this.xhr.responseType = this.args.responseType;
-
-
-
-
         // Set requestHeader type aka dataType and send
         if (this.args.dataType !== false && typeof(this.args.dataType) == "string") {
             switch (this.args.dataType.toLowerCase()) {
@@ -1786,8 +1551,6 @@ Your making a request but are not doing anything with the response? Make sure to
         } else {
             this.xhr.send();
         }
-
-
         // Send
         // if (this.args.data !== false && this.args.dataType !== false){
         //     log("sending data");
@@ -1795,9 +1558,6 @@ Your making a request but are not doing anything with the response? Make sure to
         // } else {
         //     this.xhr.send();
         // }
-
-
-
         // Event Listeners
         this.xhr.addEventListener("progress", (e) => this.progressHandler(e), true);
         this.xhr.addEventListener("load", (e) => this.onLoadHandler(e), true);
@@ -1806,8 +1566,6 @@ Your making a request but are not doing anything with the response? Make sure to
         this.xhr.addEventListener("timeout", (e) => this.errorHandler(e), true);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     errorHandler(e) {
         // console.log("XHR.errorHandler()");
         this.removeEventListeners();
@@ -1816,8 +1574,6 @@ Your making a request but are not doing anything with the response? Make sure to
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     progressHandler(e) {
         // console.log("XHR.progressHandler()");
         // if (e.lengthComputable) {
@@ -1831,21 +1587,16 @@ Your making a request but are not doing anything with the response? Make sure to
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     onLoadHandler(e) {
         // console.log("XHR.onLoadHandler()");
         // console.log(`Done, got ${this.xhr.response.length} bytes`);
         // console.log(this.xhr.response);
         this.removeEventListeners();
-
         if (this.args.onComplete) {
             this.args.onComplete(e);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     getResponseHeader(name) {
         if (this.xhr) {
             return this.xhr.getResponseHeader(name);
@@ -1854,8 +1605,6 @@ Your making a request but are not doing anything with the response? Make sure to
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     getAllResponseHeaders() {
         if (this.xhr) {
             return this.xhr.getAllResponseHeaders();
@@ -1864,8 +1613,6 @@ Your making a request but are not doing anything with the response? Make sure to
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     getResponse() {
         if (this.xhr) {
             return this.xhr.response;
@@ -1874,8 +1621,6 @@ Your making a request but are not doing anything with the response? Make sure to
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     removeEventListeners() {
         this.xhr.removeEventListener("progress", (e) => this.progressHandler(e));
         this.xhr.removeEventListener("load", (e) => this.onLoadHandler(e));
@@ -1884,7 +1629,6 @@ Your making a request but are not doing anything with the response? Make sure to
         this.xhr.removeEventListener("timeout", (e) => this.errorHandler(e));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 }
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
@@ -1939,12 +1683,10 @@ export function getWeightedRandom(odds, iterations) {
     let r = 0;
     let iMax = 0;
     let wMax = 0;
-
     for (let i in odds) {
         if (!weights[i]) {
             weights[i] = 0;
         }
-
         for (let x = 0; x < iterations; x++) {
             r = Math.random();
             //log(r.toFixed(3) + "   " + odds[i].toFixed(3));
@@ -1952,13 +1694,11 @@ export function getWeightedRandom(odds, iterations) {
                 weights[i] += odds[i];
             }
         }
-
         if (weights[i] > wMax) {
             wMax = weights[i];
             iMax = i;
         }
     }
-
     //log(weights);
     //log("wMax = " + wMax + "   iMax = " + iMax);
     return iMax;
@@ -1976,7 +1716,6 @@ export function inertiaTo(current,target,amount){
     }
     let distToGo = target - current;
     let delta = current + (distToGo * amount);
-
     if (Math.abs(distToGo) < 0.01) {
         distToGo = 0;
         delta = target;
@@ -2032,108 +1771,52 @@ export function roundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
 }
 
-export class MouseScrollHandler {
-
-    constructor(onScrollUp,onScrollDown) {
-        // var defs
-        this.direction = false;
-
-        // Fn
-        this.onScrollUp = onScrollUp;
-        this.onScrollDown = onScrollDown;
-
-        window.addEventListener('wheel', (e) => {
-            this.scrollHandler(e);
-        })
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-    scrollHandler(e) {
-        if (e.deltaY < 0) {
-            if (this.onScrollUp) {
-                this.onScrollUp();
-            }
-        }
-        else if (e.deltaY > 0) {
-            if (this.onScrollDown) {
-                this.onScrollDown();
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-}
 export class FPSMonitor {
     // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
     // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
-
     constructor(ele) {
-
         this.dom = {
             fps: false
         }
-
         this.fpsStack = false;
         this.stackSize = 60;
         this.index = 0;
-
         this.last = 0;
         this.now = 0;
-
         this.delta = 0;
-
         this.currentFrameFps = 0;
-
         this.total = 0;
         this.averageFps = 0;
-
         this.i = 0;
-
         if (ele){
             this.dom.fps = ele;
         }
-
         this.fpsStack = new Float32Array(this.stackSize);
-
         this.update();
     }
-
-
-
-
     update(){
         this.now = performance.now();
-
         this.delta = (this.now - this.last) / 1000;
         this.currentFrameFps = 1/this.delta;
         // log("currentFrameFps = " + this.currentFrameFps);
-
         this.fpsStack[this.index] = this.currentFrameFps;
-
         this.total = 0;
         for(this.i=0; this.i < this.stackSize; this.i++){
             this.total += this.fpsStack[this.i];
         }
-
         this.averageFps = Math.round( this.total/this.stackSize );
-
         if (this.dom.fps){
             this.dom.fps.innerText = this.averageFps;
         }
-
         this.last = this.now;
-
         this.index++;
         if (this.index >= this.stackSize){
             this.index = 0;
         }
-
         requestAnimationFrame(()=>{
             this.update();
         });
     }
-
-
     getFps(){
         return this.averageFps;
     }
@@ -2145,7 +1828,6 @@ export function getGUID() {
             .toString(16)
             .substring(1);
     }
-
     return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
         Amiga() + '-' + Amiga() + Amiga() + Amiga();
 }
@@ -2183,12 +1865,37 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+export class MouseScrollHandler {
+    constructor(onScrollUp,onScrollDown) {
+        // var defs
+        this.direction = false;
+        // Fn
+        this.onScrollUp = onScrollUp;
+        this.onScrollDown = onScrollDown;
+        window.addEventListener('wheel', (e) => {
+            this.scrollHandler(e);
+        })
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    scrollHandler(e) {
+        if (e.deltaY < 0) {
+            if (this.onScrollUp) {
+                this.onScrollUp();
+            }
+        }
+        else if (e.deltaY > 0) {
+            if (this.onScrollDown) {
+                this.onScrollDown();
+            }
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
 export function cutStringTo(s, len) {
     return s.substring(0, len);
 }
 export function escapeHTML(str) {
     if (typeof (str) != "string") { console.error("escape(arg): usage error: arg needs to be a string!"); return false; }
-
     let replacements = {
         "<": "&lt;",
         ">": "&gt;",
@@ -2232,7 +1939,6 @@ export function getCleanJSONString (s) {
 export function getFileExtension(input) {
     return input.slice((input.lastIndexOf(".") - 1 >>> 0) + 2);
     // return (input.match(/(?:.+..+[^\/]+$)/ig) != null) ? input.split('.').slice(-1) : 'null';
-
 }
 export function getLastPartOfUrl(url) {
     if (!url) {
@@ -2244,11 +1950,9 @@ export function getLastPartOfUrl(url) {
 export function getRandomString(len) {
     let text = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
     for (let i = 0; i < len; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-
     return text;
 }
 
@@ -2268,23 +1972,18 @@ export function getStringsBetween2(str, start, end) {
     let results = [];
     // log(orig);
     // log("--------");
-
     function getBetween() {
         // log("CHECKING: " + str);
         let startMatchIndex = str.indexOf(start); // Find start match
         // log("startMatchIndex: " + startMatchIndex);
         if (startMatchIndex === -1) { return false; }
-
         let startCutIndex = start.length + startMatchIndex; // calc start cut index
         // log("startCutIndex: " + startCutIndex);
-
         str = str.substring(startCutIndex, str.length); // LTrim to start cut index
         // log("CUT: " + str);
-
         let endMatchIndex = str.indexOf(end); // find end match index
         // log("endMatchIndex: " + endMatchIndex);
         if (endMatchIndex === -1) { return false; }
-
         let between = str.substring(0, endMatchIndex); // get string between
         // log("between: " + between);
         let endCutIndex = end.length + endMatchIndex;
@@ -2308,7 +2007,6 @@ export function getStringsBetween2(str, start, end) {
     return results;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 /**
  * @function: getStringsBetween(str,start,end)
  * @desc: Gets all strings between two other strings (multi match)
@@ -2334,7 +2032,6 @@ export function regExReplaceAll(haystack, needle, rep) {
     }
     const searchRegExp = new RegExp(needle, 'g');
     return haystack.replace(searchRegExp, rep);
-
 }
 export function removeFileFromPath(path) {
     //let pa = '/this/is/a/folder/aFile.txt';
@@ -2362,83 +2059,58 @@ export function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 export class SwipeHandler {
-
-
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     constructor(onSwipeLeft, onSwipeRight) {
         // log("SwipeHandler(onSwipeLeft,onSwipeRight)");
-
         // vars
         this.onSwipeLeft = onSwipeLeft;
         this.onSwipeRight = onSwipeRight;
-
         // var defs
         this.touchStartX = 0;
         this.touchEndX = 0;
-
         this.touchStartY = 0;
         this.touchEndY = 0;
-
         this.currentX = 0;
         this.currentY = 0;
-
         // dist to touch move on x before triggering a swipe
         this.swipeXTolerance = 50;
-
         this.direction = false;
-
         this.distX = 0;
         this.distY = 0;
-
         this.swipeDetected = false;
         this.swipeDirection = "";
-
         this.onSwipeLeft = false;
         this.onSwipeRight = false;
-
         // Event listeners
         document.addEventListener('touchstart', (e) => {
             this.handleTouchStart(e);
         }, false);
-
         document.addEventListener('touchmove', (e) => {
             this.handleTouchMove(e);
         }, false);
-
         // document.addEventListener('touchEnd', (e) => {
         //     this.handleTouchEnd(e);
         // }, false);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
     handleTouchStart(e) {
         // log("SwipeHandler.handleTouchStart(e)");
         // e.preventDefault();
-
         this.distX = 0;
         this.distY = 0;
-
         this.swipeDetected = false;
         this.swipeDirection = "";
-
         this.touchStartX = e.changedTouches[0].screenX;
         this.touchStartY = e.changedTouches[0].screenY;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
     handleTouchMove(e) {
         // log("SwipeHandler.handleTouchMove(e)");
         // e.preventDefault();
-
         this.currentX = e.changedTouches[0].screenX;
         this.currentY = e.changedTouches[0].screenY;
-
         this.distX = -(this.touchStartX - this.currentX);
         // this.distY = -(this.touchStartY - this.currentY);
-
         if (this.distX > this.swipeXTolerance) {
             this.swipeDetected = true;
             this.swipeDirection = "right";
@@ -2454,31 +2126,26 @@ export class SwipeHandler {
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
     // UNABLE TO GET EVENT TO FIRE
     // handleTouchEnd(e) {
     //     log("SwipeHandler.handleTouchEnd(e)");
     //     // e.preventDefault();
-
     //     this.touchEndX = e.changedTouches[0].screenX;
     //     this.touchEndY = e.changedTouches[0].screenY;
-
     //     debugTo(1, "TOUCH END");
     //     debugTo(2, this.touchStartX);
     //     debugTo(3, this.touchStartY);
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
-
 }
+export function isEmail (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 export class PromiseAttachVideo {
-
-
     constructor(video,src) {
         return new Promise((resolve, reject) => {
-    
             video.addEventListener("loadedmetadata", (e) => {
                 let width = video.videoWidth;
                 let height = video.videoWidth;
@@ -2487,20 +2154,16 @@ export class PromiseAttachVideo {
                     width,height,duration
                 });
             }, false);
-
             video.addEventListener("error", (e) => {
                 reject(e);
                 throw (e);
             },false);
-    
             video.src = src;  
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
 }
 export class PromiseVideoEnd {
-
     constructor(video) {
         return new Promise((resolve, reject) => {
             video.addEventListener('ended', (e) => {
@@ -2509,12 +2172,5 @@ export class PromiseVideoEnd {
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-
 }
 
-
-
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}

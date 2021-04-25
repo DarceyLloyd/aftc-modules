@@ -32,7 +32,10 @@ package-lock.json
 # Misc #
 ########
 .old
+.bak
+.dev
 backups
+aftc-node-tools
 
 
 beta
