@@ -1,3 +1,34 @@
+// JSODOC = {
+//     "method": "loadScript",
+//     "params": [
+//         {
+//             "name": "src",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the js file to load"
+//         },
+//         {
+//             "name": "onComplete",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On complete callback"
+//         },
+//         {
+//             "name": "onProgress",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On progress callback, sends back the percentage loaded"
+//         }
+//     ],
+//     "info": "Loads a JavaScript file and auto attaches it to the head section of the document.",
+//     "example": [
+//         "loadScript('./include/js/script-5.js',onLoadedHandler)"
+//     ]
+// } JSODOC
+
 export function loadScript(src, onComplete, onProgress){
     let head = document.getElementsByTagName("head")[0] || document.body;
 

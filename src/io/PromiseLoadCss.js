@@ -1,3 +1,25 @@
+// JSODOC = {
+//     "method": "promiseLoadCss",
+//     "params": [
+//         {
+//             "name": "href",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the css file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Loads a css file and auto attaches it to the head section of the document.",
+//     "example": [
+//         "promiseLoadCss('./include/css/style-sheet-5.css')",
+//         ".then(()=>{ log('loaded'); })",
+//         ".catch((e)=>{ log(e); })"
+//     ]
+// } JSODOC
+
 export function promiseLoadCss(href) {
 
     return new Promise(function (resolve, reject) {

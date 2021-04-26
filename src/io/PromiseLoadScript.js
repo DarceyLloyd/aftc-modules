@@ -1,3 +1,25 @@
+// JSODOC = {
+//     "method": "promiseLoadScript",
+//     "params": [
+//         {
+//             "name": "src",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Loads a JavaScript file and attaches it to the document head",
+//     "example": [
+//         "promiseLoadScript('./includes/js/onDemandFile1.js')",
+//         ".then(()=>{ log('loaded and attached'); })",
+//         ".catch((e)=>{ log(e); })"
+//     ]
+// } JSODOC
+
 export function promiseLoadScript(src) {
 
     return new Promise(function (resolve, reject) {

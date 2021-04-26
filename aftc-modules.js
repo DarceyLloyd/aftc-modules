@@ -2018,7 +2018,35 @@ export function onReady(fn) {
     }
 }
 
-export function getWordsFromString(str, maxWords) {
+// JSODOC = {
+//     "method": "wordCountFilter",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "default": null
+//         },
+//         {
+//             "name": "maxWords",
+//             "type": "Number",
+//             "required": true,
+//             "default": null
+//         }
+//     ],
+//     "returns": {
+//         "type": "Object",
+//         "params": [
+//             {"name":"output","type":"String"},
+//             {"name":"remaining","type":"Number"}
+//         ]
+//     },
+//     "info": "Takes a string, checks it for number of words and returns the string but cuts it to the max number of words you set.",
+//     "example": [
+//         "let limitedSentence = wordCountFilter(source,20)"
+//     ]
+// } JSODOC
+export function wordCountFilter(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
     let output = "";
@@ -2273,6 +2301,29 @@ export class AFTCPreloader {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }
+// JSODOC = {
+//     "method": "loadCss",
+//     "params": [
+//         {
+//             "name": "href",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the css file to load"
+//         },
+//         {
+//             "name": "onComplete",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On complete callback"
+//         }
+//     ],
+//     "info": "Loads a css file and auto attaches it to the head section of the document.",
+//     "example": [
+//         "loadCss('./include/css/style-sheet-5.css',onStyleSheet5Loaded)"
+//     ]
+// } JSODOC
 export function loadCss(href, onComplete){
     let link = document.createElement("link");
     link.onload = function () {
@@ -2286,6 +2337,36 @@ export function loadCss(href, onComplete){
     link.media = "screen,print";
     document.getElementsByTagName("head")[0].appendChild(link);
 }
+// JSODOC = {
+//     "method": "loadJson",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load."
+//         },
+//         {
+//             "name": "onComplete",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On complete callback, sends json response back as a parameter."
+//         },
+//         {
+//             "name": "onError",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On error callback function handler"
+//         }
+//     ],
+//     "info": "Loads a JSON file and returns it via the onComplete callback function.",
+//     "example": [
+//         "loadJson('./data/config.json',onLoadedHandler)"
+//     ]
+// } JSODOC
 export function loadJson(url, onComplete, onError) {
     let xhr = new XMLHttpRequest();
     let method = "GET";
@@ -2312,6 +2393,36 @@ export function loadJson(url, onComplete, onError) {
     };
     xhr.send();
 };
+// JSODOC = {
+//     "method": "loadScript",
+//     "params": [
+//         {
+//             "name": "src",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the js file to load"
+//         },
+//         {
+//             "name": "onComplete",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On complete callback"
+//         },
+//         {
+//             "name": "onProgress",
+//             "type": "Function",
+//             "required": false,
+//             "default": null,
+//             "info": "On progress callback, sends back the percentage loaded"
+//         }
+//     ],
+//     "info": "Loads a JavaScript file and auto attaches it to the head section of the document.",
+//     "example": [
+//         "loadScript('./include/js/script-5.js',onLoadedHandler)"
+//     ]
+// } JSODOC
 export function loadScript(src, onComplete, onProgress){
     let head = document.getElementsByTagName("head")[0] || document.body;
     if (!head){
@@ -2349,6 +2460,27 @@ export function loadScript(src, onComplete, onProgress){
     xhr.open("GET", src);
     xhr.send();
 }
+// JSODOC = {
+//     "method": "promiseLoadCss",
+//     "params": [
+//         {
+//             "name": "href",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the css file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Loads a css file and auto attaches it to the head section of the document.",
+//     "example": [
+//         "promiseLoadCss('./include/css/style-sheet-5.css')",
+//         ".then(()=>{ log('loaded'); })",
+//         ".catch((e)=>{ log(e); })"
+//     ]
+// } JSODOC
 export function promiseLoadCss(href) {
     return new Promise(function (resolve, reject) {
         let link = document.createElement("link");
@@ -2365,48 +2497,114 @@ export function promiseLoadCss(href) {
         document.getElementsByTagName("head")[0].appendChild(link);
     });
 }
-export class PromiseLoadImage {
-    constructor(ele, src) {
-        return new Promise((resolve, reject) => {
-            ele.onload = () => {
-                resolve(true);
-            }
-            ele.error = (e) => {
-                reject(false);
-            }
-            ele.src = src;
-        });
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
+// JSODOC = {
+//     "method": "promiseLoadImage",
+//     "params": [
+//         {
+//             "name": "ele",
+//             "type": "String",
+//             "required": false,
+//             "default": null,
+//             "info": "Image element to load the image into."
+//         },
+//         {
+//             "name": "src",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Loads an image file and auto attaches it to the head section of the document.",
+//     "example": [
+//         "PromiseLoadImage(imgElement1,'./assets/images/products/001.jpg')",
+//         ".then(()=>{ log('loaded and attached'); })",
+//         ".catch((e)=>{ log(e); })"
+//     ]
+// } JSODOC
+export function promiseLoadImage(ele, src) {
+    return new Promise((resolve, reject) => {
+        ele.onload = () => {
+            resolve(true);
+        }
+        ele.error = (e) => {
+            reject(e);
+        }
+        ele.src = src;
+    });
 }
-export class PromiseLoadJson {
+// - - - - - - - - - - - - - - - - - - - - - - - -
+// JSODOC = {
+//     "method": "promiseLoadJson",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Loads a json file and returns it via promise resolve",
+//     "example": [
+//         "PromiseLoadJson('./data/config.json')",
+//         ".then((data)=>{ log(data); })",
+//         ".catch((e)=>{ log(e); })"
+//     ]
+// } JSODOC
+export function promiseLoadJson(url) {
     // Might extend someday, ref link if you do or old xhr function or both
     // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
-    constructor(url){
-        return new Promise(function (resolve, reject) {
-            let xhr = new XMLHttpRequest();
-            let method = "GET";
-            xhr.open(method, url);
-            xhr.onload = function () {
-                if (this.status >= 200 && this.status < 300) {
-                    resolve(JSON.parse(xhr.response));
-                } else {
-                    reject({
-                        status: this.status,
-                        statusText: xhr.statusText
-                    });
-                }
-            };
-            xhr.onerror = function () {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        let method = "GET";
+        xhr.open(method, url);
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(JSON.parse(xhr.response));
+            } else {
                 reject({
                     status: this.status,
                     statusText: xhr.statusText
                 });
-            };
-            xhr.send();
-        });
-    }
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
 }
+// JSODOC = {
+//     "method": "promiseLoadScript",
+//     "params": [
+//         {
+//             "name": "src",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Loads a JavaScript file and attaches it to the document head",
+//     "example": [
+//         "promiseLoadScript('./includes/js/onDemandFile1.js')",
+//         ".then(()=>{ log('loaded and attached'); })",
+//         ".catch((e)=>{ log(e); })"
+//     ]
+// } JSODOC
 export function promiseLoadScript(src) {
     return new Promise(function (resolve, reject) {
         let head = document.getElementsByTagName("head")[0] || document.body;
@@ -2698,14 +2896,72 @@ Your making a request but are not doing anything with the response? Make sure to
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }
+// JSODOC = {
+//     "method": "getRandomBoolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Returns a random boolean.",
+//     "example": [
+//         "let randomBoolean = getRandomBoolean()"
+//     ]
+// } JSODOC
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
 }
+// JSODOC = {
+//     "method": "getRandomFloat",
+//     "params": [
+//         {
+//             "name": "min",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Min value."
+//         },
+//         {
+//             "name": "max",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Max value."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Number"
+//     },
+//     "info": "Returns a number (float) between 2 numbers.",
+//     "example": [
+//         "let randomFloat = getRandomFloat(1.4,42.232)"
+//     ]
+// } JSODOC
 export function getRandomFloat(min, max) {
     // let r = from + (Math.random()* (to*2));
     return (Math.random() * (max - min) + min);
 };
 
+// JSODOC = {
+//     "method": "getRandomInt",
+//     "params": [
+//         {
+//             "name": "min",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Min value."
+//         },
+//         {
+//             "name": "max",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Max value."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Number"
+//     },
+//     "info": "Returns a number (int) between 2 numbers.",
+//     "example": [
+//         "let randomInt = getRandomInt(0,100)"
+//     ]
+// } JSODOC
 export function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -2729,6 +2985,30 @@ export function getRandomThatsNot(min,max,not){
  * @alias: getRandom
  * @link: https://codepen.io/AllForTheCode/pen/yEBZNq
  */
+// JSODOC = {
+//     "method": "getRange",
+//     "params": [
+//         {
+//             "name": "value 1",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Value 1."
+//         },
+//         {
+//             "name": "Value 2",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Value 2."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Number"
+//     },
+//     "info": "Returns absolute value of the range between 2 numbers.",
+//     "example": [
+//         "let range = getRange(0,100)"
+//     ]
+// } JSODOC
 export function getRange(a,b){
     return Math.max(a, b) - Math.min(a, b);
 }
@@ -2778,6 +3058,33 @@ export function getWeightedRandom(odds, iterations) {
  * @param iterations number: number of iterations to run on each number test
  * @link: https://codepen.io/AllForTheCode/pen/RyvWjZ
  */
+// JSODOC = {
+//     "method": "inertiaTo",
+//     "params": [
+//         {
+//             "name": "current",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Current value."
+//         },
+//         {
+//             "name": "target",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Value to reach."
+//         },
+//         {
+//             "name": "amount",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Inertia speed (dec/inc speed)."
+//         }
+//     ],
+//     "info": "Calculates the target value of inertia in a loop/requestAnimationFrame from 1 value to another at speed.",
+//     "example": [
+//         "let newX = inertiaTo(curX,targetX,0.5)"
+//     ]
+// } JSODOC
 export function inertiaTo(current,target,amount){
     if (amount == 1) {
         return target;
@@ -2791,13 +3098,84 @@ export function inertiaTo(current,target,amount){
     return delta;
 }
 
+// JSODOC = {
+//     "method": "isEven",
+//     "params": [
+//         {
+//             "name": "n",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Number to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Detects if a number is even or not.",
+//     "example": [
+//         "let even = isEven(3)"
+//     ]
+// } JSODOC
 export function isEven(n) {
     return n % 2 === 0;
 }
 
+// JSODOC = {
+//     "method": "isOdd",
+//     "params": [
+//         {
+//             "name": "n",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Number to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Detects if a number is odd or not.",
+//     "example": [
+//         "let odd = isOdd(3)"
+//     ]
+// } JSODOC
 export function isOdd(n) {
     return Math.abs(n % 2) === 1;
 }
+// JSODOC = {
+//     "method": "normaliseRange",
+//     "params": [
+//         {
+//             "name": "min",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Min value."
+//         },
+//         {
+//             "name": "max",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Max value."
+//         },
+//         {
+//             "name": "v",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Value to normalise."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Number"
+//     },
+//     "info": "Normalises a value to be between 0 and 1, based on a range between min and max. min being 0 and max being 1.",
+//     "example": [
+//         "let n1 = normaliseRange(0,100,50)",
+//         "/* n1 = 0.5 */",
+//         "let n2 = normaliseRange(0,100,200)",
+//         "/* n2 = 1 */",
+//         "let n3 = normaliseRange(0,100,-200)",
+//         "/* n3 = 0 */"
+//     ]
+// } JSODOC
 export function normaliseRange(min, max, v) {
     let range = max - min;
     let step = 1 / range;
@@ -2810,6 +3188,24 @@ export function normaliseRange(min, max, v) {
     return r;
 }
 
+// JSODOC = {
+//     "method": "parseArrayToFloat",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "Array",
+//             "required": true,
+//             "info": "Array to parse."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Array"
+//     },
+//     "info": "Parses each entry in the supplied array with Math.float and returns it.",
+//     "example": [
+//         "let floatParsedArray = parseArrayToFloat(arr)"
+//     ]
+// } JSODOC
 export function parseArrayToFloat(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
@@ -2823,6 +3219,24 @@ export function parseArrayToFloat(arr) {
     return arr;
 }
 
+// JSODOC = {
+//     "method": "parseArrayToInt",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "Array",
+//             "required": true,
+//             "info": "Array to parse."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Array"
+//     },
+//     "info": "Parses each entry in the supplied array with Math.int and returns it.",
+//     "example": [
+//         "let intParsedArray = parseArrayToInt(arr)"
+//     ]
+// } JSODOC
 export function parseArrayToInt(arr) {
     let converted;
     for (let i = 0; i < arr.length; i++) {
@@ -2835,6 +3249,30 @@ export function parseArrayToInt(arr) {
     }
     return arr;
 }
+// JSODOC = {
+//     "method": "roundTo",
+//     "params": [
+//         {
+//             "name": "v",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Value to round."
+//         },
+//         {
+//             "name": "dec",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Number of decimal places to round to."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Number"
+//     },
+//     "info": "Rounds a value to a set number of decimal places.",
+//     "example": [
+//         "let r = roundTo(3.142,2)"
+//     ]
+// } JSODOC
 export function roundTo(v, dec) {
     return +(Math.round(Number(v + "e+" + dec)) + "e-" + dec);
 }
@@ -2890,6 +3328,16 @@ export class FPSMonitor {
     }
 }
 
+// JSODOC = {
+//     "method": "getGUID",
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns a GUI string.",
+//     "example": [
+//         "let guid = getGUID()"
+//     ]
+// } JSODOC
 export function getGUID() {
     function Amiga() {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -2899,6 +3347,24 @@ export function getGUID() {
     return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
         Amiga() + '-' + Amiga() + Amiga() + Amiga();
 }
+// JSODOC = {
+//     "method": "getUID",
+//     "params": [
+//         {
+//             "name": "len",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Length of the unique id to generate."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Generates a unique id. NOTE: Max length of 34.",
+//     "example": [
+//         "let uid = getUID(12)"
+//     ]
+// } JSODOC
 export function getUID(len) {
     if (len > 34){
         console.error("getUID(length): Limit error: Length must be 34 or lower");
@@ -2906,13 +3372,67 @@ export function getUID(len) {
         return Math.random().toString(36).substr(2, len);
     }
 }
+// JSODOC = {
+//     "method": "isAlphaNumeric",
+//     "params": [
+//         {
+//             "name": "v",
+//             "type": "String|Number",
+//             "required": true,
+//             "info": "Param to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if the input is alphanumeric or not.",
+//     "example": [
+//         "let an = isAlphaNumeric('a43-')"
+//     ]
+// } JSODOC
 export function isAlphaNumeric(v) {
     return !(/\W/.test(v));
 }
+// JSODOC = {
+//     "method": "isArray",
+//     "params": [
+//         {
+//             "name": "input",
+//             "type": "*",
+//             "required": true,
+//             "info": "Param to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if the input is an array or not.",
+//     "example": [
+//         "let check = isArray(4)"
+//     ]
+// } JSODOC
 export function isArray(input) {
     return !!input && input.constructor === Array;
     //return arr.constructor === Array;
 }
+// JSODOC = {
+//     "method": "isBool",
+//     "params": [
+//         {
+//             "name": "input",
+//             "type": "*",
+//             "required": true,
+//             "info": "Param to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if the input is a boolean or not.",
+//     "example": [
+//         "let check = isBool(4)"
+//     ]
+// } JSODOC
 export function isBool(input) {
     if (typeof (input) === "boolean") {
         return true;
@@ -2920,6 +3440,24 @@ export function isBool(input) {
         return false;
     }
 }
+// JSODOC = {
+//     "method": "isBoolean",
+//     "params": [
+//         {
+//             "name": "input",
+//             "type": "*",
+//             "required": true,
+//             "info": "Param to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if the input is a boolean or not.",
+//     "example": [
+//         "let check = isBoolean(4)"
+//     ]
+// } JSODOC
 export function isBoolean(input) {
     if (typeof (input) === "boolean") {
         return true;
@@ -2927,9 +3465,45 @@ export function isBoolean(input) {
         return false;
     }
 }
+// JSODOC = {
+//     "method": "isNumber",
+//     "params": [
+//         {
+//             "name": "n",
+//             "type": "*",
+//             "required": true,
+//             "info": "Param to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if the input is number or not.",
+//     "example": [
+//         "let check = isNumber('a')"
+//     ]
+// } JSODOC
 export function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+// JSODOC = {
+//     "method": "isNumeric",
+//     "params": [
+//         {
+//             "name": "n",
+//             "type": "*",
+//             "required": true,
+//             "info": "Param to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if the input is numeric or not.",
+//     "example": [
+//         "let check = isNumeric('a')"
+//     ]
+// } JSODOC
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -2959,8 +3533,32 @@ export class MouseScrollHandler {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
-export function cutStringTo(s, len) {
-    return s.substring(0, len);
+// JSODOC = {
+//     "method": "cutStringTo",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "String to cut."
+//         },
+//         {
+//             "name": "len",
+//             "type": "Number",
+//             "required": true,
+//             "info": "Number of characters to return / Length of string to return."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns a string at the desired length.",
+//     "example": [
+//         "let cutString = cutStringTo('abcd',2)"
+//     ]
+// } JSODOC
+export function cutStringTo(input, len) {
+    return input.substring(0, len);
 }
 export function escapeHTML(str) {
     if (typeof (str) != "string") { console.error("escape(arg): usage error: arg needs to be a string!"); return false; }

@@ -23,6 +23,13 @@ Any and all donations to help keep active development and the lights on are more
 
 
 
+### <b>Want the ES5 (old) version?</b>
+Your looking for aftc.js. Visit: https://github.com/DarceyLloyd/AFTC.js
+
+<hr><br><br>
+
+
+
 ### <b>Installation</b>
 ```
 npm i aftc-modules
@@ -93,6 +100,34 @@ npm i aftc-modules
  - hasClass(elementOrId,ele)
  - elementOrId(elementOrId,str,mode)
  - onReady(fn)
+ - wordCountFilter(str,maxWords)
+ - loadCss(href,onComplete)
+ - loadJson(url,onComplete,onError)
+ - loadScript(src,onComplete,onProgress)
+ - promiseLoadCss(href)
+ - promiseLoadImage(ele,src)
+ - promiseLoadJson(url)
+ - promiseLoadScript(src)
+ - getRandomBoolean()
+ - getRandomFloat(min,max)
+ - getRandomInt(min,max)
+ - getRange(value 1,Value 2)
+ - inertiaTo(current,target,amount)
+ - isEven(n)
+ - isOdd(n)
+ - normaliseRange(min,max,v)
+ - parseArrayToFloat(arr)
+ - parseArrayToInt(arr)
+ - roundTo(v,dec)
+ - getGUID()
+ - getUID(len)
+ - isAlphaNumeric(v)
+ - isArray(input)
+ - isBool(input)
+ - isBoolean(input)
+ - isNumber(n)
+ - isNumeric(n)
+ - cutStringTo(str,len)
 
 
 <hr><br><br>
@@ -1326,6 +1361,602 @@ onReady(function()){
 onReady(() =>{
 	/* DOM is ready, do your thing */
 });
+```
+
+
+<hr><br><br>
+
+## <b>wordCountFilter(str,maxWords)</b>
+<b>Information:</b><br>
+Takes a string, checks it for number of words and returns the string but cuts it to the max number of words you set.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> str<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+
+- <b>Name:</b> maxWords<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+
+<b>Returns:</b> Object 
+
+- <b>Name: </b>output<br>
+<b>Type: </b>String<br>
+
+- <b>Name: </b>remaining<br>
+<b>Type: </b>Number<br>
+
+```
+let limitedSentence = wordCountFilter(source,20)
+```
+
+
+<hr><br><br>
+
+## <b>loadCss(href,onComplete)</b>
+<b>Information:</b><br>
+Loads a css file and auto attaches it to the head section of the document.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> href<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the css file to load<br>
+
+- <b>Name:</b> onComplete<br>
+<b>Type: </b>Function<br>
+<b>Required: </b>false<br>
+<b>Default: </b>null<br>
+<b>Info: </b>On complete callback<br>
+
+```
+loadCss('./include/css/style-sheet-5.css',onStyleSheet5Loaded)
+```
+
+
+<hr><br><br>
+
+## <b>loadJson(url,onComplete,onError)</b>
+<b>Information:</b><br>
+Loads a JSON file and returns it via the onComplete callback function.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> url<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the file to load.<br>
+
+- <b>Name:</b> onComplete<br>
+<b>Type: </b>Function<br>
+<b>Required: </b>false<br>
+<b>Default: </b>null<br>
+<b>Info: </b>On complete callback, sends json response back as a parameter.<br>
+
+- <b>Name:</b> onError<br>
+<b>Type: </b>Function<br>
+<b>Required: </b>false<br>
+<b>Default: </b>null<br>
+<b>Info: </b>On error callback function handler<br>
+
+```
+loadJson('./data/config.json',onLoadedHandler)
+```
+
+
+<hr><br><br>
+
+## <b>loadScript(src,onComplete,onProgress)</b>
+<b>Information:</b><br>
+Loads a JavaScript file and auto attaches it to the head section of the document.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> src<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the js file to load<br>
+
+- <b>Name:</b> onComplete<br>
+<b>Type: </b>Function<br>
+<b>Required: </b>false<br>
+<b>Default: </b>null<br>
+<b>Info: </b>On complete callback<br>
+
+- <b>Name:</b> onProgress<br>
+<b>Type: </b>Function<br>
+<b>Required: </b>false<br>
+<b>Default: </b>null<br>
+<b>Info: </b>On progress callback, sends back the percentage loaded<br>
+
+```
+loadScript('./include/js/script-5.js',onLoadedHandler)
+```
+
+
+<hr><br><br>
+
+## <b>promiseLoadCss(href)</b>
+<b>Information:</b><br>
+Loads a css file and auto attaches it to the head section of the document.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> href<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the css file to load<br>
+
+<b>Returns:</b>
+Promise<br>
+```
+promiseLoadCss('./include/css/style-sheet-5.css')
+.then(()=>{ log('loaded'); })
+.catch((e)=>{ log(e); })
+```
+
+
+<hr><br><br>
+
+## <b>promiseLoadImage(ele,src)</b>
+<b>Information:</b><br>
+Loads an image file and auto attaches it to the head section of the document.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> ele<br>
+<b>Type: </b>String<br>
+<b>Required: </b>false<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Image element to load the image into.<br>
+
+- <b>Name:</b> src<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the file to load<br>
+
+<b>Returns:</b>
+Promise<br>
+```
+PromiseLoadImage(imgElement1,'./assets/images/products/001.jpg')
+.then(()=>{ log('loaded and attached'); })
+.catch((e)=>{ log(e); })
+```
+
+
+<hr><br><br>
+
+## <b>promiseLoadJson(url)</b>
+<b>Information:</b><br>
+Loads a json file and returns it via promise resolve<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> url<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the file to load<br>
+
+<b>Returns:</b>
+Promise<br>
+```
+PromiseLoadJson('./data/config.json')
+.then((data)=>{ log(data); })
+.catch((e)=>{ log(e); })
+```
+
+
+<hr><br><br>
+
+## <b>promiseLoadScript(src)</b>
+<b>Information:</b><br>
+Loads a JavaScript file and attaches it to the document head<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> src<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Default: </b>null<br>
+<b>Info: </b>Path/URL to the file to load<br>
+
+<b>Returns:</b>
+Promise<br>
+```
+promiseLoadScript('./includes/js/onDemandFile1.js')
+.then(()=>{ log('loaded and attached'); })
+.catch((e)=>{ log(e); })
+```
+
+
+<hr><br><br>
+
+## <b>getRandomBoolean()</b>
+<b>Information:</b><br>
+Returns a random boolean.<br>
+<b>Returns:</b>
+Boolean<br>
+```
+let randomBoolean = getRandomBoolean()
+```
+
+
+<hr><br><br>
+
+## <b>getRandomFloat(min,max)</b>
+<b>Information:</b><br>
+Returns a number (float) between 2 numbers.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> min<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Min value.<br>
+
+- <b>Name:</b> max<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Max value.<br>
+
+<b>Returns:</b>
+Number<br>
+```
+let randomFloat = getRandomFloat(1.4,42.232)
+```
+
+
+<hr><br><br>
+
+## <b>getRandomInt(min,max)</b>
+<b>Information:</b><br>
+Returns a number (int) between 2 numbers.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> min<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Min value.<br>
+
+- <b>Name:</b> max<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Max value.<br>
+
+<b>Returns:</b>
+Number<br>
+```
+let randomInt = getRandomInt(0,100)
+```
+
+
+<hr><br><br>
+
+## <b>getRange(value 1,Value 2)</b>
+<b>Information:</b><br>
+Returns absolute value of the range between 2 numbers.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> value 1<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Value 1.<br>
+
+- <b>Name:</b> Value 2<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Value 2.<br>
+
+<b>Returns:</b>
+Number<br>
+```
+let range = getRange(0,100)
+```
+
+
+<hr><br><br>
+
+## <b>inertiaTo(current,target,amount)</b>
+<b>Information:</b><br>
+Calculates the target value of inertia in a loop/requestAnimationFrame from 1 value to another at speed.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> current<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Current value.<br>
+
+- <b>Name:</b> target<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Value to reach.<br>
+
+- <b>Name:</b> amount<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Inertia speed (dec/inc speed).<br>
+
+```
+let newX = inertiaTo(curX,targetX,0.5)
+```
+
+
+<hr><br><br>
+
+## <b>isEven(n)</b>
+<b>Information:</b><br>
+Detects if a number is even or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> n<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Number to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let even = isEven(3)
+```
+
+
+<hr><br><br>
+
+## <b>isOdd(n)</b>
+<b>Information:</b><br>
+Detects if a number is odd or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> n<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Number to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let odd = isOdd(3)
+```
+
+
+<hr><br><br>
+
+## <b>normaliseRange(min,max,v)</b>
+<b>Information:</b><br>
+Normalises a value to be between 0 and 1, based on a range between min and max. min being 0 and max being 1.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> min<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Min value.<br>
+
+- <b>Name:</b> max<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Max value.<br>
+
+- <b>Name:</b> v<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Value to normalise.<br>
+
+<b>Returns:</b>
+Number<br>
+```
+let n1 = normaliseRange(0,100,50)
+/* n1 = 0.5 */
+let n2 = normaliseRange(0,100,200)
+/* n2 = 1 */
+let n3 = normaliseRange(0,100,-200)
+/* n3 = 0 */
+```
+
+
+<hr><br><br>
+
+## <b>parseArrayToFloat(arr)</b>
+<b>Information:</b><br>
+Parses each entry in the supplied array with Math.float and returns it.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> arr<br>
+<b>Type: </b>Array<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Array to parse.<br>
+
+<b>Returns:</b>
+Array<br>
+```
+let floatParsedArray = parseArrayToFloat(arr)
+```
+
+
+<hr><br><br>
+
+## <b>parseArrayToInt(arr)</b>
+<b>Information:</b><br>
+Parses each entry in the supplied array with Math.int and returns it.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> arr<br>
+<b>Type: </b>Array<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Array to parse.<br>
+
+<b>Returns:</b>
+Array<br>
+```
+let intParsedArray = parseArrayToInt(arr)
+```
+
+
+<hr><br><br>
+
+## <b>roundTo(v,dec)</b>
+<b>Information:</b><br>
+Rounds a value to a set number of decimal places.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> v<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Value to round.<br>
+
+- <b>Name:</b> dec<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Number of decimal places to round to.<br>
+
+<b>Returns:</b>
+Number<br>
+```
+let r = roundTo(3.142,2)
+```
+
+
+<hr><br><br>
+
+## <b>getGUID()</b>
+<b>Information:</b><br>
+Returns a GUI string.<br>
+<b>Returns:</b>
+String<br>
+```
+let guid = getGUID()
+```
+
+
+<hr><br><br>
+
+## <b>getUID(len)</b>
+<b>Information:</b><br>
+Generates a unique id. NOTE: Max length of 34.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> len<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Length of the unique id to generate.<br>
+
+<b>Returns:</b>
+String<br>
+```
+let uid = getUID(12)
+```
+
+
+<hr><br><br>
+
+## <b>isAlphaNumeric(v)</b>
+<b>Information:</b><br>
+Checks if the input is alphanumeric or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> v<br>
+<b>Type: </b>String|Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Param to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let an = isAlphaNumeric('a43-')
+```
+
+
+<hr><br><br>
+
+## <b>isArray(input)</b>
+<b>Information:</b><br>
+Checks if the input is an array or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> input<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Param to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let check = isArray(4)
+```
+
+
+<hr><br><br>
+
+## <b>isBool(input)</b>
+<b>Information:</b><br>
+Checks if the input is a boolean or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> input<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Param to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let check = isBool(4)
+```
+
+
+<hr><br><br>
+
+## <b>isBoolean(input)</b>
+<b>Information:</b><br>
+Checks if the input is a boolean or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> input<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Param to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let check = isBoolean(4)
+```
+
+
+<hr><br><br>
+
+## <b>isNumber(n)</b>
+<b>Information:</b><br>
+Checks if the input is number or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> n<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Param to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let check = isNumber('a')
+```
+
+
+<hr><br><br>
+
+## <b>isNumeric(n)</b>
+<b>Information:</b><br>
+Checks if the input is numeric or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> n<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Param to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let check = isNumeric('a')
+```
+
+
+<hr><br><br>
+
+## <b>cutStringTo(str,len)</b>
+<b>Information:</b><br>
+Returns a string at the desired length.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> str<br>
+<b>Type: </b>String<br>
+<b>Required: </b>true<br>
+<b>Info: </b>String to cut.<br>
+
+- <b>Name:</b> len<br>
+<b>Type: </b>Number<br>
+<b>Required: </b>true<br>
+<b>Info: </b>Number of characters to return / Length of string to return.<br>
+
+<b>Returns:</b>
+String<br>
+```
+let cutString = cutStringTo('abcd',2)
 ```
 
 

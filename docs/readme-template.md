@@ -23,6 +23,13 @@ Any and all donations to help keep active development and the lights on are more
 
 
 
+### <b>Want the ES5 (old) version?</b>
+Your looking for aftc.js. Visit: https://github.com/DarceyLloyd/AFTC.js
+
+<hr><br><br>
+
+
+
 ### <b>Installation</b>
 ```
 npm i aftc-modules
