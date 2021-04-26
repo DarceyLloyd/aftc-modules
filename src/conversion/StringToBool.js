@@ -1,3 +1,26 @@
+// JSODOC = {
+//     "method": "stringToBool",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The value you want to convert."
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Converts a String to Boolean.",
+//     "example": [
+//         "let answer1 = stringToBool('yes');",
+//         "let answer2 = stringToBool('y');",
+//         "let answer3 = stringToBool('1');",
+//         "let answer4 = stringToBool('no');",
+//         "let answer5 = stringToBool('n');",
+//         "let answer6 = stringToBool('0');"
+//     ]
+// } JSODOC
+
 export function stringToBool (str) {
 
     if (!str || str === undefined || typeof (str) != "string") {

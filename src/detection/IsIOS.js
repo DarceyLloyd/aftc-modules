@@ -1,3 +1,13 @@
+// JSODOC = {
+//     "method": "isIOS",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if iOS or not.",
+//     "example": [
+//         "let test = isIOS()"
+//     ]
+// } JSODOC
+
 export function isIOS() {
     let iDevices = [
         'iPad Simulator',

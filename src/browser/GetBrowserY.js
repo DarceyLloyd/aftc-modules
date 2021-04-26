@@ -1,3 +1,13 @@
+// JSODOC = {
+//     "method": "getBrowserY",
+//     "params": [],
+//     "returns": "Number",
+//     "info": "Gets the viewport y position.",
+//     "example": [
+//         "let x = getBrowserY()"
+//     ]
+// } JSODOC
+
 export function getBrowserY(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");

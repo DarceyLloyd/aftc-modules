@@ -1,3 +1,14 @@
+// JSODOC = {
+//     "method": "getMySQLDateTimeString",
+//     "params": [],
+//     "returns": "String",
+//     "info": "Gets the date as a mysql injectable string.",
+//     "example": [
+//         "let dte = getMySQLDateTimeString()"
+//     ]
+// } JSODOC
+
+
 export function getMySQLDateTimeString() {
     let now = new Date();
     let year = now.getFullYear();

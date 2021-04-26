@@ -1,3 +1,21 @@
+// JSODOC = {
+//     "method": "getOS",
+//     "params": [
+//         {
+//             "name": "testAgent",
+//             "type": "String",
+//             "required": false,
+//             "default": null,
+//             "info": "For use if you want to test a user agent string"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Gets what OS is in use",
+//     "example": [
+//         "let os = getOS()"
+//     ]
+// } JSODOC
+
 export function getOS(testAgent) {
     let userAgent;
 

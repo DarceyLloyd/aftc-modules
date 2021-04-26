@@ -1,3 +1,21 @@
+// JSODOC = {
+//     "method": "isDOM",
+//     "params": [
+//         {
+//             "name": "obj",
+//             "type": "Element||Object",
+//             "required": true,
+//             "default": null,
+//             "info": "Element / Object to check."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Checks if object is HTMLElement.",
+//     "example": [
+//         "let result = isDOM(myElement)"
+//     ]
+// } JSODOC
+
 export function isDOM(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }

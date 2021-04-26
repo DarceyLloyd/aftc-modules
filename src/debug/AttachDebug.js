@@ -1,3 +1,38 @@
+// JSODOC = {
+//     "method": "attachDebug",
+//     "params": [
+//         {
+//             "name": "no",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number of debug elements you want available."
+//         },
+//         {
+//             "name": "position",
+//             "type": "String (tl, top left, tr, top right, bl, btm left, br, btm right)",
+//             "required": true,
+//             "default": "top left",
+//             "info": "Position of the debug list."
+//         },
+//         {
+//             "name": "ele",
+//             "type": "Element",
+//             "required": false,
+//             "default": "document.body",
+//             "info": "The debug list will be appended to this element"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Displays a visual debug list so you can watch variables change in real time (Most excellent for debug with keys, animations etc). Click row to inject that value into copy and paste buffer. See <b>debugTo</b> to use attachDebug, usage example below.",
+//     "example": [
+//         "attachDebug(3)",
+//         "debugTo(0,'hello world 1')",
+//         "debugTo(1,'hello world 2')",
+//         "debugTo(2,'hello world 3')"
+//     ]
+// } JSODOC
+
 export function attachDebug(no, position, ele) {
     let ids = [];
 
@@ -5,17 +40,17 @@ export function attachDebug(no, position, ele) {
     debugContainer.id = "debug-container";
     debugContainer.style.zIndex = "999999";
     debugContainer.style.position = "fixed";
-    
-    if (!position){
-        position = "left";
+
+    if (!position) {
+        position = "top left";
     }
     position = position.toLowerCase();
 
-    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
+    if (position == "tl" || position == "top left") {
         debugContainer.style.left = "5px";
         debugContainer.style.top = "5px";
         debugContainer.style.textAlgin = "left";
-    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
+    } else if (position == "tr" || || position == "top right") {
         debugContainer.style.right = "5px";
         debugContainer.style.top = "5px";
         debugContainer.style.textAlgin = "right";

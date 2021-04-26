@@ -71,58 +71,180 @@ export function AnimationFrameStack() {
 //         {
 //             "name": "arr",
 //             "type": "array",
-//             "required": false,
-//             "default": null,
-//             "info": "Some array"
-//         },
-//         {
-//             "name": "color",
-//             "type": "number",
 //             "required": true,
-//             "default": "0xFFCC00",
-//             "info": "Orange colour"
+//             "default": null,
+//             "info": "The array you want to clear / empty"
 //         }
 //     ],
-//     "returns": [
-//     ],
+//     "returns": "",
 //     "info": "Clears an array",
 //     "example": [
-//         "line",
-//         "by line"
+//         "arrayClear(myArray)"
 //     ]
 // } JSODOC
 export function arrayClear(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
 
+// JSODOC = {
+//     "method": "arrayContains",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "string",
+//             "required": true,
+//             "default": null,
+//             "info": "What you are looking for."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "array",
+//             "required": true,
+//             "default": "null",
+//             "info": "The array you want to search."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Finds a needle in a haystack."
+// } JSODOC
 export function arrayContains(needle, haystack) {
     if (haystack.indexOf(needle) > -1) { return true; } else { return false; }
 }
+// JSODOC = {
+//     "method": "arrayEmpty",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to clear / empty"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Clears an array",
+//     "example": [
+//         "arrayEmpty(myArray)"
+//     ]
+// } JSODOC
 export function arrayEmpty(arr) {
     while (arr.length > 0) { arr.pop(); }
 }
+// JSODOC = {
+//     "method": "arrayGetMax",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to get the maximum value within."
+//         }
+//     ],
+//     "returns": "Number",
+//     "info": "Gets the maximum value from the supplied array.",
+//     "example": [
+//         "let max = arrayGetMax(myArray)"
+//     ]
+// } JSODOC
 export function arrayGetMax(arr) {
     return Math.max.apply(Math, arr);
 }
 
+// JSODOC = {
+//     "method": "arrayGetMin",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to get the minimum value from."
+//         }
+//     ],
+//     "returns": "Number",
+//     "info": "Gets the minimum value from the supplied array.",
+//     "example": [
+//         "let max = arrayGetMin(myArray)"
+//     ]
+// } JSODOC
 export function arrayGetMin(arr) {
     return Math.min.apply(Math, arr);
 }
-export function arrayMax(arr) {
-    return Math.max.apply(Math, arr);
-}
-export function arrayMin(arr) {
-    return Math.min.apply(Math, arr);
-}
+// JSODOC = {
+//     "method": "arrayRemoveIndex",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to remove the index from."
+//         },
+//         {
+//             "name": "index",
+//             "type": "number",
+//             "required": true,
+//             "default": null,
+//             "info": "The index which you want to remove."
+//         }
+//     ],
+//     "returns": "Array",
+//     "info": "Removes an index from the supplied array.",
+//     "example": [
+//         "let max = arrayRemoveIndex(arr,index)"
+//     ]
+// } JSODOC
 export function arrayRemoveIndex(arr,index){
     arr.splice(index,1);
 }
 
-export function arrayRemoveItem(arr, value) {
+// JSODOC = {
+//     "method": "arrayRemoveValue",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to remove the value from."
+//         },
+//         {
+//             "name": "value",
+//             "type": "string || number",
+//             "required": true,
+//             "default": null,
+//             "info": "The value which you want to remove from the array."
+//         }
+//     ],
+//     "returns": "Array",
+//     "info": "Removes a value from the supplied array.",
+//     "example": [
+//         "let max = arrayRemoveValue(arr, value)"
+//     ]
+// } JSODOC
+export function arrayRemoveValue(arr, value) {
     return arr.filter(function(item){
         return item != value;
     });
 }
+// JSODOC = {
+//     "method": "arrayShuffle",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to shuffle."
+//         }
+//     ],
+//     "returns": "Array",
+//     "info": "Shuffles / Randomizes an array.",
+//     "example": [
+//         "let shuffledArray = arrayShuffle(myArray)"
+//     ]
+// } JSODOC
 export function arrayShuffle(arr) {
     let currentIndex = arr.length,
         temporaryValue, randomIndex;
@@ -139,6 +261,23 @@ export function arrayShuffle(arr) {
     return arr;
 }
 
+// JSODOC = {
+//     "method": "arrayShuffle2",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to shuffle."
+//         }
+//     ],
+//     "returns": "Array",
+//     "info": "Shuffles / Randomizes an array (method 2).",
+//     "example": [
+//         "let shuffledArray = arrayShuffle2(myArray)"
+//     ]
+// } JSODOC
 export function arrayShuffle2(a) {
     let x, t, r = new Uint32Array(1);
     for (let i = 0, c = a.length - 1, m = a.length; i < c; i++ , m--) {
@@ -148,15 +287,72 @@ export function arrayShuffle2(a) {
     }
     return a;
 }
+// JSODOC = {
+//     "method": "isInArray",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "string||number",
+//             "required": true,
+//             "default": null,
+//             "info": "What you are looking for."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to search."
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Searches the array for your value.",
+//     "example": [
+//         "let found = isInArray(needle, haystack)"
+//     ]
+// } JSODOC
 export function isInArray(needle, haystack) {
     if (haystack.indexOf(needle) > -1) { return true; } else { return false; }
 }
+// JSODOC = {
+//     "method": "isStringInArray",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "string||number",
+//             "required": true,
+//             "default": null,
+//             "info": "String you are looking for."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to search."
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Searches the array for a string.",
+//     "example": [
+//         "let found = isStringInArray(needle, haystack)"
+//     ]
+// } JSODOC
 export function isStringInArray(needle, haystack) {
     return (new RegExp('(' + haystack.join('|').replace(/\./g, '\\.') + ')$')).test(needle);
 }
 
+// JSODOC = {
+//     "method": "getBrowser",
+//     "params": [],
+//     "returns": "String (opera | chrome | safari | firefox | msie | trident | edge)",
+//     "info": "Gets the browser you are using.",
+//     "example": [
+//         "let browser = getBrowser()"
+//     ]
+// } JSODOC
 export function getBrowser () {
-    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|edge|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
         return 'IE';
@@ -173,6 +369,15 @@ export function getBrowser () {
     }
     return M[0];
 }
+// JSODOC = {
+//     "method": "getBrowserX",
+//     "params": [],
+//     "returns": "Number",
+//     "info": "Gets the viewport x position.",
+//     "example": [
+//         "let x = getBrowserX()"
+//     ]
+// } JSODOC
 export function getBrowserX(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
@@ -181,6 +386,15 @@ export function getBrowserX(){
     return x;
 }
 
+// JSODOC = {
+//     "method": "getBrowserY",
+//     "params": [],
+//     "returns": "Number",
+//     "info": "Gets the viewport y position.",
+//     "example": [
+//         "let x = getBrowserY()"
+//     ]
+// } JSODOC
 export function getBrowserY(){
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
@@ -189,12 +403,29 @@ export function getBrowserY(){
     return y;
 }
 
-export function isInViewport(el){
+// JSODOC = {
+//     "method": "isInViewport",
+//     "params": [
+//         {
+//             "name": "el",
+//             "type": "element",
+//             "required": true,
+//             "default": null,
+//             "info": "The element you want to check is in view"
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Checks whether an element is in view.",
+//     "example": [
+//         "let isInView = isInViewport(myElement)"
+//     ]
+// } JSODOC
+export function isInViewport(el) {
     let top = el.offsetTop;
     let left = el.offsetLeft;
     let width = el.offsetWidth;
     let height = el.offsetHeight;
-    while(el.offsetParent) {
+    while (el.offsetParent) {
         el = el.offsetParent;
         top += el.offsetTop;
         left += el.offsetLeft;
@@ -214,7 +445,46 @@ export function isInViewport(el){
     // );
 }
 
-export function argsToObject(fArgs, obj, strict) {
+// JSODOC = {
+//     "method": "argsToObject",
+//     "params": [
+//         {
+//             "name": "fArgs",
+//             "type": "Object",
+//             "required": true,
+//             "default": null,
+//             "info": "The arguments object from the function or class. Eg: Use arguments[0] from constructor in a class."
+//         },
+//         {
+//             "name": "appArgs",
+//             "type": "Object",
+//             "required": true,
+//             "default": null,
+//             "info": "The arguments object you wish to assign arguments to."
+//         },
+//         {
+//             "name": "strict",
+//             "type": "Boolean",
+//             "required": false,
+//             "default": true,
+//             "info": "Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported."
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Parses arguments to an object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).",
+//     "example": [
+//         "/* Class based example */",
+//         "constructor(){",
+//         "\tthis.appArgs = {a:0,b:0};",
+//         "\targsToObject(arguments[0], this.appArgs, true)",
+//         "}",
+//         "",
+//         "/* Instantiation of your class (not the only use) */",
+//         "NOTE: c if strict enabled will give a warning, this is a good thing prevents users from incorrectly using your class's or functions */\n",
+//         "new MyApp({a:1,b:3,c:4});"
+//     ]
+// } JSODOC
+export function argsToObject(fArgs, appArgs, strict = false) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
         if (strict === undefined) {
@@ -235,19 +505,54 @@ export function argsToObject(fArgs, obj, strict) {
         }
     }
 };
-/**
- * @function: argsToObject(fArgs, obj, strict)
- * @desc: Quick and easy args to object
- * @param args object: arguments (from the function structure, typically code will always be 'arguments'
- * @param obj object: object to parse into
- * @param strict boolean: console.warn any args that have been supplied that don't exist in args
- * @return: null
- * @alias: argsTo
- * @link: https://codepen.io/AllForTheCode/pen/PaqbKN
- */
-export function boolToString (bool) {
+// JSODOC = {
+//     "method": "boolToInt",
+//     "params": [
+//         {
+//             "name": "bool",
+//             "type": "Boolean",
+//             "required": true,
+//             "default": null,
+//             "info": "The variable you wish to convert."
+//         }
+//     ],
+//     "returns": "Number (1 || 0)",
+//     "info": "Converts a boolean to a number.",
+//     "example": [
+//         "let strBool = boolToInt(isMobile)"
+//     ]
+// } JSODOC
+export function boolToInt(bool) {
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
         console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
+        return "error";
+    }
+    if (bool) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+// JSODOC = {
+//     "method": "boolToString",
+//     "params": [
+//         {
+//             "name": "bool",
+//             "type": "Boolean",
+//             "required": true,
+//             "default": null,
+//             "info": "The variable you wish to convert."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Converts a boolean to a string of true || false.",
+//     "example": [
+//         "let strBool = boolToString(isMobile)"
+//     ]
+// } JSODOC
+export function boolToInt (bool) {
+    if (!bool || bool === undefined || typeof (bool) != "boolean") {
+        console.log("AFTC.js: getBoolToInt(bool): Error - input is not a boolean!");
         return "error";
     }
     if (bool) {
@@ -256,9 +561,26 @@ export function boolToString (bool) {
         return "false";
     }
 }
-export function boolToYesNo (b) {
+// JSODOC = {
+//     "method": "boolToYesNo",
+//     "params": [
+//         {
+//             "name": "bool",
+//             "type": "Boolean",
+//             "required": true,
+//             "default": null,
+//             "info": "The variable you wish to convert."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Converts a boolean to a string of yes || no.",
+//     "example": [
+//         "let answer = boolToYesNo(boolAnswer)"
+//     ]
+// } JSODOC
+export function boolToYesNo(b) {
     if (!b || b === undefined || typeof (b) != "boolean") {
-        console.log("getYesNoFromBool(str): Error - input is not a boolean!");
+        console.log("getYesNoFromBool(bool): Error - input is not a boolean!");
         return "error";
     }
     if (b) {
@@ -267,8 +589,42 @@ export function boolToYesNo (b) {
         return "no";
     }
 }
+// JSODOC = {
+//     "method": "degToRad",
+//     "params": [
+//         {
+//             "name": "input",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         }
+//     ],
+//     "returns": "Number",
+//     "info": "Converts degrees to radians.",
+//     "example": [
+//         "let rad = degToRad(deg)"
+//     ]
+// } JSODOC
 export function degToRad(input) { return input * (Math.PI / 180); }
-export function hexToRgb (hex) {
+// JSODOC = {
+//     "method": "hexToRgb",
+//     "params": [
+//         {
+//             "name": "hex",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Hex color string eg #FFCC00"
+//         }
+//     ],
+//     "returns": "Object {r,g,b}",
+//     "info": "Converts hex color to an object with r,g,b props.",
+//     "example": [
+//         "let rgb = hexToRgb('#FFCC00')"
+//     ]
+// } JSODOC
+export function hexToRgb(hex) {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
@@ -276,9 +632,65 @@ export function hexToRgb (hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+// JSODOC = {
+//     "method": "numToHex",
+//     "params": [
+//         {
+//             "name": "num",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Converts a number to hexadecimal.",
+//     "example": [
+//         "let hex = numToHex(12)"
+//     ]
+// } JSODOC
 export function numToHex (num) {
     return num.toString(16);
 }
+// JSODOC = {
+//     "method": "objectToObject",
+//     "params": [
+//         {
+//             "name": "src",
+//             "type": "Object",
+//             "required": true,
+//             "default": null,
+//             "info": "The source object. Eg: Use arguments[0] from constructor in a class."
+//         },
+//         {
+//             "name": "dest",
+//             "type": "Object",
+//             "required": true,
+//             "default": null,
+//             "info": "The target object you wish to assign arguments to."
+//         },
+//         {
+//             "name": "strict",
+//             "type": "Boolean",
+//             "required": false,
+//             "default": true,
+//             "info": "Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported."
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Parses an object to another object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).",
+//     "example": [
+//         "/* Class based example */",
+//         "constructor(){",
+//         "\tthis.appArgs = {a:0,b:0};",
+//         "\tobjectToObject(arguments[0], this.appArgs, true)",
+//         "}",
+//         "",
+//         "/* Instantiation of your class (not the only use) */",
+//         "NOTE: c if strict enabled will give a warning, this is a good thing prevents users from incorrectly using your class's or functions */\n",
+//         "new MyApp({a:1,b:3,c:4});"
+//     ]
+// } JSODOC
 export function objectToObject(src, dest, strict = true) {
     for (let key in src) {
         if (strict) {
@@ -292,11 +704,90 @@ export function objectToObject(src, dest, strict = true) {
         }
     }
 }
+// JSODOC = {
+//     "method": "radToDeg",
+//     "params": [
+//         {
+//             "name": "input",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         }
+//     ],
+//     "returns": "Number",
+//     "info": "Converts radians to degrees.",
+//     "example": [
+//         "let rad = radToDeg(deg)"
+//     ]
+// } JSODOC
 export function radToDeg(input) { return input * (180 / Math.PI); }
+// JSODOC = {
+//     "method": "RGBToHex",
+//     "params": [
+//         {
+//             "name": "r",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         },
+//         {
+//             "name": "g",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         },
+//         {
+//             "name": "b",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Converts an RGB value to a hex color value.",
+//     "example": [
+//         "let hex = RGBToHex(255,100,55);"
+//     ]
+// } JSODOC
 export function RGBToHex (r, g, b) {
     return ((r << 16) | (g << 8) | b).toString(16);
 }
 
+// JSODOC = {
+//     "method": "RGBToHex2",
+//     "params": [
+//         {
+//             "name": "r",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         },
+//         {
+//             "name": "g",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         },
+//         {
+//             "name": "b",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number you want to convert."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Converts an RGB value to a hex color value (Method 2).",
+//     "example": [
+//         "let hex = RGBToHex2(255,100,55);"
+//     ]
+// } JSODOC
 export function RGBToHex2 (r, g, b) {
     function getHex(c) {
         let hex = c.toString(16);
@@ -306,6 +797,28 @@ export function RGBToHex2 (r, g, b) {
     hex = hex.toUpperCase();
     return hex;
 }
+// JSODOC = {
+//     "method": "stringToBool",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The value you want to convert."
+//         }
+//     ],
+//     "returns": "Boolean",
+//     "info": "Converts a String to Boolean.",
+//     "example": [
+//         "let answer1 = stringToBool('yes');",
+//         "let answer2 = stringToBool('y');",
+//         "let answer3 = stringToBool('1');",
+//         "let answer4 = stringToBool('no');",
+//         "let answer5 = stringToBool('n');",
+//         "let answer6 = stringToBool('0');"
+//     ]
+// } JSODOC
 export function stringToBool (str) {
     if (!str || str === undefined || typeof (str) != "string") {
         console.log("StringToBool(str): Error - input string is not valid!");
@@ -330,11 +843,62 @@ export function stringToBool (str) {
     }
 }
 
+// JSODOC = {
+//     "method": "getCookie",
+//     "params": [
+//         {
+//             "name": "name",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The name of the cookie you want to retrieve."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Fetches a cookie by name.",
+//     "example": [
+//         "let email = getCookie('email')"
+//     ]
+// } JSODOC
 export function getCookie(name) {
 	//return .cookie(name);
 	var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
 	return keyValue ? keyValue[2] : null;
 }
+// JSODOC = {
+//     "method": "setCookie",
+//     "params": [
+//         {
+//             "name": "name",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The name of the cookie you want to retrieve."
+//         },
+//         {
+//             "name": "name",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The name of the cookie you want to retrieve."
+//         },
+//         {
+//             "name": "name",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The name of the cookie you want to retrieve."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Fetches a cookie by name.",
+//     "example": [
+//         "let name = 'email';",
+//         "let value = 'darcey.lloyd@gmail.com';",
+//         "let lifeInDays = 30;",
+//         "setCookie(name,value,lifeInDays)"
+//     ]
+// } JSODOC
 export function setCookie(cname, cvalue, exdays) {
 	// var expires = new Date();
 	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
@@ -344,14 +908,34 @@ export function setCookie(cname, cvalue, exdays) {
 	var expires = "expires=" + d.toUTCString();
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-// export function setCookie(name, value) {
-// 	//document.cookie = name + "=" + value + "; expires=Thu, 18 Dec 2013 12:00:00 GMT";
-// 	//.cookie(name, value, {expires:365,path:'/cookies'});
-// 	var expires = new Date();
-// 	expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-// 	document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
-// }
-export function getDaysBetween (startDateTime, endDateTime) {
+// JSODOC = {
+//     "method": "getDaysBetween",
+//     "params": [
+//         {
+//             "name": "name",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The name of the cookie you want to retrieve."
+//         },
+//         {
+//             "name": "name",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The name of the cookie you want to retrieve."
+//         }
+//     ],
+//     "returns": "Number",
+//     "info": "Gets the number of days between 2 dates.",
+//     "example": [
+//         "/* NOTE: Month is indexed at 0 */\n",
+//         "let startDateTime = new Date('2020,3,26')",
+//         "let endDateTime = new Date('2020,3,26')",
+//         "let days = getDaysBetween('startDateTime, endDateTime')"
+//     ]
+// } JSODOC
+export function getDaysBetween(startDateTime, endDateTime) {
     let msPerDay = 8.64e7;
     // Copy dates so don't mess them up
     let sd = new Date(startDateTime);
@@ -363,6 +947,15 @@ export function getDaysBetween (startDateTime, endDateTime) {
     return Math.round((ed - sd) / msPerDay);
 }
 
+// JSODOC = {
+//     "method": "getMySQLDateTimeString",
+//     "params": [],
+//     "returns": "String",
+//     "info": "Gets the date as a mysql injectable string.",
+//     "example": [
+//         "let dte = getMySQLDateTimeString()"
+//     ]
+// } JSODOC
 export function getMySQLDateTimeString() {
     let now = new Date();
     let year = now.getFullYear();
@@ -390,11 +983,52 @@ export function getMySQLDateTimeString() {
     return str;
 }
 
-export function getUKDate(dte){
-    let output = dte.getDay() + "-" + (dte.getMonth()+1) + "-" + dte.getFullYear();
+// JSODOC = {
+//     "method": "getUKDate",
+//     "params": [
+//         {
+//             "name": "dte",
+//             "type": "Date",
+//             "required": true,
+//             "default": null,
+//             "info": "The date you wish to get the UK format date string from."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Gets a UK formatted date string from a supplied date.",
+//     "example": [
+//         "let ukDate = getUKDate(new Date(),'-')"
+//     ]
+// } JSODOC
+export function getUKDate(dte,separator="-"){
+    let output = dte.getDay() + separator + (dte.getMonth()+1) + separator + dte.getFullYear();
     return output;
 }
-export function getUkDateFromDbDateTime (input) {
+// JSODOC = {
+//     "method": "getUkDateFromDbDateTime",
+//     "params": [
+//         {
+//             "name": "dbDateString",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "This should be a datetime string from a db query."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Gets a UK formatted date string from a supplied db date string.",
+//     "example": [
+//         "let ukDate = getUkDateFromDbDateTime(dbDateString)"
+//     ]
+// } JSODOC
+export function getUkDateFromDbDateTime(dbDateString) {
     // "2016-04-08 21:11:59" to UK date
     if (input === "" || input === null) {
         return "no input";
@@ -404,7 +1038,24 @@ export function getUkDateFromDbDateTime (input) {
     let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
     return UKDate;
 }
-export function getUkDateTimeFromDbDateTime  (input) {
+// JSODOC = {
+//     "method": "getUkDateTimeFromDbDateTime",
+//     "params": [
+//         {
+//             "name": "dbDateTimeString",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "This should be a datetime string from a db query."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Gets a UK formatted date and time string from a supplied db date time string.",
+//     "example": [
+//         "let ukDate = getUkDateTimeFromDbDateTime(dbDateTimeString)"
+//     ]
+// } JSODOC
+export function getUkDateTimeFromDbDateTime  (dbDateTimeString) {
     // "2016-04-08 21:11:59" to UK date time
     let DateTime = input.split(" ");
     let DateParts = DateTime[0].split("-");
@@ -413,10 +1064,65 @@ export function getUkDateTimeFromDbDateTime  (input) {
     let Time = TimeParts[0] + ":" + TimeParts[1];
     return (UKDate + " " + Time);
 }
-export function getUSDate(dte){
-    let output = dte.getFullYear() + "-" + (dte.getMonth()+1) + "-" + (dte.getDay()+1)
+// JSODOC = {
+//     "method": "getUSDate",
+//     "params": [
+//         {
+//             "name": "dte",
+//             "type": "Date",
+//             "required": true,
+//             "default": null,
+//             "info": "The date you wish to get the US format date string from."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
+//         }
+//     ],
+//     "returns": "String",
+//     "info": "Gets a US formatted date string from a supplied date.",
+//     "example": [
+//         "let usDate = getUKDate(new Date(),'-')"
+//     ]
+// } JSODOC
+export function getUSDate(dte,separator="-"){
+    let output = dte.getFullYear() + separator + (dte.getMonth()+1) + separator + (dte.getDay()+1)
     return output;
 }
+// JSODOC = {
+//     "method": "appendTo",
+//     "params": [
+//         {
+//             "name": "elementOrId",
+//             "type": "Element||ElementID",
+//             "required": true,
+//             "default": null,
+//             "info": "The element or element id of the element you wish to append the string within."
+//         },
+//         {
+//             "name": "msg",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The string you wish to append to the html element."
+//         },
+//         {
+//             "name": "endOfLine",
+//             "type": "String",
+//             "required": false,
+//             "default": "< br >",
+//             "info": "The end of the string that will be appended to the element, set to '' if you dont want the < br >"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Appends a string to an element, with or without a < BR > tag.",
+//     "example": [
+//         "appendTo(elementOrId,msg,'')"
+//     ]
+// } JSODOC
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -446,21 +1152,55 @@ export function appendTo(elementOrId,msg,endOfLine="<br>"){
     }
 }
 
+// JSODOC = {
+//     "method": "attachDebug",
+//     "params": [
+//         {
+//             "name": "no",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The number of debug elements you want available."
+//         },
+//         {
+//             "name": "position",
+//             "type": "String (tl, top left, tr, top right, bl, btm left, br, btm right)",
+//             "required": true,
+//             "default": "top left",
+//             "info": "Position of the debug list."
+//         },
+//         {
+//             "name": "ele",
+//             "type": "Element",
+//             "required": false,
+//             "default": "document.body",
+//             "info": "The debug list will be appended to this element"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Displays a visual debug list so you can watch variables change in real time (Most excellent for debug with keys, animations etc). Click row to inject that value into copy and paste buffer. See <b>debugTo</b> to use attachDebug, usage example below.",
+//     "example": [
+//         "attachDebug(3)",
+//         "debugTo(0,'hello world 1')",
+//         "debugTo(1,'hello world 2')",
+//         "debugTo(2,'hello world 3')"
+//     ]
+// } JSODOC
 export function attachDebug(no, position, ele) {
     let ids = [];
     let debugContainer = document.createElement("div");
     debugContainer.id = "debug-container";
     debugContainer.style.zIndex = "999999";
     debugContainer.style.position = "fixed";
-    if (!position){
-        position = "left";
+    if (!position) {
+        position = "top left";
     }
     position = position.toLowerCase();
-    if (position == "tl" || position == "l" || position == "left" || position == "top left") {
+    if (position == "tl" || position == "top left") {
         debugContainer.style.left = "5px";
         debugContainer.style.top = "5px";
         debugContainer.style.textAlgin = "left";
-    } else if (position == "tr" || position == "r" || position == "right" || position == "top right") {
+    } else if (position == "tr" || || position == "top right") {
         debugContainer.style.right = "5px";
         debugContainer.style.top = "5px";
         debugContainer.style.textAlgin = "right";
@@ -502,6 +1242,33 @@ export function attachDebug(no, position, ele) {
     console.warn("attachDebug(): Use debugTo(index,string) to write directly to debug elements.");
     return debugContainer;
 }
+// JSODOC = {
+//     "method": "debugTo",
+//     "params": [
+//         {
+//             "name": "index",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The debug container index to write to (setup via <b>attachDebug</b>)."
+//         },
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "default": "null",
+//             "info": "The string you want to write to the debug container."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.",
+//     "example": [
+//         "attachDebug(3)",
+//         "debugTo(0,'hello world 1')",
+//         "debugTo(1,'hello world 2')",
+//         "debugTo(2,'hello world 3')"
+//     ]
+// } JSODOC
 export function debugTo(index, str) {
     if (window.aftcDebug) {
         if (window.aftcDebug[index]) {
@@ -509,10 +1276,68 @@ export function debugTo(index, str) {
         }
     }
 }
+// JSODOC = {
+//     "method": "log",
+//     "params": [
+//         {
+//             "name": "arg",
+//             "type": "*",
+//             "required": true,
+//             "default": null,
+//             "info": "arg gets injected into console.log"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Lazy version of console.log, no more typing console!",
+//     "example": [
+//         "log('Once you use me, you will never stop using me')",
+//         "let a = 4;",
+//         "log('a = ' + a)",
+//         "log(`a = ${a}`)"
+//     ]
+// } JSODOC
 export function log(arg) {
     console.log(arg);
 }
 
+// JSODOC = {
+//     "method": "logTo",
+//     "params": [
+//         {
+//             "name": "elementOrId",
+//             "type": "Element||ElementID",
+//             "required": true,
+//             "default": null,
+//             "info": "The element or element id of the element you wish to append the string within."
+//         },
+//         {
+//             "name": "msg",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "The string you wish to append to the html element."
+//         },
+//         {
+//             "name": "append",
+//             "type": "Boolean",
+//             "required": false,
+//             "default": false,
+//             "info": "Method of attaching the logging message, append (true) or prepend (false) aka top vs bottom."
+//         },
+//         {
+//             "name": "endOfLine",
+//             "type": "String",
+//             "required": false,
+//             "default": "",
+//             "info": "The end of the string that will be appended to the element, set to '< br >' if you want a line break"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Appends a string to an element, with or without a < BR > tag.",
+//     "example": [
+//         "logTo(elementOrId,msg,true)"
+//     ]
+// } JSODOC
 export function logTo(elementOrId,msg,append=false,endOfLine=""){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -546,10 +1371,36 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
     }
 }
 
+// JSODOC = {
+//     "method": "getIEVersion",
+//     "params": [],
+//     "returns": "",
+//     "info": "Gets the version of IE",
+//     "example": [
+//         "let version = getIEVersion()"
+//     ]
+// } JSODOC
 export function getIEVersion () {
     let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
 }
+// JSODOC = {
+//     "method": "getOS",
+//     "params": [
+//         {
+//             "name": "testAgent",
+//             "type": "String",
+//             "required": false,
+//             "default": null,
+//             "info": "For use if you want to test a user agent string"
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Gets what OS is in use",
+//     "example": [
+//         "let os = getOS()"
+//     ]
+// } JSODOC
 export function getOS(testAgent) {
     let userAgent;
     if (!testAgent){
@@ -688,6 +1539,15 @@ export function getOS(testAgent) {
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+// JSODOC = {
+//     "method": "isAndroid",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Android or not.",
+//     "example": [
+//         "let test = isAndroid()"
+//     ]
+// } JSODOC
 export function isAndroid(){
     let ua = navigator.userAgent.toLowerCase();
     if (/windows phone/i.test(ua)) {
@@ -698,6 +1558,15 @@ export function isAndroid(){
     }
 }
 
+// JSODOC = {
+//     "method": "isChrome",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Chrome or not.",
+//     "example": [
+//         "let test = isChrome()"
+//     ]
+// } JSODOC
 export function isChrome() {
     var isChromium = window.chrome;
     var winNav = window.navigator;
@@ -722,6 +1591,15 @@ export function isChrome() {
         return false;
     }
 }
+// JSODOC = {
+//     "method": "isEdge",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Edge or not.",
+//     "example": [
+//         "let test = isEdge()"
+//     ]
+// } JSODOC
 export function isEdge () {
     //let isEdge = !isIE && !!window.StyleMedia; // Edge 20+
     let edge = false;
@@ -730,11 +1608,29 @@ export function isEdge () {
     }
     return edge;
 }
+// JSODOC = {
+//     "method": "isFireFox",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if FireFox or not.",
+//     "example": [
+//         "let test = isFireFox()"
+//     ]
+// } JSODOC
 export function isFireFox () {
     // let is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
     // return is_firefox;
     return (typeof InstallTrigger !== 'undefined');
 }
+// JSODOC = {
+//     "method": "isIE",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if IE or not.",
+//     "example": [
+//         "let test = isIE()"
+//     ]
+// } JSODOC
 export function isIE () {
     // let is_ie = navigator.userAgent.toLowerCase().indexOf('MSIE') > -1;
     // return is_ie;
@@ -743,6 +1639,15 @@ export function isIE () {
     return /*@cc_on!@*/false || !!document.documentMode; // Internet Explorer 6-11
 }
 
+// JSODOC = {
+//     "method": "isIOS",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if iOS or not.",
+//     "example": [
+//         "let test = isIOS()"
+//     ]
+// } JSODOC
 export function isIOS() {
     let iDevices = [
         'iPad Simulator',
@@ -760,6 +1665,15 @@ export function isIOS() {
     return false;
 }
 
+// JSODOC = {
+//     "method": "isMobile",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if mobile or not.",
+//     "example": [
+//         "let mobile = isMobile()"
+//     ]
+// } JSODOC
 export function isMobile(){
     // Windows Phone must come first because its UA also contains "Android"!
     let ua = navigator.userAgent.toLowerCase();
@@ -773,12 +1687,15 @@ export function isMobile(){
         }
     }
 }
-/**
- * @function: isMobile()
- * @desc: Detects if the device you are using is a mobile or not
- * @return boolean
- * @link: https://codepen.io/AllForTheCode/pen/KRbLdm
- */
+// JSODOC = {
+//     "method": "isOpera",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Opera or not.",
+//     "example": [
+//         "let test = isOpera()"
+//     ]
+// } JSODOC
 export function isOpera() {
     // let isChromium = window.chrome;
     // let isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
@@ -786,11 +1703,37 @@ export function isOpera() {
     let isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
     return isOpera;
 }
+// JSODOC = {
+//     "method": "isSafari",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Safari or not.",
+//     "example": [
+//         "let test = isSafari()"
+//     ]
+// } JSODOC
 export function isSafari() {
     // let is_safari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
     // return is_safari;
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 }
+// JSODOC = {
+//     "method": "getElementPosition",
+//     "params": [
+//         {
+//             "name": "el",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Object {left,top}",
+//     "info": "Gets an elements position.",
+//     "example": [
+//         "let pos = getElementPosition(myElement)"
+//     ]
+// } JSODOC
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -806,6 +1749,23 @@ export function getElementPosition(el) {
     }
     return position;
 }
+// JSODOC = {
+//     "method": "getElementPos",
+//     "params": [
+//         {
+//             "name": "el",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Object {left,top}",
+//     "info": "Gets an elements position.",
+//     "example": [
+//         "let pos = getElementPos(myElement)"
+//     ]
+// } JSODOC
 export function getElementPos(el) {
     let x = 0;
     let y = 0;
@@ -816,6 +1776,23 @@ export function getElementPos(el) {
     }
     return { left: x, top: y };
 }
+// JSODOC = {
+//     "method": "isDOM",
+//     "params": [
+//         {
+//             "name": "obj",
+//             "type": "Element||Object",
+//             "required": true,
+//             "default": null,
+//             "info": "Element / Object to check."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Checks if object is HTMLElement.",
+//     "example": [
+//         "let result = isDOM(myElement)"
+//     ]
+// } JSODOC
 export function isDOM(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }
@@ -826,10 +1803,27 @@ export function isDOM(obj) {
             (typeof obj.ownerDocument === "object");
     }
 };
-export function isElement(o) {
+// JSODOC = {
+//     "method": "isElement",
+//     "params": [
+//         {
+//             "name": "ele",
+//             "type": "Element||Object",
+//             "required": true,
+//             "default": null,
+//             "info": "Element / Object to check."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Checks if object is HTMLElement.",
+//     "example": [
+//         "let result = isElement(myElement)"
+//     ]
+// } JSODOC
+export function isElement(ele) {
     let answer = (
-        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+        typeof HTMLElement === "object" ? ele instanceof HTMLElement : //DOM2
+        ele && typeof ele === "object" && ele !== null && ele.nodeType === 1 && typeof ele.nodeName === "string"
     );
     if (answer != true) {
         return false;
@@ -837,23 +1831,79 @@ export function isElement(o) {
         return true;
     }
 }
-export function isElement2(element) {
+// JSODOC = {
+//     "method": "isElement2",
+//     "params": [
+//         {
+//             "name": "ele",
+//             "type": "Element||Object",
+//             "required": true,
+//             "default": null,
+//             "info": "Element / Object to check."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Checks if object is HTMLElement (Method 2).",
+//     "example": [
+//         "let result = isElement2(myElement)"
+//     ]
+// } JSODOC
+export function isElement2(ele) {
     // works on major browsers back to IE7
-    return element instanceof Element;
+    return ele instanceof Element;
 }
 
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
+// JSODOC = {
+//     "method": "getElementPos",
+//     "params": [
+//         {
+//             "name": "ele",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Number || False",
+//     "info": "Gets an elements offset top position.",
+//     "example": [
+//         "let pos = getElementOffsetTop(myElement)"
+//     ]
+// } JSODOC
+export function getElementOffsetTop(ele) {
     let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
+    if (ele.hasOwnProperty("offsetParent")){
         do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
+            curtop += ele.offsetTop;
+        } while (ele = ele.offsetParent);
         return parseFloat([curtop]);
     } else {
         return false;
     }
 }
+// JSODOC = {
+//     "method": "hasClass",
+//     "params": [
+//         {
+//             "name": "elementOrId",
+//             "type": "Element||ElementID",
+//             "required": true,
+//             "default": null
+//         },
+//         {
+//             "name": "ele",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Number || False",
+//     "info": "Gets an elements offset top position.",
+//     "example": [
+//         "let classAttached = hasClass(myElement,'selected')"
+//     ]
+// } JSODOC
 export function hasClass(elementOrId, c) {
     if (isElement(elementOrId)) {
         return elementOrId.classList.contains(c);
@@ -861,6 +1911,43 @@ export function hasClass(elementOrId, c) {
         return getElementById(elementOrId).classList.contains(c);
     }
 }
+// JSODOC = {
+//     "method": "elementOrId",
+//     "params": [
+//         {
+//             "name": "elementOrId",
+//             "type": "Element||ElementID",
+//             "required": true,
+//             "default": null,
+//             "info": "The element or the element ID."
+//         },
+//         {
+//             "name": "str",
+//             "type": "String||Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The content you want to put into the html element."
+//         },
+//         {
+//             "name": "mode",
+//             "type": "String (set|append|prepend)",
+//             "required": false,
+//             "default": "set",
+//             "info": "The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content."
+//         }
+//     ],
+//     "returns": "",
+//     "info": "Set a an elements HTML content.",
+//     "example": [
+//         "setHTML(myElement,'hello world')",
+//         "setHTML(myElement,'hello world','append')",
+//         "setHTML(myElement,'hello world','prepend')",
+//         "",
+//         "setHTML('my-element-id-1','hello world')",
+//         "setHTML('my-element-id-2','hello world','append')",
+//         "setHTML('my-element-id-3','hello world','prepend')"
+//     ]
+// } JSODOC
 export function setHTML(elementOrId, str, mode = "set") {
     let ele;
     if (typeof (elementOrId) === "string") {
@@ -894,49 +1981,30 @@ export function setHTML(elementOrId, str, mode = "set") {
         return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
     }
 }
-export class EventManager {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
-}
-/** jso {
- * "Function": "EventManager.js",
- * "Description": "A centralised event stack where you can hook your functions / class's into for centralised quick and easy event application event handling.",
- * "Methods": [
- *      {
- *          "name": "list",
- *          "description": "Lists which events have been created and available for dispatch in the EventManager.",
-  *          "returns": "console.log",
- *      },
- *      {
- *          "name": "add",
- *          "description": "Adds or creates a new event within the event manager and attached a callback function / listener object to be called on dispatch of this event.",
- *          "parameters": [
- *              {
- *                  "name": "eventName",
- *                  "required": "true",
- *                  "description": "The name of the event to add.",
- *              },
- *              {
- *                  "name": "callbackFunction",
-  *                  "required": "true",
- *                  "description": "The listener object / function which gets called when the event is triggered.",
- *              },
- *          ],
- *      },
- *      {
- *          "name": "dispatch",
- *          "description": "Dispatches / Triggers an event by name from the EventManager.",
- *          "parameters": [
- *              {
- *                  "name": "eventName",
- *                  "required": "true",
- *                  "description": "The name of the event to dispatch.",
- *              }
- *          ],
- *      },
- *  ]
- * }
- */
+
+// JSODOC = {
+//     "method": "onReady",
+//     "params": [
+//         {
+//             "name": "fn",
+//             "type": "Function",
+//             "required": true,
+//             "default": null
+//         }
+//     ],
+//     "returns": "Number || False",
+//     "info": "Checks if the DOM is ready and then executes a function.",
+//     "example": [
+//         "onReady(function()){",
+//         "\t/* DOM is ready, do your thing */",
+//         "});",
+//         "",
+//         "/* or */",
+//         "onReady(() =>{",
+//         "\t/* DOM is ready, do your thing */",
+//         "});"
+//     ]
+// } JSODOC
 export function onReady(fn) {
     // IE9+
     if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {

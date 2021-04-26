@@ -1,3 +1,13 @@
+// JSODOC = {
+//     "method": "isSafari",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Safari or not.",
+//     "example": [
+//         "let test = isSafari()"
+//     ]
+// } JSODOC
+
 export function isSafari() {
     // let is_safari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
     // return is_safari;

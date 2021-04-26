@@ -1,3 +1,21 @@
+// JSODOC = {
+//     "method": "getElementPosition",
+//     "params": [
+//         {
+//             "name": "el",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Object {left,top}",
+//     "info": "Gets an elements position.",
+//     "example": [
+//         "let pos = getElementPosition(myElement)"
+//     ]
+// } JSODOC
+
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -15,6 +33,25 @@ export function getElementPosition(el) {
     }
     return position;
 }
+
+
+// JSODOC = {
+//     "method": "getElementPos",
+//     "params": [
+//         {
+//             "name": "el",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Object {left,top}",
+//     "info": "Gets an elements position.",
+//     "example": [
+//         "let pos = getElementPos(myElement)"
+//     ]
+// } JSODOC
 
 export function getElementPos(el) {
     let x = 0;

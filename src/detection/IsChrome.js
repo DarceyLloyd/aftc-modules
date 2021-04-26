@@ -1,3 +1,13 @@
+// JSODOC = {
+//     "method": "isChrome",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if Chrome or not.",
+//     "example": [
+//         "let test = isChrome()"
+//     ]
+// } JSODOC
+
 export function isChrome() {
     var isChromium = window.chrome;
     var winNav = window.navigator;

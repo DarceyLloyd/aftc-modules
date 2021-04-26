@@ -16,12 +16,10 @@ Any and all donations to help keep active development and the lights on are more
 
 
 
-## CDN
-
+## <b>CDN</b>
 - https://cdn.jsdelivr.net/npm/aftc-modules@latest/dist/aftc-module.js
 
-
-
+<hr><br><br>
 
 
 
@@ -29,11 +27,19 @@ Any and all donations to help keep active development and the lights on are more
 ```
 npm i aftc-modules
 ```
-<br>
 
-----
-<br>
+<hr><br><br>
 
 
+## <b>Available Methods & Class's:</b>
+
+[quick_list]
+
+<hr><br><br>
+
+
+
+
+# <b>Documentation</b>
 
 [docs]

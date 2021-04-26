@@ -1,10 +1,27 @@
-export function getElementOffsetTop(elementId) {
-    let element = getElementById(elementId);
+// JSODOC = {
+//     "method": "getElementPos",
+//     "params": [
+//         {
+//             "name": "ele",
+//             "type": "Element",
+//             "required": true,
+//             "default": null,
+//             "info": "Element to get the position of."
+//         }
+//     ],
+//     "returns": "Number || False",
+//     "info": "Gets an elements offset top position.",
+//     "example": [
+//         "let pos = getElementOffsetTop(myElement)"
+//     ]
+// } JSODOC
+
+export function getElementOffsetTop(ele) {
     let curtop = 0;
-    if (element.hasOwnProperty("offsetParent")){
+    if (ele.hasOwnProperty("offsetParent")){
         do {
-            curtop += element.offsetTop;
-        } while (element = element.offsetParent);
+            curtop += ele.offsetTop;
+        } while (ele = ele.offsetParent);
         return parseFloat([curtop]);
     } else {
         return false;

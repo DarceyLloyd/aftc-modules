@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "method": "boolToString",
+//     "method": "boolToInt",
 //     "params": [
 //         {
 //             "name": "bool",
@@ -9,23 +9,23 @@
 //             "info": "The variable you wish to convert."
 //         }
 //     ],
-//     "returns": "String",
-//     "info": "Converts a boolean to a string of true || false.",
+//     "returns": "Number (1 || 0)",
+//     "info": "Converts a boolean to a number.",
 //     "example": [
-//         "let strBool = boolToString(isMobile)"
+//         "let strBool = boolToInt(isMobile)"
 //     ]
 // } JSODOC
 
-export function boolToInt (bool) {
+export function boolToInt(bool) {
 
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
-        console.log("AFTC.js: getBoolToInt(bool): Error - input is not a boolean!");
+        console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
         return "error";
     }
 
     if (bool) {
-        return "true";
+        return 1;
     } else {
-        return "false";
+        return 0;
     }
 }

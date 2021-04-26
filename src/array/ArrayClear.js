@@ -4,24 +4,15 @@
 //         {
 //             "name": "arr",
 //             "type": "array",
-//             "required": false,
-//             "default": null,
-//             "info": "Some array"
-//         },
-//         {
-//             "name": "color",
-//             "type": "number",
 //             "required": true,
-//             "default": "0xFFCC00",
-//             "info": "Orange colour"
+//             "default": null,
+//             "info": "The array you want to clear / empty"
 //         }
 //     ],
-//     "returns": [
-//     ],
+//     "returns": "",
 //     "info": "Clears an array",
 //     "example": [
-//         "line",
-//         "by line"
+//         "arrayClear(myArray)"
 //     ]
 // } JSODOC
 

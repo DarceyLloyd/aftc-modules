@@ -1,3 +1,21 @@
+// JSODOC = {
+//     "method": "arrayShuffle",
+//     "params": [
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array you want to shuffle."
+//         }
+//     ],
+//     "returns": "Array",
+//     "info": "Shuffles / Randomizes an array.",
+//     "example": [
+//         "let shuffledArray = arrayShuffle(myArray)"
+//     ]
+// } JSODOC
+
 export function arrayShuffle(arr) {
     let currentIndex = arr.length,
         temporaryValue, randomIndex;

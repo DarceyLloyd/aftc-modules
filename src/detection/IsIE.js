@@ -1,3 +1,13 @@
+// JSODOC = {
+//     "method": "isIE",
+//     "params": [],
+//     "returns": "",
+//     "info": "Detects if IE or not.",
+//     "example": [
+//         "let test = isIE()"
+//     ]
+// } JSODOC
+
 export function isIE () {
     // let is_ie = navigator.userAgent.toLowerCase().indexOf('MSIE') > -1;
     // return is_ie;
