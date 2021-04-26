@@ -1,7 +1,6 @@
-const {
-    log,cls,getFilesSync,concatFiles,
-    getJSOCommentFromString,getJSOQuickList,generateJSODocs,
-    writeFile,readFileToString} = require("./aftc-node-tools");
+const { log, cls, getFilesSync, readFileToString, writeFile,concatFiles } = require("aftc-node-tools");
+const { jsoGetDocs } = require("jsodoc");
+const version = require("./package.json").version;
 
 cls();
 log("AFTC-MODULES: Starting build process...".green);
@@ -18,27 +17,17 @@ let out = concatFiles(files);
 writeFile("./aftc-modules.js",out);
 
 
-// Get JSO Code comments from the concatenated file
-let comments = getJSOCommentFromString(out);
-// log(comments);
-
-// Get class and method list
-let quickList = getJSOQuickList(comments);
-
-// JSO Generate Comment Readme Documentation
-let docs = generateJSODocs(comments);
+// Generate docs via JSODocs
+let docs = jsoGetDocs(out);
 
 // Read REAMD-TEMPLATE.md
 let readme = readFileToString("./docs/readme-template.md");
 // log(readmeTemplate)
 
-let version = require("./package.json").version;
-// log(version);
-
 // Substitute values into readme
 readme = readme.replace("[version]",version);
-readme = readme.replace("[quick_list]",quickList);
-readme = readme.replace("[docs]",docs);
+readme = readme.replace("[quick_list]",docs.gitSummary);
+readme = readme.replace("[docs]",docs.gitDocs);
 
 // Write readme.md
 writeFile("./readme.md",readme);

@@ -1,6 +1,6 @@
 {
   "name": "aftc-modules",
-  "version": "1.7.8",
+  "version": "1.7.9",
   "description": "A collection of useful utilities / functions.",
   "main": "aftc-modules.js",
   "scripts": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/DarceyLloyd/aftc-modules#readme",
   "devDependencies": {
-    
+    "aftc-node-tools": "^0.7.3",
+    "jsodoc": "^0.9.2"
   }
 }
