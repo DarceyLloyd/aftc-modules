@@ -9,7 +9,9 @@
 //             "info": "The value you want to convert."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Converts a String to Boolean.",
 //     "example": [
 //         "let answer1 = stringToBool('yes');",
@@ -46,4 +48,3 @@ export function stringToBool (str) {
             break;
     }
 }
-

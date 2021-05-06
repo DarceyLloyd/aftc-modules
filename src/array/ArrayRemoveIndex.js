@@ -16,7 +16,9 @@
 //             "info": "The index which you want to remove."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Removes an index from the supplied array.",
 //     "example": [
 //         "let max = arrayRemoveIndex(arr,index)"

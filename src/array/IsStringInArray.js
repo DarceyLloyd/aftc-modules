@@ -16,7 +16,9 @@
 //             "info": "The array you want to search."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Searches the array for a string.",
 //     "example": [
 //         "let found = isStringInArray(needle, haystack)"

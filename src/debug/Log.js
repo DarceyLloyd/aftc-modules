@@ -9,7 +9,6 @@
 //             "info": "arg gets injected into console.log"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Lazy version of console.log, no more typing console!",
 //     "example": [
 //         "log('Once you use me, you will never stop using me')",

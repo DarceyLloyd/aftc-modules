@@ -16,7 +16,9 @@
 //             "info": "What the date string segments will be separated by."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets a UK formatted date string from a supplied date.",
 //     "example": [
 //         "let ukDate = getUKDate(new Date(),'-')"

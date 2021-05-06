@@ -9,7 +9,10 @@
 //             "info": "Element to get the position of."
 //         }
 //     ],
-//     "returns": "Number || False",
+//     "returns": {
+//         "type": "Number",
+//         "info": "Returns fall if unable to get offsetTop"
+//     },
 //     "info": "Gets an elements offset top position.",
 //     "example": [
 //         "let pos = getElementOffsetTop(myElement)"

@@ -23,7 +23,6 @@
 //             "info": "The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Set a an elements HTML content.",
 //     "example": [
 //         "setHTML(myElement,'hello world')",

@@ -8,7 +8,6 @@
 //             "default": null
 //         }
 //     ],
-//     "returns": "Number || False",
 //     "info": "Checks if the DOM is ready and then executes a function.",
 //     "example": [
 //         "onReady(function()){",

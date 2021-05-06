@@ -138,7 +138,9 @@ export function arrayEmpty(arr) {
 //             "info": "The array you want to get the maximum value within."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the maximum value from the supplied array.",
 //     "example": [
 //         "let max = arrayGetMax(myArray)"
@@ -159,7 +161,9 @@ export function arrayGetMax(arr) {
 //             "info": "The array you want to get the minimum value from."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the minimum value from the supplied array.",
 //     "example": [
 //         "let max = arrayGetMin(myArray)"
@@ -186,7 +190,9 @@ export function arrayGetMin(arr) {
 //             "info": "The index which you want to remove."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Removes an index from the supplied array.",
 //     "example": [
 //         "let max = arrayRemoveIndex(arr,index)"
@@ -214,7 +220,9 @@ export function arrayRemoveIndex(arr,index){
 //             "info": "The value which you want to remove from the array."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Removes a value from the supplied array.",
 //     "example": [
 //         "let max = arrayRemoveValue(arr, value)"
@@ -236,7 +244,9 @@ export function arrayRemoveValue(arr, value) {
 //             "info": "The array you want to shuffle."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Shuffles / Randomizes an array.",
 //     "example": [
 //         "let shuffledArray = arrayShuffle(myArray)"
@@ -269,7 +279,9 @@ export function arrayShuffle(arr) {
 //             "info": "The array you want to shuffle."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Shuffles / Randomizes an array (method 2).",
 //     "example": [
 //         "let shuffledArray = arrayShuffle2(myArray)"
@@ -302,7 +314,9 @@ export function arrayShuffle2(a) {
 //             "info": "The array you want to search."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Searches the array for your value.",
 //     "example": [
 //         "let found = isInArray(needle, haystack)"
@@ -329,7 +343,9 @@ export function isInArray(needle, haystack) {
 //             "info": "The array you want to search."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Searches the array for a string.",
 //     "example": [
 //         "let found = isStringInArray(needle, haystack)"
@@ -341,14 +357,15 @@ export function isStringInArray(needle, haystack) {
 
 // JSODOC = {
 //     "method": "getBrowser",
-//     "params": [],
-//     "returns": "String (opera | chrome | safari | firefox | msie | trident | edge)",
-//     "info": "Gets the browser you are using.",
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Gets the name of the browser you are using (opera | chrome | safari | firefox | msie | trident | edge).",
 //     "example": [
 //         "let browser = getBrowser()"
 //     ]
 // } JSODOC
-export function getBrowser () {
+export function getBrowser() {
     let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|edge|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -368,14 +385,15 @@ export function getBrowser () {
 }
 // JSODOC = {
 //     "method": "getBrowserX",
-//     "params": [],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the viewport x position.",
 //     "example": [
 //         "let x = getBrowserX()"
 //     ]
 // } JSODOC
-export function getBrowserX(){
+export function getBrowserX() {
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
     let x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
@@ -385,8 +403,9 @@ export function getBrowserX(){
 
 // JSODOC = {
 //     "method": "getBrowserY",
-//     "params": [],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the viewport y position.",
 //     "example": [
 //         "let x = getBrowserY()"
@@ -411,7 +430,9 @@ export function getBrowserY(){
 //             "info": "The element you want to check is in view"
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Checks whether an element is in view.",
 //     "example": [
 //         "let isInView = isInViewport(myElement)"
@@ -467,7 +488,9 @@ export function isInViewport(el) {
 //             "info": "Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Parses arguments to an object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).",
 //     "example": [
 //         "/* Class based example */",
@@ -513,7 +536,9 @@ export function argsToObject(fArgs, appArgs, strict = false) {
 //             "info": "The variable you wish to convert."
 //         }
 //     ],
-//     "returns": "Number (1 || 0)",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Converts a boolean to a number.",
 //     "example": [
 //         "let strBool = boolToInt(isMobile)"
@@ -541,7 +566,9 @@ export function boolToInt(bool) {
 //             "info": "The variable you wish to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts a boolean to a string of true || false.",
 //     "example": [
 //         "let strBool = boolToString(isMobile)"
@@ -569,7 +596,9 @@ export function boolToInt (bool) {
 //             "info": "The variable you wish to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts a boolean to a string of yes || no.",
 //     "example": [
 //         "let answer = boolToYesNo(boolAnswer)"
@@ -597,7 +626,9 @@ export function boolToYesNo(b) {
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Converts degrees to radians.",
 //     "example": [
 //         "let rad = degToRad(deg)"
@@ -615,7 +646,14 @@ export function degToRad(input) { return input * (Math.PI / 180); }
 //             "info": "Hex color string eg #FFCC00"
 //         }
 //     ],
-//     "returns": "Object {r,g,b}",
+//     "returns": {
+//         "type": "object",
+//         "def": [
+//             { "name": "r", "type": "Number"},
+//             { "name": "g", "type": "Number"},
+//             { "name": "b", "type": "Number"}
+//         ]
+//     },
 //     "info": "Converts hex color to an object with r,g,b props.",
 //     "example": [
 //         "let rgb = hexToRgb('#FFCC00')"
@@ -640,7 +678,9 @@ export function hexToRgb(hex) {
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts a number to hexadecimal.",
 //     "example": [
 //         "let hex = numToHex(12)"
@@ -674,7 +714,9 @@ export function numToHex (num) {
 //             "info": "Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Parses an object to another object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).",
 //     "example": [
 //         "/* Class based example */",
@@ -712,7 +754,9 @@ export function objectToObject(src, dest, strict = true) {
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Converts radians to degrees.",
 //     "example": [
 //         "let rad = radToDeg(deg)"
@@ -744,7 +788,9 @@ export function radToDeg(input) { return input * (180 / Math.PI); }
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts an RGB value to a hex color value.",
 //     "example": [
 //         "let hex = RGBToHex(255,100,55);"
@@ -779,7 +825,9 @@ export function RGBToHex (r, g, b) {
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts an RGB value to a hex color value (Method 2).",
 //     "example": [
 //         "let hex = RGBToHex2(255,100,55);"
@@ -805,7 +853,9 @@ export function RGBToHex2 (r, g, b) {
 //             "info": "The value you want to convert."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Converts a String to Boolean.",
 //     "example": [
 //         "let answer1 = stringToBool('yes');",
@@ -851,7 +901,9 @@ export function stringToBool (str) {
 //             "info": "The name of the cookie you want to retrieve."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Fetches a cookie by name.",
 //     "example": [
 //         "let email = getCookie('email')"
@@ -887,7 +939,6 @@ export function getCookie(name) {
 //             "info": "The name of the cookie you want to retrieve."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Fetches a cookie by name.",
 //     "example": [
 //         "let name = 'email';",
@@ -923,7 +974,9 @@ export function setCookie(cname, cvalue, exdays) {
 //             "info": "The name of the cookie you want to retrieve."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the number of days between 2 dates.",
 //     "example": [
 //         "/* NOTE: Month is indexed at 0 */\n",
@@ -946,8 +999,9 @@ export function getDaysBetween(startDateTime, endDateTime) {
 
 // JSODOC = {
 //     "method": "getMySQLDateTimeString",
-//     "params": [],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets the date as a mysql injectable string.",
 //     "example": [
 //         "let dte = getMySQLDateTimeString()"
@@ -998,7 +1052,9 @@ export function getMySQLDateTimeString() {
 //             "info": "What the date string segments will be separated by."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets a UK formatted date string from a supplied date.",
 //     "example": [
 //         "let ukDate = getUKDate(new Date(),'-')"
@@ -1019,7 +1075,9 @@ export function getUKDate(dte,separator="-"){
 //             "info": "This should be a datetime string from a db query."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets a UK formatted date string from a supplied db date string.",
 //     "example": [
 //         "let ukDate = getUkDateFromDbDateTime(dbDateString)"
@@ -1046,7 +1104,9 @@ export function getUkDateFromDbDateTime(dbDateString) {
 //             "info": "This should be a datetime string from a db query."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets a UK formatted date and time string from a supplied db date time string.",
 //     "example": [
 //         "let ukDate = getUkDateTimeFromDbDateTime(dbDateTimeString)"
@@ -1079,7 +1139,9 @@ export function getUkDateTimeFromDbDateTime  (dbDateTimeString) {
 //             "info": "What the date string segments will be separated by."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets a US formatted date string from a supplied date.",
 //     "example": [
 //         "let usDate = getUKDate(new Date(),'-')"
@@ -1114,7 +1176,6 @@ export function getUSDate(dte,separator="-"){
 //             "info": "The end of the string that will be appended to the element, set to '' if you dont want the < br >"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Appends a string to an element, with or without a < BR > tag.",
 //     "example": [
 //         "appendTo(elementOrId,msg,'')"
@@ -1174,7 +1235,6 @@ export function appendTo(elementOrId,msg,endOfLine="<br>"){
 //             "info": "The debug list will be appended to this element"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Displays a visual debug list so you can watch variables change in real time (Most excellent for debug with keys, animations etc). Click row to inject that value into copy and paste buffer. See <b>debugTo</b> to use attachDebug, usage example below.",
 //     "example": [
 //         "attachDebug(3)",
@@ -1257,7 +1317,6 @@ export function attachDebug(no, position, ele) {
 //             "info": "The string you want to write to the debug container."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.",
 //     "example": [
 //         "attachDebug(3)",
@@ -1284,7 +1343,6 @@ export function debugTo(index, str) {
 //             "info": "arg gets injected into console.log"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Lazy version of console.log, no more typing console!",
 //     "example": [
 //         "log('Once you use me, you will never stop using me')",
@@ -1329,7 +1387,6 @@ export function log(arg) {
 //             "info": "The end of the string that will be appended to the element, set to '< br >' if you want a line break"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Appends a string to an element, with or without a < BR > tag.",
 //     "example": [
 //         "logTo(elementOrId,msg,true)"
@@ -1370,8 +1427,6 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
 
 // JSODOC = {
 //     "method": "getIEVersion",
-//     "params": [],
-//     "returns": "",
 //     "info": "Gets the version of IE",
 //     "example": [
 //         "let version = getIEVersion()"
@@ -1392,7 +1447,6 @@ export function getIEVersion () {
 //             "info": "For use if you want to test a user agent string"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Gets what OS is in use",
 //     "example": [
 //         "let os = getOS()"
@@ -1538,8 +1592,6 @@ export function getOS(testAgent) {
 
 // JSODOC = {
 //     "method": "isAndroid",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Android or not.",
 //     "example": [
 //         "let test = isAndroid()"
@@ -1557,8 +1609,6 @@ export function isAndroid(){
 
 // JSODOC = {
 //     "method": "isChrome",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Chrome or not.",
 //     "example": [
 //         "let test = isChrome()"
@@ -1590,8 +1640,6 @@ export function isChrome() {
 }
 // JSODOC = {
 //     "method": "isEdge",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Edge or not.",
 //     "example": [
 //         "let test = isEdge()"
@@ -1607,8 +1655,6 @@ export function isEdge () {
 }
 // JSODOC = {
 //     "method": "isFireFox",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if FireFox or not.",
 //     "example": [
 //         "let test = isFireFox()"
@@ -1621,8 +1667,6 @@ export function isFireFox () {
 }
 // JSODOC = {
 //     "method": "isIE",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if IE or not.",
 //     "example": [
 //         "let test = isIE()"
@@ -1638,8 +1682,6 @@ export function isIE () {
 
 // JSODOC = {
 //     "method": "isIOS",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if iOS or not.",
 //     "example": [
 //         "let test = isIOS()"
@@ -1664,8 +1706,6 @@ export function isIOS() {
 
 // JSODOC = {
 //     "method": "isMobile",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if mobile or not.",
 //     "example": [
 //         "let mobile = isMobile()"
@@ -1686,8 +1726,6 @@ export function isMobile(){
 }
 // JSODOC = {
 //     "method": "isOpera",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Opera or not.",
 //     "example": [
 //         "let test = isOpera()"
@@ -1702,8 +1740,6 @@ export function isOpera() {
 }
 // JSODOC = {
 //     "method": "isSafari",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Safari or not.",
 //     "example": [
 //         "let test = isSafari()"
@@ -1757,7 +1793,13 @@ export function getElementPosition(el) {
 //             "info": "Element to get the position of."
 //         }
 //     ],
-//     "returns": "Object {left,top}",
+//     "returns": {
+//         "type": "object",
+//         "def": [
+//             { "name": "left", "type": "Number", "info": "x or left" },
+//             { "name": "top", "type": "Number", "info": "y or top" }
+//         ]
+//     },
 //     "info": "Gets an elements position.",
 //     "example": [
 //         "let pos = getElementPos(myElement)"
@@ -1784,7 +1826,6 @@ export function getElementPos(el) {
 //             "info": "Element / Object to check."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Checks if object is HTMLElement.",
 //     "example": [
 //         "let result = isDOM(myElement)"
@@ -1811,7 +1852,6 @@ export function isDOM(obj) {
 //             "info": "Element / Object to check."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Checks if object is HTMLElement.",
 //     "example": [
 //         "let result = isElement(myElement)"
@@ -1839,7 +1879,6 @@ export function isElement(ele) {
 //             "info": "Element / Object to check."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Checks if object is HTMLElement (Method 2).",
 //     "example": [
 //         "let result = isElement2(myElement)"
@@ -1861,7 +1900,10 @@ export function isElement2(ele) {
 //             "info": "Element to get the position of."
 //         }
 //     ],
-//     "returns": "Number || False",
+//     "returns": {
+//         "type": "Number",
+//         "info": "Returns fall if unable to get offsetTop"
+//     },
 //     "info": "Gets an elements offset top position.",
 //     "example": [
 //         "let pos = getElementOffsetTop(myElement)"
@@ -1895,7 +1937,9 @@ export function getElementOffsetTop(ele) {
 //             "info": "Element to get the position of."
 //         }
 //     ],
-//     "returns": "Number || False",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Gets an elements offset top position.",
 //     "example": [
 //         "let classAttached = hasClass(myElement,'selected')"
@@ -1933,7 +1977,6 @@ export function hasClass(elementOrId, c) {
 //             "info": "The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Set a an elements HTML content.",
 //     "example": [
 //         "setHTML(myElement,'hello world')",
@@ -1989,7 +2032,6 @@ export function setHTML(elementOrId, str, mode = "set") {
 //             "default": null
 //         }
 //     ],
-//     "returns": "Number || False",
 //     "info": "Checks if the DOM is ready and then executes a function.",
 //     "example": [
 //         "onReady(function()){",

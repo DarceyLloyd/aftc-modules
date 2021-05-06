@@ -9,7 +9,9 @@
 //             "info": "This should be a datetime string from a db query."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets a UK formatted date string from a supplied db date string.",
 //     "example": [
 //         "let ukDate = getUkDateFromDbDateTime(dbDateString)"

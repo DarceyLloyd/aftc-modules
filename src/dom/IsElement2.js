@@ -9,7 +9,6 @@
 //             "info": "Element / Object to check."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Checks if object is HTMLElement (Method 2).",
 //     "example": [
 //         "let result = isElement2(myElement)"

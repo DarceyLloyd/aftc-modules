@@ -1,7 +1,5 @@
 // JSODOC = {
 //     "method": "isFireFox",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if FireFox or not.",
 //     "example": [
 //         "let test = isFireFox()"

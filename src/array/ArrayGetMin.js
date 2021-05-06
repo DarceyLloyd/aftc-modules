@@ -9,7 +9,9 @@
 //             "info": "The array you want to get the minimum value from."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the minimum value from the supplied array.",
 //     "example": [
 //         "let max = arrayGetMin(myArray)"

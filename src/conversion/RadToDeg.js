@@ -9,7 +9,9 @@
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Converts radians to degrees.",
 //     "example": [
 //         "let rad = radToDeg(deg)"

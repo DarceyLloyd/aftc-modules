@@ -9,7 +9,6 @@
 //             "info": "Element / Object to check."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Checks if object is HTMLElement.",
 //     "example": [
 //         "let result = isDOM(myElement)"

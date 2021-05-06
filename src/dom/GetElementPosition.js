@@ -46,7 +46,13 @@ export function getElementPosition(el) {
 //             "info": "Element to get the position of."
 //         }
 //     ],
-//     "returns": "Object {left,top}",
+//     "returns": {
+//         "type": "object",
+//         "def": [
+//             { "name": "left", "type": "Number", "info": "x or left" },
+//             { "name": "top", "type": "Number", "info": "y or top" }
+//         ]
+//     },
 //     "info": "Gets an elements position.",
 //     "example": [
 //         "let pos = getElementPos(myElement)"

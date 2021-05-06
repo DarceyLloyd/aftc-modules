@@ -16,7 +16,6 @@
 //             "info": "The string you want to write to the debug container."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.",
 //     "example": [
 //         "attachDebug(3)",

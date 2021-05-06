@@ -1,7 +1,5 @@
 // JSODOC = {
 //     "method": "isOpera",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Opera or not.",
 //     "example": [
 //         "let test = isOpera()"

@@ -16,7 +16,9 @@
 //             "info": "The name of the cookie you want to retrieve."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the number of days between 2 dates.",
 //     "example": [
 //         "/* NOTE: Month is indexed at 0 */\n",

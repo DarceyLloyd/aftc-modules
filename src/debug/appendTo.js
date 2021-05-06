@@ -23,7 +23,6 @@
 //             "info": "The end of the string that will be appended to the element, set to '' if you dont want the < br >"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Appends a string to an element, with or without a < BR > tag.",
 //     "example": [
 //         "appendTo(elementOrId,msg,'')"
@@ -61,4 +60,3 @@ export function appendTo(elementOrId,msg,endOfLine="<br>"){
         return false;
     }
 }
-

@@ -9,7 +9,9 @@
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts a number to hexadecimal.",
 //     "example": [
 //         "let hex = numToHex(12)"

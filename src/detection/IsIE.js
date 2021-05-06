@@ -1,7 +1,5 @@
 // JSODOC = {
 //     "method": "isIE",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if IE or not.",
 //     "example": [
 //         "let test = isIE()"

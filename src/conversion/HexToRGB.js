@@ -9,7 +9,14 @@
 //             "info": "Hex color string eg #FFCC00"
 //         }
 //     ],
-//     "returns": "Object {r,g,b}",
+//     "returns": {
+//         "type": "object",
+//         "def": [
+//             { "name": "r", "type": "Number"},
+//             { "name": "g", "type": "Number"},
+//             { "name": "b", "type": "Number"}
+//         ]
+//     },
 //     "info": "Converts hex color to an object with r,g,b props.",
 //     "example": [
 //         "let rgb = hexToRgb('#FFCC00')"

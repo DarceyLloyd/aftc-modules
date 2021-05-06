@@ -1,7 +1,5 @@
 // JSODOC = {
 //     "method": "isEdge",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Edge or not.",
 //     "example": [
 //         "let test = isEdge()"

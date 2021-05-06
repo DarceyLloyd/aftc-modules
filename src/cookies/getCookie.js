@@ -9,7 +9,9 @@
 //             "info": "The name of the cookie you want to retrieve."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Fetches a cookie by name.",
 //     "example": [
 //         "let email = getCookie('email')"

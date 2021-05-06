@@ -30,7 +30,6 @@
 //             "info": "The end of the string that will be appended to the element, set to '< br >' if you want a line break"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Appends a string to an element, with or without a < BR > tag.",
 //     "example": [
 //         "logTo(elementOrId,msg,true)"
@@ -73,4 +72,3 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
         return false;
     }
 }
-

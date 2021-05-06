@@ -23,7 +23,6 @@
 //             "info": "The name of the cookie you want to retrieve."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Fetches a cookie by name.",
 //     "example": [
 //         "let name = 'email';",

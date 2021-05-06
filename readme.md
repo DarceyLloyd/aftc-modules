@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.10</b>
+# <b>AFTC-MODULES v1.7.11</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -244,6 +244,7 @@ Gets the maximum value from the supplied array.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -267,6 +268,7 @@ Gets the minimum value from the supplied array.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -296,6 +298,7 @@ Removes an index from the supplied array.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Array
 ### <b>Example</b>
 
 ```
@@ -325,6 +328,7 @@ Removes a value from the supplied array.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Array
 ### <b>Example</b>
 
 ```
@@ -348,6 +352,7 @@ Shuffles / Randomizes an array.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Array
 ### <b>Example</b>
 
 ```
@@ -371,6 +376,7 @@ Shuffles / Randomizes an array (method 2).
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Array
 ### <b>Example</b>
 
 ```
@@ -400,6 +406,7 @@ Searches the array for your value.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -429,6 +436,7 @@ Searches the array for a string.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -440,12 +448,11 @@ let found = isStringInArray(needle, haystack)
 
 ## <b>getBrowser())</b>
 ### <b>Information</b>
-Gets the browser you are using.
-
-### <b>Parameters</b>
+Gets the name of the browser you are using (opera | chrome | safari | firefox | msie | trident | edge).
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -459,10 +466,9 @@ let browser = getBrowser()
 ### <b>Information</b>
 Gets the viewport x position.
 
-### <b>Parameters</b>
-
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -476,10 +482,9 @@ let x = getBrowserX()
 ### <b>Information</b>
 Gets the viewport y position.
 
-### <b>Parameters</b>
-
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -503,6 +508,7 @@ Checks whether an element is in view.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -538,6 +544,7 @@ Parses arguments to an object of your choice with strict or relaxed assigning fe
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -570,6 +577,7 @@ Converts a boolean to a number.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -593,6 +601,7 @@ Converts a boolean to a string of true || false.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -616,6 +625,7 @@ Converts a boolean to a string of yes || no.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -639,6 +649,7 @@ Converts degrees to radians.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -662,6 +673,13 @@ Converts hex color to an object with r,g,b props.
 
 ### <b>Returns</b>
 
+- <b>Object</b>
+	- <b>r</b>
+		- <b>Type: </b>Number
+	- <b>g</b>
+		- <b>Type: </b>Number
+	- <b>b</b>
+		- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -685,6 +703,7 @@ Converts a number to hexadecimal.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -720,6 +739,7 @@ Parses an object to another object of your choice with strict or relaxed assigni
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -752,6 +772,7 @@ Converts radians to degrees.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -787,6 +808,7 @@ Converts an RGB value to a hex color value.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -822,6 +844,7 @@ Converts an RGB value to a hex color value (Method 2).
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -845,6 +868,7 @@ Converts a String to Boolean.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -873,6 +897,7 @@ Fetches a cookie by name.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -906,8 +931,6 @@ Fetches a cookie by name.
 	- <b>Default:</b> null
 	- <b>Info:</b> The name of the cookie you want to retrieve.
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -940,6 +963,7 @@ Gets the number of days between 2 dates.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Number
 ### <b>Example</b>
 
 ```
@@ -957,10 +981,9 @@ let days = getDaysBetween('startDateTime, endDateTime')
 ### <b>Information</b>
 Gets the date as a mysql injectable string.
 
-### <b>Parameters</b>
-
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -990,6 +1013,7 @@ Gets a UK formatted date string from a supplied date.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -1013,6 +1037,7 @@ Gets a UK formatted date string from a supplied db date string.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -1036,6 +1061,7 @@ Gets a UK formatted date and time string from a supplied db date time string.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -1065,6 +1091,7 @@ Gets a US formatted date string from a supplied date.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -1097,8 +1124,6 @@ Appends a string to an element, with or without a < BR > tag.
 	- <b>Required:</b> false
 	- <b>Default:</b> < br >
 	- <b>Info:</b> The end of the string that will be appended to the element, set to '' if you dont want the < br >
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1133,8 +1158,6 @@ Displays a visual debug list so you can watch variables change in real time (Mos
 	- <b>Default:</b> document.body
 	- <b>Info:</b> The debug list will be appended to this element
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1165,8 +1188,6 @@ Sets a visual debug element so you can visually track variables without the use 
 	- <b>Default:</b> null
 	- <b>Info:</b> The string you want to write to the debug container.
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1190,8 +1211,6 @@ Lazy version of console.log, no more typing console!
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> arg gets injected into console.log
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1235,8 +1254,6 @@ Appends a string to an element, with or without a < BR > tag.
 	- <b>Default:</b> 
 	- <b>Info:</b> The end of the string that will be appended to the element, set to '< br >' if you want a line break
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1249,10 +1266,6 @@ logTo(elementOrId,msg,true)
 ## <b>getIEVersion())</b>
 ### <b>Information</b>
 Gets the version of IE
-
-### <b>Parameters</b>
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1275,8 +1288,6 @@ Gets what OS is in use
 	- <b>Default:</b> null
 	- <b>Info:</b> For use if you want to test a user agent string
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1289,10 +1300,6 @@ let os = getOS()
 ## <b>isAndroid())</b>
 ### <b>Information</b>
 Detects if Android or not.
-
-### <b>Parameters</b>
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1307,10 +1314,6 @@ let test = isAndroid()
 ### <b>Information</b>
 Detects if Chrome or not.
 
-### <b>Parameters</b>
-
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1323,10 +1326,6 @@ let test = isChrome()
 ## <b>isEdge())</b>
 ### <b>Information</b>
 Detects if Edge or not.
-
-### <b>Parameters</b>
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1341,10 +1340,6 @@ let test = isEdge()
 ### <b>Information</b>
 Detects if FireFox or not.
 
-### <b>Parameters</b>
-
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1357,10 +1352,6 @@ let test = isFireFox()
 ## <b>isIE())</b>
 ### <b>Information</b>
 Detects if IE or not.
-
-### <b>Parameters</b>
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1375,10 +1366,6 @@ let test = isIE()
 ### <b>Information</b>
 Detects if iOS or not.
 
-### <b>Parameters</b>
-
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1391,10 +1378,6 @@ let test = isIOS()
 ## <b>isMobile())</b>
 ### <b>Information</b>
 Detects if mobile or not.
-
-### <b>Parameters</b>
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1409,10 +1392,6 @@ let mobile = isMobile()
 ### <b>Information</b>
 Detects if Opera or not.
 
-### <b>Parameters</b>
-
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1425,10 +1404,6 @@ let test = isOpera()
 ## <b>isSafari())</b>
 ### <b>Information</b>
 Detects if Safari or not.
-
-### <b>Parameters</b>
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1476,6 +1451,13 @@ Gets an elements position.
 
 ### <b>Returns</b>
 
+- <b>Object</b>
+	- <b>left</b>
+		- <b>Type: </b>Number
+		- <b>Info: </b>x or left
+	- <b>top</b>
+		- <b>Type: </b>Number
+		- <b>Info: </b>y or top
 ### <b>Example</b>
 
 ```
@@ -1496,8 +1478,6 @@ Checks if object is HTMLElement.
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> Element / Object to check.
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1520,8 +1500,6 @@ Checks if object is HTMLElement.
 	- <b>Default:</b> null
 	- <b>Info:</b> Element / Object to check.
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1542,8 +1520,6 @@ Checks if object is HTMLElement (Method 2).
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> Element / Object to check.
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 
@@ -1567,6 +1543,9 @@ Gets an elements offset top position.
 	- <b>Info:</b> Element to get the position of.
 
 ### <b>Returns</b>
+
+- <b>Type: </b>Number
+- <b>Info: </b>Returns fall if unable to get offsetTop
 
 ### <b>Example</b>
 
@@ -1596,6 +1575,7 @@ Gets an elements offset top position.
 
 ### <b>Returns</b>
 
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1629,8 +1609,6 @@ Set a an elements HTML content.
 	- <b>Default:</b> Set
 	- <b>Info:</b> The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content.
 
-### <b>Returns</b>
-
 ### <b>Example</b>
 
 ```
@@ -1656,8 +1634,6 @@ Checks if the DOM is ready and then executes a function.
 	- <b>Type:</b> Function
 	- <b>Required:</b> true
 	- <b>Default:</b> null
-
-### <b>Returns</b>
 
 ### <b>Example</b>
 

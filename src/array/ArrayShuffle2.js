@@ -9,7 +9,9 @@
 //             "info": "The array you want to shuffle."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Shuffles / Randomizes an array (method 2).",
 //     "example": [
 //         "let shuffledArray = arrayShuffle2(myArray)"

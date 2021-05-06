@@ -16,7 +16,9 @@
 //             "info": "The value which you want to remove from the array."
 //         }
 //     ],
-//     "returns": "Array",
+//     "returns": {
+//         "type": "Array"
+//     },
 //     "info": "Removes a value from the supplied array.",
 //     "example": [
 //         "let max = arrayRemoveValue(arr, value)"

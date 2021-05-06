@@ -9,7 +9,9 @@
 //             "info": "The element you want to check is in view"
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Checks whether an element is in view.",
 //     "example": [
 //         "let isInView = isInViewport(myElement)"

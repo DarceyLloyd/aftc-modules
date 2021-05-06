@@ -1,7 +1,5 @@
 // JSODOC = {
 //     "method": "isChrome",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if Chrome or not.",
 //     "example": [
 //         "let test = isChrome()"

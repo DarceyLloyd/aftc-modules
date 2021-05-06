@@ -1,7 +1,8 @@
 // JSODOC = {
 //     "method": "getBrowserY",
-//     "params": [],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the viewport y position.",
 //     "example": [
 //         "let x = getBrowserY()"

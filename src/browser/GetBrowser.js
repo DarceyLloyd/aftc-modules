@@ -1,14 +1,15 @@
 // JSODOC = {
 //     "method": "getBrowser",
-//     "params": [],
-//     "returns": "String (opera | chrome | safari | firefox | msie | trident | edge)",
-//     "info": "Gets the browser you are using.",
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Gets the name of the browser you are using (opera | chrome | safari | firefox | msie | trident | edge).",
 //     "example": [
 //         "let browser = getBrowser()"
 //     ]
 // } JSODOC
 
-export function getBrowser () {
+export function getBrowser() {
     let ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|edge|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];

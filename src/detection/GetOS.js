@@ -9,7 +9,6 @@
 //             "info": "For use if you want to test a user agent string"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Gets what OS is in use",
 //     "example": [
 //         "let os = getOS()"
@@ -195,4 +194,3 @@ export function getOS(testAgent) {
     };
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-

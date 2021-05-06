@@ -1,7 +1,9 @@
 // JSODOC = {
 //     "method": "getMySQLDateTimeString",
-//     "params": [],
-//     "returns": "String",
+
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets the date as a mysql injectable string.",
 //     "example": [
 //         "let dte = getMySQLDateTimeString()"

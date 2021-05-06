@@ -9,7 +9,9 @@
 //             "info": "The variable you wish to convert."
 //         }
 //     ],
-//     "returns": "Number (1 || 0)",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Converts a boolean to a number.",
 //     "example": [
 //         "let strBool = boolToInt(isMobile)"

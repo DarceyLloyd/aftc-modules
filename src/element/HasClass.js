@@ -15,7 +15,9 @@
 //             "info": "Element to get the position of."
 //         }
 //     ],
-//     "returns": "Number || False",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Gets an elements offset top position.",
 //     "example": [
 //         "let classAttached = hasClass(myElement,'selected')"

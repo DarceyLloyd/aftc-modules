@@ -1,14 +1,15 @@
 // JSODOC = {
 //     "method": "getBrowserX",
-//     "params": [],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the viewport x position.",
 //     "example": [
 //         "let x = getBrowserX()"
 //     ]
 // } JSODOC
 
-export function getBrowserX(){
+export function getBrowserX() {
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
 
@@ -17,4 +18,3 @@ export function getBrowserX(){
 
     return x;
 }
-

@@ -23,7 +23,9 @@
 //             "info": "The number you want to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts an RGB value to a hex color value (Method 2).",
 //     "example": [
 //         "let hex = RGBToHex2(255,100,55);"

@@ -23,7 +23,6 @@
 //             "info": "The debug list will be appended to this element"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Displays a visual debug list so you can watch variables change in real time (Most excellent for debug with keys, animations etc). Click row to inject that value into copy and paste buffer. See <b>debugTo</b> to use attachDebug, usage example below.",
 //     "example": [
 //         "attachDebug(3)",

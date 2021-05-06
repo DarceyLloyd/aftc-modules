@@ -9,7 +9,9 @@
 //             "info": "The variable you wish to convert."
 //         }
 //     ],
-//     "returns": "String",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Converts a boolean to a string of yes || no.",
 //     "example": [
 //         "let answer = boolToYesNo(boolAnswer)"

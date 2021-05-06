@@ -23,7 +23,9 @@
 //             "info": "Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported."
 //         }
 //     ],
-//     "returns": "Boolean",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "info": "Parses arguments to an object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).",
 //     "example": [
 //         "/* Class based example */",

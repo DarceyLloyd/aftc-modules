@@ -9,7 +9,9 @@
 //             "info": "The array you want to get the maximum value within."
 //         }
 //     ],
-//     "returns": "Number",
+//     "returns": {
+//         "type": "Number"
+//     },
 //     "info": "Gets the maximum value from the supplied array.",
 //     "example": [
 //         "let max = arrayGetMax(myArray)"
@@ -19,4 +21,3 @@
 export function arrayGetMax(arr) {
     return Math.max.apply(Math, arr);
 }
-

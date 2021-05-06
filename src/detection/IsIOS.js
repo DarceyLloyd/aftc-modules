@@ -1,7 +1,5 @@
 // JSODOC = {
 //     "method": "isIOS",
-//     "params": [],
-//     "returns": "",
 //     "info": "Detects if iOS or not.",
 //     "example": [
 //         "let test = isIOS()"
