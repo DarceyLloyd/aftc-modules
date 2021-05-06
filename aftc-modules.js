@@ -76,7 +76,6 @@ export function AnimationFrameStack() {
 //             "info": "The array you want to clear / empty"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Clears an array",
 //     "example": [
 //         "arrayClear(myArray)"
@@ -104,7 +103,6 @@ export function arrayClear(arr) {
 //             "info": "The array you want to search."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Finds a needle in a haystack."
 // } JSODOC
 export function arrayContains(needle, haystack) {
@@ -121,7 +119,6 @@ export function arrayContains(needle, haystack) {
 //             "info": "The array you want to clear / empty"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Clears an array",
 //     "example": [
 //         "arrayEmpty(myArray)"
@@ -292,7 +289,7 @@ export function arrayShuffle2(a) {
 //     "params": [
 //         {
 //             "name": "needle",
-//             "type": "string||number",
+//             "type": "*",
 //             "required": true,
 //             "default": null,
 //             "info": "What you are looking for."
@@ -319,7 +316,7 @@ export function isInArray(needle, haystack) {
 //     "params": [
 //         {
 //             "name": "needle",
-//             "type": "string||number",
+//             "type": "string",
 //             "required": true,
 //             "default": null,
 //             "info": "String you are looking for."
@@ -1912,7 +1909,7 @@ export function hasClass(elementOrId, c) {
     }
 }
 // JSODOC = {
-//     "method": "elementOrId",
+//     "method": "setHTML",
 //     "params": [
 //         {
 //             "name": "elementOrId",
@@ -1932,7 +1929,7 @@ export function hasClass(elementOrId, c) {
 //             "name": "mode",
 //             "type": "String (set|append|prepend)",
 //             "required": false,
-//             "default": "set",
+//             "default": "Set",
 //             "info": "The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content."
 //         }
 //     ],
@@ -2624,8 +2621,6 @@ export function promiseLoadScript(src) {
     });
 }
 export class XHR {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js (new XHR())
     constructor() {
         //https://javascript.info/xmlhttprequest
         // var defs
@@ -3507,6 +3502,30 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+// JSODOC = {
+//     "class": "MouseScrollHandler",
+//     "info": "Nukes the moon.",
+//     "link": "https://aftc.io",
+//     "params": [
+//         {
+//             "name": "onScrollUp",
+//             "type": "Function",
+//             "required": true,
+//             "default": null,
+//             "info": "The function to call when mouse wheel scroll up is detected"
+//         },
+//         {
+//             "name": "onScrollDown",
+//             "type": "Function",
+//             "required": true,
+//             "default": null,
+//             "info": "The function to call when mouse wheel scroll down is detected"
+//         }
+//     ],
+//     "example": [
+//         "new MouseScrollHandler(onScrollUpHandler,onScrollDownHandler);"
+//     ]
+// } JSODOC
 export class MouseScrollHandler {
     constructor(onScrollUp,onScrollDown) {
         // var defs
@@ -3560,6 +3579,24 @@ export class MouseScrollHandler {
 export function cutStringTo(input, len) {
     return input.substring(0, len);
 }
+// JSODOC = {
+//     "method": "escapeHTML",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "String to escape html tags."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns a string that has the standard html tags escaped.",
+//     "example": [
+//         "let newString = escapeHTML('<b>some html</b>')"
+//     ]
+// } JSODOC
 export function escapeHTML(str) {
     if (typeof (str) != "string") { console.error("escape(arg): usage error: arg needs to be a string!"); return false; }
     let replacements = {
@@ -3573,6 +3610,24 @@ export function escapeHTML(str) {
         return replacements[character];
     });
 }
+// JSODOC = {
+//     "method": "getAnchor",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "info": "String to get anchor from."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns the anchor from a url string.",
+//     "example": [
+//         "let anchor = getAnchor(url)"
+//     ]
+// } JSODOC
 export function getAnchor(url) {
     if (!url) { url = window.location.href; }
     let anchorAvailable = isInString("#", url);
@@ -3582,12 +3637,24 @@ export function getAnchor(url) {
         return false;
     }
 }
-/**
- * @function: GetAnchor(url)
- * @desc: Get anchor from url
- * @param string url: The url to get the anchor from
- * @link:
- */
+// JSODOC = {
+//     "method": "getCleanJSONString",
+//     "params": [
+//         {
+//             "name": "s",
+//             "type": "String",
+//             "required": true,
+//             "info": "JSON String to parse."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Attempts to clean up special characters in a JSON string and make it JSON valid.",
+//     "example": [
+//         "let newString = getCleanJSONString(oldString)"
+//     ]
+// } JSODOC
 export function getCleanJSONString (s) {
     // preserve newlines, etc - use valid JSON
     s = s.replace(/\\n/g, "\\n")
@@ -3602,10 +3669,46 @@ export function getCleanJSONString (s) {
     s = s.replace(/[\u0000-\u0019]+/g, "");
     return s;
 }
-export function getFileExtension(input) {
-    return input.slice((input.lastIndexOf(".") - 1 >>> 0) + 2);
-    // return (input.match(/(?:.+..+[^\/]+$)/ig) != null) ? input.split('.').slice(-1) : 'null';
+// JSODOC = {
+//     "method": "getFileExtension",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to get the file extension from."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Attempts to get the file extension from a supplied string.",
+//     "example": [
+//         "let ext = getFileExtension(path)"
+//     ]
+// } JSODOC
+export function getFileExtension(str) {
+    return str.slice((str.lastIndexOf(".") - 1 >>> 0) + 2);
+    // return (str.match(/(?:.+..+[^\/]+$)/ig) != null) ? str.split('.').slice(-1) : 'null';
 }
+// JSODOC = {
+//     "method": "getLastPartOfUrl",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "info": "The url string to get the last part from."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns the last segment of a url split by slashes.",
+//     "example": [
+//         "let lastSegment = getLastPartOfUrl(url)"
+//     ]
+// } JSODOC
 export function getLastPartOfUrl(url) {
     if (!url) {
         url = window.location.href;
@@ -3613,6 +3716,24 @@ export function getLastPartOfUrl(url) {
     let part = url.substring(url.lastIndexOf('/') + 1);
     return part;
 }
+// JSODOC = {
+//     "method": "getRandomString",
+//     "params": [
+//         {
+//             "name": "len",
+//             "type": "Number",
+//             "required": true,
+//             "info": "The length of the random string to generate."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns a random string of letters A-Z a-z of a specified length.",
+//     "example": [
+//         "let randomLetterString = getRandomString(256)"
+//     ]
+// } JSODOC
 export function getRandomString(len) {
     let text = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -3622,17 +3743,70 @@ export function getRandomString(len) {
     return text;
 }
 
-export function getStringBetween(str, start, end) {
-    return str.split(start).pop().split(end).shift().trim();
+// JSODOC = {
+//     "method": "getStringBetween",
+//     "params": [
+//         {
+//             "name": "source",
+//             "type": "String",
+//             "required": true,
+//             "info": "The length to parse."
+//         },
+//         {
+//             "name": "start",
+//             "type": "String",
+//             "required": true,
+//             "info": "The starting string marker in the source string."
+//         },
+//         {
+//             "name": "end",
+//             "type": "String",
+//             "required": true,
+//             "info": "The ending string marker in the source string."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns the string between a start and end string marker matches from the source string.",
+//     "example": [
+//         "let strBetween = getStringBetween(sourceString,'start-marker','end-marker')"
+//     ]
+// } JSODOC
+export function getStringBetween(source, start, end) {
+    return source.split(start).pop().split(end).shift().trim();
 }
-/**
- * @function: getStringBetween(input,start,end)
- * @desc: Gets a string between two other strings
- * @param string input: input string to check
- * @param string start: start string marker
- * @param string end: end string marker
- * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
- */
+// JSODOC = {
+//     "method": "getStringBetween2",
+//     "params": [
+//         {
+//             "name": "source",
+//             "type": "String",
+//             "required": true,
+//             "info": "The length to parse."
+//         },
+//         {
+//             "name": "start",
+//             "type": "String",
+//             "required": true,
+//             "info": "The starting string marker in the source string."
+//         },
+//         {
+//             "name": "end",
+//             "type": "String",
+//             "required": true,
+//             "info": "The ending string marker in the source string."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Array",
+//         "info": "Max 500 results"
+//     },
+//     "info": "Returns an array of all the strings found between a start and end markers. Max of 500 items in array returned.",
+//     "example": [
+//         "let found = getStringsBetween2(sourceString,'start-marker','end-marker')"
+//     ]
+// } JSODOC
 export function getStringsBetween2(str, start, end) {
     let orig = str;
     let results = [];
@@ -3658,7 +3832,7 @@ export function getStringsBetween2(str, start, end) {
         //log("FINAL: " + str);
         return between;
     }
-    let lim = 500; // Want to loop forever? 500 seems like areasonable limit
+    let lim = 500; // Want to loop forever? 500 seems like a reasonable limit
     let pos = 0;
     let result = true;
     while (pos <= lim && result != false) {
@@ -3681,15 +3855,135 @@ export function getStringsBetween2(str, start, end) {
  * @param string end: end string marker
  * @link: https://codepen.io/AllForTheCode/pen/xxxxxxx
  */
+// JSODOC = {
+//     "method": "getWordCount",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to count word from."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Number"
+//     },
+//     "info": "Returns the number of words in a string based on spaces.",
+//     "example": [
+//         "let wordCount = getWordCount(sourceString)"
+//     ]
+// } JSODOC
 export function getWordCount(str) {
     return str.split(/\S+/).length - 1;
 }
-export function inString(find,source) { return source.indexOf(find) !== -1; }
+// JSODOC = {
+//     "method": "inString",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to find."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to search."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Looks for a string in a string.",
+//     "example": [
+//         "let stringFound = inString(needle,haystack)"
+//     ]
+// } JSODOC
+export function inString(needle,haystack) { return haystack.indexOf(needle) !== -1; }
+// JSODOC = {
+//     "method": "isInString",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to find."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to search."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Looks for a string in a string.",
+//     "example": [
+//         "let stringFound = isInString(needle,haystack)"
+//     ]
+// } JSODOC
 export function isInString(find,source) { return source.indexOf(find) !== -1; }
+// JSODOC = {
+//     "method": "lTrimBy",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to find."
+//         },
+//         {
+//             "name": "by",
+//             "type": "Number",
+//             "required": true,
+//             "info": "The number of characters to trim from the left (start) of a string."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Trims a string from the left (start) by a specified number of characters.",
+//     "example": [
+//         "let trimmedString = lTrimBy(str,4)"
+//     ]
+// } JSODOC
 export function lTrimBy(str, by) {
     return str.substring(by, str.length);
 }
-export function regExReplaceAll(haystack, needle, rep) {
+// JSODOC = {
+//     "method": "regExReplaceAll",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to replace."
+//         },
+//         {
+//             "name": "rep",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to replace the needle (found) string with."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to parse."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Uses regex to replace all instances of a string in a string with what you specify.",
+//     "example": [
+//         "let newString = regExReplaceAll(needle, rep, haystack)"
+//     ]
+// } JSODOC
+export function regExReplaceAll(needle, rep, haystack) {
     const special = ["-", "[", "]", "/", "{", "}", "(", ")", "*", "+", "?", ".", "\\", "^", "$", "|"];
     if (needle.length == 1) {
         if (isInArray(needle, special)) {
@@ -3699,31 +3993,215 @@ export function regExReplaceAll(haystack, needle, rep) {
     const searchRegExp = new RegExp(needle, 'g');
     return haystack.replace(searchRegExp, rep);
 }
+// JSODOC = {
+//     "method": "removeFileFromPath",
+//     "params": [
+//         {
+//             "name": "path",
+//             "type": "String",
+//             "required": true,
+//             "info": "The file path to process."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Removes the file from a file path.",
+//     "example": [
+//         "let path = removeFileFromPath(fullPath)"
+//     ]
+// } JSODOC
 export function removeFileFromPath(path) {
     //let pa = '/this/is/a/folder/aFile.txt';
     let r = /[^\/]*$/;
     path = path.replace(r, '');
     return path;
 }
-export function replaceAll(haystack,needle,replace){
+// JSODOC = {
+//     "method": "replaceAll",
+//     "params": [
+//         {
+//             "name": "needle",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to replace."
+//         },
+//         {
+//             "name": "replace",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to replace the needle (found) string with."
+//         },
+//         {
+//             "name": "haystack",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to parse."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Uses a split join method to replace all occurrences of a string. See regExReplaceAll for an alternate method.",
+//     "example": [
+//         "let newString1 = replaceAll(needle, repWith, haystack)",
+//         "let newString2 = regExReplaceAll(needle, repWith, haystack)"
+//     ]
+// } JSODOC
+export function replaceAll(needle,replace,haystack){
     return haystack.split(needle).join(replace);
 }
+// JSODOC = {
+//     "method": "replaceDoubleBackSlash",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to process."
+//         },
+//         {
+//             "name": "rep",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to replace double back slashes with."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Replaces double back slashes in a string via regex with your specified string.",
+//     "example": [
+//         "let processedString = replaceDoubleBackSlash(str,replaceWith)"
+//     ]
+// } JSODOC
 export function replaceDoubleBackSlash(str,rep){
     return str.replace(/\\\\/g, rep); // replaces all occurances of \\ with rep
 }
+// JSODOC = {
+//     "method": "replaceDoubleForwardSlash",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to process."
+//         },
+//         {
+//             "name": "rep",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to replace double forward slashes with."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Replaces double forward slashes in a string via regex with your specified string.",
+//     "example": [
+//         "let processedString = replaceDoubleForwardSlash(str,replaceWith)"
+//     ]
+// } JSODOC
 export function replaceDoubleForwardSlash(str,rep){
     return str.replace(/\/\//g, rep); // replaces all occurances of // with rep
 }
+// JSODOC = {
+//     "method": "rTrimBy",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to find."
+//         },
+//         {
+//             "name": "trimBy",
+//             "type": "Number",
+//             "required": true,
+//             "info": "The number of characters to trim from the right (end) of a string."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Trims a string from the right (end) by a specified number of characters.",
+//     "example": [
+//         "let trimmedString = rTrimBy(str,4)"
+//     ]
+// } JSODOC
 export function rTrimBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
 }
+// JSODOC = {
+//     "method": "trimStringBy",
+//     "params": [
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to find."
+//         },
+//         {
+//             "name": "trimBy",
+//             "type": "Number",
+//             "required": true,
+//             "info": "The number of characters to trim from the right (end) of a string."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Trims a string from the right (end) by a specified number of characters.",
+//     "example": [
+//         "let trimmedString = trimStringBy(str,4)"
+//     ]
+// } JSODOC
 export function trimStringBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
 }
+// JSODOC = {
+//     "method": "ucFirst",
+//     "params": [
+//         {
+//             "name": "s",
+//             "type": "String",
+//             "required": true,
+//             "info": "The string to make the first letter upper case."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Makes the first letter of a string uppercase.",
+//     "example": [
+//         "let ucFirstString = ucFirst('hello')"
+//     ]
+// } JSODOC
 export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
+// JSODOC = {
+//     "class": "SwipeHandler",
+//     "params": [
+//         {
+//             "name": "onSwipeLeft",
+//             "type": "Function",
+//             "required": true,
+//             "info": "The function to call when swipe left is detected"
+//         },
+//         {
+//             "name": "onSwipeRight",
+//             "type": "Function",
+//             "required": true,
+//             "info": "The function to call when swipe right is detected"
+//         }
+//     ],
+//     "info": "Swipe handler, currently detects left & right swipes (TODO: Detect up and down).",
+//     "example": [
+//         "new SwipeHandler(myOnSwipeLeftHandler,myOnSwipeRightHandler)"
+//     ]
+// } JSODOC
 export class SwipeHandler {
     // - - - - - - - - - - - - - - - - - - - - - - - -
     constructor(onSwipeLeft, onSwipeRight) {
@@ -3804,11 +4282,54 @@ export class SwipeHandler {
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
+// JSODOC = {
+//     "method": "isEmail",
+//     "params": [
+//         {
+//             "name": "email",
+//             "type": "String",
+//             "required": true,
+//             "info": "The email string to validate."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Validates an email address via regex.",
+//     "example": [
+//         "let isValidEmail = isEmail('darcey.lloyd@gmail.com')"
+//     ]
+// } JSODOC
 export function isEmail (email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
+// JSODOC = {
+//     "class": "PromiseAttachVideo",
+//     "params": [
+//         {
+//             "name": "video",
+//             "type": "Video",
+//             "required": true,
+//             "info": "The video to attach to."
+//         },
+//         {
+//             "name": "src",
+//             "type": "String",
+//             "required": true,
+//             "info": "The src of the video file to attach to the video element or video javascript instance."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise with object with props {width,height,duration}"
+//     },
+//     "info": "Attaches a video file to a video and once it's meta data is available it will resolve the promise. Useful for getting width, height and duration.",
+//     "example": [
+//         "new PromiseAttachVideo(vid,vidSrc)",
+//         "then((res)=>{ console.log('video attached and ready') })"
+//     ]
+// } JSODOC
 export class PromiseAttachVideo {
     constructor(video,src) {
         return new Promise((resolve, reject) => {
@@ -3824,17 +4345,36 @@ export class PromiseAttachVideo {
                 reject(e);
                 throw (e);
             },false);
-            video.src = src;  
+            video.src = src;
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
+// JSODOC = {
+//     "class": "PromiseVideoEnd",
+//     "params": [
+//         {
+//             "name": "video",
+//             "type": "Video",
+//             "required": true,
+//             "info": "The video to attach to."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise resolve on video end"
+//     },
+//     "info": "Returns a promise resolve on video end.",
+//     "example": [
+//         "new PromiseVideoEnd(vid)",
+//         "then((res)=>{ console.log('video playback complete') })"
+//     ]
+// } JSODOC
 export class PromiseVideoEnd {
     constructor(video) {
         return new Promise((resolve, reject) => {
             video.addEventListener('ended', (e) => {
                 resolve(e);
-            }); 
+            });
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -

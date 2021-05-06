@@ -1,3 +1,29 @@
+// JSODOC = {
+//     "class": "MouseScrollHandler",
+//     "info": "Nukes the moon.",
+//     "link": "https://aftc.io",
+//     "params": [
+//         {
+//             "name": "onScrollUp",
+//             "type": "Function",
+//             "required": true,
+//             "default": null,
+//             "info": "The function to call when mouse wheel scroll up is detected"
+//         },
+//         {
+//             "name": "onScrollDown",
+//             "type": "Function",
+//             "required": true,
+//             "default": null,
+//             "info": "The function to call when mouse wheel scroll down is detected"
+//         }
+//     ],
+//     "example": [
+//         "new MouseScrollHandler(onScrollUpHandler,onScrollDownHandler);"
+//     ]
+// } JSODOC
+
+
 export class MouseScrollHandler {
 
     constructor(onScrollUp,onScrollDown) {

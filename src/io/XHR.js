@@ -1,8 +1,4 @@
 export class XHR {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js (new XHR())
-
-
     constructor() {
         //https://javascript.info/xmlhttprequest
 

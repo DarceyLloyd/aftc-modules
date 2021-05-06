@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "method": "elementOrId",
+//     "method": "setHTML",
 //     "params": [
 //         {
 //             "name": "elementOrId",
@@ -19,7 +19,7 @@
 //             "name": "mode",
 //             "type": "String (set|append|prepend)",
 //             "required": false,
-//             "default": "set",
+//             "default": "Set",
 //             "info": "The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content."
 //         }
 //     ],
@@ -60,7 +60,7 @@ export function setHTML(elementOrId, str, mode = "set") {
                 } else {
                     ele.innerHTML += "<br>" + str;
                 }
-                
+
                 break;
             case "prepend":
                 ele.innerHTML = str + "<br>" + ele.innerHTML;

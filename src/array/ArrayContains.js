@@ -16,7 +16,6 @@
 //             "info": "The array you want to search."
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Finds a needle in a haystack."
 // } JSODOC
 

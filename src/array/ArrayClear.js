@@ -9,7 +9,6 @@
 //             "info": "The array you want to clear / empty"
 //         }
 //     ],
-//     "returns": "",
 //     "info": "Clears an array",
 //     "example": [
 //         "arrayClear(myArray)"

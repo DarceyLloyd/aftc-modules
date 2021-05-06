@@ -1,3 +1,21 @@
+// JSODOC = {
+//     "method": "getAnchor",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "info": "String to get anchor from."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns the anchor from a url string.",
+//     "example": [
+//         "let anchor = getAnchor(url)"
+//     ]
+// } JSODOC
 export function getAnchor(url) {
     if (!url) { url = window.location.href; }
     let anchorAvailable = isInString("#", url);
@@ -7,9 +25,3 @@ export function getAnchor(url) {
         return false;
     }
 }
-/**
- * @function: GetAnchor(url)
- * @desc: Get anchor from url
- * @param string url: The url to get the anchor from
- * @link:
- */

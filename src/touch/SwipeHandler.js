@@ -1,3 +1,25 @@
+// JSODOC = {
+//     "class": "SwipeHandler",
+//     "params": [
+//         {
+//             "name": "onSwipeLeft",
+//             "type": "Function",
+//             "required": true,
+//             "info": "The function to call when swipe left is detected"
+//         },
+//         {
+//             "name": "onSwipeRight",
+//             "type": "Function",
+//             "required": true,
+//             "info": "The function to call when swipe right is detected"
+//         }
+//     ],
+//     "info": "Swipe handler, currently detects left & right swipes (TODO: Detect up and down).",
+//     "example": [
+//         "new SwipeHandler(myOnSwipeLeftHandler,myOnSwipeRightHandler)"
+//     ]
+// } JSODOC
+
 export class SwipeHandler {
 
 

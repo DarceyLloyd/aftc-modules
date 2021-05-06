@@ -1,3 +1,34 @@
+// JSODOC = {
+//     "method": "getStringBetween2",
+//     "params": [
+//         {
+//             "name": "source",
+//             "type": "String",
+//             "required": true,
+//             "info": "The length to parse."
+//         },
+//         {
+//             "name": "start",
+//             "type": "String",
+//             "required": true,
+//             "info": "The starting string marker in the source string."
+//         },
+//         {
+//             "name": "end",
+//             "type": "String",
+//             "required": true,
+//             "info": "The ending string marker in the source string."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Array",
+//         "info": "Max 500 results"
+//     },
+//     "info": "Returns an array of all the strings found between a start and end markers. Max of 500 items in array returned.",
+//     "example": [
+//         "let found = getStringsBetween2(sourceString,'start-marker','end-marker')"
+//     ]
+// } JSODOC
 export function getStringsBetween2(str, start, end) {
     let orig = str;
     let results = [];
@@ -28,7 +59,7 @@ export function getStringsBetween2(str, start, end) {
         //log("FINAL: " + str);
         return between;
     }
-    let lim = 500; // Want to loop forever? 500 seems like areasonable limit
+    let lim = 500; // Want to loop forever? 500 seems like a reasonable limit
     let pos = 0;
     let result = true;
     while (pos <= lim && result != false) {

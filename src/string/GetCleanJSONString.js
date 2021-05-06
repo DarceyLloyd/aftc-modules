@@ -1,3 +1,21 @@
+// JSODOC = {
+//     "method": "getCleanJSONString",
+//     "params": [
+//         {
+//             "name": "s",
+//             "type": "String",
+//             "required": true,
+//             "info": "JSON String to parse."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Attempts to clean up special characters in a JSON string and make it JSON valid.",
+//     "example": [
+//         "let newString = getCleanJSONString(oldString)"
+//     ]
+// } JSODOC
 export function getCleanJSONString (s) {
     // preserve newlines, etc - use valid JSON
     s = s.replace(/\\n/g, "\\n")

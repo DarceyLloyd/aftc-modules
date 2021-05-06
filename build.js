@@ -1,12 +1,12 @@
-const { log, cls, getFilesSync, readFileToString, writeFile,concatFiles } = require("aftc-node-tools");
-const { jsoGetDocs } = require("jsodoc");
+const { log, cls, getFilesSync, writeFile, concatFiles } = require("aftc-node-tools");
+const { JSODoc } = require("jsodoc");
 const version = require("./package.json").version;
 
 cls();
 log("AFTC-MODULES: Starting build process...".green);
 
 // Get files to be merged
-let files = getFilesSync("./src",".js",true);
+let files = getFilesSync("./src", ".js", true);
 // log(files);
 
 // Concatenate the files
@@ -14,20 +14,26 @@ let out = concatFiles(files);
 // log(out);
 
 // Write to aftc-modules.js file
-writeFile("./aftc-modules.js",out);
+writeFile("./aftc-modules.js", out)
+    .then(() => {
+        log("aftc-modules.js - generated")
+        buildDocs()
+    })
 
 
-// Generate docs via JSODocs
-let docs = jsoGetDocs(out);
+function buildDocs() {
+    let subs = {
+        "[[version]]": version
+    }
 
-// Read REAMD-TEMPLATE.md
-let readme = readFileToString("./docs/readme-template.md");
-// log(readmeTemplate)
+    new JSODoc({
+        // dir: './src',
+        // recursive: true,
+        // ext: 'js',
+        files: ['./aftc-modules.js'],
+        template: './docs/template.md',
+        substitutions: subs,
+        output: './readme.md'
+    })
 
-// Substitute values into readme
-readme = readme.replace("[version]",version);
-readme = readme.replace("[quick_list]",docs.gitSummary);
-readme = readme.replace("[docs]",docs.gitDocs);
-
-// Write readme.md
-writeFile("./readme.md",readme);
+}

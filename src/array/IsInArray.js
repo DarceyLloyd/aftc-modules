@@ -3,7 +3,7 @@
 //     "params": [
 //         {
 //             "name": "needle",
-//             "type": "string||number",
+//             "type": "*",
 //             "required": true,
 //             "default": null,
 //             "info": "What you are looking for."
