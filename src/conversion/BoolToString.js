@@ -18,7 +18,7 @@
 //     ]
 // } JSODOC
 
-export function boolToInt (bool) {
+export function boolToString (bool) {
 
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
         console.log("AFTC.js: getBoolToInt(bool): Error - input is not a boolean!");

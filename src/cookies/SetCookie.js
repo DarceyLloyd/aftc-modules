@@ -9,18 +9,18 @@
 //             "info": "The name of the cookie you want to retrieve."
 //         },
 //         {
-//             "name": "name",
+//             "name": "cvalue",
 //             "type": "String",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The value you want to put in the cookie."
 //         },
 //         {
-//             "name": "name",
-//             "type": "String",
+//             "name": "exdays",
+//             "type": "Number",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The number of days you want the cookie to expire in."
 //         }
 //     ],
 //     "info": "Fetches a cookie by name.",

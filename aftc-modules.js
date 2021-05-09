@@ -574,7 +574,7 @@ export function boolToInt(bool) {
 //         "let strBool = boolToString(isMobile)"
 //     ]
 // } JSODOC
-export function boolToInt (bool) {
+export function boolToString (bool) {
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
         console.log("AFTC.js: getBoolToInt(bool): Error - input is not a boolean!");
         return "error";
@@ -925,18 +925,18 @@ export function getCookie(name) {
 //             "info": "The name of the cookie you want to retrieve."
 //         },
 //         {
-//             "name": "name",
+//             "name": "cvalue",
 //             "type": "String",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The value you want to put in the cookie."
 //         },
 //         {
-//             "name": "name",
-//             "type": "String",
+//             "name": "exdays",
+//             "type": "Number",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The number of days you want the cookie to expire in."
 //         }
 //     ],
 //     "info": "Fetches a cookie by name.",
@@ -960,18 +960,18 @@ export function setCookie(cname, cvalue, exdays) {
 //     "method": "getDaysBetween",
 //     "params": [
 //         {
-//             "name": "name",
-//             "type": "String",
+//             "name": "startDateTime",
+//             "type": "Date",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The start date."
 //         },
 //         {
-//             "name": "name",
-//             "type": "String",
+//             "name": "endDateTime",
+//             "type": "Date",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The end date."
 //         }
 //     ],
 //     "returns": {

@@ -2,18 +2,18 @@
 //     "method": "getDaysBetween",
 //     "params": [
 //         {
-//             "name": "name",
-//             "type": "String",
+//             "name": "startDateTime",
+//             "type": "Date",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The start date."
 //         },
 //         {
-//             "name": "name",
-//             "type": "String",
+//             "name": "endDateTime",
+//             "type": "Date",
 //             "required": true,
 //             "default": null,
-//             "info": "The name of the cookie you want to retrieve."
+//             "info": "The end date."
 //         }
 //     ],
 //     "returns": {

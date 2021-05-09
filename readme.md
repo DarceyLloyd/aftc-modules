@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.11</b>
+# <b>AFTC-MODULES v1.7.15</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -69,8 +69,8 @@ npm i aftc-modules
  - <b>RGBToHex2(r,g,b)</b>
  - <b>stringToBool(str)</b>
  - <b>getCookie(name)</b>
- - <b>setCookie(name,name,name)</b>
- - <b>getDaysBetween(name,name)</b>
+ - <b>setCookie(name,cvalue,exdays)</b>
+ - <b>getDaysBetween(startDateTime,endDateTime)</b>
  - <b>getMySQLDateTimeString()</b>
  - <b>getUKDate(dte,separator)</b>
  - <b>getUkDateFromDbDateTime(dbDateString)</b>
@@ -907,7 +907,7 @@ let email = getCookie('email')
 
 <hr><br><br>
 
-## <b>setCookie(name,name,name))</b>
+## <b>setCookie(name,cvalue,exdays))</b>
 ### <b>Information</b>
 Fetches a cookie by name.
 
@@ -919,17 +919,17 @@ Fetches a cookie by name.
 	- <b>Default:</b> null
 	- <b>Info:</b> The name of the cookie you want to retrieve.
 
-- <b>name</b>
+- <b>cvalue</b>
 	- <b>Type:</b> String
 	- <b>Required:</b> true
 	- <b>Default:</b> null
-	- <b>Info:</b> The name of the cookie you want to retrieve.
+	- <b>Info:</b> The value you want to put in the cookie.
 
-- <b>name</b>
-	- <b>Type:</b> String
+- <b>exdays</b>
+	- <b>Type:</b> Number
 	- <b>Required:</b> true
 	- <b>Default:</b> null
-	- <b>Info:</b> The name of the cookie you want to retrieve.
+	- <b>Info:</b> The number of days you want the cookie to expire in.
 
 ### <b>Example</b>
 
@@ -943,23 +943,23 @@ setCookie(name,value,lifeInDays)
 
 <hr><br><br>
 
-## <b>getDaysBetween(name,name))</b>
+## <b>getDaysBetween(startDateTime,endDateTime))</b>
 ### <b>Information</b>
 Gets the number of days between 2 dates.
 
 ### <b>Parameters</b>
 
-- <b>name</b>
-	- <b>Type:</b> String
+- <b>startDateTime</b>
+	- <b>Type:</b> Date
 	- <b>Required:</b> true
 	- <b>Default:</b> null
-	- <b>Info:</b> The name of the cookie you want to retrieve.
+	- <b>Info:</b> The start date.
 
-- <b>name</b>
-	- <b>Type:</b> String
+- <b>endDateTime</b>
+	- <b>Type:</b> Date
 	- <b>Required:</b> true
 	- <b>Default:</b> null
-	- <b>Info:</b> The name of the cookie you want to retrieve.
+	- <b>Info:</b> The end date.
 
 ### <b>Returns</b>
 
