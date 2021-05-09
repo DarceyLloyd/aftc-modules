@@ -1257,7 +1257,7 @@ export function attachDebug(no, position, ele) {
         debugContainer.style.left = "5px";
         debugContainer.style.top = "5px";
         debugContainer.style.textAlgin = "left";
-    } else if (position == "tr" || || position == "top right") {
+    } else if (position == "tr" || position == "top right") {
         debugContainer.style.right = "5px";
         debugContainer.style.top = "5px";
         debugContainer.style.textAlgin = "right";
