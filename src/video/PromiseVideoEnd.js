@@ -17,15 +17,10 @@
 //         "then((res)=>{ console.log('video playback complete') })"
 //     ]
 // } JSODOC
-export class PromiseVideoEnd {
-
-    constructor(video) {
-        return new Promise((resolve, reject) => {
-            video.addEventListener('ended', (e) => {
-                resolve(e);
-            });
+export function promiseVideoEnd(video) {
+    return new Promise((resolve, reject) => {
+        video.addEventListener('ended', (e) => {
+            resolve(e);
         });
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-
+    });
 }

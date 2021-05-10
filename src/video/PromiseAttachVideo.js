@@ -23,29 +23,23 @@
 //         "then((res)=>{ console.log('video attached and ready') })"
 //     ]
 // } JSODOC
-export class PromiseAttachVideo {
+export function promiseAttachVideo(video, src) {
+    return new Promise((resolve, reject) => {
 
+        video.addEventListener("loadedmetadata", (e) => {
+            let width = video.videoWidth;
+            let height = video.videoWidth;
+            let duration = video.duration;
+            resolve({
+                width, height, duration
+            });
+        }, false);
 
-    constructor(video,src) {
-        return new Promise((resolve, reject) => {
+        video.addEventListener("error", (e) => {
+            reject(e);
+            throw (e);
+        }, false);
 
-            video.addEventListener("loadedmetadata", (e) => {
-                let width = video.videoWidth;
-                let height = video.videoWidth;
-                let duration = video.duration;
-                resolve({
-                    width,height,duration
-                });
-            }, false);
-
-            video.addEventListener("error", (e) => {
-                reject(e);
-                throw (e);
-            },false);
-
-            video.src = src;
-        });
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-
+        video.src = src;
+    });
 }

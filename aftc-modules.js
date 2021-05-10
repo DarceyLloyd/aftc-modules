@@ -4372,25 +4372,22 @@ export function isEmail (email) {
 //         "then((res)=>{ console.log('video attached and ready') })"
 //     ]
 // } JSODOC
-export class PromiseAttachVideo {
-    constructor(video,src) {
-        return new Promise((resolve, reject) => {
-            video.addEventListener("loadedmetadata", (e) => {
-                let width = video.videoWidth;
-                let height = video.videoWidth;
-                let duration = video.duration;
-                resolve({
-                    width,height,duration
-                });
-            }, false);
-            video.addEventListener("error", (e) => {
-                reject(e);
-                throw (e);
-            },false);
-            video.src = src;
-        });
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
+export function promiseAttachVideo(video, src) {
+    return new Promise((resolve, reject) => {
+        video.addEventListener("loadedmetadata", (e) => {
+            let width = video.videoWidth;
+            let height = video.videoWidth;
+            let duration = video.duration;
+            resolve({
+                width, height, duration
+            });
+        }, false);
+        video.addEventListener("error", (e) => {
+            reject(e);
+            throw (e);
+        }, false);
+        video.src = src;
+    });
 }
 // JSODOC = {
 //     "class": "PromiseVideoEnd",
@@ -4411,14 +4408,10 @@ export class PromiseAttachVideo {
 //         "then((res)=>{ console.log('video playback complete') })"
 //     ]
 // } JSODOC
-export class PromiseVideoEnd {
-    constructor(video) {
-        return new Promise((resolve, reject) => {
-            video.addEventListener('ended', (e) => {
-                resolve(e);
-            });
+export function promiseVideoEnd(video) {
+    return new Promise((resolve, reject) => {
+        video.addEventListener('ended', (e) => {
+            resolve(e);
         });
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
+    });
 }
-
