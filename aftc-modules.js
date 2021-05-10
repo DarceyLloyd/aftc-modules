@@ -474,7 +474,7 @@ export function isInViewport(el) {
 //             "info": "The arguments object from the function or class. Eg: Use arguments[0] from constructor in a class."
 //         },
 //         {
-//             "name": "appArgs",
+//             "name": "obj",
 //             "type": "Object",
 //             "required": true,
 //             "default": null,
@@ -504,7 +504,7 @@ export function isInViewport(el) {
 //         "new MyApp({a:1,b:3,c:4});"
 //     ]
 // } JSODOC
-export function argsToObject(fArgs, appArgs, strict = false) {
+export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
         if (strict === undefined) {
@@ -524,7 +524,7 @@ export function argsToObject(fArgs, appArgs, strict = false) {
             }
         }
     }
-};
+}
 // JSODOC = {
 //     "method": "boolToInt",
 //     "params": [

@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.16</b>
+# <b>AFTC-MODULES v1.7.17</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -530,7 +530,7 @@ Parses arguments to an object of your choice with strict or relaxed assigning fe
 	- <b>Default:</b> null
 	- <b>Info:</b> The arguments object from the function or class. Eg: Use arguments[0] from constructor in a class.
 
-- <b>appArgs</b>
+- <b>obj</b>
 	- <b>Type:</b> Object
 	- <b>Required:</b> true
 	- <b>Default:</b> null

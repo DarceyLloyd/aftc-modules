@@ -9,7 +9,7 @@
 //             "info": "The arguments object from the function or class. Eg: Use arguments[0] from constructor in a class."
 //         },
 //         {
-//             "name": "appArgs",
+//             "name": "obj",
 //             "type": "Object",
 //             "required": true,
 //             "default": null,
@@ -40,10 +40,9 @@
 //     ]
 // } JSODOC
 
-export function argsToObject(fArgs, appArgs, strict = false) {
+export function argsToObject(fArgs, obj, strict) {
     if (fArgs[0] && typeof (fArgs[0]) === "object") {
         let args = fArgs[0];
-
         if (strict === undefined) {
             strict = true;
         }
@@ -60,6 +59,5 @@ export function argsToObject(fArgs, appArgs, strict = false) {
                 }
             }
         }
-
     }
-};
+}
