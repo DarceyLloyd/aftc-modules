@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "class": "PromiseVideoEnd",
+//     "function": "promiseVideoEnd",
 //     "params": [
 //         {
 //             "name": "video",
@@ -13,7 +13,7 @@
 //     },
 //     "info": "Returns a promise resolve on video end.",
 //     "example": [
-//         "new PromiseVideoEnd(vid)",
+//         "promiseVideoEnd(vid)",
 //         "then((res)=>{ console.log('video playback complete') })"
 //     ]
 // } JSODOC

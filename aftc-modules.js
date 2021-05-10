@@ -4348,7 +4348,7 @@ export function isEmail (email) {
 }
 
 // JSODOC = {
-//     "class": "PromiseAttachVideo",
+//     "function": "promiseAttachVideo",
 //     "params": [
 //         {
 //             "name": "video",
@@ -4368,7 +4368,7 @@ export function isEmail (email) {
 //     },
 //     "info": "Attaches a video file to a video and once it's meta data is available it will resolve the promise. Useful for getting width, height and duration.",
 //     "example": [
-//         "new PromiseAttachVideo(vid,vidSrc)",
+//         "promiseAttachVideo(vid,vidSrc)",
 //         "then((res)=>{ console.log('video attached and ready') })"
 //     ]
 // } JSODOC
@@ -4390,7 +4390,7 @@ export function promiseAttachVideo(video, src) {
     });
 }
 // JSODOC = {
-//     "class": "PromiseVideoEnd",
+//     "function": "promiseVideoEnd",
 //     "params": [
 //         {
 //             "name": "video",
@@ -4404,7 +4404,7 @@ export function promiseAttachVideo(video, src) {
 //     },
 //     "info": "Returns a promise resolve on video end.",
 //     "example": [
-//         "new PromiseVideoEnd(vid)",
+//         "promiseVideoEnd(vid)",
 //         "then((res)=>{ console.log('video playback complete') })"
 //     ]
 // } JSODOC

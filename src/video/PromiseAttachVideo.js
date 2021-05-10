@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "class": "PromiseAttachVideo",
+//     "function": "promiseAttachVideo",
 //     "params": [
 //         {
 //             "name": "video",
@@ -19,7 +19,7 @@
 //     },
 //     "info": "Attaches a video file to a video and once it's meta data is available it will resolve the promise. Useful for getting width, height and duration.",
 //     "example": [
-//         "new PromiseAttachVideo(vid,vidSrc)",
+//         "promiseAttachVideo(vid,vidSrc)",
 //         "then((res)=>{ console.log('video attached and ready') })"
 //     ]
 // } JSODOC

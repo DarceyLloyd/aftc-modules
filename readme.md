@@ -152,8 +152,8 @@ npm i aftc-modules
  - <b>ucFirst(s)</b>
  - <b>SwipeHandler(onSwipeLeft,onSwipeRight)</b>
  - <b>isEmail(email)</b>
- - <b>PromiseAttachVideo(video,src)</b>
- - <b>PromiseVideoEnd(video)</b>
+ - <b>NoMethodClassName(video,src)</b>
+ - <b>NoMethodClassName(video)</b>
 
 <hr><br><br>
 
@@ -2991,7 +2991,7 @@ let isValidEmail = isEmail('darcey.lloyd@gmail.com')
 
 <hr><br><br>
 
-## <b>PromiseAttachVideo(video,src))</b>
+## <b>NoMethodClassName(video,src))</b>
 ### <b>Information</b>
 Attaches a video file to a video and once it's meta data is available it will resolve the promise. Useful for getting width, height and duration.
 
@@ -3013,14 +3013,14 @@ Attaches a video file to a video and once it's meta data is available it will re
 ### <b>Example</b>
 
 ```
-new PromiseAttachVideo(vid,vidSrc)
+promiseAttachVideo(vid,vidSrc)
 then((res)=>{ console.log('video attached and ready') })
 ```
 
 
 <hr><br><br>
 
-## <b>PromiseVideoEnd(video))</b>
+## <b>NoMethodClassName(video))</b>
 ### <b>Information</b>
 Returns a promise resolve on video end.
 
@@ -3037,7 +3037,7 @@ Returns a promise resolve on video end.
 ### <b>Example</b>
 
 ```
-new PromiseVideoEnd(vid)
+promiseVideoEnd(vid)
 then((res)=>{ console.log('video playback complete') })
 ```
 
