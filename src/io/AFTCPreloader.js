@@ -1,6 +1,6 @@
 export class AFTCPreloader {
 
-    
+
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -31,33 +31,33 @@ export class AFTCPreloader {
             this.loading = false;
             this.autoAttach = false;
         }
-    
+
         this.XHRLoader = function (parent, threadIndex, queueIndex, src) {
             // log("XHRLoader(parent, threadIndex, queueIndex, src)");
             this.parent = parent;
             this.threadIndex = threadIndex;
             this.queueIndex = queueIndex;
             this.src = src;
-    
+
             this.xhr = new XMLHttpRequest();
             this.xhr.onload = (e) => {
                 this.onLoadHandler(e);
             };
-    
+
             // this.xhr.addEventListener("progress", () => this.updateHandler, false);
             // this.xhr.addEventListener("load", transferComplete);
             // this.xhr.addEventListener("error", transferFailed);
             // this.xhr.addEventListener("abort", transferCanceled);
             // Detect abort, load, or error using the loadend event
             // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
-    
+
             this.xhr.open('GET', this.src, true);
             this.xhr.send();
             this.updateHandler = function (e) {
-    
+
             }
             // - - - - - - - - - - -
-    
+
             this.onLoadHandler = function (e) {
                 // log("XHRLoader.onLoadHandler(): " + this.src);
                 this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
@@ -66,7 +66,7 @@ export class AFTCPreloader {
             // - - - - - - - - - - -
         }
 
-        argsToObject(arguments, this, true);
+        argsToObject(arguments[0], this, true);
 
         this.head = document.getElementsByTagName('head')[0] || document.body;
     }
@@ -143,7 +143,7 @@ export class AFTCPreloader {
 
         xhr.send();
     }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
@@ -261,7 +261,7 @@ export class AFTCPreloader {
     argsToObject(fArgs, obj, strict) {
         if (fArgs[0] && typeof (fArgs[0]) === "object") {
             let args = fArgs[0];
-    
+
             if (strict === undefined) {
                 strict = true;
             }
@@ -278,7 +278,7 @@ export class AFTCPreloader {
                     }
                 }
             }
-    
+
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.19</b>
+# <b>AFTC-MODULES v1.7.23</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -150,7 +150,7 @@ npm i aftc-modules
  - <b>rTrimBy(str,trimBy)</b>
  - <b>trimStringBy(str,trimBy)</b>
  - <b>ucFirst(s)</b>
- - <b>SwipeHandler(onSwipeLeft,onSwipeRight)</b>
+ - <b>SwipeHandler({object})</b>
  - <b>isEmail(email)</b>
  - <b>NoMethodClassName(video,src)</b>
  - <b>NoMethodClassName(video)</b>
@@ -524,13 +524,13 @@ Parses arguments to an object of your choice with strict or relaxed assigning fe
 
 ### <b>Parameters</b>
 
-- <b>fArgs</b>
+- <b>src</b>
 	- <b>Type:</b> Object
 	- <b>Required:</b> true
 	- <b>Default:</b> null
-	- <b>Info:</b> The arguments object from the function or class. Eg: Use arguments[0] from constructor in a class.
+	- <b>Info:</b> The object from the function or class. Eg: Use arguments[0] from constructor in a class. Or any object.
 
-- <b>obj</b>
+- <b>dest</b>
 	- <b>Type:</b> Object
 	- <b>Required:</b> true
 	- <b>Default:</b> null
@@ -2943,26 +2943,47 @@ let ucFirstString = ucFirst('hello')
 
 <hr><br><br>
 
-## <b>SwipeHandler(onSwipeLeft,onSwipeRight))</b>
+## <b>SwipeHandler({object}))</b>
 ### <b>Information</b>
-Swipe handler, currently detects left & right swipes (TODO: Detect up and down).
+Swipe handler, currently detects left & right swipes.
 
 ### <b>Parameters</b>
 
-- <b>onSwipeLeft</b>
-	- <b>Type:</b> Function
-	- <b>Required:</b> true
-	- <b>Info:</b> The function to call when swipe left is detected
+- <b>Object:</b>
 
-- <b>onSwipeRight</b>
-	- <b>Type:</b> Function
-	- <b>Required:</b> true
-	- <b>Info:</b> The function to call when swipe right is detected
+	- <b>onSwipeLeft</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe left is detected.
+	- <b>onSwipeRight</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe right is detected.
+	- <b>horizontalTolerance</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> 50
+		- <b>Info:</b> The distance your finger has to travel on the horizontal axis for a swipe left or right to be detected.
+	- <b>onSwipeUp</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe left is detected.
+	- <b>onSwipeDown</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe right is detected.
+	- <b>verticalTolerance</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> 50
+		- <b>Info:</b> The distance your finger has to travel on the vertical axis for a swipe up or down to be detected.
+	- <b>swipeThrottleTimeout</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> 250
+		- <b>Info:</b> The amount of milliseconds before another swipe event can be fired.
 
 ### <b>Example</b>
 
 ```
-new SwipeHandler(myOnSwipeLeftHandler,myOnSwipeRightHandler)
+new SwipeHandler({config})
 ```
 
 

@@ -2,14 +2,14 @@
 //     "method": "argsToObject",
 //     "params": [
 //         {
-//             "name": "fArgs",
+//             "name": "src",
 //             "type": "Object",
 //             "required": true,
 //             "default": null,
-//             "info": "The arguments object from the function or class. Eg: Use arguments[0] from constructor in a class."
+//             "info": "The object from the function or class. Eg: Use arguments[0] from constructor in a class. Or any object."
 //         },
 //         {
-//             "name": "obj",
+//             "name": "dest",
 //             "type": "Object",
 //             "required": true,
 //             "default": null,
@@ -40,24 +40,16 @@
 //     ]
 // } JSODOC
 
-export function argsToObject(fArgs, obj, strict) {
-    if (fArgs[0] && typeof (fArgs[0]) === "object") {
-        let args = fArgs[0];
-        if (strict === undefined) {
-            strict = true;
-        }
-        if (args && typeof (args) === "object") {
-            for (let key in args) {
-                if (strict) {
-                    if (obj.hasOwnProperty(key)) {
-                        obj[key] = args[key];
-                    } else {
-                        console.warn("argsToObject(): Argument [" + key + "] is not supported.");
-                    }
-                } else {
-                    obj[key] = args[key];
-                }
+export function argsToObject(src, dest, strict = true) {
+    for (let key in src) {
+        if (strict) {
+            if (dest.hasOwnProperty(key)) {
+                dest[key] = src[key];
+            } else {
+                console.warn("argsToObject(): Destination object key doesn't exist [" + key + "].");
             }
+        } else {
+            dest[key] = src[key];
         }
     }
 }
