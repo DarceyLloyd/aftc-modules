@@ -1,7 +1,7 @@
 // JSODOC = {
 //     "method": "getOS",
 //     "returns": {
-//         "type": "String"
+//         "type": "String (Mac OS, iOS, Windows, Android, Linux"
 //     },
 //     "info": "Gets what OS is in use",
 //     "example": [
