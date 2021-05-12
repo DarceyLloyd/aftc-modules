@@ -1420,6 +1420,9 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
 // JSODOC = {
 //     "method": "getIEVersion",
 //     "info": "Gets the version of IE",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "example": [
 //         "let version = getIEVersion()"
 //     ]
@@ -1430,161 +1433,42 @@ export function getIEVersion () {
 }
 // JSODOC = {
 //     "method": "getOS",
-//     "params": [
-//         {
-//             "name": "testAgent",
-//             "type": "String",
-//             "required": false,
-//             "default": null,
-//             "info": "For use if you want to test a user agent string"
-//         }
-//     ],
+//     "returns": {
+//         "type": "String"
+//     },
 //     "info": "Gets what OS is in use",
 //     "example": [
 //         "let os = getOS()"
 //     ]
 // } JSODOC
-export function getOS(testAgent) {
-    let userAgent;
-    if (!testAgent){
-        userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    } else {
-        userAgent = testAgent;
+export function getOS() {
+    var userAgent = window.navigator.userAgent,
+        platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+        os = null;
+    if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'Mac OS';
+    } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+    } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+    } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+    } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
     }
-    userAgent = userAgent.toLowerCase();
-    // Windows Phone must come first because its UA also contains "Android"!
-    if (/windows phone/i.test(userAgent)) {
-        return {
-            os:"windows phone",
-            userAgent:userAgent
-        }
-    }
-    // Samsung Browser detection S8
-    if (/samsungbrowser/i.test(userAgent)) {
-        return {
-            os:"android",
-            userAgent:userAgent
-        }
-    }
-    if (/android/i.test(userAgent)) {
-        return {
-            os:"android",
-            userAgent:userAgent
-        }
-    }
-    if (/ipad|iphone|ipod/i.test(userAgent)) {
-        return {
-            os:"ios",
-            userAgent:userAgent
-        }
-    }
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/win64|win32|win16|win95|win98|windows 2000|windows xp|msie|windows nt 6.3; trident|windows nt|windows/i.test(userAgent)) {
-        return {
-            os:"windows",
-            userAgent:userAgent
-        }
-    }
-    if (/os x/i.test(userAgent)) {
-        return {
-            os:"osx",
-            userAgent:userAgent
-        }
-    }
-    if (/macintosh|osx/i.test(userAgent)) {
-        return {
-            os:"osx",
-            userAgent:userAgent
-        }
-    }
-    if (/openbsd/i.test(userAgent)) {
-        return {
-            os:"open bsd",
-            userAgent:userAgent
-        }
-    }
-    if (/sunos/i.test(userAgent)) {
-        return {
-            os:"sunos",
-            userAgent:userAgent
-        }
-    }
-    if (/crkey/i.test(userAgent)) {
-        return {
-            os:"chromecast",
-            userAgent:userAgent
-        }
-    }
-    if (/appletv/i.test(userAgent)) {
-        return {
-            os:"apple tv",
-            userAgent:userAgent
-        }
-    }
-    if (/wiiu/i.test(userAgent)) {
-        return {
-            os:"nintendo wiiu",
-            userAgent:userAgent
-        }
-    }
-    if (/nintendo 3ds/i.test(userAgent)) {
-        return {
-            os:"nintendo 3ds",
-            userAgent:userAgent
-        }
-    }
-    if (/playstation/i.test(userAgent)) {
-        return {
-            os:"playstation",
-            userAgent:userAgent
-        }
-    }
-    if (/kindle/i.test(userAgent)) {
-        return {
-            os:"amazon kindle",
-            userAgent:userAgent
-        }
-    }
-    if (/ cros /i.test(userAgent)) {
-        return {
-            os:"chrome os",
-            userAgent:userAgent
-        }
-    }
-    if (/ubuntu/i.test(userAgent)) {
-        return {
-            os:"ubuntu",
-            userAgent:userAgent
-        }
-    }
-    if (/googlebot/i.test(userAgent)) {
-        return {
-            os:"google bot",
-            userAgent:userAgent
-        }
-    }
-    if (/bingbot/i.test(userAgent)) {
-        return {
-            os:"bing bot",
-            userAgent:userAgent
-        }
-    }
-    if (/yahoo! slurp/i.test(userAgent)) {
-        return {
-            os:"yahoo bot",
-            userAgent:userAgent
-        }
-    }
-    return {
-        os: false,
-        userAgent:userAgent
-    };
+    return os;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // JSODOC = {
 //     "method": "isAndroid",
 //     "info": "Detects if Android or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isAndroid()"
 //     ]
@@ -1602,6 +1486,9 @@ export function isAndroid(){
 // JSODOC = {
 //     "method": "isChrome",
 //     "info": "Detects if Chrome or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isChrome()"
 //     ]
@@ -1613,6 +1500,11 @@ export function isChrome() {
     var isOpera = typeof window.opr !== "undefined";
     var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
     var isIOSChrome = winNav.userAgent.match("CriOS");
+    // Have to detect edge first as it's now chromium based
+    if (/Edge|Edg\/\d./i.test(navigator.userAgent)) {
+    // if (/Edge\/\d./i.test(navigator.userAgent)) {
+        return false;
+    }
     if (isIOSChrome) {
         // is Google Chrome on IOS
         return true;
@@ -1633,6 +1525,9 @@ export function isChrome() {
 // JSODOC = {
 //     "method": "isEdge",
 //     "info": "Detects if Edge or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isEdge()"
 //     ]
@@ -1640,7 +1535,7 @@ export function isChrome() {
 export function isEdge () {
     //let isEdge = !isIE && !!window.StyleMedia; // Edge 20+
     let edge = false;
-    if (/Edge\/\d./i.test(navigator.userAgent)) {
+    if (/Edge|Edg\/\d./i.test(navigator.userAgent)) {
         edge = true;
     }
     return edge;
@@ -1660,6 +1555,9 @@ export function isFireFox () {
 // JSODOC = {
 //     "method": "isIE",
 //     "info": "Detects if IE or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isIE()"
 //     ]
@@ -1675,30 +1573,28 @@ export function isIE () {
 // JSODOC = {
 //     "method": "isIOS",
 //     "info": "Detects if iOS or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isIOS()"
 //     ]
 // } JSODOC
 export function isIOS() {
-    let iDevices = [
-        'iPad Simulator',
-        'iPhone Simulator',
-        'iPod Simulator',
-        'iPad',
-        'iPhone',
-        'iPod'
-    ];
-    if (!!navigator.platform) {
-        while (iDevices.length) {
-            if (navigator.platform === iDevices.pop()){ return true; }
-        }
+    let ua = navigator.userAgent;
+    if (/iPad Simulator|iPhone Simulator|iPod Simulator|iPad|iPod|iPhone/i.test(ua)) {
+        return true;
+    } else {
+        return false;
     }
-    return false;
 }
 
 // JSODOC = {
 //     "method": "isMobile",
 //     "info": "Detects if mobile or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let mobile = isMobile()"
 //     ]
@@ -1719,6 +1615,9 @@ export function isMobile(){
 // JSODOC = {
 //     "method": "isOpera",
 //     "info": "Detects if Opera or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isOpera()"
 //     ]
@@ -1733,6 +1632,9 @@ export function isOpera() {
 // JSODOC = {
 //     "method": "isSafari",
 //     "info": "Detects if Safari or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isSafari()"
 //     ]

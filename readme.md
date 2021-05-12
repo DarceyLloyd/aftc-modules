@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.23</b>
+# <b>AFTC-MODULES v1.7.24</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -82,7 +82,7 @@ npm i aftc-modules
  - <b>log(arg)</b>
  - <b>logTo(elementOrId,msg,append,endOfLine)</b>
  - <b>getIEVersion()</b>
- - <b>getOS(testAgent)</b>
+ - <b>getOS()</b>
  - <b>isAndroid()</b>
  - <b>isChrome()</b>
  - <b>isEdge()</b>
@@ -1267,6 +1267,9 @@ logTo(elementOrId,msg,true)
 ### <b>Information</b>
 Gets the version of IE
 
+### <b>Returns</b>
+
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -1276,18 +1279,13 @@ let version = getIEVersion()
 
 <hr><br><br>
 
-## <b>getOS(testAgent))</b>
+## <b>getOS())</b>
 ### <b>Information</b>
 Gets what OS is in use
 
-### <b>Parameters</b>
+### <b>Returns</b>
 
-- <b>testAgent</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> false
-	- <b>Default:</b> null
-	- <b>Info:</b> For use if you want to test a user agent string
-
+- <b>Type: </b>String
 ### <b>Example</b>
 
 ```
@@ -1301,6 +1299,9 @@ let os = getOS()
 ### <b>Information</b>
 Detects if Android or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1314,6 +1315,9 @@ let test = isAndroid()
 ### <b>Information</b>
 Detects if Chrome or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1327,6 +1331,9 @@ let test = isChrome()
 ### <b>Information</b>
 Detects if Edge or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1353,6 +1360,9 @@ let test = isFireFox()
 ### <b>Information</b>
 Detects if IE or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1366,6 +1376,9 @@ let test = isIE()
 ### <b>Information</b>
 Detects if iOS or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1379,6 +1392,9 @@ let test = isIOS()
 ### <b>Information</b>
 Detects if mobile or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1392,6 +1408,9 @@ let mobile = isMobile()
 ### <b>Information</b>
 Detects if Opera or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```
@@ -1405,6 +1424,9 @@ let test = isOpera()
 ### <b>Information</b>
 Detects if Safari or not.
 
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
 ### <b>Example</b>
 
 ```

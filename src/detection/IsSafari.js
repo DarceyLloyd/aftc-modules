@@ -1,6 +1,9 @@
 // JSODOC = {
 //     "method": "isSafari",
 //     "info": "Detects if Safari or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isSafari()"
 //     ]

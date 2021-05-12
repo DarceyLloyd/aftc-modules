@@ -1,6 +1,9 @@
 // JSODOC = {
 //     "method": "isChrome",
 //     "info": "Detects if Chrome or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isChrome()"
 //     ]
@@ -13,6 +16,12 @@ export function isChrome() {
     var isOpera = typeof window.opr !== "undefined";
     var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
     var isIOSChrome = winNav.userAgent.match("CriOS");
+
+    // Have to detect edge first as it's now chromium based
+    if (/Edge|Edg\/\d./i.test(navigator.userAgent)) {
+    // if (/Edge\/\d./i.test(navigator.userAgent)) {
+        return false;
+    }
 
     if (isIOSChrome) {
         // is Google Chrome on IOS

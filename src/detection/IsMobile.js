@@ -1,6 +1,9 @@
 // JSODOC = {
 //     "method": "isMobile",
 //     "info": "Detects if mobile or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let mobile = isMobile()"
 //     ]

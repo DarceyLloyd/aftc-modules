@@ -1,6 +1,9 @@
 // JSODOC = {
 //     "method": "getIEVersion",
 //     "info": "Gets the version of IE",
+//     "returns": {
+//         "type": "String"
+//     },
 //     "example": [
 //         "let version = getIEVersion()"
 //     ]

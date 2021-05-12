@@ -1,6 +1,9 @@
 // JSODOC = {
 //     "method": "isIE",
 //     "info": "Detects if IE or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isIE()"
 //     ]

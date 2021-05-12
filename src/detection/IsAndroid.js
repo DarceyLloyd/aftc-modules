@@ -1,6 +1,9 @@
 // JSODOC = {
 //     "method": "isAndroid",
 //     "info": "Detects if Android or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isAndroid()"
 //     ]

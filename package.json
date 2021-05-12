@@ -1,6 +1,6 @@
 {
   "name": "aftc-modules",
-  "version": "1.7.23",
+  "version": "1.7.24",
   "description": "A collection of useful utilities / functions.",
   "main": "aftc-modules.js",
   "scripts": {

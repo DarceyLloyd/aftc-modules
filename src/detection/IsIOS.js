@@ -1,26 +1,20 @@
 // JSODOC = {
 //     "method": "isIOS",
 //     "info": "Detects if iOS or not.",
+//     "returns": {
+//         "type": "Boolean"
+//     },
 //     "example": [
 //         "let test = isIOS()"
 //     ]
 // } JSODOC
 
 export function isIOS() {
-    let iDevices = [
-        'iPad Simulator',
-        'iPhone Simulator',
-        'iPod Simulator',
-        'iPad',
-        'iPhone',
-        'iPod'
-    ];
+    let ua = navigator.userAgent;
 
-    if (!!navigator.platform) {
-        while (iDevices.length) {
-            if (navigator.platform === iDevices.pop()){ return true; }
-        }
+    if (/iPad Simulator|iPhone Simulator|iPod Simulator|iPad|iPod|iPhone/i.test(ua)) {
+        return true;
+    } else {
+        return false;
     }
-
-    return false;
 }
