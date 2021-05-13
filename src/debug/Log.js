@@ -58,5 +58,5 @@ export function logDisable() {
 // } JSODOC
 
 export function logEnable() {
-    window.aftcLogEnabled = false;
+    window.aftcLogEnabled = true;
 }
