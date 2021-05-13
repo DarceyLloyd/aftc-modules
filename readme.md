@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.25</b>
+# <b>AFTC-MODULES v1.7.30</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -80,14 +80,14 @@ npm i aftc-modules
  - <b>attachDebug(no,position,ele)</b>
  - <b>debugTo(index,str)</b>
  - <b>log(arg)</b>
+ - <b>logDisable()</b>
+ - <b>logEnable()</b>
  - <b>logTo(elementOrId,msg,append,endOfLine)</b>
- - <b>getIEVersion()</b>
  - <b>getOS()</b>
  - <b>isAndroid()</b>
  - <b>isChrome()</b>
  - <b>isEdge()</b>
  - <b>isFireFox()</b>
- - <b>isIE()</b>
  - <b>isIOS()</b>
  - <b>isMobile()</b>
  - <b>isOpera()</b>
@@ -1224,6 +1224,38 @@ log(`a = ${a}`)
 
 <hr><br><br>
 
+## <b>logDisable())</b>
+### <b>Information</b>
+Disable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.
+
+### <b>Example</b>
+
+```
+log('You will see this in console')
+logDisable()
+log('You wont see this in console')
+```
+
+
+<hr><br><br>
+
+## <b>logEnable())</b>
+### <b>Information</b>
+Enable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.
+
+### <b>Example</b>
+
+```
+log('You will see this in console')
+logDisable()
+log('You wont see this in console')
+logEnable()
+log('You will see this in console')
+```
+
+
+<hr><br><br>
+
 ## <b>logTo(elementOrId,msg,append,endOfLine))</b>
 ### <b>Information</b>
 Appends a string to an element, with or without a < BR > tag.
@@ -1258,22 +1290,6 @@ Appends a string to an element, with or without a < BR > tag.
 
 ```
 logTo(elementOrId,msg,true)
-```
-
-
-<hr><br><br>
-
-## <b>getIEVersion())</b>
-### <b>Information</b>
-Gets the version of IE
-
-### <b>Returns</b>
-
-- <b>Type: </b>String
-### <b>Example</b>
-
-```
-let version = getIEVersion()
 ```
 
 
@@ -1351,22 +1367,6 @@ Detects if FireFox or not.
 
 ```
 let test = isFireFox()
-```
-
-
-<hr><br><br>
-
-## <b>isIE())</b>
-### <b>Information</b>
-Detects if IE or not.
-
-### <b>Returns</b>
-
-- <b>Type: </b>Boolean
-### <b>Example</b>
-
-```
-let test = isIE()
 ```
 
 

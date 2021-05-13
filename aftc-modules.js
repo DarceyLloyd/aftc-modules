@@ -1344,7 +1344,38 @@ export function debugTo(index, str) {
 //     ]
 // } JSODOC
 export function log(arg) {
-    console.log(arg);
+    if (window.aftcLogEnabled === undefined){
+        window.aftcLogEnabled = true;
+    }
+    if (window.aftcLogEnabled){
+        console.log(arg);
+    }
+}
+// JSODOC = {
+//     "method": "logDisable",
+//     "info": "Disable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.",
+//     "example": [
+//         "log('You will see this in console')",
+//         "logDisable()",
+//         "log('You wont see this in console')"
+//     ]
+// } JSODOC
+export function logDisable() {
+    window.aftcLogEnabled = false;
+}
+// JSODOC = {
+//     "method": "logEnable",
+//     "info": "Enable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.",
+//     "example": [
+//         "log('You will see this in console')",
+//         "logDisable()",
+//         "log('You wont see this in console')",
+//         "logEnable()",
+//         "log('You will see this in console')"
+//     ]
+// } JSODOC
+export function logEnable() {
+    window.aftcLogEnabled = false;
 }
 
 // JSODOC = {
@@ -1417,20 +1448,6 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
     }
 }
 
-// JSODOC = {
-//     "method": "getIEVersion",
-//     "info": "Gets the version of IE",
-//     "returns": {
-//         "type": "String"
-//     },
-//     "example": [
-//         "let version = getIEVersion()"
-//     ]
-// } JSODOC
-export function getIEVersion () {
-    let match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
-    return match ? parseInt(match[1]) : undefined;
-}
 // JSODOC = {
 //     "method": "getOS",
 //     "returns": {
@@ -1552,24 +1569,6 @@ export function isFireFox () {
     // return is_firefox;
     return (typeof InstallTrigger !== 'undefined');
 }
-// JSODOC = {
-//     "method": "isIE",
-//     "info": "Detects if IE or not.",
-//     "returns": {
-//         "type": "Boolean"
-//     },
-//     "example": [
-//         "let test = isIE()"
-//     ]
-// } JSODOC
-export function isIE () {
-    // let is_ie = navigator.userAgent.toLowerCase().indexOf('MSIE') > -1;
-    // return is_ie;
-    // params.isIE = navigator.userAgent.match(/MSIE|Trident/);
-    // params.isIE = document.documentMode; // IS9 and above
-    return /*@cc_on!@*/false || !!document.documentMode; // Internet Explorer 6-11
-}
-
 // JSODOC = {
 //     "method": "isIOS",
 //     "info": "Detects if iOS or not.",

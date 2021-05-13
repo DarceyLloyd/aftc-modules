@@ -19,5 +19,44 @@
 // } JSODOC
 
 export function log(arg) {
-    console.log(arg);
+    if (window.aftcLogEnabled === undefined){
+        window.aftcLogEnabled = true;
+    }
+
+    if (window.aftcLogEnabled){
+        console.log(arg);
+    }
+}
+
+
+// JSODOC = {
+//     "method": "logDisable",
+//     "info": "Disable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.",
+//     "example": [
+//         "log('You will see this in console')",
+//         "logDisable()",
+//         "log('You wont see this in console')"
+//     ]
+// } JSODOC
+
+export function logDisable() {
+    window.aftcLogEnabled = false;
+}
+
+
+
+// JSODOC = {
+//     "method": "logEnable",
+//     "info": "Enable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.",
+//     "example": [
+//         "log('You will see this in console')",
+//         "logDisable()",
+//         "log('You wont see this in console')",
+//         "logEnable()",
+//         "log('You will see this in console')"
+//     ]
+// } JSODOC
+
+export function logEnable() {
+    window.aftcLogEnabled = false;
 }
