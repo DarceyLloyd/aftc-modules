@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.7.31</b>
+# <b>AFTC-MODULES v1.8.0</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -102,6 +102,7 @@ npm i aftc-modules
  - <b>setHTML(elementOrId,str,mode)</b>
  - <b>onReady(fn)</b>
  - <b>wordCountFilter(str,maxWords)</b>
+ - <b>loadAndAttachImage(imgElement,src)</b>
  - <b>loadCss(href,onComplete)</b>
  - <b>loadJson(url,onComplete,onError)</b>
  - <b>loadScript(src,onComplete,onProgress)</b>
@@ -1696,6 +1697,38 @@ Takes a string, checks it for number of words and returns the string but cuts it
 
 ```
 let limitedSentence = wordCountFilter(source,20)
+```
+
+
+<hr><br><br>
+
+## <b>loadAndAttachImage(imgElement,src))</b>
+### <b>Information</b>
+Loads an image file and auto attaches it to the head section of the document.
+
+### <b>Parameters</b>
+
+- <b>imgElement</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> Image element to load the image into.
+
+- <b>src</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
+
+### <b>Returns</b>
+
+- <b>Type: </b>Promise
+### <b>Example</b>
+
+```
+loadAndAttachImage(imgElement1,'./assets/images/products/001.jpg')
+.then(()=>{ log('loaded and attached'); })
+.catch((e)=>{ log(e); })
 ```
 
 
