@@ -4353,7 +4353,7 @@ export function isEmail (email) {
 }
 
 // JSODOC = {
-//     "function": "promiseAttachVideo",
+//     "method": "promiseAttachVideo",
 //     "params": [
 //         {
 //             "name": "video",
@@ -4395,7 +4395,7 @@ export function promiseAttachVideo(video, src) {
     });
 }
 // JSODOC = {
-//     "function": "promiseVideoEnd",
+//     "method": "promiseVideoEnd",
 //     "params": [
 //         {
 //             "name": "video",

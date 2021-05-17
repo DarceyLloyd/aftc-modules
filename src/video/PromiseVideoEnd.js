@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "function": "promiseVideoEnd",
+//     "method": "promiseVideoEnd",
 //     "params": [
 //         {
 //             "name": "video",

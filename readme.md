@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.8.0</b>
+# <b>AFTC-MODULES v1.8.2</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -153,8 +153,8 @@ npm i aftc-modules
  - <b>ucFirst(s)</b>
  - <b>SwipeHandler({object})</b>
  - <b>isEmail(email)</b>
- - <b>NoMethodClassName(video,src)</b>
- - <b>NoMethodClassName(video)</b>
+ - <b>promiseAttachVideo(video,src)</b>
+ - <b>promiseVideoEnd(video)</b>
 
 <hr><br><br>
 
@@ -3067,7 +3067,7 @@ let isValidEmail = isEmail('darcey.lloyd@gmail.com')
 
 <hr><br><br>
 
-## <b>NoMethodClassName(video,src))</b>
+## <b>promiseAttachVideo(video,src))</b>
 ### <b>Information</b>
 Attaches a video file to a video and once it's meta data is available it will resolve the promise. Useful for getting width, height and duration.
 
@@ -3096,7 +3096,7 @@ then((res)=>{ console.log('video attached and ready') })
 
 <hr><br><br>
 
-## <b>NoMethodClassName(video))</b>
+## <b>promiseVideoEnd(video))</b>
 ### <b>Information</b>
 Returns a promise resolve on video end.
 
