@@ -4169,6 +4169,8 @@ export function ucFirst(s) {
 //             "def": [
 //                 { "name": "onSwipeLeft", "type": "Function", "required": false, "default": false, "info": "The function you want to call when a swipe left is detected." },
 //                 { "name": "onSwipeRight", "type": "Function", "required": false, "default": false, "info": "The function you want to call when a swipe right is detected." },
+//                 { "name": "onSwipeUp", "type": "Function", "required": false, "default": false, "info": "The function you want to call when a swipe up is detected." },
+//                 { "name": "onSwipeDown", "type": "Function", "required": false, "default": false, "info": "The function you want to call when a swipe down is detected." },
 //                 { "name": "horizontalTolerance", "type": "Number", "required": false, "default": 50, "info": "The distance your finger has to travel on the horizontal axis for a swipe left or right to be detected." },
 //                 { "name": "onSwipeUp", "type": "Function", "required": false, "default": false, "info": "The function you want to call when a swipe left is detected." },
 //                 { "name": "onSwipeDown", "type": "Function", "required": false, "default": false, "info": "The function you want to call when a swipe right is detected." },
@@ -4190,6 +4192,8 @@ export class SwipeHandler {
         this.args = {
             onSwipeLeft: false,
             onSwipeRight: false,
+            onSwipeUp: false,
+            onSwipeDown: false,
             horizontalTolerance: 50,
             verticalTolerance: 50,
             swipeThrottleTimeout: 250
@@ -4329,6 +4333,7 @@ export class SwipeHandler {
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
+
 // JSODOC = {
 //     "method": "isEmail",
 //     "params": [

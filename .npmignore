@@ -3,6 +3,7 @@
 .bat
 .sh
 .md
+.bak
 backups
 beta
 tests
@@ -11,4 +12,3 @@ install.bat
 readme.md
 template.md
 node_modules
-#src
