@@ -18,7 +18,7 @@
 //     ]
 // } JSODOC
 
-export function getUkDateTimeFromDbDateTime  (dbDateTimeString) {
+export function getUKDateTimeFromDbDateTime  (dbDateTimeString) {
     // "2016-04-08 21:11:59" to UK date time
     let DateTime = input.split(" ");
     let DateParts = DateTime[0].split("-");

@@ -29,7 +29,7 @@
 //         "let found = getStringsBetween2(sourceString,'start-marker','end-marker')"
 //     ]
 // } JSODOC
-export function getStringsBetween2(str, start, end) {
+export function getStringBetween2(str, start, end) {
     let orig = str;
     let results = [];
     // log(orig);

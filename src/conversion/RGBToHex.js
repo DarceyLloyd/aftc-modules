@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "method": "RGBToHex",
+//     "method": "rgbToHex",
 //     "params": [
 //         {
 //             "name": "r",
@@ -32,6 +32,6 @@
 //     ]
 // } JSODOC
 
-export function RGBToHex (r, g, b) {
+export function rgbToHex (r, g, b) {
     return ((r << 16) | (g << 8) | b).toString(16);
 }

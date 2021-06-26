@@ -15,7 +15,7 @@
 //     ]
 // } JSODOC
 
-export function isDOM(obj) {
+export function isDom(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }
 

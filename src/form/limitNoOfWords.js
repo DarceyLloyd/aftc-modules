@@ -27,7 +27,7 @@
 //     ]
 // } JSODOC
 
-export function wordCountFilter(str, maxWords) {
+export function limitNoOfWords(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
     let output = "";

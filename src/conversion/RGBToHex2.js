@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "method": "RGBToHex2",
+//     "method": "rgbToHex2",
 //     "params": [
 //         {
 //             "name": "r",
@@ -28,11 +28,11 @@
 //     },
 //     "info": "Converts an RGB value to a hex color value (Method 2).",
 //     "example": [
-//         "let hex = RGBToHex2(255,100,55);"
+//         "let hex = rgbToHex2(255,100,55);"
 //     ]
 // } JSODOC
 
-export function RGBToHex2 (r, g, b) {
+export function rgbToHex2 (r, g, b) {
     function getHex(c) {
         let hex = c.toString(16);
         return hex.length === 1 ? "0" + hex : hex;

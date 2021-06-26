@@ -47,14 +47,14 @@ import { getUKDate } from "aftc-modules/src/datetime/getUKDate.js";
 import { getUKDateFromDbDateTime } from "aftc-modules/src/datetime/getUKDateFromDbDateTime.js";
 import { getUKDateTimeFromDbDateTime } from "aftc-modules/src/datetime/getUKDateTimeFromDbDateTime.js";
 import { getUSDate } from "aftc-modules/src/datetime/getUSDate.js";
-import { getWeightedRandoms } from "aftc-modules/src/math/getWeightedRandoms.js";
+import { getWeightedRandom } from "aftc-modules/src/math/getWeightedRandom.js";
 import { getWordCount } from "aftc-modules/src/string/getWordCount.js";
-import { getWordsFromString } from "aftc-modules/src/form/getWordsFromString.js";
+import { limitNoOfWords } from "aftc-modules/src/form/limitNoOfWords.js";
 import { hasClass } from "aftc-modules/src/element/hasClass.js";
-import { hexToRGB } from "aftc-modules/src/conversion/hexToRGB.js";
+import { hexToRgb } from "aftc-modules/src/conversion/hexToRgb.js";
 import { inertiaTo } from "aftc-modules/src/animation/inertiaTo.js";
 import { inString } from "aftc-modules/src/string/inString.js";
-import { isAlphanumeric } from "aftc-modules/src/misc/isAlphanumeric.js";
+import { isAlphaNumeric } from "aftc-modules/src/misc/isAlphaNumeric.js";
 import { isAndroid } from "aftc-modules/src/detection/isAndroid.js";
 import { isArray } from "aftc-modules/src/misc/isArray.js";
 import { isBool } from "aftc-modules/src/misc/isBool.js";
@@ -67,7 +67,7 @@ import { isElement2 } from "aftc-modules/src/dom/isElement2.js";
 import { isEmail } from "aftc-modules/src/validation/isEmail.js";
 import { isEven } from "aftc-modules/src/math/isEven.js";
 import { isFireFox } from "aftc-modules/src/detection/isFireFox.js";
-import { IsInArray } from "aftc-modules/src/array/IsInArray.js";
+import { isInArray } from "aftc-modules/src/array/isInArray.js";
 import { isInString } from "aftc-modules/src/string/isInString.js";
 import { isInViewport } from "aftc-modules/src/browser/isInViewport.js";
 import { isIOS } from "aftc-modules/src/detection/isIOS.js";
@@ -77,7 +77,7 @@ import { isNumeric } from "aftc-modules/src/misc/isNumeric.js";
 import { isOdd } from "aftc-modules/src/math/isOdd.js";
 import { isOpera } from "aftc-modules/src/detection/isOpera.js";
 import { isSafari } from "aftc-modules/src/detection/isSafari.js";
-import { IsStringInArray } from "aftc-modules/src/array/IsStringInArray.js";
+import { isStringInArray } from "aftc-modules/src/array/IsStringInArray.js";
 import { loadAndAttachImage } from "aftc-modules/src/io/loadAndAttachImage.js";
 import { loadCss } from "aftc-modules/src/io/loadCss.js";
 import { loadJson } from "aftc-modules/src/io/loadJson.js";
@@ -167,14 +167,14 @@ export {
     getUKDateFromDbDateTime,
     getUKDateTimeFromDbDateTime,
     getUSDate,
-    getWeightedRandoms,
+    getWeightedRandom,
     getWordCount,
-    getWordsFromString,
+    limitNoOfWords,
     hasClass,
-    hexToRGB,
+    hexToRgb,
     inertiaTo,
     inString,
-    isAlphanumeric,
+    isAlphaNumeric,
     isAndroid,
     isArray,
     isBool,
@@ -187,7 +187,7 @@ export {
     isEmail,
     isEven,
     isFireFox,
-    IsInArray,
+    isInArray,
     isInString,
     isInViewport,
     isIOS,
@@ -197,7 +197,7 @@ export {
     isOdd,
     isOpera,
     isSafari,
-    IsStringInArray,
+    isStringInArray,
     loadAndAttachImage,
     loadCss,
     loadJson,

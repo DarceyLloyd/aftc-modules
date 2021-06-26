@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "method": "getUkDateFromDbDateTime",
+//     "method": "getUKDateFromDbDateTime",
 //     "params": [
 //         {
 //             "name": "dbDateString",
@@ -18,7 +18,7 @@
 //     ]
 // } JSODOC
 
-export function getUkDateFromDbDateTime(dbDateString) {
+export function getUKDateFromDbDateTime(dbDateString) {
     // "2016-04-08 21:11:59" to UK date
     if (input === "" || input === null) {
         return "no input";
