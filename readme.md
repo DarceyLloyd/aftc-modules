@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.9.0</b>
+# <b>AFTC-MODULES v1.9.1</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -66,15 +66,15 @@ npm i aftc-modules
  - <b>numToHex(num)</b>
  - <b>objectToObject({object},{object},strict)</b>
  - <b>radToDeg(input)</b>
- - <b>RGBToHex(r,g,b)</b>
- - <b>RGBToHex2(r,g,b)</b>
+ - <b>rgbToHex(r,g,b)</b>
+ - <b>rgbToHex2(r,g,b)</b>
  - <b>stringToBool(str)</b>
  - <b>getCookie(name)</b>
  - <b>setCookie(name,cvalue,exdays)</b>
  - <b>getDaysBetween(startDateTime,endDateTime)</b>
  - <b>getMySQLDateTimeString()</b>
  - <b>getUKDate(dte,separator)</b>
- - <b>getUkDateFromDbDateTime(dbDateString)</b>
+ - <b>getUKDateFromDbDateTime(dbDateString)</b>
  - <b>getUkDateTimeFromDbDateTime(dbDateTimeString)</b>
  - <b>getUSDate(dte,separator)</b>
  - <b>appendTo(elementOrId,msg,endOfLine)</b>
@@ -813,7 +813,7 @@ let rad = radToDeg(deg)
 
 <hr><br><br>
 
-## <b>RGBToHex(r,g,b))</b>
+## <b>rgbToHex(r,g,b))</b>
 ### <b>Information</b>
 Converts an RGB value to a hex color value.
 
@@ -849,7 +849,7 @@ let hex = RGBToHex(255,100,55);
 
 <hr><br><br>
 
-## <b>RGBToHex2(r,g,b))</b>
+## <b>rgbToHex2(r,g,b))</b>
 ### <b>Information</b>
 Converts an RGB value to a hex color value (Method 2).
 
@@ -879,7 +879,7 @@ Converts an RGB value to a hex color value (Method 2).
 ### <b>Example</b>
 
 ```
-let hex = RGBToHex2(255,100,55);
+let hex = rgbToHex2(255,100,55);
 ```
 
 
@@ -1054,7 +1054,7 @@ let ukDate = getUKDate(new Date(),'-')
 
 <hr><br><br>
 
-## <b>getUkDateFromDbDateTime(dbDateString))</b>
+## <b>getUKDateFromDbDateTime(dbDateString))</b>
 ### <b>Information</b>
 Gets a UK formatted date string from a supplied db date string.
 

@@ -796,7 +796,7 @@ export function objectToObject(src, dest, strict = true) {
 // } JSODOC
 export function radToDeg(input) { return input * (180 / Math.PI); }
 // JSODOC = {
-//     "method": "RGBToHex",
+//     "method": "rgbToHex",
 //     "params": [
 //         {
 //             "name": "r",
@@ -828,12 +828,12 @@ export function radToDeg(input) { return input * (180 / Math.PI); }
 //         "let hex = RGBToHex(255,100,55);"
 //     ]
 // } JSODOC
-export function RGBToHex (r, g, b) {
+export function rgbToHex (r, g, b) {
     return ((r << 16) | (g << 8) | b).toString(16);
 }
 
 // JSODOC = {
-//     "method": "RGBToHex2",
+//     "method": "rgbToHex2",
 //     "params": [
 //         {
 //             "name": "r",
@@ -862,10 +862,10 @@ export function RGBToHex (r, g, b) {
 //     },
 //     "info": "Converts an RGB value to a hex color value (Method 2).",
 //     "example": [
-//         "let hex = RGBToHex2(255,100,55);"
+//         "let hex = rgbToHex2(255,100,55);"
 //     ]
 // } JSODOC
-export function RGBToHex2 (r, g, b) {
+export function rgbToHex2 (r, g, b) {
     function getHex(c) {
         let hex = c.toString(16);
         return hex.length === 1 ? "0" + hex : hex;
@@ -1097,7 +1097,7 @@ export function getUKDate(dte,separator="-"){
     return output;
 }
 // JSODOC = {
-//     "method": "getUkDateFromDbDateTime",
+//     "method": "getUKDateFromDbDateTime",
 //     "params": [
 //         {
 //             "name": "dbDateString",
@@ -1115,7 +1115,7 @@ export function getUKDate(dte,separator="-"){
 //         "let ukDate = getUkDateFromDbDateTime(dbDateString)"
 //     ]
 // } JSODOC
-export function getUkDateFromDbDateTime(dbDateString) {
+export function getUKDateFromDbDateTime(dbDateString) {
     // "2016-04-08 21:11:59" to UK date
     if (input === "" || input === null) {
         return "no input";
@@ -1144,7 +1144,7 @@ export function getUkDateFromDbDateTime(dbDateString) {
 //         "let ukDate = getUkDateTimeFromDbDateTime(dbDateTimeString)"
 //     ]
 // } JSODOC
-export function getUkDateTimeFromDbDateTime  (dbDateTimeString) {
+export function getUKDateTimeFromDbDateTime  (dbDateTimeString) {
     // "2016-04-08 21:11:59" to UK date time
     let DateTime = input.split(" ");
     let DateParts = DateTime[0].split("-");
@@ -1769,7 +1769,7 @@ export function getElementPos(el) {
 //         "let result = isDOM(myElement)"
 //     ]
 // } JSODOC
-export function isDOM(obj) {
+export function isDom(obj) {
     // this works for newer browsers
     try { return obj instanceof HTMLElement; }
         // this works for older browsers
@@ -2022,7 +2022,7 @@ export function onReady(fn) {
 //         "let limitedSentence = wordCountFilter(source,20)"
 //     ]
 // } JSODOC
-export function wordCountFilter(str, maxWords) {
+export function limitNoOfWords(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
     let re = new RegExp("^\\s*\\S+(?:\\s+\\S+){0," + (maxWords - 1) + "}");
     let output = "";
@@ -2979,7 +2979,7 @@ export function getRandomFloat(min, max) {
 export function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-export function getRandomThatsNot(min,max,not){
+export function getRandomThatIsNot(min,max,not){
     let r = not; let lim = 100; let runs = 0;
     while (r===not && runs < lim){
         runs++;
@@ -2991,14 +2991,6 @@ export function getRandomThatsNot(min,max,not){
         return r;
     }
 }
-/**
- * @function: getRandomThatsNot(min,max,not)
- * @desc: returns a random int betwen your specified min and max values but never the not value
- * @param min number: the minimum your random number is allowed to go
- * @param max number: the maximum your random number is allowed to go
- * @alias: getRandom
- * @link: https://codepen.io/AllForTheCode/pen/yEBZNq
- */
 // JSODOC = {
 //     "method": "getRange",
 //     "params": [
@@ -3786,7 +3778,7 @@ export function getStringBetween(source, start, end) {
 //         "let found = getStringsBetween2(sourceString,'start-marker','end-marker')"
 //     ]
 // } JSODOC
-export function getStringsBetween2(str, start, end) {
+export function getStringBetween2(str, start, end) {
     let orig = str;
     let results = [];
     // log(orig);
