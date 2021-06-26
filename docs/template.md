@@ -15,11 +15,11 @@ Any and all donations to help keep active development and the lights on are more
 
 
 
-
-## <b>CDN</b>
-- https://cdn.jsdelivr.net/npm/aftc-modules@latest/dist/aftc-module.js
+## <b>Latest changes</b>
+- Changes to assist packaging tools for better tree shacking, you should now reference the function/class from the src directory and not from aftc-modules.js anymore.
 
 <hr><br><br>
+
 
 
 

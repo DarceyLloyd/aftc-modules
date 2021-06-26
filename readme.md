@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.8.7</b>
+# <b>AFTC-MODULES v1.9.0</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions.
@@ -15,11 +15,11 @@ Any and all donations to help keep active development and the lights on are more
 
 
 
-
-## <b>CDN</b>
-- https://cdn.jsdelivr.net/npm/aftc-modules@latest/dist/aftc-module.js
+## <b>Latest changes</b>
+- Changes to assist packaging tools for better tree shacking, you should now reference the function/class from the src directory and not from aftc-modules.js anymore.
 
 <hr><br><br>
+
 
 
 
@@ -41,6 +41,7 @@ npm i aftc-modules
 ## <b>Available Methods & Class's:</b>
 
 
+ - <b>inertiaTo(current,target,amount)</b>
  - <b>arrayClear(arr)</b>
  - <b>arrayContains(needle,haystack)</b>
  - <b>arrayEmpty(arr)</b>
@@ -114,7 +115,6 @@ npm i aftc-modules
  - <b>getRandomFloat(min,max)</b>
  - <b>getRandomInt(min,max)</b>
  - <b>getRange(value 1,Value 2)</b>
- - <b>inertiaTo(current,target,amount)</b>
  - <b>isEven(n)</b>
  - <b>isOdd(n)</b>
  - <b>normaliseRange(min,max,v)</b>
@@ -166,6 +166,36 @@ npm i aftc-modules
 
 
 # <b>Documentation</b>
+
+## <b>inertiaTo(current,target,amount))</b>
+### <b>Information</b>
+Calculates the target value of inertia in a loop/requestAnimationFrame from 1 value to another at speed.
+
+### <b>Parameters</b>
+
+- <b>current</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Current value.
+
+- <b>target</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Value to reach.
+
+- <b>amount</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Inertia speed (dec/inc speed).
+
+### <b>Example</b>
+
+```
+let newX = inertiaTo(curX,targetX,0.5)
+```
+
+
+<hr><br><br>
 
 ## <b>arrayClear(arr))</b>
 ### <b>Information</b>
@@ -2032,36 +2062,6 @@ Returns absolute value of the range between 2 numbers.
 
 ```
 let range = getRange(0,100)
-```
-
-
-<hr><br><br>
-
-## <b>inertiaTo(current,target,amount))</b>
-### <b>Information</b>
-Calculates the target value of inertia in a loop/requestAnimationFrame from 1 value to another at speed.
-
-### <b>Parameters</b>
-
-- <b>current</b>
-	- <b>Type:</b> Number
-	- <b>Required:</b> true
-	- <b>Info:</b> Current value.
-
-- <b>target</b>
-	- <b>Type:</b> Number
-	- <b>Required:</b> true
-	- <b>Info:</b> Value to reach.
-
-- <b>amount</b>
-	- <b>Type:</b> Number
-	- <b>Required:</b> true
-	- <b>Info:</b> Inertia speed (dec/inc speed).
-
-### <b>Example</b>
-
-```
-let newX = inertiaTo(curX,targetX,0.5)
 ```
 
 
