@@ -34,8 +34,5 @@ package-lock.json
 .old
 .bak
 .dev
-backups
+.beta
 aftc-node-tools
-
-
-beta
