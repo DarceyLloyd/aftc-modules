@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.10.0</b>
+# <b>AFTC-MODULES v1.11.0</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -103,6 +103,7 @@ npm i aftc-modules
  - <b>setHTML(elementOrId,str,mode)</b>
  - <b>onReady(fn)</b>
  - <b>wordCountFilter(str,maxWords)</b>
+ - <b>setOptionSelectedIndex(selectElement,selectedValue)</b>
  - <b>loadAndAttachImage(imgElement,src)</b>
  - <b>loadCss(href,onComplete)</b>
  - <b>loadJson(url,onComplete,onError)</b>
@@ -1723,6 +1724,29 @@ Takes a string, checks it for number of words and returns the string but cuts it
 ### <b>Returns</b>
 
 - <b>Object</b>
+### <b>Example</b>
+
+```
+let limitedSentence = wordCountFilter(source,20)
+```
+
+
+<hr><br><br>
+
+## <b>setOptionSelectedIndex(selectElement,selectedValue))</b>
+### <b>Information</b>
+Sets an option of HTML select element by value.
+
+### <b>Parameters</b>
+
+- <b>selectElement</b>
+	- <b>Type:</b> HTML Select Element
+	- <b>Required:</b> true
+
+- <b>selectedValue</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+
 ### <b>Example</b>
 
 ```
