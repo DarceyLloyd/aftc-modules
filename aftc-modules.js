@@ -980,13 +980,15 @@ export function getCookie(name) {
 //     ]
 // } JSODOC
 export function setCookie(cname, cvalue, exdays) {
+	// https://javascript.info/cookie
 	// var expires = new Date();
 	// expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
 	// document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	// document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; // cookies are changing (this will get blocked soon 09-21)
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";samesite=strict;secure:true;path=/";
 }
 // JSODOC = {
 //     "method": "getDaysBetween",
@@ -2305,6 +2307,72 @@ export class AFTCPreloader {
         return file.slice((file.lastIndexOf(".") - 1 >>> 0) + 2);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+export class ApiRequest {
+    // Var defs
+    // - - - - - - - - - - - - -
+    constructor() {
+        // log("ApiRequest()");
+    }
+    // - - - - - - - - - - - - -
+    async get(route) {
+        // log("ApiRequest.get(route): " + route);
+        // Fetch the data
+        const response = await fetch(route, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        })
+        // log(response);
+        const body = await response.json();
+        return body;
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    async post(route,data,onSuccess,onError) {
+        // log("ApiRequest.post(route): " + route);
+        const fetchPromise = fetch(route, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+            body: JSON.stringify(data)
+        })
+        fetchPromise.then(response => {
+            return response.json();
+        }).then(data => {
+            // log(data);
+            // log(data.success);
+            if (data.success === false) {
+                onError(data);
+            } else {
+                onSuccess(data);
+            }
+        });
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    async patch(route,data,onSuccess,onError) {
+        // log("ApiRequest.post(route): " + route);
+        const fetchPromise = fetch(route, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+            body: JSON.stringify(data)
+        })
+        fetchPromise.then(response => {
+            return response.json();
+        }).then(data => {
+            // log(data);
+            // log(data.success);
+            if (data.success === false) {
+                onError(data);
+            } else {
+                onSuccess(data);
+            }
+        });
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
 }
 // JSODOC = {
 //     "method": "loadAndAttachImage",

@@ -78,6 +78,7 @@ import { isOdd } from "aftc-modules/src/math/isOdd.js";
 import { isOpera } from "aftc-modules/src/detection/isOpera.js";
 import { isSafari } from "aftc-modules/src/detection/isSafari.js";
 import { isStringInArray } from "aftc-modules/src/array/IsStringInArray.js";
+import { ApiRequest } from "aftc-modules/src/io/ApiRequest.js";
 import { loadAndAttachImage } from "aftc-modules/src/io/loadAndAttachImage.js";
 import { loadCss } from "aftc-modules/src/io/loadCss.js";
 import { loadJson } from "aftc-modules/src/io/loadJson.js";
@@ -198,6 +199,7 @@ export {
     isOpera,
     isSafari,
     isStringInArray,
+    ApiRequest,
     loadAndAttachImage,
     loadCss,
     loadJson,

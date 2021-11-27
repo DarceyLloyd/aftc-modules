@@ -14,3 +14,4 @@ template.md
 node_modules
 build.js
 tsconfig.json
+/info
