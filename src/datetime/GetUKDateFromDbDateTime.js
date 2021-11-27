@@ -3,7 +3,7 @@
 //     "params": [
 //         {
 //             "name": "dbDateString",
-//             "type": "String",
+//             "type": "Date || String",
 //             "required": true,
 //             "default": null,
 //             "info": "This should be a datetime string from a db query."
@@ -20,11 +20,15 @@
 
 export function getUKDateFromDbDateTime(dbDateString) {
     // "2016-04-08 21:11:59" to UK date
-    if (input === "" || input === null) {
-        return "no input";
+    let output = "";
+    if (typeof (dte) === "string") {
+        // console.warn(dte);
+        let dateTimeSplit = dte.split(' ');
+        let dateSplit = dateTimeSplit[0].split(separator);
+        // log(dateSplit);
+        output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0];
+    } else {
+        output = dte.getDay() + separator + (dte.getMonth() + 1) + separator + dte.getFullYear();
     }
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    return UKDate;
+    return output;
 }

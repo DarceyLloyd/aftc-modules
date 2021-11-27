@@ -1,25 +1,31 @@
 // JSODOC = {
-//     "method": "getUkDateTimeFromDbDateTime",
+//     "method": "getUkDateTime",
 //     "params": [
 //         {
 //             "name": "dte",
-//             "type": "String",
+//             "type": "Date || String",
 //             "required": true,
 //             "default": null,
-//             "info": "This should be a datetime string from a db query."
+//             "info": "The date you wish to get the UK format date string from."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
 //         }
 //     ],
 //     "returns": {
 //         "type": "String"
 //     },
-//     "info": "Gets a UK formatted date and time string from a supplied db date time string.",
+//     "info": "Gets a UK formatted date string from a supplied date.",
 //     "example": [
-//         "let ukDate = getUkDateTimeFromDbDateTime(dte)"
+//         "let ukDate = getUKDate(new Date(),'-')"
 //     ]
 // } JSODOC
 
-export function getUKDateTimeFromDbDateTime(dte) {
-    // "2016-04-08 21:11:59" to UK date time
+export function getUkDateTime(dte,separator="-"){
     let output = "";
 
     let formatTimeValue = (v)=>{

@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.12.2</b>
+# <b>AFTC-MODULES v1.12.3</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -75,7 +75,8 @@ npm i aftc-modules
  - <b>getMySQLDateTimeString()</b>
  - <b>getUKDate(dte,separator)</b>
  - <b>getUKDateFromDbDateTime(dbDateString)</b>
- - <b>getUkDateTimeFromDbDateTime(dbDateTimeString)</b>
+ - <b>getUkDateTime(dte,separator)</b>
+ - <b>getUkDateTimeFromDbDateTime(dte)</b>
  - <b>getUSDate(dte,separator)</b>
  - <b>appendTo(elementOrId,msg,endOfLine)</b>
  - <b>attachDebug(no,position,ele)</b>
@@ -1032,7 +1033,7 @@ Gets a UK formatted date string from a supplied date.
 ### <b>Parameters</b>
 
 - <b>dte</b>
-	- <b>Type:</b> Date
+	- <b>Type:</b> Date || String
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> The date you wish to get the UK format date string from.
@@ -1062,7 +1063,7 @@ Gets a UK formatted date string from a supplied db date string.
 ### <b>Parameters</b>
 
 - <b>dbDateString</b>
-	- <b>Type:</b> String
+	- <b>Type:</b> Date || String
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> This should be a datetime string from a db query.
@@ -1079,13 +1080,43 @@ let ukDate = getUkDateFromDbDateTime(dbDateString)
 
 <hr><br><br>
 
-## <b>getUkDateTimeFromDbDateTime(dbDateTimeString))</b>
+## <b>getUkDateTime(dte,separator))</b>
+### <b>Information</b>
+Gets a UK formatted date string from a supplied date.
+
+### <b>Parameters</b>
+
+- <b>dte</b>
+	- <b>Type:</b> Date || String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The date you wish to get the UK format date string from.
+
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
+
+### <b>Returns</b>
+
+- <b>Type: </b>String
+### <b>Example</b>
+
+```
+let ukDate = getUKDate(new Date(),'-')
+```
+
+
+<hr><br><br>
+
+## <b>getUkDateTimeFromDbDateTime(dte))</b>
 ### <b>Information</b>
 Gets a UK formatted date and time string from a supplied db date time string.
 
 ### <b>Parameters</b>
 
-- <b>dbDateTimeString</b>
+- <b>dte</b>
 	- <b>Type:</b> String
 	- <b>Required:</b> true
 	- <b>Default:</b> null
@@ -1097,7 +1128,7 @@ Gets a UK formatted date and time string from a supplied db date time string.
 ### <b>Example</b>
 
 ```
-let ukDate = getUkDateTimeFromDbDateTime(dbDateTimeString)
+let ukDate = getUkDateTimeFromDbDateTime(dte)
 ```
 
 

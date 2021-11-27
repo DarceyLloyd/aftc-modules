@@ -3,7 +3,7 @@
 //     "params": [
 //         {
 //             "name": "dte",
-//             "type": "Date",
+//             "type": "Date || String",
 //             "required": true,
 //             "default": null,
 //             "info": "The date you wish to get the UK format date string from."
@@ -26,6 +26,15 @@
 // } JSODOC
 
 export function getUKDate(dte,separator="-"){
-    let output = dte.getDay() + separator + (dte.getMonth()+1) + separator + dte.getFullYear();
+    let output = "";
+    if (typeof (dte) === "string") {
+        // console.warn(dte);
+        let dateTimeSplit = dte.split(' ');
+        let dateSplit = dateTimeSplit[0].split(separator);
+        // log(dateSplit);
+        output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0];
+    } else {
+        output = dte.getDay() + separator + (dte.getMonth() + 1) + separator + dte.getFullYear();
+    }
     return output;
 }

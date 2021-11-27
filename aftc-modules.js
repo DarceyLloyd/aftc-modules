@@ -1073,7 +1073,7 @@ export function getMySQLDateTimeString() {
 //     "params": [
 //         {
 //             "name": "dte",
-//             "type": "Date",
+//             "type": "Date || String",
 //             "required": true,
 //             "default": null,
 //             "info": "The date you wish to get the UK format date string from."
@@ -1095,7 +1095,16 @@ export function getMySQLDateTimeString() {
 //     ]
 // } JSODOC
 export function getUKDate(dte,separator="-"){
-    let output = dte.getDay() + separator + (dte.getMonth()+1) + separator + dte.getFullYear();
+    let output = "";
+    if (typeof (dte) === "string") {
+        // console.warn(dte);
+        let dateTimeSplit = dte.split(' ');
+        let dateSplit = dateTimeSplit[0].split(separator);
+        // log(dateSplit);
+        output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0];
+    } else {
+        output = dte.getDay() + separator + (dte.getMonth() + 1) + separator + dte.getFullYear();
+    }
     return output;
 }
 // JSODOC = {
@@ -1103,7 +1112,7 @@ export function getUKDate(dte,separator="-"){
 //     "params": [
 //         {
 //             "name": "dbDateString",
-//             "type": "String",
+//             "type": "Date || String",
 //             "required": true,
 //             "default": null,
 //             "info": "This should be a datetime string from a db query."
@@ -1119,19 +1128,75 @@ export function getUKDate(dte,separator="-"){
 // } JSODOC
 export function getUKDateFromDbDateTime(dbDateString) {
     // "2016-04-08 21:11:59" to UK date
-    if (input === "" || input === null) {
-        return "no input";
+    let output = "";
+    if (typeof (dte) === "string") {
+        // console.warn(dte);
+        let dateTimeSplit = dte.split(' ');
+        let dateSplit = dateTimeSplit[0].split(separator);
+        // log(dateSplit);
+        output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0];
+    } else {
+        output = dte.getDay() + separator + (dte.getMonth() + 1) + separator + dte.getFullYear();
     }
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    return UKDate;
+    return output;
+}
+// JSODOC = {
+//     "method": "getUkDateTime",
+//     "params": [
+//         {
+//             "name": "dte",
+//             "type": "Date || String",
+//             "required": true,
+//             "default": null,
+//             "info": "The date you wish to get the UK format date string from."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Gets a UK formatted date string from a supplied date.",
+//     "example": [
+//         "let ukDate = getUKDate(new Date(),'-')"
+//     ]
+// } JSODOC
+export function getUkDateTime(dte,separator="-"){
+    let output = "";
+    let formatTimeValue = (v)=>{
+        if (v<10){
+            return "0" + v;
+        } else {
+            return v;
+        }
+    }
+    if (typeof (dte) === "string") {
+        let dateTimeSplit = dte.split(' ');
+        let dateSplit = dateTimeSplit[0].split(separator);
+        if (dateTimeSplit.length > 1) {
+            let TimeParts = dateTimeSplit[1].split(":");
+            let Time = TimeParts[0] + ":" + TimeParts[1];
+            output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0] + " " + TimeParts[0] + ":" + TimeParts[1] + ":" + TimeParts[2];
+        } else {
+            output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0];
+        }
+        // log(dateSplit);
+    } else {
+        output = dte.getDay() + separator + (dte.getMonth() + 1) + separator + dte.getFullYear();
+        output = output + " " + formatTimeValue(dte.getHours()) + ":" + formatTimeValue(dte.getMinutes()) + ":" + formatTimeValue(dte.getSeconds())
+    }
+    return output;
 }
 // JSODOC = {
 //     "method": "getUkDateTimeFromDbDateTime",
 //     "params": [
 //         {
-//             "name": "dbDateTimeString",
+//             "name": "dte",
 //             "type": "String",
 //             "required": true,
 //             "default": null,
@@ -1143,17 +1208,35 @@ export function getUKDateFromDbDateTime(dbDateString) {
 //     },
 //     "info": "Gets a UK formatted date and time string from a supplied db date time string.",
 //     "example": [
-//         "let ukDate = getUkDateTimeFromDbDateTime(dbDateTimeString)"
+//         "let ukDate = getUkDateTimeFromDbDateTime(dte)"
 //     ]
 // } JSODOC
-export function getUKDateTimeFromDbDateTime  (dbDateTimeString) {
+export function getUKDateTimeFromDbDateTime(dte) {
     // "2016-04-08 21:11:59" to UK date time
-    let DateTime = input.split(" ");
-    let DateParts = DateTime[0].split("-");
-    let TimeParts = DateTime[1].split(":");
-    let UKDate = DateParts[2] + "/" + DateParts[1] + "/" + DateParts[0];
-    let Time = TimeParts[0] + ":" + TimeParts[1];
-    return (UKDate + " " + Time);
+    let output = "";
+    let formatTimeValue = (v)=>{
+        if (v<10){
+            return "0" + v;
+        } else {
+            return v;
+        }
+    }
+    if (typeof (dte) === "string") {
+        let dateTimeSplit = dte.split(' ');
+        let dateSplit = dateTimeSplit[0].split(separator);
+        if (dateTimeSplit.length > 1) {
+            let TimeParts = dateTimeSplit[1].split(":");
+            let Time = TimeParts[0] + ":" + TimeParts[1];
+            output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0] + " " + TimeParts[0] + ":" + TimeParts[1] + ":" + TimeParts[2];
+        } else {
+            output = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0];
+        }
+        // log(dateSplit);
+    } else {
+        output = dte.getDay() + separator + (dte.getMonth() + 1) + separator + dte.getFullYear();
+        output = output + " " + formatTimeValue(dte.getHours()) + ":" + formatTimeValue(dte.getMinutes()) + ":" + formatTimeValue(dte.getSeconds())
+    }
+    return output;
 }
 // JSODOC = {
 //     "method": "getUSDate",
