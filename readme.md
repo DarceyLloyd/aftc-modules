@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.12.5</b>
+# <b>AFTC-MODULES v1.12.6</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -74,9 +74,9 @@ npm i aftc-modules
  - <b>getDaysBetween(startDateTime,endDateTime)</b>
  - <b>getMySQLDateTimeString()</b>
  - <b>getUKDate(dte,separator)</b>
- - <b>getUKDateFromDbDateTime(dbDateString)</b>
+ - <b>getUKDateFromDbDateTime(dbDateString,separator)</b>
  - <b>getUkDateTime(dte,separator)</b>
- - <b>getUkDateTimeFromDbDateTime(dte)</b>
+ - <b>getUkDateTimeFromDbDateTime(dte,separator)</b>
  - <b>getUSDate(dte,separator)</b>
  - <b>appendTo(elementOrId,msg,endOfLine)</b>
  - <b>attachDebug(no,position,ele)</b>
@@ -1056,7 +1056,7 @@ let ukDate = getUKDate(new Date(),'-')
 
 <hr><br><br>
 
-## <b>getUKDateFromDbDateTime(dbDateString))</b>
+## <b>getUKDateFromDbDateTime(dbDateString,separator))</b>
 ### <b>Information</b>
 Gets a UK formatted date string from a supplied db date string.
 
@@ -1067,6 +1067,12 @@ Gets a UK formatted date string from a supplied db date string.
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> This should be a datetime string from a db query.
+
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
 ### <b>Returns</b>
 
@@ -1110,7 +1116,7 @@ let ukDate = getUKDate(new Date(),'-')
 
 <hr><br><br>
 
-## <b>getUkDateTimeFromDbDateTime(dte))</b>
+## <b>getUkDateTimeFromDbDateTime(dte,separator))</b>
 ### <b>Information</b>
 Gets a UK formatted date and time string from a supplied db date time string.
 
@@ -1121,6 +1127,12 @@ Gets a UK formatted date and time string from a supplied db date time string.
 	- <b>Required:</b> true
 	- <b>Default:</b> null
 	- <b>Info:</b> This should be a datetime string from a db query.
+
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
 ### <b>Returns</b>
 

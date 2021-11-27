@@ -1116,6 +1116,13 @@ export function getUKDate(dte,separator="-"){
 //             "required": true,
 //             "default": null,
 //             "info": "This should be a datetime string from a db query."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
 //         }
 //     ],
 //     "returns": {
@@ -1126,7 +1133,7 @@ export function getUKDate(dte,separator="-"){
 //         "let ukDate = getUkDateFromDbDateTime(dbDateString)"
 //     ]
 // } JSODOC
-export function getUKDateFromDbDateTime(dbDateString) {
+export function getUKDateFromDbDateTime(dte,separator="-") {
     // "2016-04-08 21:11:59" to UK date
     let output = "";
     if (typeof (dte) === "string") {
@@ -1201,6 +1208,13 @@ export function getUkDateTime(dte,separator="-"){
 //             "required": true,
 //             "default": null,
 //             "info": "This should be a datetime string from a db query."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
 //         }
 //     ],
 //     "returns": {
@@ -1211,7 +1225,7 @@ export function getUkDateTime(dte,separator="-"){
 //         "let ukDate = getUkDateTimeFromDbDateTime(dte)"
 //     ]
 // } JSODOC
-export function getUKDateTimeFromDbDateTime(dte) {
+export function getUKDateTimeFromDbDateTime(dte,separator="-") {
     // "2016-04-08 21:11:59" to UK date time
     let output = "";
     let formatTimeValue = (v)=>{

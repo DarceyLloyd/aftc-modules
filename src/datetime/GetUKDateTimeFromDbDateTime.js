@@ -7,6 +7,13 @@
 //             "required": true,
 //             "default": null,
 //             "info": "This should be a datetime string from a db query."
+//         },
+//         {
+//             "name": "separator",
+//             "type": "String",
+//             "required": false,
+//             "default": "-",
+//             "info": "What the date string segments will be separated by."
 //         }
 //     ],
 //     "returns": {
@@ -18,7 +25,7 @@
 //     ]
 // } JSODOC
 
-export function getUKDateTimeFromDbDateTime(dte) {
+export function getUKDateTimeFromDbDateTime(dte,separator="-") {
     // "2016-04-08 21:11:59" to UK date time
     let output = "";
 
