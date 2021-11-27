@@ -166,6 +166,7 @@ export {
     getStringBetween2,
     getUID,
     getUKDate,
+    getUKDateTime,
     getUKDateFromDbDateTime,
     getUKDateTimeFromDbDateTime,
     getUSDate,
