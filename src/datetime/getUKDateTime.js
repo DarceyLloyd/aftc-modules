@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "method": "getUkDateTime",
+//     "method": "getUKDateTime",
 //     "params": [
 //         {
 //             "name": "dte",
@@ -25,7 +25,7 @@
 //     ]
 // } JSODOC
 
-export function getUkDateTime(dte,separator="-"){
+export function getUKDateTime(dte,separator="-"){
     let output = "";
 
     let formatTimeValue = (v)=>{

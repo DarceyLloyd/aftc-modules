@@ -1148,7 +1148,7 @@ export function getUKDateFromDbDateTime(dte,separator="-") {
     return output;
 }
 // JSODOC = {
-//     "method": "getUkDateTime",
+//     "method": "getUKDateTime",
 //     "params": [
 //         {
 //             "name": "dte",
@@ -1173,7 +1173,7 @@ export function getUKDateFromDbDateTime(dte,separator="-") {
 //         "let ukDate = getUKDate(new Date(),'-')"
 //     ]
 // } JSODOC
-export function getUkDateTime(dte,separator="-"){
+export function getUKDateTime(dte,separator="-"){
     let output = "";
     let formatTimeValue = (v)=>{
         if (v<10){
