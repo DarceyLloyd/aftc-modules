@@ -16,6 +16,7 @@
 /// <reference path="../src/conversion/boolToYesNo.d.ts"/>
 /// <reference path="../src/string/cutStringTo.d.ts"/>
 /// <reference path="../src/debug/debugTo.d.ts"/>
+/// <reference path="../src/debug/Logger.d.ts"/>
 /// <reference path="../src/conversion/degToRad.d.ts"/>
 /// <reference path="../src/string/escapeHTML.d.ts"/>
 /// <reference path="../src/misc/FPSMonitor.d.ts"/>

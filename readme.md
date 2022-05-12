@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.12.7</b>
+# <b>AFTC-MODULES v1.12.8</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -84,6 +84,7 @@ npm i aftc-modules
  - <b>log(arg)</b>
  - <b>logDisable()</b>
  - <b>logEnable()</b>
+ - <b>Logger()</b>
  - <b>logTo(elementOrId,msg,append,endOfLine)</b>
  - <b>getOS()</b>
  - <b>isAndroid()</b>
@@ -1326,6 +1327,34 @@ logDisable()
 log('You wont see this in console')
 logEnable()
 log('You will see this in console')
+```
+
+
+<hr><br><br>
+
+## <b>Logger())</b>
+### <b>Information</b>
+A substitute for console.log, allowing you to keep your comments and enable them on a class by class or function by function basis, or globally on all class's or functions implemented in.
+
+### <b>Methods</b>
+
+- <b>enable()</b>
+- <b>disable()</b>
+- <b>enableAll()</b>
+- <b>disableAll()</b>
+- <b>enableGlobally()</b>
+- <b>disableGlobally()</b>
+### <b>Example</b>
+
+```
+this.logger = new Logger()
+this.logger.log('hello world 1')
+this.logger.warn('hello world 2')
+this.logger.error('hello world 3')
+this.logger.enable()
+this.logger.disable()
+this.logger.enableAll()
+this.logger.disableAll()
 ```
 
 

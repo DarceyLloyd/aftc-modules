@@ -17,6 +17,7 @@ import { boolToString } from "aftc-modules/src/conversion/boolToString.js";
 import { boolToYesNo } from "aftc-modules/src/conversion/boolToYesNo.js";
 import { cutStringTo } from "aftc-modules/src/string/cutStringTo.js";
 import { debugTo } from "aftc-modules/src/debug/debugTo.js";
+import { Logger } from "aftc-modules/src/debug/Logger.js";
 import { degToRad } from "aftc-modules/src/conversion/degToRad.js";
 import { escapeHTML } from "aftc-modules/src/string/escapeHTML.js";
 import { FPSMonitor } from "aftc-modules/src/misc/FPSMonitor.js";
@@ -139,6 +140,7 @@ export {
     boolToYesNo,
     cutStringTo,
     debugTo,
+    Logger,
     degToRad,
     escapeHTML,
     FPSMonitor,
