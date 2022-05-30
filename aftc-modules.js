@@ -1566,7 +1566,8 @@ export class Logger {
     constructor() {
         if (!window.AFTCConsoleLogger) {
             window.AFTCConsoleLogger = {
-                enabledAll: false
+                enabledAll: false,
+                disableAll: false
             }
         }
     }
@@ -1582,9 +1583,11 @@ export class Logger {
     enableAll() {
         if (window.AFTCConsoleLogger) {
             window.AFTCConsoleLogger.enabledAll = true;
+            window.AFTCConsoleLogger.disableAll = false;
         } else {
             window.AFTCConsoleLogger = {
-                enabledAll: true
+                enabledAll:true,
+                disableAll:false,
             }
         }
     }
@@ -1595,9 +1598,11 @@ export class Logger {
     disableAll() {
         if (window.AFTCConsoleLogger) {
             window.AFTCConsoleLogger.enabledAll = false;
+            window.AFTCConsoleLogger.disableAll = true;
         } else {
             window.AFTCConsoleLogger = {
-                enabledAll: false
+                enabledAll:false,
+                disableAll:true,
             }
         }
     }
@@ -1606,19 +1611,25 @@ export class Logger {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
     log(arg) {
-        if (this.enabled === true || window.AFTCConsoleLogger.enabledAll === true) {
+        if (window.AFTCConsoleLogger.disableAll === true) {
+            return
+        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
             console.log(arg);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
     warn(arg) {
-        if (this.enabled === true || window.AFTCConsoleLogger.enabledAll === true) {
+        if (window.AFTCConsoleLogger.disableAll === true) {
+            return
+        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
             console.warn(arg);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
     error(arg) {
-        if (this.enabled === true || window.AFTCConsoleLogger.enabledAll === true) {
+        if (window.AFTCConsoleLogger.disableAll === true) {
+            return
+        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
             console.error(arg);
         }
     }
