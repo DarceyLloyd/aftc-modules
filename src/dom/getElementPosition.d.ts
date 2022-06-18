@@ -6,3 +6,4 @@ export function getElementPos(el: any): {
     left: number;
     top: number;
 };
+//# sourceMappingURL=getElementPosition.d.ts.map

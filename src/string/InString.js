@@ -22,4 +22,6 @@
 //         "let stringFound = inString(needle,haystack)"
 //     ]
 // } JSODOC
-export function inString(needle,haystack) { return haystack.indexOf(needle) !== -1; }
+export function inString(needle, haystack) {
+    return haystack.indexOf(needle) !== -1;
+}

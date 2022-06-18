@@ -1,1 +1,2 @@
-export function getCookie(name: string): string;
+export function getCookie(name: any): string;
+//# sourceMappingURL=getCookie.d.ts.map

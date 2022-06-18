@@ -22,4 +22,6 @@
 //         "let stringFound = isInString(needle,haystack)"
 //     ]
 // } JSODOC
-export function isInString(find,source) { return source.indexOf(find) !== -1; }
+export function isInString(find, source) {
+    return source.indexOf(find) !== -1;
+}

@@ -1,1 +1,2 @@
-export function getUKDate(dte: Date|string, separator: string): string;
+export function getUKDate(dte: any, separator?: string): string;
+//# sourceMappingURL=getUKDate.d.ts.map

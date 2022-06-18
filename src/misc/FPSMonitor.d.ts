@@ -16,3 +16,4 @@ export class FPSMonitor {
     update(): void;
     getFps(): number;
 }
+//# sourceMappingURL=FPSMonitor.d.ts.map

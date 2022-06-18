@@ -1,70 +1,3 @@
-export function AnimationFrameStack() {
-    var me = this;
-    this.init = function(){
-        if (!window){
-            console.error("AnimationFrameStack(): ERROR - Unable to access window!");
-        } else {
-            if (!window.aftcAnimStack){
-                window.aftcAnimStack = {
-                    firstRun: true,
-                    enabled: true,
-                    stack: [],
-                    uid: Math.floor(Math.random()*99999)
-                }
-            }
-        }
-        if (window.aftcAnimStack.firstRun){
-            window.aftcAnimStack.firstRun = false;
-            this.processFnStack();
-        }
-    }
-    this.start = function(){
-        window.aftcAnimStack.enabled = true;
-        this.processFnStack();
-    }
-    this.stop = function(){
-        window.aftcAnimStack.enabled = false;
-    }
-    this.dispose = function(){
-        if (window.aftcAnimStack){
-            window.aftcAnimStack.enabled = false;
-            window.aftcAnimStack.stack = [];
-            delete window.aftcAnimStack.stack;
-        }
-    }
-    this.processFnStack = function(){
-        if (!window.aftcAnimStack.enabled){ return; }
-        for(let i=0; i < window.aftcAnimStack.stack.length; i++){
-            window.aftcAnimStack.stack[i].fn();
-        }
-        window.requestAnimationFrame(me.processFnStack);
-    }
-    this.add = function(uid,fn){
-        window.aftcAnimStack.stack.push({
-            uid: uid,
-            fn: fn
-        });
-    }
-    this.remove = function(uid){
-        for(let i=0; i < window.aftcAnimStack.stack.length; i++){
-            if (window.aftcAnimStack.stack[i].uid === uid){
-                // window.aftcAnimStack.stack = arrayRemoveItem(window.aftcAnimStack.stack,fn);
-                window.aftcAnimStack.stack.splice(i,1);
-            }
-        }
-    }
-    this.init();
-}
-/**
- * @function: AnimationFrameStack()
- * @desc: Gives easy access to a single requestAnimationFrame loop which you can add functions to process in each loop, note the function stack is stored on global window scope
- * @method add: add a function to the stack to be executed on animationFrameLoop
- * @method remove: remove a function from the stack
- * @method start: start the requestAnimationFrame loop
- * @method stop: stop the requestAnimationFrame loop
- * @method dispose: dispose of all functions in the function stack
- * @link:
- */
 // JSODOC = {
 //     "method": "inertiaTo",
 //     "params": [
@@ -336,6 +269,36 @@ export function arrayShuffle2(a) {
     }
     return a;
 }
+// JSODOC = {
+//     "method": "isArrayInString",
+//     "params": [
+//         {
+//             "name": "input",
+//             "type": "string",
+//             "required": true,
+//             "default": null,
+//             "info": "String you want to look for matches in."
+//         },
+//         {
+//             "name": "arr",
+//             "type": "array",
+//             "required": true,
+//             "default": null,
+//             "info": "The array of strings you want to search for in input."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Searches the array for a string.",
+//     "example": [
+//         "let found = isStringInArray(needle, haystack)"
+//     ]
+// } JSODOC
+export function isArrayInString(input, arr) {
+    return arr.some(substring=>input.includes(substring));
+}
+
 // JSODOC = {
 //     "method": "isInArray",
 //     "params": [
@@ -1431,6 +1394,80 @@ export function attachDebug(no, position, ele) {
     return debugContainer;
 }
 // JSODOC = {
+//     "function": "AttachLazyLogging",
+//     "methods": [
+//         {
+//             "name": "log",
+//             "info": "Short for console.log"
+//         },
+//         {
+//             "name": "log",
+//             "info": "Short for console.log"
+//         },
+//         {
+//             "name": "log",
+//             "info": "Short for console.log"
+//         },
+//         {
+//             "name": "EnableLazyLogging",
+//             "info": "Enables lazy logging functions (log,warn,error) globaly (uses window scope)"
+//         },
+//         {
+//             "name": "DisableLazyLogging",
+//             "info": "Disables lazy logging functions (log,warn,error) globaly (uses window scope)"
+//         }
+//     ],
+//     "info": "Adds log, warn and error to the window scope (globally), so no more typing console. anymore.",
+//     "params": [
+//         {
+//             "name": "NA",
+//             "type": "any",
+//             "required": false,
+//             "default": null,
+//             "info": "Use as if your were using console.log, console.warn and console.error directly"
+//         }
+//     ],
+//     "example": [
+//         "log('hello world 1')",
+//         "log(`a = ${a}`)",
+//         "log('a = ' + a)",
+//         "log('log eg',[1,2,3])",
+//         "warn('hello world 1')",
+//         "warn(`a = ${a}`)",
+//         "warn('a = ' + a)",
+//         "warn('warn eg',[1,2,3])",
+//         "error('hello world 1')",
+//         "error(`a = ${a}`)",
+//         "error('a = ' + a)",
+//         "error('error eg',[1,2,3])"
+//     ]
+// } JSODOC
+export default function AttachLazyLogging(){
+    if (!window.aftcLazyLog){
+        window.aftcLazyLog = {
+            enabled: true
+        }
+    }
+    if (window.log){
+        console.warn("AttachLazyLogging(): window.log was already defined but has now been re-defined.")
+    }
+    window.log = (...args) => { if(window.aftcLazyLog.enabled) {console.log(...args);} }
+    if (window.warn){
+        console.warn("AttachLazyLogging(): window.warn was already defined but has now been re-defined.")
+    }
+    window.warn = (...args) => { if(window.aftcLazyLog.enabled) {console.warn(...args);} }
+    if (window.error){
+        console.warn("AttachLazyLogging(): window.error was already defined but has now been re-defined.")
+    }
+    window.error = (...args) => { if(window.aftcLazyLog.enabled) {console.error(...args);} }
+    window.EnableLazyLogging = function(){
+        window.aftcLazyLog.enabled = true;
+    };
+    window.DisableLazyLogging = function(){
+        window.aftcLazyLog.enabled = false;
+    };
+}
+// JSODOC = {
 //     "method": "debugTo",
 //     "params": [
 //         {
@@ -1482,12 +1519,12 @@ export function debugTo(index, str) {
 //         "log(`a = ${a}`)"
 //     ]
 // } JSODOC
-export function log(arg) {
+export function log(...args) {
     if (window.aftcLogEnabled === undefined){
         window.aftcLogEnabled = true;
     }
     if (window.aftcLogEnabled){
-        console.log(arg);
+        console.log(...args);
     }
 }
 // JSODOC = {
@@ -2280,249 +2317,49 @@ export function setOptionSelectedIndex(selectElement, selectedValue) {
     }
 }
 
-export class AFTCPreloader {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    constructor() {
-        // log("AFTCPreloader()");
-        this.configFile = false;
-        this.data = false;
-        this.onProgressHandler = "";
-        this.onCompleteHandler = "";
-        this.queue = [];
-        this.noOfFilesToLoad = 0;
-        this.json = false;
-        this.noOfThreads = 3;
-        this.thread = []; // [0] > [noOfThreads] = "available" || "filled"
-        this.queueCompleted = false;
-        this.ItemVo = function () {
-            this.id = false;
-            this.src = false;
-            this.ext = false;
-            this.loaded = false;
-            this.loading = false;
-            this.autoAttach = false;
+// JSODOC = {
+//     "method": "imageToCanvas",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the image to load and place on the canvas"
+//         }
+//     ],
+//     "returns": {
+//         "type": "HTMLCanvasElement"
+//     },
+//     "info": "Loads an image and places it on a canvas of matching dimensions.",
+//     "example": [
+//         "let canvas1 = await imageToCanvas('./assets/photo.webp')"
+//     ]
+// } JSODOC
+function imageToCanvasLoadImage(src, canvas, ctx){
+    // https://stackoverflow.com/questions/55892083/javascript-load-image-into-offscreen-canvas-perform-webp-conversion
+    return new Promise((resolve, reject) => {
+        let img = new Image();
+        img.onload = (e) => {
+            // log(`Image loaded (${img.width} x ${img.height}): ${src}`)
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.width = img.width;
+            ctx.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            resolve(canvas);
         }
-        this.XHRLoader = function (parent, threadIndex, queueIndex, src) {
-            // log("XHRLoader(parent, threadIndex, queueIndex, src)");
-            this.parent = parent;
-            this.threadIndex = threadIndex;
-            this.queueIndex = queueIndex;
-            this.src = src;
-            this.xhr = new XMLHttpRequest();
-            this.xhr.onload = (e) => {
-                this.onLoadHandler(e);
-            };
-            // this.xhr.addEventListener("progress", () => this.updateHandler, false);
-            // this.xhr.addEventListener("load", transferComplete);
-            // this.xhr.addEventListener("error", transferFailed);
-            // this.xhr.addEventListener("abort", transferCanceled);
-            // Detect abort, load, or error using the loadend event
-            // this.xhr.addEventListener("loadend", () => this.loadEndHandler, false);
-            this.xhr.open('GET', this.src, true);
-            this.xhr.send();
-            this.updateHandler = function (e) {
-            }
-            // - - - - - - - - - - -
-            this.onLoadHandler = function (e) {
-                // log("XHRLoader.onLoadHandler(): " + this.src);
-                this.parent.onFileLoaded(this.threadIndex, this.queueIndex);
-                this.xhr = null;
-            }
-            // - - - - - - - - - - -
-        }
-        argsToObject(arguments[0], this, true);
-        this.head = document.getElementsByTagName('head')[0] || document.body;
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // add(src, autoAttach = true) {
-    //     // log("AFTCPreloader.add(id,src,autoAttach=true)");
-    //     let entry = this.ItemVo();
-    //     entry.src = src;
-    //     entry.autoAttach = autoAttach;
-    //     this.queue.push(entry);
-    // }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    start() {
-        // log("AFTCPreloader.start()");
-        // init
-        for (let i = 0; i < this.noOfThreads; i++) {
-            this.thread[i] = "available";
-        }
-        // log(this);
-        if (this.data) {
-            // log("AFTCPreloader.start(): Processing supplied data var");
-            this.data.forEach(file => {
-                let vo = new this.ItemVo();
-                vo.src = file.src;
-                vo.ext = getFileExtension(file.src);
-                this.queue.push(vo);
-            });
-            // log(this.queue);
-            this.noOfFilesToLoad = this.queue.length;
-            this.processThreadPool();
-        } else if (this.configFile) {
-            this.loadConfig();
-        } else {
-            console.error("AFTCPreloader(): Usage error, please either set file:preloader.json or data:[]. format: [{'src': 'assets/videos/f-1-2.mp4'}]");
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    loadConfig() {
-        // log("AFTCPreloader.loadConfig()");
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', this.configFile, true);
-        xhr.onreadystatechange = (e) => {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                this.json = JSON.parse(xhr.responseText);
-                // log(this.json);
-                this.json.forEach(jsonEntry => {
-                    let vo = new this.ItemVo();
-                    new objectToObject(jsonEntry, vo, false)
-                    vo.ext = getFileExtension(vo.src);
-                    this.queue.push(vo);
-                });
-                // log(this.queue);
-                this.noOfFilesToLoad = this.queue.length;
-                this.processThreadPool();
-            }
-        };
-        xhr.send();
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    processThreadPool() {
-        // log("AFTCPreloader.processThreadPool()");
-        let activeThreads = 0;
-        for (let threadIndex = 0; threadIndex < this.noOfThreads; threadIndex++) {
-            if (this.thread[threadIndex] === "available") {
-                // Destructure
-                let queueIndex, itemVo;
-                [queueIndex, itemVo] = this.getNext();
-                // log(itemVo);
-                if (itemVo !== false) {
-                    // log("\n#### Thread ["+ threadIndex + "] -------");
-                    // log("threadIndex: " + threadIndex + "   queueIndex: " + queueIndex);
-                    // log(itemVo);
-                    this.thread[threadIndex] = "filled";
-                    itemVo.loading = true;
-                    new this.XHRLoader(this, threadIndex, queueIndex, itemVo.src);
-                    activeThreads++;
-                }
-            }
-        }
-        // If all threads are inactive then we are done
-        let preloaderComplete = true;
-        for (let i = 0; i < this.noOfThreads; i++) {
-            if (this.thread[i] !== "available") {
-                preloaderComplete = false;
-            }
-        }
-        if (preloaderComplete) {
-            // log("AFTCPreloader(): Complete!");
-            if (this.onCompleteHandler) {
-                this.onCompleteHandler();
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    onFileLoaded(threadIndex, queueIndex) {
-        // log("AFTCPreloader.onFileLoaded(threadIndex:"+threadIndex+",queueIndex:"+queueIndex+")");
-        let vo = this.queue[queueIndex];
-        vo.loading = false;
-        vo.loaded = true;
-        this.thread[threadIndex] = "available";
-        // Handle attach to dom
-        if (this.queue[queueIndex].autoAttach === true) {
-            if (vo.ext == "js") {
-                // Attach JS to DOM
-                let script = document.createElement('script');
-                // script.onload = ()=> {
-                //     console.log("Script attached to DOM: " + vo.src);
-                // }
-                script.src = vo.src;
-                document.head.appendChild(script);
-            } else if (vo.ext == "css") {
-                // Attach CSS to DOM
-                let link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = vo.src;
-                link.media = 'all';
-                this.head.appendChild(link);
-            }
-        }
-        if (this.onProgressHandler) {
-            let percent = 0;
-            let noOfFilesLoaded = 0;
-            this.queue.forEach(vo => {
-                if (vo.loaded) {
-                    noOfFilesLoaded++;
-                }
-            });
-            percent = Math.round((100 / this.noOfFilesToLoad) * noOfFilesLoaded);
-            let progressObject = {
-                percent,
-                src: this.queue[queueIndex].src
-            }
-            this.onProgressHandler(progressObject);
-        }
-        this.processThreadPool();
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    getNext() {
-        let queueIndex = -1;
-        let itemVo = false;
-        for (let i = 0; i < this.queue.length; i++) {
-            let entry = this.queue[i];
-            if (entry.loaded === false && entry.loading === false) {
-                queueIndex = i;
-                itemVo = entry;
-                break;
-            }
-        }
-        return [queueIndex, itemVo];
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    argsToObject(fArgs, obj, strict) {
-        if (fArgs[0] && typeof (fArgs[0]) === "object") {
-            let args = fArgs[0];
-            if (strict === undefined) {
-                strict = true;
-            }
-            if (args && typeof (args) === "object") {
-                for (let key in args) {
-                    if (strict) {
-                        if (obj.hasOwnProperty(key)) {
-                            obj[key] = args[key];
-                        } else {
-                            console.warn("argsToObject(): Argument [" + key + "] is not supported.");
-                        }
-                    } else {
-                        obj[key] = args[key];
-                    }
-                }
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    objectToObject(src, dest, strict = true) {
-        for (let key in src) {
-            if (strict) {
-                if (dest.hasOwnProperty(key)) {
-                    dest[key] = src[key];
-                } else {
-                    console.warn("ObjectToObject(): Destination object key doesn't exist [" + key + "].");
-                }
-            } else {
-                dest[key] = src[key];
-            }
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    getFileExtension(file) {
-        return file.slice((file.lastIndexOf(".") - 1 >>> 0) + 2);
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        img.onerror = reject(false);
+        img.src = src;
+    })
 }
+// - - - - - - - - - - - - - - - - - - - - - - - -
+export async function imageToCanvas(src) {
+    let canvas = document.createElement("canvas");
+    let ctx = this.canvas.getContext("2d");
+    return await imageToCanvasLoadImage(src, canvas, ctx)
+}
+// - - - - - - - - - - - - - - - - - - - - - - - -
 export class ApiRequest {
     // Var defs
     // - - - - - - - - - - - - -
@@ -2588,6 +2425,54 @@ export class ApiRequest {
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
+}
+// JSODOC = {
+//     "method": "fetchHtml",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Loads a html file and returns it as a string",
+//     "example": [
+//         "let data = await fetchHtml('./pages/modal-user-content.html')"
+//     ]
+// } JSODOC
+export async function fetchHtml(url) {
+    const response = await fetch(url);
+    const text = await response.text();
+    return text;
+}
+// JSODOC = {
+//     "method": "fetchJson",
+//     "params": [
+//         {
+//             "name": "url",
+//             "type": "String",
+//             "required": true,
+//             "default": null,
+//             "info": "Path/URL to the file to load"
+//         }
+//     ],
+//     "returns": {
+//         "type": "Object"
+//     },
+//     "info": "Loads a json file and returns it as an object",
+//     "example": [
+//         "let data = await fetchJson('./data/config.json')"
+//     ]
+// } JSODOC
+export async function fetchJson(url) {
+    const response = await fetch(url);
+    const json = await response.json();
+    return json;
 }
 // JSODOC = {
 //     "method": "loadAndAttachImage",
@@ -3785,6 +3670,9 @@ export function isNumber(n) {
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+export async function sleep(ms){
+    return new Promise(resolve => setTimeout(() => resolve(true), ms));
+}
 // JSODOC = {
 //     "class": "MouseScrollHandler",
 //     "info": "Nukes the moon.",
@@ -4183,7 +4071,9 @@ export function getWordCount(str) {
 //         "let stringFound = inString(needle,haystack)"
 //     ]
 // } JSODOC
-export function inString(needle,haystack) { return haystack.indexOf(needle) !== -1; }
+export function inString(needle, haystack) {
+    return haystack.indexOf(needle) !== -1;
+}
 // JSODOC = {
 //     "method": "isInString",
 //     "params": [
@@ -4208,7 +4098,9 @@ export function inString(needle,haystack) { return haystack.indexOf(needle) !== 
 //         "let stringFound = isInString(needle,haystack)"
 //     ]
 // } JSODOC
-export function isInString(find,source) { return source.indexOf(find) !== -1; }
+export function isInString(find, source) {
+    return source.indexOf(find) !== -1;
+}
 // JSODOC = {
 //     "method": "lTrimBy",
 //     "params": [

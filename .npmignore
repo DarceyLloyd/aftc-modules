@@ -6,6 +6,7 @@
 .bak
 backups
 beta
+docs
 tests
 gulpfile.js
 install.bat

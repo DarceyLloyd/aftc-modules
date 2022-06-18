@@ -1,5 +1,6 @@
 export class ApiRequest {
-    get(route: string): Promise<any>;
-    post(route: string, data: {}, onSuccess: Function, onError: Function): Promise<void>;
-    patch(route: string, data: {}, onSuccess: Function, onError: Function): Promise<void>;
+    get(route: any): Promise<any>;
+    post(route: any, data: any, onSuccess: any, onError: any): Promise<void>;
+    patch(route: any, data: any, onSuccess: any, onError: any): Promise<void>;
 }
+//# sourceMappingURL=ApiRequest.d.ts.map

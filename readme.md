@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.12.13</b>
+# <b>AFTC-MODULES v1.15.0</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -51,6 +51,7 @@ npm i aftc-modules
  - <b>arrayRemoveValue(arr,value)</b>
  - <b>arrayShuffle(arr)</b>
  - <b>arrayShuffle2(arr)</b>
+ - <b>isArrayInString(input,arr)</b>
  - <b>isInArray(needle,haystack)</b>
  - <b>isStringInArray(needle,haystack)</b>
  - <b>getBrowser()</b>
@@ -80,6 +81,7 @@ npm i aftc-modules
  - <b>getUSDate(dte,separator)</b>
  - <b>appendTo(elementOrId,msg,endOfLine)</b>
  - <b>attachDebug(no,position,ele)</b>
+ - <b>AttachLazyLogging(NA)</b>
  - <b>debugTo(index,str)</b>
  - <b>log(arg)</b>
  - <b>logDisable()</b>
@@ -106,6 +108,9 @@ npm i aftc-modules
  - <b>onReady(fn)</b>
  - <b>wordCountFilter(str,maxWords)</b>
  - <b>setOptionSelectedIndex(selectElement,selectedValue)</b>
+ - <b>imageToCanvas(url)</b>
+ - <b>fetchHtml(url)</b>
+ - <b>fetchJson(url)</b>
  - <b>loadAndAttachImage(imgElement,src)</b>
  - <b>loadCss(href,onComplete)</b>
  - <b>loadJson(url,onComplete,onError)</b>
@@ -415,6 +420,36 @@ Shuffles / Randomizes an array (method 2).
 
 ```
 let shuffledArray = arrayShuffle2(myArray)
+```
+
+
+<hr><br><br>
+
+## <b>isArrayInString(input,arr))</b>
+### <b>Information</b>
+Searches the array for a string.
+
+### <b>Parameters</b>
+
+- <b>input</b>
+	- <b>Type:</b> string
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> String you want to look for matches in.
+
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array of strings you want to search for in input.
+
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
+### <b>Example</b>
+
+```
+let found = isStringInArray(needle, haystack)
 ```
 
 
@@ -1246,6 +1281,45 @@ debugTo(2,'hello world 3')
 
 <hr><br><br>
 
+## <b>AttachLazyLogging(NA))</b>
+### <b>Information</b>
+Adds log, warn and error to the window scope (globally), so no more typing console. anymore.
+
+### <b>Parameters</b>
+
+- <b>NA</b>
+	- <b>Type:</b> any
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> Use as if your were using console.log, console.warn and console.error directly
+
+### <b>Methods</b>
+
+- <b>log()</b>
+- <b>log()</b>
+- <b>log()</b>
+- <b>EnableLazyLogging()</b>
+- <b>DisableLazyLogging()</b>
+### <b>Example</b>
+
+```
+log('hello world 1')
+log(`a = ${a}`)
+log('a = ' + a)
+log('log eg',[1,2,3])
+warn('hello world 1')
+warn(`a = ${a}`)
+warn('a = ' + a)
+warn('warn eg',[1,2,3])
+error('hello world 1')
+error(`a = ${a}`)
+error('a = ' + a)
+error('error eg',[1,2,3])
+```
+
+
+<hr><br><br>
+
 ## <b>debugTo(index,str))</b>
 ### <b>Information</b>
 Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.
@@ -1823,6 +1897,78 @@ Sets an option of HTML select element by value.
 
 ```
 let limitedSentence = wordCountFilter(source,20)
+```
+
+
+<hr><br><br>
+
+## <b>imageToCanvas(url))</b>
+### <b>Information</b>
+Loads an image and places it on a canvas of matching dimensions.
+
+### <b>Parameters</b>
+
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the image to load and place on the canvas
+
+### <b>Returns</b>
+
+- <b>Type: </b>HTMLCanvasElement
+### <b>Example</b>
+
+```
+let canvas1 = await imageToCanvas('./assets/photo.webp')
+```
+
+
+<hr><br><br>
+
+## <b>fetchHtml(url))</b>
+### <b>Information</b>
+Loads a html file and returns it as a string
+
+### <b>Parameters</b>
+
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
+
+### <b>Returns</b>
+
+- <b>Type: </b>String
+### <b>Example</b>
+
+```
+let data = await fetchHtml('./pages/modal-user-content.html')
+```
+
+
+<hr><br><br>
+
+## <b>fetchJson(url))</b>
+### <b>Information</b>
+Loads a json file and returns it as an object
+
+### <b>Parameters</b>
+
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
+
+### <b>Returns</b>
+
+- <b>Object</b>
+### <b>Example</b>
+
+```
+let data = await fetchJson('./data/config.json')
 ```
 
 

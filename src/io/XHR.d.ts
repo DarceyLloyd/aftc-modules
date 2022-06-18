@@ -26,3 +26,4 @@ export class XHR {
     getResponse(): any;
     removeEventListeners(): void;
 }
+//# sourceMappingURL=XHR.d.ts.map

@@ -18,13 +18,13 @@
 //     ]
 // } JSODOC
 
-export function log(arg) {
+export function log(...args) {
     if (window.aftcLogEnabled === undefined){
         window.aftcLogEnabled = true;
     }
 
     if (window.aftcLogEnabled){
-        console.log(arg);
+        console.log(...args);
     }
 }
 
