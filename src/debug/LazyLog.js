@@ -1,5 +1,5 @@
 // JSODOC = {
-//     "function": "AttachLazyLogging",
+//     "function": "LazyLog",
 //     "methods": [
 //         {
 //             "name": "log",
@@ -33,6 +33,7 @@
 //         }
 //     ],
 //     "example": [
+//         "LazyLog(); // This will make log, warn and error available.",
 //         "log('hello world 1')",
 //         "log(`a = ${a}`)",
 //         "log('a = ' + a)",
@@ -48,7 +49,7 @@
 //     ]
 // } JSODOC
 
-export default function AttachLazyLogging(){
+export default function LazyLog(){
 
     if (!window.aftcLazyLog){
         window.aftcLazyLog = {
@@ -57,17 +58,17 @@ export default function AttachLazyLogging(){
     }
 
     if (window.log){
-        console.warn("AttachLazyLogging(): window.log was already defined but has now been re-defined.")
+        console.warn("LazyLog(): window.log was already defined but has now been re-defined.")
     }
     window.log = (...args) => { if(window.aftcLazyLog.enabled) {console.log(...args);} }
 
     if (window.warn){
-        console.warn("AttachLazyLogging(): window.warn was already defined but has now been re-defined.")
+        console.warn("LazyLog(): window.warn was already defined but has now been re-defined.")
     }
     window.warn = (...args) => { if(window.aftcLazyLog.enabled) {console.warn(...args);} }
 
     if (window.error){
-        console.warn("AttachLazyLogging(): window.error was already defined but has now been re-defined.")
+        console.warn("LazyLog(): window.error was already defined but has now been re-defined.")
     }
     window.error = (...args) => { if(window.aftcLazyLog.enabled) {console.error(...args);} }
 

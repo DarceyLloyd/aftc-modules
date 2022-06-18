@@ -5,4 +5,3 @@ export class MouseScrollHandler {
     onScrollDown: any;
     scrollHandler(e: any): void;
 }
-//# sourceMappingURL=MouseScrollHandler.d.ts.map

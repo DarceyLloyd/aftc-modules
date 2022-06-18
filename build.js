@@ -68,6 +68,7 @@ async function buildIndexTs() {
         tsFilePath = "";
         tsFilePath = f.replace(pathStringToRemove, "");
         tsFilePath = "..\\" + tsFilePath;
+        tsFilePath = tsFilePath.replace(/\\/g, '/')
 
         // log(tsFilePath)
 

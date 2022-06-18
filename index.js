@@ -36,8 +36,8 @@ import { getUKDateTimeFromDbDateTime } from 'aftc-modules/src/datetime/getUKDate
 import { getUSDate } from 'aftc-modules/src/datetime/getUSDate.js';
 import { appendTo } from 'aftc-modules/src/debug/appendTo.js';
 import { attachDebug } from 'aftc-modules/src/debug/attachDebug.js';
-import { AttachLazyLogging } from 'aftc-modules/src/debug/AttachLazyLogging.js';
 import { debugTo } from 'aftc-modules/src/debug/debugTo.js';
+import { LazyLog } from 'aftc-modules/src/debug/LazyLog.js';
 import { log } from 'aftc-modules/src/debug/log.js';
 import { logDisable } from 'aftc-modules/src/debug/log.js';
 import { logEnable } from 'aftc-modules/src/debug/log.js';
@@ -164,8 +164,8 @@ export {
 	getUSDate,
 	appendTo,
 	attachDebug,
-	AttachLazyLogging,
 	debugTo,
+	LazyLog,
 	log,
 	logDisable,
 	logEnable,

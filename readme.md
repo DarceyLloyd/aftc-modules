@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.15.0</b>
+# <b>AFTC-MODULES v1.15.1</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,7 +16,19 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
-- Changes to assist packaging tools for better tree shacking, you should now reference the function/class from the src directory and not from aftc-modules.js anymore.
+- Logging can now be attached globally via:
+```
+LazyLog();
+log("hello world");
+warn("hello world");
+error("hello world");
+
+// Even in webpack
+
+- Updated build process and enhanced the build tool to generate index.js and index.d.ts (types) for better intellisense
+- Updated to latest version of TS
+- and then some...
+```
 
 <hr><br><br>
 
@@ -81,8 +93,8 @@ npm i aftc-modules
  - <b>getUSDate(dte,separator)</b>
  - <b>appendTo(elementOrId,msg,endOfLine)</b>
  - <b>attachDebug(no,position,ele)</b>
- - <b>AttachLazyLogging(NA)</b>
  - <b>debugTo(index,str)</b>
+ - <b>LazyLog(NA)</b>
  - <b>log(arg)</b>
  - <b>logDisable()</b>
  - <b>logEnable()</b>
@@ -1281,45 +1293,6 @@ debugTo(2,'hello world 3')
 
 <hr><br><br>
 
-## <b>AttachLazyLogging(NA))</b>
-### <b>Information</b>
-Adds log, warn and error to the window scope (globally), so no more typing console. anymore.
-
-### <b>Parameters</b>
-
-- <b>NA</b>
-	- <b>Type:</b> any
-	- <b>Required:</b> false
-	- <b>Default:</b> null
-	- <b>Info:</b> Use as if your were using console.log, console.warn and console.error directly
-
-### <b>Methods</b>
-
-- <b>log()</b>
-- <b>log()</b>
-- <b>log()</b>
-- <b>EnableLazyLogging()</b>
-- <b>DisableLazyLogging()</b>
-### <b>Example</b>
-
-```
-log('hello world 1')
-log(`a = ${a}`)
-log('a = ' + a)
-log('log eg',[1,2,3])
-warn('hello world 1')
-warn(`a = ${a}`)
-warn('a = ' + a)
-warn('warn eg',[1,2,3])
-error('hello world 1')
-error(`a = ${a}`)
-error('a = ' + a)
-error('error eg',[1,2,3])
-```
-
-
-<hr><br><br>
-
 ## <b>debugTo(index,str))</b>
 ### <b>Information</b>
 Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.
@@ -1345,6 +1318,46 @@ attachDebug(3)
 debugTo(0,'hello world 1')
 debugTo(1,'hello world 2')
 debugTo(2,'hello world 3')
+```
+
+
+<hr><br><br>
+
+## <b>LazyLog(NA))</b>
+### <b>Information</b>
+Adds log, warn and error to the window scope (globally), so no more typing console. anymore.
+
+### <b>Parameters</b>
+
+- <b>NA</b>
+	- <b>Type:</b> any
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> Use as if your were using console.log, console.warn and console.error directly
+
+### <b>Methods</b>
+
+- <b>log()</b>
+- <b>log()</b>
+- <b>log()</b>
+- <b>EnableLazyLogging()</b>
+- <b>DisableLazyLogging()</b>
+### <b>Example</b>
+
+```
+LazyLog(); // This will make log, warn and error available.
+log('hello world 1')
+log(`a = ${a}`)
+log('a = ' + a)
+log('log eg',[1,2,3])
+warn('hello world 1')
+warn(`a = ${a}`)
+warn('a = ' + a)
+warn('warn eg',[1,2,3])
+error('hello world 1')
+error(`a = ${a}`)
+error('a = ' + a)
+error('error eg',[1,2,3])
 ```
 
 

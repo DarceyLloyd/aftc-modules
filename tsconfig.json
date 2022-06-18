@@ -21,7 +21,7 @@
     // Removing this would place the .d.ts files
     // next to the .js files
     // "outDir": "types"
-    "outFile": "types.d.ts"
+    // "outFile": "types.d.ts"
   },
   "references": [
 

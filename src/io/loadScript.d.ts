@@ -1,2 +1,1 @@
 export function loadScript(src: any, onComplete: any, onProgress: any): void;
-//# sourceMappingURL=loadScript.d.ts.map

@@ -28,4 +28,3 @@ export class SwipeHandler {
     clearTimer(): void;
     argsToObject(args: any, obj: any, strict?: boolean): void;
 }
-//# sourceMappingURL=SwipeHandler.d.ts.map

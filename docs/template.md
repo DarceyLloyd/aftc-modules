@@ -16,7 +16,19 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
-- Changes to assist packaging tools for better tree shacking, you should now reference the function/class from the src directory and not from aftc-modules.js anymore.
+- Logging can now be attached globally via:
+```
+LazyLog();
+log("hello world");
+warn("hello world");
+error("hello world");
+
+// Even in webpack
+
+- Updated build process and enhanced the build tool to generate index.js and index.d.ts (types) for better intellisense
+- Updated to latest version of TS
+- and then some...
+```
 
 <hr><br><br>
 

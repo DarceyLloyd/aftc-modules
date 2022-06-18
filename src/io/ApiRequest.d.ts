@@ -3,4 +3,3 @@ export class ApiRequest {
     post(route: any, data: any, onSuccess: any, onError: any): Promise<void>;
     patch(route: any, data: any, onSuccess: any, onError: any): Promise<void>;
 }
-//# sourceMappingURL=ApiRequest.d.ts.map

@@ -1394,7 +1394,40 @@ export function attachDebug(no, position, ele) {
     return debugContainer;
 }
 // JSODOC = {
-//     "function": "AttachLazyLogging",
+//     "method": "debugTo",
+//     "params": [
+//         {
+//             "name": "index",
+//             "type": "Number",
+//             "required": true,
+//             "default": null,
+//             "info": "The debug container index to write to (setup via <b>attachDebug</b>)."
+//         },
+//         {
+//             "name": "str",
+//             "type": "String",
+//             "required": true,
+//             "default": "null",
+//             "info": "The string you want to write to the debug container."
+//         }
+//     ],
+//     "info": "Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.",
+//     "example": [
+//         "attachDebug(3)",
+//         "debugTo(0,'hello world 1')",
+//         "debugTo(1,'hello world 2')",
+//         "debugTo(2,'hello world 3')"
+//     ]
+// } JSODOC
+export function debugTo(index, str) {
+    if (window.aftcDebug) {
+        if (window.aftcDebug[index]) {
+            window.aftcDebug[index].innerHTML = str;
+        }
+    }
+}
+// JSODOC = {
+//     "function": "LazyLog",
 //     "methods": [
 //         {
 //             "name": "log",
@@ -1428,6 +1461,7 @@ export function attachDebug(no, position, ele) {
 //         }
 //     ],
 //     "example": [
+//         "LazyLog(); // This will make log, warn and error available.",
 //         "log('hello world 1')",
 //         "log(`a = ${a}`)",
 //         "log('a = ' + a)",
@@ -1442,22 +1476,22 @@ export function attachDebug(no, position, ele) {
 //         "error('error eg',[1,2,3])"
 //     ]
 // } JSODOC
-export default function AttachLazyLogging(){
+export default function LazyLog(){
     if (!window.aftcLazyLog){
         window.aftcLazyLog = {
             enabled: true
         }
     }
     if (window.log){
-        console.warn("AttachLazyLogging(): window.log was already defined but has now been re-defined.")
+        console.warn("LazyLog(): window.log was already defined but has now been re-defined.")
     }
     window.log = (...args) => { if(window.aftcLazyLog.enabled) {console.log(...args);} }
     if (window.warn){
-        console.warn("AttachLazyLogging(): window.warn was already defined but has now been re-defined.")
+        console.warn("LazyLog(): window.warn was already defined but has now been re-defined.")
     }
     window.warn = (...args) => { if(window.aftcLazyLog.enabled) {console.warn(...args);} }
     if (window.error){
-        console.warn("AttachLazyLogging(): window.error was already defined but has now been re-defined.")
+        console.warn("LazyLog(): window.error was already defined but has now been re-defined.")
     }
     window.error = (...args) => { if(window.aftcLazyLog.enabled) {console.error(...args);} }
     window.EnableLazyLogging = function(){
@@ -1466,39 +1500,6 @@ export default function AttachLazyLogging(){
     window.DisableLazyLogging = function(){
         window.aftcLazyLog.enabled = false;
     };
-}
-// JSODOC = {
-//     "method": "debugTo",
-//     "params": [
-//         {
-//             "name": "index",
-//             "type": "Number",
-//             "required": true,
-//             "default": null,
-//             "info": "The debug container index to write to (setup via <b>attachDebug</b>)."
-//         },
-//         {
-//             "name": "str",
-//             "type": "String",
-//             "required": true,
-//             "default": "null",
-//             "info": "The string you want to write to the debug container."
-//         }
-//     ],
-//     "info": "Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.",
-//     "example": [
-//         "attachDebug(3)",
-//         "debugTo(0,'hello world 1')",
-//         "debugTo(1,'hello world 2')",
-//         "debugTo(2,'hello world 3')"
-//     ]
-// } JSODOC
-export function debugTo(index, str) {
-    if (window.aftcDebug) {
-        if (window.aftcDebug[index]) {
-            window.aftcDebug[index].innerHTML = str;
-        }
-    }
 }
 // JSODOC = {
 //     "method": "log",

@@ -10,4 +10,3 @@ export class Logger {
     warn(arg: any): void;
     error(arg: any): void;
 }
-//# sourceMappingURL=Logger.d.ts.map
