@@ -20,6 +20,14 @@
 //         {
 //             "name": "DisableLazyLogging",
 //             "info": "Disables lazy logging functions (log,warn,error) globaly (uses window scope)"
+//         },
+//         {
+//             "name": "EnableLazyLog",
+//             "info": "Enables lazy logging functions (log,warn,error) globaly (uses window scope)"
+//         },
+//         {
+//             "name": "DisableLazyLog",
+//             "info": "Disables lazy logging functions (log,warn,error) globaly (uses window scope)"
 //         }
 //     ],
 //     "info": "Adds log, warn and error to the window scope (globally), so no more typing console. anymore.",
@@ -49,34 +57,57 @@
 //     ]
 // } JSODOC
 
-export default function LazyLog(){
-
-    if (!window.aftcLazyLog){
+function initLazyLog() {
+    let requiresInit = false;
+    if (window.aftcLazyLog == undefined || window.aftcLazyLog == null || window.aftcLazyLog == NaN) {
+        requiresInit = true;
+    }
+    if (window.aftcLazyLog.enabled == undefined || window.aftcLazyLog.enabled == null || window.aftcLazyLog.enabled == NaN) {
+        requiresInit = true;
+    }
+    if (requiresInit===true){
         window.aftcLazyLog = {
             enabled: true
         }
     }
+}
 
-    if (window.log){
+export default function LazyLog() {
+
+    initLazyLog();
+
+    if (window.log) {
         console.warn("LazyLog(): window.log was already defined but has now been re-defined.")
     }
-    window.log = (...args) => { if(window.aftcLazyLog.enabled) {console.log(...args);} }
+    window.log = (...args) => { if (window.aftcLazyLog.enabled) { console.log(...args); } }
 
-    if (window.warn){
+    if (window.warn) {
         console.warn("LazyLog(): window.warn was already defined but has now been re-defined.")
     }
-    window.warn = (...args) => { if(window.aftcLazyLog.enabled) {console.warn(...args);} }
+    window.warn = (...args) => { if (window.aftcLazyLog.enabled) { console.warn(...args); } }
 
-    if (window.error){
+    if (window.error) {
         console.warn("LazyLog(): window.error was already defined but has now been re-defined.")
     }
-    window.error = (...args) => { if(window.aftcLazyLog.enabled) {console.error(...args);} }
+    window.error = (...args) => { if (window.aftcLazyLog.enabled) { console.error(...args); } }
 
-    window.EnableLazyLogging = function(){
+    window.EnableLazyLogging = function () {
+        initLazyLog();
         window.aftcLazyLog.enabled = true;
     };
 
-    window.DisableLazyLogging = function(){
+    window.EnableLazyLog = function () {
+        initLazyLog();
+        window.aftcLazyLog.enabled = true;
+    };
+
+    window.DisableLazyLogging = function () {
+        initLazyLog();
+        window.aftcLazyLog.enabled = false;
+    };
+
+    window.DisableLazyLog = function () {
+        initLazyLog();
         window.aftcLazyLog.enabled = false;
     };
 }
