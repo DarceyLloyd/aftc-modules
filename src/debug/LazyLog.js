@@ -61,8 +61,7 @@ function initLazyLog() {
     let requiresInit = false;
     if (window.aftcLazyLog == undefined || window.aftcLazyLog == null || window.aftcLazyLog == NaN) {
         requiresInit = true;
-    }
-    if (window.aftcLazyLog.enabled == undefined || window.aftcLazyLog.enabled == null || window.aftcLazyLog.enabled == NaN) {
+    } else if (window.aftcLazyLog.enabled == undefined || window.aftcLazyLog.enabled == null || window.aftcLazyLog.enabled == NaN) {
         requiresInit = true;
     }
     if (requiresInit===true){
