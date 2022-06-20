@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.15.1</b>
+# <b>AFTC-MODULES v1.15.2</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -22,6 +22,8 @@ LazyLog();
 log("hello world");
 warn("hello world");
 error("hello world");
+DisableLazyLog(); // Disables it globally (window scope)
+EnableLazyLog(); // Enables it globally (window scope)
 
 // Even in webpack
 
@@ -1342,6 +1344,8 @@ Adds log, warn and error to the window scope (globally), so no more typing conso
 - <b>log()</b>
 - <b>EnableLazyLogging()</b>
 - <b>DisableLazyLogging()</b>
+- <b>EnableLazyLog()</b>
+- <b>DisableLazyLog()</b>
 ### <b>Example</b>
 
 ```

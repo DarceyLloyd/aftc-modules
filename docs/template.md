@@ -22,6 +22,8 @@ LazyLog();
 log("hello world");
 warn("hello world");
 error("hello world");
+DisableLazyLog(); // Disables it globally (window scope)
+EnableLazyLog(); // Enables it globally (window scope)
 
 // Even in webpack
 
