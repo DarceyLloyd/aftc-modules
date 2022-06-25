@@ -71,7 +71,7 @@ function initLazyLog() {
     }
 }
 
-export default function LazyLog() {
+export function LazyLog() {
 
     initLazyLog();
 

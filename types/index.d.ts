@@ -120,6 +120,7 @@
 /// <reference path="../src/string/trimStringBy.d.ts"/>
 /// <reference path="../src/string/ucFirst.d.ts"/>
 /// <reference path="../src/touch/SwipeHandler.d.ts"/>
+/// <reference path="../src/url/getRoute.d.ts"/>
 /// <reference path="../src/validation/isEmail.d.ts"/>
 /// <reference path="../src/video/promiseAttachVideo.d.ts"/>
 /// <reference path="../src/video/promiseVideoEnd.d.ts"/>

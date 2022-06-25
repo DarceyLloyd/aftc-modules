@@ -1,1 +1,1 @@
-export default function LazyLog(): void;
+export function LazyLog(): void;

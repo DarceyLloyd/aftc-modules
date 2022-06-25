@@ -16,6 +16,11 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
+- added getRoute(url:string(optional))
+- Changed LazyLog from export default to export (no default)
+- Imporved build script to build a comment free aftc-modules.js concatinated file
+- Fixed some bugs in generation of both index.js and index.d.ts for better VSCode integration
+
 - Logging can now be attached globally via:
 ```
 LazyLog();

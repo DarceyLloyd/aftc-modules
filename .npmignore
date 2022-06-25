@@ -14,5 +14,7 @@ readme.md
 template.md
 node_modules
 build.js
+aftc-modules-clean.js
+aftc-modules-debug.js
 tsconfig.json
 /info

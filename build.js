@@ -27,6 +27,8 @@ start();
 
 
 async function start() {
+    console.clear();
+
     // build index.js
     await buildIndexJs();
     log(`index.js built`.green);
@@ -41,6 +43,8 @@ async function start() {
 
     buildDocs()
 
+    cleanConcatinatedFile();
+
 
 
 
@@ -48,6 +52,52 @@ async function start() {
     log("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #".green);
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+async function cleanConcatinatedFile() {
+
+    const f = p.resolve("./aftc-modules.js");
+    let first2Chars = "";
+    let first2CharFilterList = ["//", "*", "*/"];
+    let processLine = true;
+    let processLineDone = false;
+
+    let outputString = "";
+    let debugString = "";
+
+    const fileContents = await fs.readFileSync(f, 'utf-8');
+    fileContents.split(/\r?\n/).forEach(line => {
+        // reset
+        first2Chars = "";
+        processLine = true;
+
+        // clean up line
+        line = replaceTabs(line);
+
+        // log(line);
+
+        // check line doesn't start with any first2CharFilterList
+        // let a = first2CharFilterList.some(substring=>line.includes(substring));
+
+        first2Chars = line.substring(0, 2);
+        if (isArrayInString(first2Chars, first2CharFilterList) !== true) {
+            outputString += (line) + "\n";
+        } else {
+            debugString += line + "\n";
+        }
+
+    });
+
+
+    await writeFile("./aftc-modules.js", outputString)
+    await writeFile("./aftc-modules-debug.js", debugString)
+
+
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
 
 
 async function buildIndexTs() {
@@ -85,38 +135,89 @@ async function buildIndexTs() {
 async function buildIndexJs() {
 
 
-    // const f = p.resolve("./test.js")
-    // const f = jsFiles[0];
-    // await getJsImportsAndExportsFromFile(f);
-
-    for (const f of jsFiles) {
-        await getJsImportsAndExportsFromFile(f);
-    }
-
-
-    // log(importList)
-    // log(exportList)
-
-    let outputFile = p.resolve("./index.js");
+    const outputFile = p.resolve("./index.js")
     let fileContents = "";
 
-    // Imports
-    for (let i = 0; i < importList.length; i++) {
-        fileContents += importList[i] + "\n";
+
+    let first2Chars = "";
+    let first2CharFilterList = ["//", "*", "*/"];
+    let exp = ""; // will hold the exportString to add to exportList
+    let functionName = ""; // will hold the function name
+    let currentDirName = p.basename(process.cwd())
+    let pathStringToRemove = "";
+    let jsImportPath = "";
+    let exportList = []; // functions / class's names to add to export section
+
+
+
+    for (const f of jsFiles) {
+        first2Chars = "";
+        exp = "";
+        functionName = "";
+        pathStringToRemove = process.cwd().replace(currentDirName, "")
+        jsImportPath = f.replace(pathStringToRemove, "")
+        jsImportPath = jsImportPath.replace(/\\/g, '/')
+        // log(jsImportPath);
+
+        const allFileContents = await fs.readFileSync(f, 'utf-8');
+        allFileContents.split(/\r?\n/).forEach(line => {
+            // reset
+            first2Chars = "";
+            exp = "";
+
+            // clean up line
+            line = replaceRN(line);
+            first2Chars = line.substring(0, 2);
+
+            if (isArrayInString(first2Chars, first2CharFilterList) === false) {
+                // log(line);
+
+                if (
+                    line.includes("export function") ||
+                    line.includes("export default function") ||
+                    line.includes("export async function") ||
+                    line.includes("export default async function") ||
+                    line.includes("export class")
+                    // line.includes("export default class") === false &&
+                ) {
+                    // log(line)
+                    functionName = cleanLineString(line)
+                    exp = `import { ${functionName} } from '${jsImportPath}';`
+                    // log(exp);
+
+                    fileContents += exp + "\n";
+
+                    // importList.push(exp);
+                    exportList.push(functionName);
+                    // log(exp);
+                }
+
+                // Handle multiline export export {\n fn, etc }
+                // TODO
+                // if (processLineDone === false){
+                //     if (line.includes("export {") || line.includes("export default {")) {
+                //         log(line);
+                //     }
+                // }
+            }
+
+
+        });
+
     }
 
-    fileContents += "\n";
 
-    // Exports
-    fileContents += "export {\n";
-    let endChar = "";
+    // build export part of file output
+    let endComma = "";
+    fileContents += "\n";
+    fileContents += "export { \n";
     for (let i = 0; i < exportList.length; i++) {
-        if (i < (exportList.length - 1)) {
-            endChar = ",";
-        } else {
-            endChar = "";
+        if (i < exportList.length) {
+            endComma = ",";
         }
-        fileContents += "\t" + exportList[i] + endChar + "\n";
+
+        fileContents += "\t" + exportList[i] + endComma + "\n"
+
     }
     fileContents += "}";
 
@@ -150,34 +251,35 @@ async function getJsImportsAndExportsFromFile(f) {
     allFileContents.split(/\r?\n/).forEach(line => {
         // reset
         first2Chars = "";
-        processLine = true;
         exp = "";
 
         // clean up line
+
         line = replaceRN(line);
         // line = replaceAll("\t", "TestObject", line);
         // log(line);
 
         // check line doesn't start with any first2CharFilterList
         // let a = first2CharFilterList.some(substring=>line.includes(substring));
-        if (isArrayInString(line, first2CharFilterList) === true) {
-            processLine = false;
-        }
+        first2Chars = line.substring(0, 2);
 
-        if (processLine === true) {
-            // Handle "export function test() {" and similar
+        if (isArrayInString(first2Chars, first2CharFilterList) === false) {
+            // log(line);
+
             if (
-                line.includes("export") &&
-                line.includes("export {") === false &&
-                line.includes("export default {") === false
+                line.includes("export function") ||
+                line.includes("export default function") ||
+                line.includes("export async function") ||
+                line.includes("export default async function") ||
+                line.includes("export class")
                 // line.includes("export default class") === false &&
             ) {
+                // log(line)
                 functionName = cleanLineString(line)
                 exp = `import { ${functionName} } from '${jsImportPath}';`
                 importList.push(exp);
                 exportList.push(functionName);
                 // log(exp);
-                processLineDone = true;
             }
 
             // Handle multiline export export {\n fn, etc }
@@ -191,6 +293,8 @@ async function getJsImportsAndExportsFromFile(f) {
 
 
     });
+
+    // await fse.writeFile(outputFile, fileContents);
 
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -262,6 +366,13 @@ function replaceRN(str) {
     str = str.replace(/\s{2,}/g, ' ');
     str = str.replace(/\t/g, ' ');
     str = str.toString().trim().replace(/(\r\n|\n|\r)/g, "");
+    return str;
+}
+
+function replaceTabs(str) {
+    //remove line breaks from str
+    // str = str.replace(/\s{2,}/g, ' ');
+    str = str.replace(/\t/g, ' ');
     return str;
 }
 

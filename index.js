@@ -19,9 +19,11 @@ import { argsToObject } from 'aftc-modules/src/conversion/argsToObject.js';
 import { boolToInt } from 'aftc-modules/src/conversion/boolToInt.js';
 import { boolToString } from 'aftc-modules/src/conversion/boolToString.js';
 import { boolToYesNo } from 'aftc-modules/src/conversion/boolToYesNo.js';
+import { degToRad } from 'aftc-modules/src/conversion/degToRad.js';
 import { hexToRgb } from 'aftc-modules/src/conversion/hexToRgb.js';
 import { numToHex } from 'aftc-modules/src/conversion/numToHex.js';
 import { objectToObject } from 'aftc-modules/src/conversion/objectToObject.js';
+import { radToDeg } from 'aftc-modules/src/conversion/radToDeg.js';
 import { rgbToHex } from 'aftc-modules/src/conversion/rgbToHex.js';
 import { rgbToHex2 } from 'aftc-modules/src/conversion/rgbToHex2.js';
 import { stringToBool } from 'aftc-modules/src/conversion/stringToBool.js';
@@ -121,11 +123,12 @@ import { rTrimBy } from 'aftc-modules/src/string/rTrimBy.js';
 import { trimStringBy } from 'aftc-modules/src/string/trimStringBy.js';
 import { ucFirst } from 'aftc-modules/src/string/ucFirst.js';
 import { SwipeHandler } from 'aftc-modules/src/touch/SwipeHandler.js';
+import { getRoute } from 'aftc-modules/src/url/getRoute.js';
 import { isEmail } from 'aftc-modules/src/validation/isEmail.js';
 import { promiseAttachVideo } from 'aftc-modules/src/video/promiseAttachVideo.js';
 import { promiseVideoEnd } from 'aftc-modules/src/video/promiseVideoEnd.js';
 
-export {
+export { 
 	inertiaTo,
 	arrayClear,
 	arrayContains,
@@ -147,9 +150,11 @@ export {
 	boolToInt,
 	boolToString,
 	boolToYesNo,
+	degToRad,
 	hexToRgb,
 	numToHex,
 	objectToObject,
+	radToDeg,
 	rgbToHex,
 	rgbToHex2,
 	stringToBool,
@@ -249,7 +254,8 @@ export {
 	trimStringBy,
 	ucFirst,
 	SwipeHandler,
+	getRoute,
 	isEmail,
 	promiseAttachVideo,
-	promiseVideoEnd
+	promiseVideoEnd,
 }

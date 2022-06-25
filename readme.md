@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.15.3</b>
+# <b>AFTC-MODULES v1.16.0</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,6 +16,11 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
+- added getRoute(url:string(optional))
+- Changed LazyLog from export default to export (no default)
+- Imporved build script to build a comment free aftc-modules.js concatinated file
+- Fixed some bugs in generation of both index.js and index.d.ts for better VSCode integration
+
 - Logging can now be attached globally via:
 ```
 LazyLog();
@@ -174,6 +179,7 @@ npm i aftc-modules
  - <b>trimStringBy(str,trimBy)</b>
  - <b>ucFirst(s)</b>
  - <b>SwipeHandler({object})</b>
+ - <b>getRoute(url)</b>
  - <b>isEmail(email)</b>
  - <b>promiseAttachVideo(video,src)</b>
  - <b>promiseVideoEnd(video)</b>
@@ -3306,6 +3312,30 @@ Swipe handler, currently detects left & right swipes.
 
 ```
 new SwipeHandler({config})
+```
+
+
+<hr><br><br>
+
+## <b>getRoute(url))</b>
+### <b>Information</b>
+Returns a route string.
+
+### <b>Parameters</b>
+
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Info:</b> String to parse into a route, if left out it will get the current url/uri.
+
+### <b>Returns</b>
+
+- <b>Type: </b>String
+### <b>Example</b>
+
+```
+let usersRoute = getRoute('https://domain.com/users')
+let currentRoute = getRoute()
 ```
 
 
