@@ -28,6 +28,7 @@
 /// <reference path="../src/conversion/rgbToHex2.d.ts"/>
 /// <reference path="../src/conversion/stringToBool.d.ts"/>
 /// <reference path="../src/cookies/getCookie.d.ts"/>
+/// <reference path="../src/cookies/listCookies.d.ts"/>
 /// <reference path="../src/cookies/setCookie.d.ts"/>
 /// <reference path="../src/datetime/getDaysBetween.d.ts"/>
 /// <reference path="../src/datetime/getMySQLDateTimeString.d.ts"/>

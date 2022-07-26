@@ -1,1 +1,1 @@
-export function setCookie(cname: any, cvalue: any, exdays: any): void;
+export function setCookie(name: any, value: any, mins: any): void;

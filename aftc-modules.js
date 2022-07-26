@@ -246,16 +246,21 @@ export function getCookie(name) {
  var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
  return keyValue ? keyValue[2] : null;
 }
-export function setCookie(cname, cvalue, exdays) {
+export function listCookies() {
+ var c = document.cookie.split(';');
+ for (var i = 1 ; i <= c.length; i++) {
+  console.log(c[i-1])
+ }
+}
+export function setCookie(name, value, mins) {
  // https://javascript.info/cookie
- // var expires = new Date();
- // expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
- // document.cookie = name + '=' + value + ';expires=' + expires.toUTCString();
- var d = new Date();
- d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
- var expires = "expires=" + d.toUTCString();
- // document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; // cookies are changing (this will get blocked soon 09-21)
- document.cookie = cname + "=" + cvalue + ";" + expires + ";samesite=strict;secure:true;path=/";
+ // var d = new Date();
+ // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+ // var expires = "expires=" + d.toUTCString();
+ let d = new Date();
+ d.setTime(d.getTime()+(mins*60*1000));
+ let expires = "; expires="+d.toGMTString();
+ document.cookie = name + "=" + value + ";" + expires + ";samesite=strict;secure:true;path=/";
 }
 export function getDaysBetween(startDateTime, endDateTime) {
     let msPerDay = 8.64e7;

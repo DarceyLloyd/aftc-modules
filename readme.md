@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.16.0</b>
+# <b>AFTC-MODULES v1.16.1</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,6 +16,8 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
+- changed setCookie to use minutes instead of days on expiry time
+- added listCookies to dump available cookies to the console (dev helper)
 - added getRoute(url:string(optional))
 - Changed LazyLog from export default to export (no default)
 - Imporved build script to build a comment free aftc-modules.js concatinated file
@@ -90,6 +92,7 @@ npm i aftc-modules
  - <b>rgbToHex2(r,g,b)</b>
  - <b>stringToBool(str)</b>
  - <b>getCookie(name)</b>
+ - <b>listCookies()</b>
  - <b>setCookie(name,cvalue,exdays)</b>
  - <b>getDaysBetween(startDateTime,endDateTime)</b>
  - <b>getMySQLDateTimeString()</b>
@@ -996,6 +999,19 @@ let email = getCookie('email')
 
 <hr><br><br>
 
+## <b>listCookies())</b>
+### <b>Information</b>
+Lists all available cookie.
+
+### <b>Example</b>
+
+```
+listCookies()
+```
+
+
+<hr><br><br>
+
 ## <b>setCookie(name,cvalue,exdays))</b>
 ### <b>Information</b>
 Fetches a cookie by name.
@@ -1025,8 +1041,8 @@ Fetches a cookie by name.
 ```
 let name = 'email';
 let value = 'darcey.lloyd@gmail.com';
-let lifeInDays = 30;
-setCookie(name,value,lifeInDays)
+let lifeInMins = 30;
+setCookie(name,value,lifeInMins)
 ```
 
 
@@ -1484,7 +1500,7 @@ Appends a string to an element, with or without a < BR > tag.
 - <b>endOfLine</b>
 	- <b>Type:</b> String
 	- <b>Required:</b> false
-	- <b>Default:</b> 
+	- <b>Default:</b>
 	- <b>Info:</b> The end of the string that will be appended to the element, set to '< br >' if you want a line break
 
 ### <b>Example</b>
@@ -3416,4 +3432,3 @@ then((res)=>{ console.log('video playback complete') })
 
 
 <hr><br><br>
-

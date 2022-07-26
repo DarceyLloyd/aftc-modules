@@ -662,6 +662,13 @@
 //     ]
 // } JSODOC
 // JSODOC = {
+//     "method": "listCookies",
+//     "info": "Lists all available cookie.",
+//     "example": [
+//         "listCookies()"
+//     ]
+// } JSODOC
+// JSODOC = {
 //     "method": "setCookie",
 //     "params": [
 //         {
@@ -690,8 +697,8 @@
 //     "example": [
 //         "let name = 'email';",
 //         "let value = 'darcey.lloyd@gmail.com';",
-//         "let lifeInDays = 30;",
-//         "setCookie(name,value,lifeInDays)"
+//         "let lifeInMins = 30;",
+//         "setCookie(name,value,lifeInMins)"
 //     ]
 // } JSODOC
 // JSODOC = {
