@@ -1134,6 +1134,25 @@
 //     ]
 // } JSODOC
 // JSODOC = {
+//     "method": "warn",
+//     "params": [
+//         {
+//             "name": "arg",
+//             "type": "*",
+//             "required": true,
+//             "default": null,
+//             "info": "arg gets injected into console.warn"
+//         }
+//     ],
+//     "info": "Lazy version of console.warn, no more typing console!",
+//     "example": [
+//         "warn('Once you use me, you will never stop using me')",
+//         "let a = 4;",
+//         "warn('a = ' + a)",
+//         "warn(`a = ${a}`)"
+//     ]
+// } JSODOC
+// JSODOC = {
 //     "method": "getOS",
 //     "returns": {
 //         "type": "String (Mac OS, iOS, Windows, Android, Linux"

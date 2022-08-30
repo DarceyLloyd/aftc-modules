@@ -44,6 +44,7 @@
 /// <reference path="../src/debug/log.d.ts"/>
 /// <reference path="../src/debug/Logger.d.ts"/>
 /// <reference path="../src/debug/logTo.d.ts"/>
+/// <reference path="../src/debug/warn.d.ts"/>
 /// <reference path="../src/detection/getOS.d.ts"/>
 /// <reference path="../src/detection/isAndroid.d.ts"/>
 /// <reference path="../src/detection/isChrome.d.ts"/>

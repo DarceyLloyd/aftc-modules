@@ -46,6 +46,7 @@ import { logDisable } from 'aftc-modules/src/debug/log.js';
 import { logEnable } from 'aftc-modules/src/debug/log.js';
 import { Logger } from 'aftc-modules/src/debug/Logger.js';
 import { logTo } from 'aftc-modules/src/debug/logTo.js';
+import { warn } from 'aftc-modules/src/debug/warn.js';
 import { getOS } from 'aftc-modules/src/detection/getOS.js';
 import { isAndroid } from 'aftc-modules/src/detection/isAndroid.js';
 import { isChrome } from 'aftc-modules/src/detection/isChrome.js';
@@ -178,6 +179,7 @@ export {
 	logEnable,
 	Logger,
 	logTo,
+	warn,
 	getOS,
 	isAndroid,
 	isChrome,

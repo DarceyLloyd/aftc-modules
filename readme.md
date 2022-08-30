@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.16.1</b>
+# <b>AFTC-MODULES v1.16.3</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,8 +16,6 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
-- changed setCookie to use minutes instead of days on expiry time
-- added listCookies to dump available cookies to the console (dev helper)
 - added getRoute(url:string(optional))
 - Changed LazyLog from export default to export (no default)
 - Imporved build script to build a comment free aftc-modules.js concatinated file
@@ -110,6 +108,7 @@ npm i aftc-modules
  - <b>logEnable()</b>
  - <b>Logger()</b>
  - <b>logTo(elementOrId,msg,append,endOfLine)</b>
+ - <b>warn(arg)</b>
  - <b>getOS()</b>
  - <b>isAndroid()</b>
  - <b>isChrome()</b>
@@ -1500,13 +1499,37 @@ Appends a string to an element, with or without a < BR > tag.
 - <b>endOfLine</b>
 	- <b>Type:</b> String
 	- <b>Required:</b> false
-	- <b>Default:</b>
+	- <b>Default:</b> 
 	- <b>Info:</b> The end of the string that will be appended to the element, set to '< br >' if you want a line break
 
 ### <b>Example</b>
 
 ```
 logTo(elementOrId,msg,true)
+```
+
+
+<hr><br><br>
+
+## <b>warn(arg))</b>
+### <b>Information</b>
+Lazy version of console.warn, no more typing console!
+
+### <b>Parameters</b>
+
+- <b>arg</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> arg gets injected into console.warn
+
+### <b>Example</b>
+
+```
+warn('Once you use me, you will never stop using me')
+let a = 4;
+warn('a = ' + a)
+warn(`a = ${a}`)
 ```
 
 
@@ -3432,3 +3455,4 @@ then((res)=>{ console.log('video playback complete') })
 
 
 <hr><br><br>
+

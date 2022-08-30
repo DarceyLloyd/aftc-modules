@@ -647,6 +647,15 @@ export function logTo(elementOrId,msg,append=false,endOfLine=""){
     }
 }
 
+export function warn(...args) {
+    if (window.aftcLogEnabled === undefined){
+        window.aftcLogEnabled = true;
+    }
+    if (window.aftcLogEnabled){
+        console.warn(...args);
+    }
+}
+
 export function getOS() {
     var userAgent = window.navigator.userAgent,
         platform = window.navigator.platform,
