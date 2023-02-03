@@ -1,1 +1,1 @@
-export function boolToInt(bool: any): "error" | 0 | 1;
+export function boolToInt(bool: any): 1 | 0 | "error";

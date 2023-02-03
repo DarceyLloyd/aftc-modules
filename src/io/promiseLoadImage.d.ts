@@ -1,1 +1,1 @@
-export function promiseLoadImage(ele: any, src: any): any;
+export function promiseLoadImage(ele: any, src: any): Promise<any>;

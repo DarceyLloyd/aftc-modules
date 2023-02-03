@@ -26,6 +26,7 @@ import { objectToObject } from 'aftc-modules/src/conversion/objectToObject.js';
 import { radToDeg } from 'aftc-modules/src/conversion/radToDeg.js';
 import { rgbToHex } from 'aftc-modules/src/conversion/rgbToHex.js';
 import { rgbToHex2 } from 'aftc-modules/src/conversion/rgbToHex2.js';
+import { rgbToHex3 } from 'aftc-modules/src/conversion/rgbToHex3.js';
 import { stringToBool } from 'aftc-modules/src/conversion/stringToBool.js';
 import { getCookie } from 'aftc-modules/src/cookies/getCookie.js';
 import { listCookies } from 'aftc-modules/src/cookies/listCookies.js';
@@ -37,16 +38,16 @@ import { getUKDateFromDbDateTime } from 'aftc-modules/src/datetime/getUKDateFrom
 import { getUKDateTime } from 'aftc-modules/src/datetime/getUKDateTime.js';
 import { getUKDateTimeFromDbDateTime } from 'aftc-modules/src/datetime/getUKDateTimeFromDbDateTime.js';
 import { getUSDate } from 'aftc-modules/src/datetime/getUSDate.js';
+import { Logger } from 'aftc-modules/src/debug/Logger.js';
 import { appendTo } from 'aftc-modules/src/debug/appendTo.js';
 import { attachDebug } from 'aftc-modules/src/debug/attachDebug.js';
 import { debugTo } from 'aftc-modules/src/debug/debugTo.js';
-import { LazyLog } from 'aftc-modules/src/debug/LazyLog.js';
 import { log } from 'aftc-modules/src/debug/log.js';
 import { logDisable } from 'aftc-modules/src/debug/log.js';
 import { logEnable } from 'aftc-modules/src/debug/log.js';
-import { Logger } from 'aftc-modules/src/debug/Logger.js';
 import { logTo } from 'aftc-modules/src/debug/logTo.js';
 import { warn } from 'aftc-modules/src/debug/warn.js';
+import { getDeviceType } from 'aftc-modules/src/detection/getDeviceType.js';
 import { getOS } from 'aftc-modules/src/detection/getOS.js';
 import { isAndroid } from 'aftc-modules/src/detection/isAndroid.js';
 import { isChrome } from 'aftc-modules/src/detection/isChrome.js';
@@ -56,6 +57,7 @@ import { isIOS } from 'aftc-modules/src/detection/isIOS.js';
 import { isMobile } from 'aftc-modules/src/detection/isMobile.js';
 import { isOpera } from 'aftc-modules/src/detection/isOpera.js';
 import { isSafari } from 'aftc-modules/src/detection/isSafari.js';
+import { isTouchDevice } from 'aftc-modules/src/detection/isTouchDevice.js';
 import { getElementPosition } from 'aftc-modules/src/dom/getElementPosition.js';
 import { getElementPos } from 'aftc-modules/src/dom/getElementPosition.js';
 import { isDom } from 'aftc-modules/src/dom/isDom.js';
@@ -69,8 +71,9 @@ import { limitNoOfWords } from 'aftc-modules/src/form/limitNoOfWords.js';
 import { setOptionSelectedIndex } from 'aftc-modules/src/form/setOptionSelectedIndex.js';
 import { imageToCanvas } from 'aftc-modules/src/image/imageToCanvas.js';
 import { ApiRequest } from 'aftc-modules/src/io/ApiRequest.js';
+import { XHR } from 'aftc-modules/src/io/XHR.js';
 import { fetchHtml } from 'aftc-modules/src/io/fetchHtml.js';
-import { fetchJson } from 'aftc-modules/src/io/fetchJson.js';
+import { getJson } from 'aftc-modules/src/io/fetchJson.js';
 import { loadAndAttachImage } from 'aftc-modules/src/io/loadAndAttachImage.js';
 import { loadCss } from 'aftc-modules/src/io/loadCss.js';
 import { loadJson } from 'aftc-modules/src/io/loadJson.js';
@@ -79,7 +82,6 @@ import { promiseLoadCss } from 'aftc-modules/src/io/promiseLoadCss.js';
 import { promiseLoadImage } from 'aftc-modules/src/io/promiseLoadImage.js';
 import { promiseLoadJson } from 'aftc-modules/src/io/promiseLoadJson.js';
 import { promiseLoadScript } from 'aftc-modules/src/io/promiseLoadScript.js';
-import { XHR } from 'aftc-modules/src/io/XHR.js';
 import { getRandomBoolean } from 'aftc-modules/src/math/getRandomBoolean.js';
 import { getRandomFloat } from 'aftc-modules/src/math/getRandomFloat.js';
 import { getRandomInt } from 'aftc-modules/src/math/getRandomInt.js';
@@ -116,16 +118,19 @@ import { getWordCount } from 'aftc-modules/src/string/getWordCount.js';
 import { inString } from 'aftc-modules/src/string/inString.js';
 import { isInString } from 'aftc-modules/src/string/isInString.js';
 import { lTrimBy } from 'aftc-modules/src/string/lTrimBy.js';
+import { rTrimBy } from 'aftc-modules/src/string/rTrimBy.js';
 import { regExReplaceAll } from 'aftc-modules/src/string/regExReplaceAll.js';
 import { removeFileFromPath } from 'aftc-modules/src/string/removeFileFromPath.js';
 import { replaceAll } from 'aftc-modules/src/string/replaceAll.js';
 import { replaceDoubleBackSlash } from 'aftc-modules/src/string/replaceDoubleBackSlash.js';
 import { replaceDoubleForwardSlash } from 'aftc-modules/src/string/replaceDoubleForwardSlash.js';
-import { rTrimBy } from 'aftc-modules/src/string/rTrimBy.js';
 import { trimStringBy } from 'aftc-modules/src/string/trimStringBy.js';
 import { ucFirst } from 'aftc-modules/src/string/ucFirst.js';
+import { hexToColor } from 'aftc-modules/src/three/hexToColor.js';
 import { SwipeHandler } from 'aftc-modules/src/touch/SwipeHandler.js';
+import { doesUrlKeyExist } from 'aftc-modules/src/url/doesUrlKeyExist.js';
 import { getRoute } from 'aftc-modules/src/url/getRoute.js';
+import { getUrlKeyValue } from 'aftc-modules/src/url/getUrlKeyValue.js';
 import { isEmail } from 'aftc-modules/src/validation/isEmail.js';
 import { promiseAttachVideo } from 'aftc-modules/src/video/promiseAttachVideo.js';
 import { promiseVideoEnd } from 'aftc-modules/src/video/promiseVideoEnd.js';
@@ -159,6 +164,7 @@ export {
 	radToDeg,
 	rgbToHex,
 	rgbToHex2,
+	rgbToHex3,
 	stringToBool,
 	getCookie,
 	listCookies,
@@ -170,16 +176,16 @@ export {
 	getUKDateTime,
 	getUKDateTimeFromDbDateTime,
 	getUSDate,
+	Logger,
 	appendTo,
 	attachDebug,
 	debugTo,
-	LazyLog,
 	log,
 	logDisable,
 	logEnable,
-	Logger,
 	logTo,
 	warn,
+	getDeviceType,
 	getOS,
 	isAndroid,
 	isChrome,
@@ -189,6 +195,7 @@ export {
 	isMobile,
 	isOpera,
 	isSafari,
+	isTouchDevice,
 	getElementPosition,
 	getElementPos,
 	isDom,
@@ -202,8 +209,9 @@ export {
 	setOptionSelectedIndex,
 	imageToCanvas,
 	ApiRequest,
+	XHR,
 	fetchHtml,
-	fetchJson,
+	getJson,
 	loadAndAttachImage,
 	loadCss,
 	loadJson,
@@ -212,7 +220,6 @@ export {
 	promiseLoadImage,
 	promiseLoadJson,
 	promiseLoadScript,
-	XHR,
 	getRandomBoolean,
 	getRandomFloat,
 	getRandomInt,
@@ -249,16 +256,19 @@ export {
 	inString,
 	isInString,
 	lTrimBy,
+	rTrimBy,
 	regExReplaceAll,
 	removeFileFromPath,
 	replaceAll,
 	replaceDoubleBackSlash,
 	replaceDoubleForwardSlash,
-	rTrimBy,
 	trimStringBy,
 	ucFirst,
+	hexToColor,
 	SwipeHandler,
+	doesUrlKeyExist,
 	getRoute,
+	getUrlKeyValue,
 	isEmail,
 	promiseAttachVideo,
 	promiseVideoEnd,

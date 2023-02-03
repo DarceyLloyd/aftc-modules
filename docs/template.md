@@ -16,25 +16,15 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
-- added getRoute(url:string(optional))
-- Changed LazyLog from export default to export (no default)
-- Imporved build script to build a comment free aftc-modules.js concatinated file
-- Fixed some bugs in generation of both index.js and index.d.ts for better VSCode integration
-
-- Logging can now be attached globally via:
-```
-LazyLog();
-log("hello world");
-warn("hello world");
-error("hello world");
-DisableLazyLog(); // Disables it globally (window scope)
-EnableLazyLog(); // Enables it globally (window scope)
-
-// Even in webpack
-
-- Updated build process and enhanced the build tool to generate index.js and index.d.ts (types) for better intellisense
-- Updated to latest version of TS
-- and then some...
+- added hexToColor (THREE.Color)
+- added doesUrlKeyExist(string)
+- added getUrlKeyValue(string)
+- added rgbToHex3
+- added convert255(124)
+- updated fetchJson(string)
+- added AttachKeysToVec3() // TypeScript only
+- added VisualDebug() // TypeScript only (use attachDebug for JS projects)
+- added getDeviceType()
 ```
 
 <hr><br><br>

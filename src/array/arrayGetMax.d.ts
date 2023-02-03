@@ -1,1 +1,1 @@
-export function arrayGetMax(arr: any): any;
+export function arrayGetMax(arr: any): number;

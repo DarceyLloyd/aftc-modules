@@ -1,1 +1,1 @@
-export function promiseLoadScript(src: any): any;
+export function promiseLoadScript(src: any): Promise<any>;

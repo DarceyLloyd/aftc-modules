@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.16.3</b>
+# <b>AFTC-MODULES v1.16.12</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,25 +16,15 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
-- added getRoute(url:string(optional))
-- Changed LazyLog from export default to export (no default)
-- Imporved build script to build a comment free aftc-modules.js concatinated file
-- Fixed some bugs in generation of both index.js and index.d.ts for better VSCode integration
-
-- Logging can now be attached globally via:
-```
-LazyLog();
-log("hello world");
-warn("hello world");
-error("hello world");
-DisableLazyLog(); // Disables it globally (window scope)
-EnableLazyLog(); // Enables it globally (window scope)
-
-// Even in webpack
-
-- Updated build process and enhanced the build tool to generate index.js and index.d.ts (types) for better intellisense
-- Updated to latest version of TS
-- and then some...
+- added hexToColor (THREE.Color)
+- added doesUrlKeyExist(string)
+- added getUrlKeyValue(string)
+- added rgbToHex3
+- added convert255(124)
+- updated fetchJson(string)
+- added AttachKeysToVec3() // TypeScript only
+- added VisualDebug() // TypeScript only (use attachDebug for JS projects)
+- added getDeviceType()
 ```
 
 <hr><br><br>
@@ -88,6 +78,7 @@ npm i aftc-modules
  - <b>radToDeg(input)</b>
  - <b>rgbToHex(r,g,b)</b>
  - <b>rgbToHex2(r,g,b)</b>
+ - <b>rgbToHex3(r,g,b)</b>
  - <b>stringToBool(str)</b>
  - <b>getCookie(name)</b>
  - <b>listCookies()</b>
@@ -102,13 +93,13 @@ npm i aftc-modules
  - <b>appendTo(elementOrId,msg,endOfLine)</b>
  - <b>attachDebug(no,position,ele)</b>
  - <b>debugTo(index,str)</b>
- - <b>LazyLog(NA)</b>
  - <b>log(arg)</b>
  - <b>logDisable()</b>
  - <b>logEnable()</b>
  - <b>Logger()</b>
  - <b>logTo(elementOrId,msg,append,endOfLine)</b>
  - <b>warn(arg)</b>
+ - <b>getDeviceType()</b>
  - <b>getOS()</b>
  - <b>isAndroid()</b>
  - <b>isChrome()</b>
@@ -118,6 +109,7 @@ npm i aftc-modules
  - <b>isMobile()</b>
  - <b>isOpera()</b>
  - <b>isSafari()</b>
+ - <b>isTouchDevice()</b>
  - <b>getElementPosition(el)</b>
  - <b>getElementPos(el)</b>
  - <b>isDOM(obj)</b>
@@ -180,8 +172,11 @@ npm i aftc-modules
  - <b>rTrimBy(str,trimBy)</b>
  - <b>trimStringBy(str,trimBy)</b>
  - <b>ucFirst(s)</b>
+ - <b>hexToColor(hex)</b>
  - <b>SwipeHandler({object})</b>
+ - <b>doesUrlKeyExist(key)</b>
  - <b>getRoute(url)</b>
+ - <b>getUrlKeyValue(key)</b>
  - <b>isEmail(email)</b>
  - <b>promiseAttachVideo(video,src)</b>
  - <b>promiseVideoEnd(video)</b>
@@ -945,6 +940,42 @@ let hex = rgbToHex2(255,100,55);
 
 <hr><br><br>
 
+## <b>rgbToHex3(r,g,b))</b>
+### <b>Information</b>
+Converts an RGB value to a hex color value (Method 3).
+
+### <b>Parameters</b>
+
+- <b>r</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
+
+- <b>g</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
+
+- <b>b</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
+
+### <b>Returns</b>
+
+- <b>Type: </b>String
+### <b>Example</b>
+
+```
+let hex = rgbToHex3(255,100,55);
+```
+
+
+<hr><br><br>
+
 ## <b>stringToBool(str))</b>
 ### <b>Information</b>
 Converts a String to Boolean.
@@ -1346,48 +1377,6 @@ debugTo(2,'hello world 3')
 
 <hr><br><br>
 
-## <b>LazyLog(NA))</b>
-### <b>Information</b>
-Adds log, warn and error to the window scope (globally), so no more typing console. anymore.
-
-### <b>Parameters</b>
-
-- <b>NA</b>
-	- <b>Type:</b> any
-	- <b>Required:</b> false
-	- <b>Default:</b> null
-	- <b>Info:</b> Use as if your were using console.log, console.warn and console.error directly
-
-### <b>Methods</b>
-
-- <b>log()</b>
-- <b>log()</b>
-- <b>log()</b>
-- <b>EnableLazyLogging()</b>
-- <b>DisableLazyLogging()</b>
-- <b>EnableLazyLog()</b>
-- <b>DisableLazyLog()</b>
-### <b>Example</b>
-
-```
-LazyLog(); // This will make log, warn and error available.
-log('hello world 1')
-log(`a = ${a}`)
-log('a = ' + a)
-log('log eg',[1,2,3])
-warn('hello world 1')
-warn(`a = ${a}`)
-warn('a = ' + a)
-warn('warn eg',[1,2,3])
-error('hello world 1')
-error(`a = ${a}`)
-error('a = ' + a)
-error('error eg',[1,2,3])
-```
-
-
-<hr><br><br>
-
 ## <b>log(arg))</b>
 ### <b>Information</b>
 Lazy version of console.log, no more typing console!
@@ -1535,6 +1524,24 @@ warn(`a = ${a}`)
 
 <hr><br><br>
 
+## <b>getDeviceType())</b>
+### <b>Information</b>
+Returns the device type mobile || tablet || desktop
+
+### <b>Parameters</b>
+
+### <b>Returns</b>
+
+- <b>Type: </b>String
+### <b>Example</b>
+
+```
+let deviceType = getDeviceType()
+```
+
+
+<hr><br><br>
+
 ## <b>getOS())</b>
 ### <b>Information</b>
 Gets what OS is in use
@@ -1671,6 +1678,24 @@ Detects if Safari or not.
 
 ```
 let test = isSafari()
+```
+
+
+<hr><br><br>
+
+## <b>isTouchDevice())</b>
+### <b>Information</b>
+Returns boolean of whether the deivce is touch enabled.
+
+### <b>Parameters</b>
+
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
+### <b>Example</b>
+
+```
+const isTouchDevice = isTouchDevice()
 ```
 
 
@@ -3302,6 +3327,31 @@ let ucFirstString = ucFirst('hello')
 
 <hr><br><br>
 
+## <b>hexToColor(hex))</b>
+### <b>Information</b>
+Converts a hex color to THREE.Color.
+
+### <b>Parameters</b>
+
+- <b>hex</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Hex color
+
+### <b>Returns</b>
+
+- <b>Type: </b>THREE.Color
+### <b>Example</b>
+
+```
+let color1 = hexToColor('#FFCC00')
+let color2 = hexToColor('0xFFCC00')
+```
+
+
+<hr><br><br>
+
 ## <b>SwipeHandler({object}))</b>
 ### <b>Information</b>
 Swipe handler, currently detects left & right swipes.
@@ -3356,6 +3406,32 @@ new SwipeHandler({config})
 
 <hr><br><br>
 
+## <b>doesUrlKeyExist(key))</b>
+### <b>Information</b>
+Returns a string.
+
+### <b>Parameters</b>
+
+- <b>key</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> URL Parameter key to look for
+
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
+### <b>Example</b>
+
+```
+let debug = doesUrlKeyExist('debug')
+if (debug) {
+   // do something
+}
+```
+
+
+<hr><br><br>
+
 ## <b>getRoute(url))</b>
 ### <b>Information</b>
 Returns a route string.
@@ -3375,6 +3451,32 @@ Returns a route string.
 ```
 let usersRoute = getRoute('https://domain.com/users')
 let currentRoute = getRoute()
+```
+
+
+<hr><br><br>
+
+## <b>getUrlKeyValue(key))</b>
+### <b>Information</b>
+Returns the value of a url key value pair.
+
+### <b>Parameters</b>
+
+- <b>key</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> URL key value to obtain
+
+### <b>Returns</b>
+
+- <b>Type: </b>String
+### <b>Example</b>
+
+```
+let page = getUrlKeyValue('page')
+if (debug) {
+   // do something
+}
 ```
 
 

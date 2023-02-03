@@ -1,1 +1,1 @@
-export function arrayGetMin(arr: any): any;
+export function arrayGetMin(arr: any): number;

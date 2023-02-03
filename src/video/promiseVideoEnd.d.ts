@@ -1,1 +1,1 @@
-export function promiseVideoEnd(video: any): any;
+export function promiseVideoEnd(video: any): Promise<any>;

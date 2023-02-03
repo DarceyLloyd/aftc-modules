@@ -1,1 +1,1 @@
-export function promiseLoadCss(href: any): any;
+export function promiseLoadCss(href: any): Promise<any>;

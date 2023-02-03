@@ -17,4 +17,6 @@ build.js
 aftc-modules-clean.js
 aftc-modules-debug.js
 tsconfig.json
+info.txt
 /info
+/tests

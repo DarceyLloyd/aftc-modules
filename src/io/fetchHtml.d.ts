@@ -1,1 +1,1 @@
-export function fetchHtml(url: string): string;
+export function fetchHtml(url: any): Promise<string>;

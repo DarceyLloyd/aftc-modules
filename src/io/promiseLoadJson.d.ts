@@ -1,1 +1,1 @@
-export function promiseLoadJson(url: any): any;
+export function promiseLoadJson(url: any): Promise<any>;

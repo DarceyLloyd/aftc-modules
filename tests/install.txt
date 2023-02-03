@@ -1,0 +1,68 @@
+npm cache clean --force
+
+npm install -g npm@latest
+
+npm install
+
+npm i -g webpack webpack-cli
+
+
+
+
+#deps
+
+npm install -S
+
+npm install -S @types/gsap
+npm install -S @types/three
+npm install -S aftc-modules
+npm install -S gsap
+npm install -S stats.js
+npm install -S lil-gui
+npm install -S three
+npm install -S @types/stats.js
+npm install -S url-search-params-polyfill
+
+
+
+#dev
+
+npm install -D 
+
+
+npm install -D @typescript-eslint/eslint-plugin
+npm install -D @typescript-eslint/parser
+npm install -D autoprefixer
+npm install -D clean-webpack-plugin
+npm install -D copy-webpack-plugin
+npm install -D css-loader
+npm install -D css-minimizer-webpack-plugin
+npm install -D eslint
+npm install -D eslint-config-prettier
+npm install -D eslint-import-resolver-node
+npm install -D eslint-import-resolver-typescript
+npm install -D eslint-plugin-import
+npm install -D eslint-plugin-prettier
+npm install -D file-loader
+npm install -D html-loader
+npm install -D html-webpack-plugin
+npm install -D mini-css-extract-plugin
+npm install -D node-polyfill-webpack-plugin
+npm install -D npm-run-all
+npm install -D postcss
+npm install -D postcss-loader
+npm install -D postcss-preset-env
+npm install -D prettier
+npm install -D raw-loader
+npm install -D resolve-url-loader
+npm install -D sass
+npm install -D sass-loader
+npm install -D style-loader
+npm install -D ts-loader
+npm install -D ts-shader-loader
+npm install -D typescript
+npm install -D webpack
+npm install -D webpack-cli
+npm install -D webpack-dev-server
+npm install -D webpack-merge
+

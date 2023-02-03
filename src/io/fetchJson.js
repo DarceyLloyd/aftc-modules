@@ -18,10 +18,14 @@
 //     ]
 // } JSODOC
 
-export async function fetchJson(url) {
-
-    const response = await fetch(url);
-    const json = await response.json();
-
-    return json;
+export async function getJson(url) {
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+    // console.warn(response);
+    return await response.json();
 }

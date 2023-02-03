@@ -1,1 +1,1 @@
-export function setHTML(elementOrId: any, str: any, mode?: string): string;
+export function setHTML(elementOrId: any, str: any, mode?: string): string | undefined;

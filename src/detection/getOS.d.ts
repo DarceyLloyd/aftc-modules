@@ -1,1 +1,1 @@
-export function getOS(): string;
+export function getOS(): string | null;

@@ -1,1 +1,1 @@
-export function getUID(len: any): string;
+export function getUID(len: any): string | undefined;

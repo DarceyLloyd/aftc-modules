@@ -1,0 +1,42 @@
+@mixin no_select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+@mixin no_highlights{
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin no_wrap {
+  white-space: nowrap;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.opacity_1 {
+  opacity:1
+}
+
+.opacity_0 {
+  opacity:0
+}
+
+.display_block {
+  display: block;
+}
+
+.display_none {
+  display: none !important;
+}

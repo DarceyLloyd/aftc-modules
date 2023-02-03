@@ -33,17 +33,20 @@ async function start() {
     await buildIndexJs();
     log(`index.js built`.green);
 
-    await buildIndexTs();
-    log(`index.d.ts built`.green);
+    // await buildIndexTs();
+    // log(`index.d.ts built`.green);
 
     // Build concatinated bundle aftc-modules.js
     let out = concatFiles(jsFiles);
     await writeFile("./aftc-modules.js", out)
     log("aftc-modules.js - generated")
 
+    cleanConcatinatedFile();
+
+    // Docs
     buildDocs()
 
-    cleanConcatinatedFile();
+    
 
 
 
@@ -91,7 +94,7 @@ async function cleanConcatinatedFile() {
 
 
     await writeFile("./aftc-modules.js", outputString)
-    await writeFile("./aftc-modules-debug.js", debugString)
+    // await writeFile("./aftc-modules-debug.js", debugString)
 
 
 }
@@ -149,6 +152,7 @@ async function buildIndexJs() {
     let exportList = []; // functions / class's names to add to export section
 
 
+    jsFiles.sort();
 
     for (const f of jsFiles) {
         first2Chars = "";
@@ -158,6 +162,10 @@ async function buildIndexJs() {
         jsImportPath = f.replace(pathStringToRemove, "")
         jsImportPath = jsImportPath.replace(/\\/g, '/')
         // log(jsImportPath);
+
+        if (jsImportPath.includes("does")){
+            log(jsImportPath);
+        }
 
         const allFileContents = await fs.readFileSync(f, 'utf-8');
         allFileContents.split(/\r?\n/).forEach(line => {
@@ -177,7 +185,8 @@ async function buildIndexJs() {
                     line.includes("export default function") ||
                     line.includes("export async function") ||
                     line.includes("export default async function") ||
-                    line.includes("export class")
+                    line.includes("export class") ||
+                    line.includes("export const")
                     // line.includes("export default class") === false &&
                 ) {
                     // log(line)
@@ -334,10 +343,10 @@ function buildDocs() {
     }
 
     new JSODoc({
-        // dir: './src',
-        // recursive: true,
-        // ext: 'js',
-        files: ['./aftc-modules.js'],
+        dir: './src',
+        recursive: true,
+        ext: 'js',
+        // files: ['./aftc-modules.js'],
         template: './docs/template.md',
         substitutions: subs,
         output: './readme.md'

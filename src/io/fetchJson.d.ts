@@ -1,1 +1,1 @@
-export function fetchJson(url: string): object;
+export function fetchJson(url: any): Promise<any>;

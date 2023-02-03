@@ -1,1 +1,1 @@
-export function sleep(ms: number): void;
+export function sleep(ms: any): Promise<any>;

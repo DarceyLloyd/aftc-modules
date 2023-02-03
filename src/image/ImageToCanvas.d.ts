@@ -1,1 +1,1 @@
-export function imageToCanvas(src: string): HTMLCanvasElement;
+export function imageToCanvas(src: any): Promise<any>;

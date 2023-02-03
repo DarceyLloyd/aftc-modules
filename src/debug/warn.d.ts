@@ -1,1 +1,1 @@
-export function warn(...args: any): void;
+export function warn(...args: any[]): void;

@@ -1,10 +1,10 @@
 {
   "name": "aftc-modules",
-  "version": "1.16.3",
+  "version": "1.16.12",
   "description": "A collection of useful utilities / functions for JavaScript and TypeScript.",
   "module": "index.js",
   "main": "aftc-modules.js",
-  "types": "types/index.d.ts",
+  "types": "./types/index.d.ts",
   "filename": "aftc-modules.js",
   "sideEffects": false,
   "scripts": {
@@ -27,8 +27,8 @@
   "homepage": "https://github.com/DarceyLloyd/aftc-modules#readme",
   "devDependencies": {
     "aftc-node-tools": "^0.7.18",
-    "fs-extra": "^10.1.0",
-    "jsodoc": "^1.0.3",
-    "typescript": "^4.7.4"
+    "fs-extra": "^11.1.0",
+    "jsodoc": "^1.0.4",
+    "typescript": "^4.9.5"
   }
 }

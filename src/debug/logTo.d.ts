@@ -1,1 +1,1 @@
-export function logTo(elementOrId: any, msg: any, append?: boolean, endOfLine?: string): boolean;
+export function logTo(elementOrId: any, msg: any, append?: boolean, endOfLine?: string): false | undefined;

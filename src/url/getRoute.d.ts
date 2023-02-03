@@ -1,1 +1,1 @@
-export function getRoute(url?: string): string;
+export function getRoute(url: any): any;

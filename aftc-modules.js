@@ -217,6 +217,17 @@ export function rgbToHex2 (r, g, b) {
     hex = hex.toUpperCase();
     return hex;
 }
+export function rgbToHex3(r, g, b) {
+    // clamp and convert to hex
+    let hr = Math.max(0, Math.min(255, Math.round(r))).toString(16);
+    let hg = Math.max(0, Math.min(255, Math.round(g))).toString(16);
+    let hb = Math.max(0, Math.min(255, Math.round(b))).toString(16);
+    let hexString = "0x" +
+      (hr.length < 2 ? "0" : "") + hr +
+      (hg.length < 2 ? "0" : "") + hg +
+      (hb.length < 2 ? "0" : "") + hb;
+    return +hexString;
+  }
 export function stringToBool (str) {
     if (!str || str === undefined || typeof (str) != "string") {
         console.log("StringToBool(str): Error - input string is not valid!");
@@ -385,6 +396,84 @@ export function getUSDate(dte,separator="-"){
     let output = dte.getFullYear() + separator + (dte.getMonth()+1) + separator + (dte.getDay()+1)
     return output;
 }
+export class Logger {
+    // Var defs
+    enabled = true;
+    // NOTE: Global override can be achieved with
+    // window.AFTCConsoleLogger.enable = true
+    // - - - - - - - - - - - - -
+    constructor() {
+        if (!window.AFTCConsoleLogger) {
+            window.AFTCConsoleLogger = {
+                enabledAll: false,
+                disableAll: false
+            }
+        }
+    }
+    // - - - - - - - - - - - - -
+    enable() {
+        this.enabled = true;
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    disable() {
+        this.enabled = false;
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    enableAll() {
+        if (window.AFTCConsoleLogger) {
+            window.AFTCConsoleLogger.enabledAll = true;
+            window.AFTCConsoleLogger.disableAll = false;
+        } else {
+            window.AFTCConsoleLogger = {
+                enabledAll:true,
+                disableAll:false,
+            }
+        }
+    }
+    enableGlobally() {
+        this.enableAll();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    disableAll() {
+        if (window.AFTCConsoleLogger) {
+            window.AFTCConsoleLogger.enabledAll = false;
+            window.AFTCConsoleLogger.disableAll = true;
+        } else {
+            window.AFTCConsoleLogger = {
+                enabledAll:false,
+                disableAll:true,
+            }
+        }
+    }
+    disableGlobally() {
+        this.disableAll();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    log(arg) {
+        if (window.AFTCConsoleLogger.disableAll === true) {
+            return
+        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
+            console.log(arg);
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    warn(arg) {
+        if (window.AFTCConsoleLogger.disableAll === true) {
+            return
+        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
+            console.warn(arg);
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    error(arg) {
+        if (window.AFTCConsoleLogger.disableAll === true) {
+            return
+        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
+            console.error(arg);
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+}
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -477,50 +566,6 @@ export function debugTo(index, str) {
         }
     }
 }
-function initLazyLog() {
-    let requiresInit = false;
-    if (window.aftcLazyLog == undefined || window.aftcLazyLog == null || window.aftcLazyLog == NaN) {
-        requiresInit = true;
-    } else if (window.aftcLazyLog.enabled == undefined || window.aftcLazyLog.enabled == null || window.aftcLazyLog.enabled == NaN) {
-        requiresInit = true;
-    }
-    if (requiresInit===true){
-        window.aftcLazyLog = {
-            enabled: true
-        }
-    }
-}
-export function LazyLog() {
-    initLazyLog();
-    if (window.log) {
-        console.warn("LazyLog(): window.log was already defined but has now been re-defined.")
-    }
-    window.log = (...args) => { if (window.aftcLazyLog.enabled) { console.log(...args); } }
-    if (window.warn) {
-        console.warn("LazyLog(): window.warn was already defined but has now been re-defined.")
-    }
-    window.warn = (...args) => { if (window.aftcLazyLog.enabled) { console.warn(...args); } }
-    if (window.error) {
-        console.warn("LazyLog(): window.error was already defined but has now been re-defined.")
-    }
-    window.error = (...args) => { if (window.aftcLazyLog.enabled) { console.error(...args); } }
-    window.EnableLazyLogging = function () {
-        initLazyLog();
-        window.aftcLazyLog.enabled = true;
-    };
-    window.EnableLazyLog = function () {
-        initLazyLog();
-        window.aftcLazyLog.enabled = true;
-    };
-    window.DisableLazyLogging = function () {
-        initLazyLog();
-        window.aftcLazyLog.enabled = false;
-    };
-    window.DisableLazyLog = function () {
-        initLazyLog();
-        window.aftcLazyLog.enabled = false;
-    };
-}
 export function log(...args) {
     if (window.aftcLogEnabled === undefined){
         window.aftcLogEnabled = true;
@@ -536,84 +581,6 @@ export function logEnable() {
     window.aftcLogEnabled = true;
 }
 
-export class Logger {
-    // Var defs
-    enabled = true;
-    // NOTE: Global override can be achieved with
-    // window.AFTCConsoleLogger.enable = true
-    // - - - - - - - - - - - - -
-    constructor() {
-        if (!window.AFTCConsoleLogger) {
-            window.AFTCConsoleLogger = {
-                enabledAll: false,
-                disableAll: false
-            }
-        }
-    }
-    // - - - - - - - - - - - - -
-    enable() {
-        this.enabled = true;
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    disable() {
-        this.enabled = false;
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    enableAll() {
-        if (window.AFTCConsoleLogger) {
-            window.AFTCConsoleLogger.enabledAll = true;
-            window.AFTCConsoleLogger.disableAll = false;
-        } else {
-            window.AFTCConsoleLogger = {
-                enabledAll:true,
-                disableAll:false,
-            }
-        }
-    }
-    enableGlobally() {
-        this.enableAll();
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    disableAll() {
-        if (window.AFTCConsoleLogger) {
-            window.AFTCConsoleLogger.enabledAll = false;
-            window.AFTCConsoleLogger.disableAll = true;
-        } else {
-            window.AFTCConsoleLogger = {
-                enabledAll:false,
-                disableAll:true,
-            }
-        }
-    }
-    disableGlobally() {
-        this.disableAll();
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    log(arg) {
-        if (window.AFTCConsoleLogger.disableAll === true) {
-            return
-        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
-            console.log(arg);
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    warn(arg) {
-        if (window.AFTCConsoleLogger.disableAll === true) {
-            return
-        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
-            console.warn(arg);
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    error(arg) {
-        if (window.AFTCConsoleLogger.disableAll === true) {
-            return
-        } else if (this.enabled === true || window.AFTCConsoleLogger.enableAll === true) {
-            console.error(arg);
-        }
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-}
 export function logTo(elementOrId,msg,append=false,endOfLine=""){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -656,6 +623,25 @@ export function warn(...args) {
     }
 }
 
+export const getDeviceType = () => {
+    const ua = navigator.userAgent;
+    //@ts-ignore
+    if (!!window.MSInputMethodContext && !!document.documentMode) {
+        // ie11
+        return "desktop";
+    }
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+        return "tablet";
+    }
+    if (
+        /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+            ua
+        )
+    ) {
+        return "mobile";
+    }
+    return "desktop";
+};
 export function getOS() {
     var userAgent = window.navigator.userAgent,
         platform = window.navigator.platform,
@@ -768,6 +754,16 @@ export function isSafari() {
         return false;
     }
 }
+export const isTouchDevice = () => {
+    return navigator
+      ? "ontouchstart" in window ||
+      // @ts-ignore-disable-next-line
+      (window.DocumentTouch && document instanceof window.DocumentTouch) ||
+      navigator.maxTouchPoints ||
+      false
+      : false;
+  };
+  
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -992,174 +988,6 @@ export class ApiRequest {
         });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
-}
-export async function fetchHtml(url) {
-    const response = await fetch(url);
-    const text = await response.text();
-    return text;
-}
-export async function fetchJson(url) {
-    const response = await fetch(url);
-    const json = await response.json();
-    return json;
-}
-export function loadAndAttachImage(imgElement, src) {
-    return new Promise((resolve, reject) => {
-        imgElement.onload = () => {
-            resolve(true);
-        }
-        imgElement.error = (e) => {
-            reject(e);
-        }
-        imgElement.src = src;
-    });
-}
-export function loadCss(href, onComplete){
-    let link = document.createElement("link");
-    link.onload = function () {
-        if (onComplete) {
-            onComplete();
-        }
-    }
-    link.href = href;
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.media = "screen,print";
-    document.getElementsByTagName("head")[0].appendChild(link);
-}
-export function loadJson(url, onComplete, onError) {
-    let xhr = new XMLHttpRequest();
-    let method = "GET";
-    xhr.open(method, url);
-    xhr.onload = function () {
-        if (this.status >= 200 && this.status < 300) {
-            if (onComplete) {
-                onComplete(JSON.parse(xhr.response))
-            }
-        } else {
-            if (onError) {
-                onError({
-                    status: this.status,
-                    statusText: xhr.statusText
-                })
-            }
-        }
-    }
-    xhr.onerror = function () {
-        reject({
-            status: this.status,
-            statusText: xhr.statusText
-        });
-    };
-    xhr.send();
-};
-export function loadScript(src, onComplete, onProgress){
-    let head = document.getElementsByTagName("head")[0] || document.body;
-    if (!head){
-        console.error("loadScript(): Unable to get DOM Head or DOM Body!");
-        return;
-    }
-    let script = document.createElement("script");
-    let xhr = new XMLHttpRequest();
-    // report progress events
-    xhr.addEventListener("progress", function(event) {
-        if (event.lengthComputable) {
-            var percentComplete = event.loaded / event.total;
-            // console.log(percentComplete);
-            if (onProgress){
-                onProgress(percentComplete);
-            }
-        } else {
-            // Unable to compute progress information since the total size is unknown
-            if (onProgress){
-                onProgress(false);
-            }
-        }
-    }, false);
-    // load responseText into a new script element
-    xhr.addEventListener("load", function(e) {
-        script.innerHTML = e.target.responseText;
-        document.documentElement.appendChild(script);
-        if (onComplete) {
-            onComplete();
-        }
-        // script.addEventListener("load", function() {
-        //     // this runs after the new script has been executed...
-        // });
-    }, false);
-    xhr.open("GET", src);
-    xhr.send();
-}
-export function promiseLoadCss(href) {
-    return new Promise(function (resolve, reject) {
-        let link = document.createElement("link");
-        link.onload = function () {
-                resolve(true);
-        }
-        link.onerror = (e) => {
-            reject(e);
-        }
-        link.href = href;
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.media = "screen,print";
-        document.getElementsByTagName("head")[0].appendChild(link);
-    });
-}
-export function promiseLoadImage(ele, src) {
-    return new Promise((resolve, reject) => {
-        ele.onload = () => {
-            resolve(true);
-        }
-        ele.error = (e) => {
-            reject(e);
-        }
-        ele.src = src;
-    });
-}
-export function promiseLoadJson(url) {
-    // Might extend someday, ref link if you do or old xhr function or both
-    // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
-    return new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        let method = "GET";
-        xhr.open(method, url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(JSON.parse(xhr.response));
-            } else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
-}
-export function promiseLoadScript(src) {
-    return new Promise(function (resolve, reject) {
-        let head = document.getElementsByTagName("head")[0] || document.body;
-        if (!head) {
-            console.error("promiseLoadScript(): Unable to get DOM Head or DOM Body!");
-            return;
-        }
-        let script = document.createElement("script");
-        let xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", function (e) {
-            script.innerHTML = e.target.responseText;
-            document.documentElement.appendChild(script);
-            resolve(true)
-        }, false);
-        xhr.open("GET", src);
-        xhr.send();
-    });
 }
 export class XHR {
     constructor() {
@@ -1431,6 +1259,180 @@ Your making a request but are not doing anything with the response? Make sure to
         this.xhr.removeEventListener("timeout", (e) => this.errorHandler(e));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+export async function fetchHtml(url) {
+    const response = await fetch(url);
+    const text = await response.text();
+    return text;
+}
+export async function getJson(url) {
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+    // console.warn(response);
+    return await response.json();
+}
+export function loadAndAttachImage(imgElement, src) {
+    return new Promise((resolve, reject) => {
+        imgElement.onload = () => {
+            resolve(true);
+        }
+        imgElement.error = (e) => {
+            reject(e);
+        }
+        imgElement.src = src;
+    });
+}
+export function loadCss(href, onComplete){
+    let link = document.createElement("link");
+    link.onload = function () {
+        if (onComplete) {
+            onComplete();
+        }
+    }
+    link.href = href;
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.media = "screen,print";
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
+export function loadJson(url, onComplete, onError) {
+    let xhr = new XMLHttpRequest();
+    let method = "GET";
+    xhr.open(method, url);
+    xhr.onload = function () {
+        if (this.status >= 200 && this.status < 300) {
+            if (onComplete) {
+                onComplete(JSON.parse(xhr.response))
+            }
+        } else {
+            if (onError) {
+                onError({
+                    status: this.status,
+                    statusText: xhr.statusText
+                })
+            }
+        }
+    }
+    xhr.onerror = function () {
+        reject({
+            status: this.status,
+            statusText: xhr.statusText
+        });
+    };
+    xhr.send();
+};
+export function loadScript(src, onComplete, onProgress){
+    let head = document.getElementsByTagName("head")[0] || document.body;
+    if (!head){
+        console.error("loadScript(): Unable to get DOM Head or DOM Body!");
+        return;
+    }
+    let script = document.createElement("script");
+    let xhr = new XMLHttpRequest();
+    // report progress events
+    xhr.addEventListener("progress", function(event) {
+        if (event.lengthComputable) {
+            var percentComplete = event.loaded / event.total;
+            // console.log(percentComplete);
+            if (onProgress){
+                onProgress(percentComplete);
+            }
+        } else {
+            // Unable to compute progress information since the total size is unknown
+            if (onProgress){
+                onProgress(false);
+            }
+        }
+    }, false);
+    // load responseText into a new script element
+    xhr.addEventListener("load", function(e) {
+        script.innerHTML = e.target.responseText;
+        document.documentElement.appendChild(script);
+        if (onComplete) {
+            onComplete();
+        }
+        // script.addEventListener("load", function() {
+        //     // this runs after the new script has been executed...
+        // });
+    }, false);
+    xhr.open("GET", src);
+    xhr.send();
+}
+export function promiseLoadCss(href) {
+    return new Promise(function (resolve, reject) {
+        let link = document.createElement("link");
+        link.onload = function () {
+                resolve(true);
+        }
+        link.onerror = (e) => {
+            reject(e);
+        }
+        link.href = href;
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.media = "screen,print";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    });
+}
+export function promiseLoadImage(ele, src) {
+    return new Promise((resolve, reject) => {
+        ele.onload = () => {
+            resolve(true);
+        }
+        ele.error = (e) => {
+            reject(e);
+        }
+        ele.src = src;
+    });
+}
+export function promiseLoadJson(url) {
+    // Might extend someday, ref link if you do or old xhr function or both
+    // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        let method = "GET";
+        xhr.open(method, url);
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(JSON.parse(xhr.response));
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+}
+export function promiseLoadScript(src) {
+    return new Promise(function (resolve, reject) {
+        let head = document.getElementsByTagName("head")[0] || document.body;
+        if (!head) {
+            console.error("promiseLoadScript(): Unable to get DOM Head or DOM Body!");
+            return;
+        }
+        let script = document.createElement("script");
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", function (e) {
+            script.innerHTML = e.target.responseText;
+            document.documentElement.appendChild(script);
+            resolve(true)
+        }, false);
+        xhr.open("GET", src);
+        xhr.send();
+    });
 }
 export function getRandomBoolean(){
     return Math.random() >= 0.5;
@@ -1781,6 +1783,9 @@ export function isInString(find, source) {
 export function lTrimBy(str, by) {
     return str.substring(by, str.length);
 }
+export function rTrimBy(str, trimBy) {
+    return (str.substring(0, str.length - trimBy));
+}
 export function regExReplaceAll(needle, rep, haystack) {
     const special = ["-", "[", "]", "/", "{", "}", "(", ")", "*", "+", "?", ".", "\\", "^", "$", "|"];
     if (needle.length == 1) {
@@ -1806,15 +1811,27 @@ export function replaceDoubleBackSlash(str,rep){
 export function replaceDoubleForwardSlash(str,rep){
     return str.replace(/\/\//g, rep); // replaces all occurances of // with rep
 }
-export function rTrimBy(str, trimBy) {
-    return (str.substring(0, str.length - trimBy));
-}
 export function trimStringBy(str, trimBy) {
     return (str.substring(0, str.length - trimBy));
 }
 export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
+}
+import { Color } from "three";
+export function hexToColor(hex) {
+    hex = hex.replace("0x", "");
+    hex = hex.replace("#", "");
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    // let result = hex.split("");
+    let r = parseInt(result[1], 16);
+    let g = parseInt(result[2], 16);
+    let b = parseInt(result[3], 16);
+    r = convert255(r);
+    g = convert255(g);
+    b = convert255(b);
+    // return new Color(`"rgb(${r}, ${g}, ${b})"`);
+    return new Color(r, g, b);
 }
 export class SwipeHandler {
     // - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1966,12 +1983,28 @@ export class SwipeHandler {
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
 
+export const doesUrlKeyExist = (key) => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.has(key);
+  }
 export function getRoute(url) {
     if (!url || url == null || url == undefined) {
         url = window.location.href;
     }
     return url.replace(/.*\/\/[^\/]*/, '')
 }
+export const getUrlKeyValue = (key) => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const hasKey = urlParams.has(key);
+    if (hasKey){
+      return urlParams.get(key);
+    } else {
+      // console.warn(`doesUrlKeyExist(): Key: ${key} is not found...`);
+      return undefined;
+    }
+  }
 export function isEmail (email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);

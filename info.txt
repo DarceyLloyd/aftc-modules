@@ -1,0 +1,16 @@
+dependencies:
+none
+
+devDependencies
+npm i -D aftc-node-tools fs-extra jsodoc typescript
+
+
+https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html
+npx -p typescript tsc ./src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir ./types
+ERROR: File 'src/**/*.js' not found.
+
+npx -p typescript tsc
+
+
+npx -p typescript tsc --declaration --allowJs --emitDeclarationOnly -t es6
+npx -p typescript tsc --allowJs -t es6
