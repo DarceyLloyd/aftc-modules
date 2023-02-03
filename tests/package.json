@@ -55,6 +55,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "aftc-modules": "^1.16.16"
+    "aftc-modules": "^1.16.17"
   }
 }
