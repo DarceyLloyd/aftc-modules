@@ -15,9 +15,6 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "aftc-modules": "^1.16.3"
-  },
   "devDependencies": {
     "@types/gsap": "^3.0.0",
     "@types/stats.js": "^0.17.0",
@@ -56,5 +53,8 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "aftc-modules": "^1.16.12"
   }
 }

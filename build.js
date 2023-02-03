@@ -33,8 +33,8 @@ async function start() {
     await buildIndexJs();
     log(`index.js built`.green);
 
-    // await buildIndexTs();
-    // log(`index.d.ts built`.green);
+    await buildIndexTs();
+    log(`index.d.ts built`.green);
 
     // Build concatinated bundle aftc-modules.js
     let out = concatFiles(jsFiles);
@@ -345,7 +345,7 @@ function buildDocs() {
     new JSODoc({
         dir: './src',
         recursive: true,
-        ext: 'js',
+        ext: ['js','ts'],
         // files: ['./aftc-modules.js'],
         template: './docs/template.md',
         substitutions: subs,
