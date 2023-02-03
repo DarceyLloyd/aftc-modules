@@ -11,12 +11,12 @@ import { log } from "aftc-modules/src/debug/log";
 export class CommonController {
 
     // Var defs
-    public vd: VisualDe;
+    // public vd: VisualDebug;
     // - - - - - - - - - - - - -
 
 
     constructor() {
-        this.vd = VisualDebug.getInstance();
+        // this.vd = VisualDebug.getInstance();
     }
     // - - - - - - - - - - - - -
 
