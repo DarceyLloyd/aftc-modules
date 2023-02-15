@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.17.0</b>
+# <b>AFTC-MODULES v1.17.3</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,6 +16,7 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
+- Bug fix on documentation generation
 - optimised various functions and clean up
 - added hexToColor (THREE.Color)
 - added doesUrlKeyExist(string)
@@ -119,7 +120,6 @@ npm i aftc-modules
  - <b>getElementPos(ele)</b>
  - <b>hasClass(elementOrId,ele)</b>
  - <b>setHTML(elementOrId,str,mode)</b>
- - <b>setHTML(elementOrId,str,mode)</b>
  - <b>onReady(fn)</b>
  - <b>wordCountFilter(str,maxWords)</b>
  - <b>setOptionSelectedIndex(selectElement,selectedValue)</b>
@@ -128,10 +128,7 @@ npm i aftc-modules
  - <b>fetchJson(url)</b>
  - <b>loadAndAttachImage(imgElement,src)</b>
  - <b>loadCss(href,onComplete)</b>
- - <b>loadCss(href)</b>
- - <b>fetchHtml(url)</b>
  - <b>loadJson(url,onComplete,onError)</b>
- - <b>loadJson(url)</b>
  - <b>loadScript(src,onComplete,onProgress)</b>
  - <b>promiseLoadCss(href)</b>
  - <b>promiseLoadImage(ele,src)</b>
@@ -181,10 +178,8 @@ npm i aftc-modules
  - <b>hexToColor(hex)</b>
  - <b>SwipeHandler({object})</b>
  - <b>doesUrlKeyExist(key)</b>
- - <b>doesUrlKeyExist(key)</b>
  - <b>getRoute(url)</b>
  - <b>getUrlKeyValue(key)</b>
- - <b>isEmail(email)</b>
  - <b>isEmail(email)</b>
  - <b>promiseAttachVideo(video,src)</b>
  - <b>promiseVideoEnd(video)</b>
@@ -1919,45 +1914,6 @@ setHTML('my-element-id-3','hello world','prepend')
 
 <hr><br><br>
 
-## <b>setHTML(elementOrId,str,mode))</b>
-### <b>Information</b>
-Set a an elements HTML content.
-
-### <b>Parameters</b>
-
-- <b>elementOrId</b>
-	- <b>Type:</b> Element||ElementID
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> The element or the element ID.
-
-- <b>str</b>
-	- <b>Type:</b> String||Number
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> The content you want to put into the html element.
-
-- <b>mode</b>
-	- <b>Type:</b> eNum (set|append|prepend)
-	- <b>Required:</b> false
-	- <b>Default:</b> Set
-	- <b>Info:</b> The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content.
-
-### <b>Example</b>
-
-```
-setHTML(myElement,'hello world')
-setHTML(myElement,'hello world','append')
-setHTML(myElement,'hello world','prepend')
-
-setHTML('my-element-id-1','hello world')
-setHTML('my-element-id-2','hello world','append')
-setHTML('my-element-id-3','hello world','prepend')
-```
-
-
-<hr><br><br>
-
 ## <b>onReady(fn))</b>
 ### <b>Information</b>
 Checks if the DOM is ready and then executes a function.
@@ -2167,51 +2123,6 @@ loadCss('./include/css/style-sheet-5.css',onStyleSheet5Loaded)
 
 <hr><br><br>
 
-## <b>loadCss(href))</b>
-### <b>Information</b>
-Loads a css file and auto attaches it to the head section of the document.
-
-### <b>Parameters</b>
-
-- <b>href</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> Path/URL to the css file to load
-
-### <b>Example</b>
-
-```
-loadCss('./include/css/style-sheet-5.css',onStyleSheet5Loaded)
-```
-
-
-<hr><br><br>
-
-## <b>fetchHtml(url))</b>
-### <b>Information</b>
-Loads a html file and returns it as a string
-
-### <b>Parameters</b>
-
-- <b>url</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> Path/URL to the file to load
-
-### <b>Returns</b>
-
-- <b>Type: </b>Promise<string>
-### <b>Example</b>
-
-```
-let data = await fetchHtml('./pages/modal-user-content.html')
-```
-
-
-<hr><br><br>
-
 ## <b>loadJson(url,onComplete,onError))</b>
 ### <b>Information</b>
 Loads a JSON file and returns it via the onComplete callback function.
@@ -2235,27 +2146,6 @@ Loads a JSON file and returns it via the onComplete callback function.
 	- <b>Required:</b> false
 	- <b>Default:</b> null
 	- <b>Info:</b> On error callback function handler
-
-### <b>Example</b>
-
-```
-loadJson('./data/config.json',onLoadedHandler)
-```
-
-
-<hr><br><br>
-
-## <b>loadJson(url))</b>
-### <b>Information</b>
-Loads a JSON file and returns it via the onComplete callback function.
-
-### <b>Parameters</b>
-
-- <b>url</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> Path/URL to the file to load.
 
 ### <b>Example</b>
 
@@ -3573,32 +3463,6 @@ if (debug) {
 
 <hr><br><br>
 
-## <b>doesUrlKeyExist(key))</b>
-### <b>Information</b>
-Returns a string.
-
-### <b>Parameters</b>
-
-- <b>key</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> true
-	- <b>Info:</b> URL Parameter key to look for
-
-### <b>Returns</b>
-
-- <b>Type: </b>Boolean
-### <b>Example</b>
-
-```
-let debug = doesUrlKeyExist('debug')
-if (debug) {
-   // do something
-}
-```
-
-
-<hr><br><br>
-
 ## <b>getRoute(url))</b>
 ### <b>Information</b>
 Returns a route string.
@@ -3636,7 +3500,7 @@ Returns the value of a url key value pair.
 
 ### <b>Returns</b>
 
-- <b>Type: </b>String
+- <b>Type: </b>String | null
 ### <b>Example</b>
 
 ```
@@ -3644,29 +3508,6 @@ let page = getUrlKeyValue('page')
 if (debug) {
    // do something
 }
-```
-
-
-<hr><br><br>
-
-## <b>isEmail(email))</b>
-### <b>Information</b>
-Validates an email address via regex.
-
-### <b>Parameters</b>
-
-- <b>email</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> true
-	- <b>Info:</b> The email string to validate.
-
-### <b>Returns</b>
-
-- <b>Type: </b>Boolean
-### <b>Example</b>
-
-```
-let isValidEmail = isEmail('darcey.lloyd@gmail.com')
 ```
 
 

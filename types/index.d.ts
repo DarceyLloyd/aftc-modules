@@ -139,7 +139,7 @@
 /// <reference path="../src/url/doesUrlKeyExist.d.ts"/>
 /// <reference path="../src/url/doesUrlKeyExist.ts"/>
 /// <reference path="../src/url/getRoute.d.ts"/>
-/// <reference path="../src/url/getUrlKeyValue.d.ts"/>
+/// <reference path="../src/url/getUrlKeyValue.ts"/>
 /// <reference path="../src/validation/isEmail.d.ts"/>
 /// <reference path="../src/validation/isEmail.ts"/>
 /// <reference path="../src/video/promiseAttachVideo.d.ts"/>

@@ -1,20 +1,3 @@
-// JSODOC = {
-//     "method": "loadCss",
-//     "params": [
-//         {
-//             "name": "href",
-//             "type": "String",
-//             "required": true,
-//             "default": null,
-//             "info": "Path/URL to the css file to load"
-//         }
-//     ],
-//     "info": "Loads a css file and auto attaches it to the head section of the document.",
-//     "example": [
-//         "loadCss('./include/css/style-sheet-5.css',onStyleSheet5Loaded)"
-//     ]
-// } JSODOC
-
 export async function promiseLoadCss(href: string): Promise<boolean> {
     try {
         const response = await fetch(href, { method: 'GET' });

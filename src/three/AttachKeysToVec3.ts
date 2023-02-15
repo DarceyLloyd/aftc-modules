@@ -1,10 +1,14 @@
 import { debugTo } from "../debug/debugTo";
-import { Vector3 } from "three";
 import { getRandomInt } from "../math/getRandomInt";
 import { getRandomString } from "../string/getRandomString";
 // - - - - - - - - - - - - -
 
 // interfaces
+interface iVec3 {
+  x: number,
+  y: number,
+  z: number,
+}
 // - - - - - - - - - - - - -
 
 // types
@@ -18,7 +22,7 @@ export class AttachKeysToVec3 {
   // Space = 32
 
   // Var defs
-  v3: Vector3;
+  v3: iVec3 = { x: 0, y: 0, z: 0 };
 
   keyMode: string;
 
@@ -49,7 +53,7 @@ export class AttachKeysToVec3 {
   // - - - - - - - - - - - - -
 
   constructor(
-    v3: Vector3,
+    v3: any,
     keyMode = "awsd",
     label?: string,
     debugToEnabled?: boolean,
@@ -58,7 +62,7 @@ export class AttachKeysToVec3 {
   ) {
     // log(`AttachKeysToVec3()`);
 
-    this.v3 = v3;
+    this.v3 = v3 as iVec3;
     this.keyMode = keyMode;
     this.onUpdateFn = onUpdateFn;
 
@@ -109,7 +113,7 @@ export class AttachKeysToVec3 {
       // log(e.code);
 
 
-      if (this.onUpdateFn){
+      if (this.onUpdateFn) {
         this.onUpdateFn();
       }
     });
