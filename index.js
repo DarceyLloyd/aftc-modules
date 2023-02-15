@@ -39,6 +39,7 @@ import { getUKDateTime } from 'aftc-modules/src/datetime/getUKDateTime.js';
 import { getUKDateTimeFromDbDateTime } from 'aftc-modules/src/datetime/getUKDateTimeFromDbDateTime.js';
 import { getUSDate } from 'aftc-modules/src/datetime/getUSDate.js';
 import { Logger } from 'aftc-modules/src/debug/Logger.js';
+import { VisualDebug } from 'aftc-modules/src/debug/VisualDebug.js';
 import { appendTo } from 'aftc-modules/src/debug/appendTo.js';
 import { attachDebug } from 'aftc-modules/src/debug/attachDebug.js';
 import { debugTo } from 'aftc-modules/src/debug/debugTo.js';
@@ -176,6 +177,7 @@ export {
 	getUKDateTimeFromDbDateTime,
 	getUSDate,
 	Logger,
+	VisualDebug,
 	appendTo,
 	attachDebug,
 	debugTo,

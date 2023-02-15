@@ -1,6 +1,1 @@
-declare enum SetHTMLMode {
-    SET = "set",
-    APPEND = "append",
-    PREPEND = "prepend"
-}
-declare function setHTML(elementOrId: HTMLElement | string, str: string, mode?: SetHTMLMode): void;
+export function setHTML(elementOrId: any, str: any, mode?: string): void;

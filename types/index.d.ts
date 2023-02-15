@@ -45,7 +45,6 @@
 /// <reference path="../src/debug/Logger.d.ts"/>
 /// <reference path="../src/debug/logTo.d.ts"/>
 /// <reference path="../src/debug/VisualDebug.d.ts"/>
-/// <reference path="../src/debug/VisualDebug.ts"/>
 /// <reference path="../src/debug/warn.d.ts"/>
 /// <reference path="../src/detection/getDeviceType.d.ts"/>
 /// <reference path="../src/detection/getOS.d.ts"/>
@@ -65,7 +64,6 @@
 /// <reference path="../src/element/getElementOffsetTop.d.ts"/>
 /// <reference path="../src/element/hasClass.d.ts"/>
 /// <reference path="../src/element/setHTML.d.ts"/>
-/// <reference path="../src/element/setHTML.ts"/>
 /// <reference path="../src/events/onReady.d.ts"/>
 /// <reference path="../src/form/limitNoOfWords.d.ts"/>
 /// <reference path="../src/form/setOptionSelectedIndex.d.ts"/>

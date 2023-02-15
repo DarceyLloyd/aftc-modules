@@ -1,23 +1,12 @@
-export enum eVisualDebugPosition {
-  "TopLeft" = "top_left",
-  "TopCenter" = "top_center",
-  "TopRight" = "top_right",
-  "BtmLeft" = "btm_left",
-  "BtmCenter" = "btm_center",
-  "BtmRight" = "btm_right",
-}
-
-
-
 export class VisualDebug {
-  private static instance: VisualDebug;
+  static instance;
 
-  private ids: string[] = [];
-  private debugContainer: HTMLDivElement;
-  private debugRow: HTMLDivElement[] = [];
+  ids = [];
+  debugContainer;
+  debugRow = [];
   // - - - - - - - - - - - - -
 
-  public static getInstance(): VisualDebug {
+  static getInstance() {
     if (!VisualDebug.instance) {
       VisualDebug.instance = new VisualDebug();
     }
@@ -31,14 +20,14 @@ export class VisualDebug {
   // - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-  doesUrlKeyExist(key: string): boolean {
+  doesUrlKeyExist(key) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.has(key);
 
   }
 
-  getUrlKeyValue(key: string): string | null {
+  getUrlKeyValue(key) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const hasKey = urlParams.has(key);
@@ -51,7 +40,7 @@ export class VisualDebug {
     }
   }
 
-  build(noOfDebugFields = 1, position: eVisualDebugPosition) {
+  build(noOfDebugFields = 1, position = "topright") {
 
     this.debugContainer.id = "aftc_debug_container";
     this.debugContainer.style.zIndex = "99999";
@@ -74,37 +63,31 @@ export class VisualDebug {
 
 
     switch (position) {
-      case "top_left":
+      case "topleft":
         this.debugContainer.style.left = "5px";
         this.debugContainer.style.top = "5px";
-        // this.debugContainer.style.textAlign = "left";
         break;
-      case "top_center":
+      case "topcenter":
         this.debugContainer.style.left = "50%";
         this.debugContainer.style.top = "5px";
         this.debugContainer.style.transform = "translateX(-50%)";
-        // this.debugContainer.style.textAlign = "left";
         break;
-      case "top_right":
+      case "topright":
         this.debugContainer.style.right = "5px";
         this.debugContainer.style.top = "5px";
-        // this.debugContainer.style.textAlign = "right";
         break;
-      case "btm_left":
+      case "btmleft":
         this.debugContainer.style.left = "5px";
         this.debugContainer.style.bottom = "5px";
-        // this.debugContainer.style.textAlign = "left";
         break;
-      case "btm_center":
+      case "btmcenter":
         this.debugContainer.style.left = "50%";
         this.debugContainer.style.bottom = "5px";
         this.debugContainer.style.transform = "translateX(-50%)";
-        // this.debugContainer.style.textAlign = "left";
         break;
-      case "btm_right":
+      case "btmright":
         this.debugContainer.style.right = "5px";
         this.debugContainer.style.bottom = "5px";
-        // this.debugContainer.style.textAlign = "right";
         break;
     }
 
@@ -124,11 +107,11 @@ export class VisualDebug {
       div.classList.add("aftc_debug_row");
       this.debugContainer.appendChild(div);
       div.addEventListener("click", function (e) {
-        const ele: HTMLDivElement = e.currentTarget as HTMLDivElement;
-        let msg: string | null = ele.getAttribute("v");
+        const ele = e.currentTarget;
+        let msg = ele.getAttribute("v");
 
         if (msg !== null) {
-          let formattedMsg: string = msg.replace(/\n|\r|\t/g, ' ').replace(/ {2,}/g, ' ');
+          let formattedMsg = msg.replace(/\n|\r|\t/g, ' ').replace(/ {2,}/g, ' ');
           console.log(formattedMsg);
           navigator.clipboard.writeText(formattedMsg);
         } else {
@@ -144,9 +127,9 @@ export class VisualDebug {
   }
   // - - - - - - - - - - - - -
 
-  debugTo(debugFiledIndexNo = 0, label: string | null, value: any, fontSizeOveride: number | null = null) {
-    const id: string = this.ids[debugFiledIndexNo];
-    const ele: HTMLDivElement = document.getElementById(id) as HTMLDivElement;
+  debugTo(debugFiledIndexNo = 0, label, value, fontSizeOveride = null) {
+    const id = this.ids[debugFiledIndexNo];
+    const ele = document.getElementById(id);
 
     if (!ele) {
       // NOTE: Do not DDOS console
@@ -172,10 +155,10 @@ export class VisualDebug {
     // console.warn("debugFieldCount", debugFieldCount)
 
     let id = "";
-    let ele: HTMLDivElement;
+    let ele = false;;
     for (let i = 0; i < debugFieldCount; i++) {
       id = this.ids[i];
-      ele = document.getElementById(id) as HTMLDivElement;
+      ele = document.getElementById(id);
       if (ele) {
         ele.innerHTML = "";
       }

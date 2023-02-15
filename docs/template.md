@@ -16,7 +16,7 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
-- Bug fix on documentation generation
+- Various bug fixes and documentation generation bug fix
 - optimised various functions and clean up
 - added hexToColor (THREE.Color)
 - added doesUrlKeyExist(string)
