@@ -1,4 +1,4 @@
-export declare enum ePosition {
+export declare enum eVisualDebugPosition {
     "TopLeft" = "top_left",
     "TopCenter" = "top_center",
     "TopRight" = "top_right",
@@ -13,7 +13,7 @@ export declare class VisualDebug {
     private debugRow;
     static getInstance(): VisualDebug;
     constructor();
-    build(noOfDebugFields: number | undefined, position: ePosition): void;
+    build(noOfDebugFields: number | undefined, position: eVisualDebugPosition): void;
     debugTo(debugFiledIndexNo: number | undefined, label: string | null, value: any, fontSizeOveride?: number | null): void;
     clear(): void;
 }
