@@ -44,7 +44,6 @@
 /// <reference path="../src/debug/log.d.ts"/>
 /// <reference path="../src/debug/Logger.d.ts"/>
 /// <reference path="../src/debug/logTo.d.ts"/>
-/// <reference path="../src/debug/VisualDebug.d.ts"/>
 /// <reference path="../src/debug/warn.d.ts"/>
 /// <reference path="../src/detection/getDeviceType.d.ts"/>
 /// <reference path="../src/detection/getOS.d.ts"/>
@@ -57,13 +56,13 @@
 /// <reference path="../src/detection/isOpera.d.ts"/>
 /// <reference path="../src/detection/isSafari.d.ts"/>
 /// <reference path="../src/detection/isTouchDevice.d.ts"/>
+/// <reference path="../src/dom/getElementOffsetTop.d.ts"/>
 /// <reference path="../src/dom/getElementPosition.d.ts"/>
+/// <reference path="../src/dom/hasClass.d.ts"/>
 /// <reference path="../src/dom/isDom.d.ts"/>
 /// <reference path="../src/dom/isElement.d.ts"/>
 /// <reference path="../src/dom/isElement2.d.ts"/>
-/// <reference path="../src/element/getElementOffsetTop.d.ts"/>
-/// <reference path="../src/element/hasClass.d.ts"/>
-/// <reference path="../src/element/setHTML.d.ts"/>
+/// <reference path="../src/dom/setHTML.d.ts"/>
 /// <reference path="../src/events/onReady.d.ts"/>
 /// <reference path="../src/form/limitNoOfWords.d.ts"/>
 /// <reference path="../src/form/setOptionSelectedIndex.d.ts"/>
@@ -130,9 +129,6 @@
 /// <reference path="../src/string/rTrimBy.d.ts"/>
 /// <reference path="../src/string/trimStringBy.d.ts"/>
 /// <reference path="../src/string/ucFirst.d.ts"/>
-/// <reference path="../src/three/AttachKeysToVec3.d.ts"/>
-/// <reference path="../src/three/AttachKeysToVec3.ts"/>
-/// <reference path="../src/three/hexToColor.d.ts"/>
 /// <reference path="../src/touch/SwipeHandler.d.ts"/>
 /// <reference path="../src/url/doesUrlKeyExist.d.ts"/>
 /// <reference path="../src/url/doesUrlKeyExist.ts"/>

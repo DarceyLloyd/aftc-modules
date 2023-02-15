@@ -17,6 +17,8 @@ Any and all donations to help keep active development and the lights on are more
 
 ## <b>Latest changes</b>
 - Various bug fixes and documentation generation bug fix
+- removed AttachKeysToVec3() // TypeScript only
+- removed VisualDebug() // TypeScript only (use attachDebug for JS projects)
 - optimised various functions and clean up
 - added hexToColor (THREE.Color)
 - added doesUrlKeyExist(string)
@@ -24,8 +26,6 @@ Any and all donations to help keep active development and the lights on are more
 - added rgbToHex3
 - added convert255(124)
 - updated fetchJson(string)
-- added AttachKeysToVec3() // TypeScript only
-- added VisualDebug() // TypeScript only (use attachDebug for JS projects)
 - added getDeviceType()
 ```
 

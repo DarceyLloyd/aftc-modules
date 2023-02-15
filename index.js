@@ -39,7 +39,6 @@ import { getUKDateTime } from 'aftc-modules/src/datetime/getUKDateTime.js';
 import { getUKDateTimeFromDbDateTime } from 'aftc-modules/src/datetime/getUKDateTimeFromDbDateTime.js';
 import { getUSDate } from 'aftc-modules/src/datetime/getUSDate.js';
 import { Logger } from 'aftc-modules/src/debug/Logger.js';
-import { VisualDebug } from 'aftc-modules/src/debug/VisualDebug.js';
 import { appendTo } from 'aftc-modules/src/debug/appendTo.js';
 import { attachDebug } from 'aftc-modules/src/debug/attachDebug.js';
 import { debugTo } from 'aftc-modules/src/debug/debugTo.js';
@@ -59,14 +58,14 @@ import { isMobile } from 'aftc-modules/src/detection/isMobile.js';
 import { isOpera } from 'aftc-modules/src/detection/isOpera.js';
 import { isSafari } from 'aftc-modules/src/detection/isSafari.js';
 import { isTouchDevice } from 'aftc-modules/src/detection/isTouchDevice.js';
+import { getElementOffsetTop } from 'aftc-modules/src/dom/getElementOffsetTop.js';
 import { getElementPosition } from 'aftc-modules/src/dom/getElementPosition.js';
 import { getElementPos } from 'aftc-modules/src/dom/getElementPosition.js';
+import { hasClass } from 'aftc-modules/src/dom/hasClass.js';
 import { isDom } from 'aftc-modules/src/dom/isDom.js';
 import { isElement } from 'aftc-modules/src/dom/isElement.js';
 import { isElement2 } from 'aftc-modules/src/dom/isElement2.js';
-import { getElementOffsetTop } from 'aftc-modules/src/element/getElementOffsetTop.js';
-import { hasClass } from 'aftc-modules/src/element/hasClass.js';
-import { setHTML } from 'aftc-modules/src/element/setHTML.js';
+import { setHTML } from 'aftc-modules/src/dom/setHTML.js';
 import { onReady } from 'aftc-modules/src/events/onReady.js';
 import { limitNoOfWords } from 'aftc-modules/src/form/limitNoOfWords.js';
 import { setOptionSelectedIndex } from 'aftc-modules/src/form/setOptionSelectedIndex.js';
@@ -126,7 +125,6 @@ import { replaceDoubleBackSlash } from 'aftc-modules/src/string/replaceDoubleBac
 import { replaceDoubleForwardSlash } from 'aftc-modules/src/string/replaceDoubleForwardSlash.js';
 import { trimStringBy } from 'aftc-modules/src/string/trimStringBy.js';
 import { ucFirst } from 'aftc-modules/src/string/ucFirst.js';
-import { hexToColor } from 'aftc-modules/src/three/hexToColor.js';
 import { SwipeHandler } from 'aftc-modules/src/touch/SwipeHandler.js';
 import { doesUrlKeyExist } from 'aftc-modules/src/url/doesUrlKeyExist.js';
 import { getRoute } from 'aftc-modules/src/url/getRoute.js';
@@ -177,7 +175,6 @@ export {
 	getUKDateTimeFromDbDateTime,
 	getUSDate,
 	Logger,
-	VisualDebug,
 	appendTo,
 	attachDebug,
 	debugTo,
@@ -197,13 +194,13 @@ export {
 	isOpera,
 	isSafari,
 	isTouchDevice,
+	getElementOffsetTop,
 	getElementPosition,
 	getElementPos,
+	hasClass,
 	isDom,
 	isElement,
 	isElement2,
-	getElementOffsetTop,
-	hasClass,
 	setHTML,
 	onReady,
 	limitNoOfWords,
@@ -264,7 +261,6 @@ export {
 	replaceDoubleForwardSlash,
 	trimStringBy,
 	ucFirst,
-	hexToColor,
 	SwipeHandler,
 	doesUrlKeyExist,
 	getRoute,

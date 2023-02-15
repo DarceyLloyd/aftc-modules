@@ -474,149 +474,6 @@ export class Logger {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
-export class VisualDebug {
-  static instance;
-  ids = [];
-  debugContainer;
-  debugRow = [];
-  // - - - - - - - - - - - - -
-  static getInstance() {
-    if (!VisualDebug.instance) {
-      VisualDebug.instance = new VisualDebug();
-    }
-    return VisualDebug.instance;
-  }
-  // - - - - - - - - - - - - - - - - - - - - - - - -
-  constructor() {
-    this.debugContainer = document.createElement("div");
-  }
-  // - - - - - - - - - - - - - - - - - - - - - - - -
-  doesUrlKeyExist(key) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.has(key);
-  }
-  getUrlKeyValue(key) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const hasKey = urlParams.has(key);
-    if (hasKey) {
-      return urlParams.get(key);
-    } else {
-      // console.warn(`doesUrlKeyExist(): Key: ${key} is not found...`);
-      return null;
-    }
-  }
-  build(noOfDebugFields = 1, position = "topright") {
-    this.debugContainer.id = "aftc_debug_container";
-    this.debugContainer.style.zIndex = "99999";
-    this.debugContainer.style.position = "fixed";
-    this.debugContainer.style.background = "RGBA(255,255,255,0.3)";
-    this.debugContainer.style.minWidth = "100px";
-    this.debugContainer.style.minHeight = "25px";
-    this.debugContainer.style.fontFamily = "sanserif";
-    this.debugContainer.style.fontSize = "12px";
-    if (this.doesUrlKeyExist("alpha")) {
-      let a = this.getUrlKeyValue("alpha");
-      if (a) {
-        this.debugContainer.style.opacity = parseFloat(a).toString();
-      }
-    } else {
-      this.debugContainer.style.opacity = "0.6";
-    }
-    switch (position) {
-      case "topleft":
-        this.debugContainer.style.left = "5px";
-        this.debugContainer.style.top = "5px";
-        break;
-      case "topcenter":
-        this.debugContainer.style.left = "50%";
-        this.debugContainer.style.top = "5px";
-        this.debugContainer.style.transform = "translateX(-50%)";
-        break;
-      case "topright":
-        this.debugContainer.style.right = "5px";
-        this.debugContainer.style.top = "5px";
-        break;
-      case "btmleft":
-        this.debugContainer.style.left = "5px";
-        this.debugContainer.style.bottom = "5px";
-        break;
-      case "btmcenter":
-        this.debugContainer.style.left = "50%";
-        this.debugContainer.style.bottom = "5px";
-        this.debugContainer.style.transform = "translateX(-50%)";
-        break;
-      case "btmright":
-        this.debugContainer.style.right = "5px";
-        this.debugContainer.style.bottom = "5px";
-        break;
-    }
-    for (let i = 1; i <= noOfDebugFields; i++) {
-      const id = "aftc_debug_field_" + Math.round(Math.random() * 9999999999);
-      const div = document.createElement("div");
-      div.id = id;
-      div.style.minWidth = "50px";
-      // div.style.height = "20px";
-      div.style.marginBottom = "3px";
-      div.style.border = "1px dashed #999999";
-      div.style.padding = "1px 2px 2px 4px";
-      div.style.background = "RGBA(0,0,0,0.8)";
-      div.style.color = "#FFFFFF";
-      // div.style.fontFamily = "Times New Roman, Times, serif";
-      div.style.fontSize = "12px";
-      div.classList.add("aftc_debug_row");
-      this.debugContainer.appendChild(div);
-      div.addEventListener("click", function (e) {
-        const ele = e.currentTarget;
-        let msg = ele.getAttribute("v");
-        if (msg !== null) {
-          let formattedMsg = msg.replace(/\n|\r|\t/g, ' ').replace(/ {2,}/g, ' ');
-          console.log(formattedMsg);
-          navigator.clipboard.writeText(formattedMsg);
-        } else {
-          console.log(null);
-          navigator.clipboard.writeText("");
-        }
-      });
-      this.ids.push(id);
-    }
-    document.body.appendChild(this.debugContainer);
-  }
-  // - - - - - - - - - - - - -
-  debugTo(debugFiledIndexNo = 0, label, value, fontSizeOveride = null) {
-    const id = this.ids[debugFiledIndexNo];
-    const ele = document.getElementById(id);
-    if (!ele) {
-      // NOTE: Do not DDOS console
-      return;
-    }
-    ele.setAttribute("v", value);
-    if (label) {
-      ele.innerHTML = label + " " + value;
-    } else {
-      ele.innerHTML = value;
-    }
-    if (fontSizeOveride !== null) {
-      ele.style.fontSize = fontSizeOveride + "px";
-    }
-  }
-  // - - - - - - - - - - - - - - - - - - - - - - - -
-  clear() {
-    const debugFieldCount = document.querySelectorAll(".aftc_debug_row").length;
-    // console.warn("debugFieldCount", debugFieldCount)
-    let id = "";
-    let ele = false;;
-    for (let i = 0; i < debugFieldCount; i++) {
-      id = this.ids[i];
-      ele = document.getElementById(id);
-      if (ele) {
-        ele.innerHTML = "";
-      }
-    }
-  }
-  // - - - - - - - - - - - - - - - - - - - - - - - -
-}
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -907,6 +764,17 @@ export const isTouchDevice = () => {
       : false;
   };
   
+export function getElementOffsetTop(ele) {
+    let curtop = 0;
+    if (ele.hasOwnProperty("offsetParent")){
+        do {
+            curtop += ele.offsetTop;
+        } while (ele = ele.offsetParent);
+        return parseFloat([curtop]);
+    } else {
+        return false;
+    }
+}
 export function getElementPosition(el) {
     let position = {
         top: el.offsetTop,
@@ -931,6 +799,13 @@ export function getElementPos(el) {
         el = el.offsetParent;
     }
     return { left: x, top: y };
+}
+export function hasClass(elementOrId, c) {
+    if (isElement(elementOrId)) {
+        return elementOrId.classList.contains(c);
+    } else {
+        return getElementById(elementOrId).classList.contains(c);
+    }
 }
 export function isDom(obj) {
     // this works for newer browsers
@@ -958,24 +833,6 @@ export function isElement2(ele) {
     return ele instanceof Element;
 }
 
-export function getElementOffsetTop(ele) {
-    let curtop = 0;
-    if (ele.hasOwnProperty("offsetParent")){
-        do {
-            curtop += ele.offsetTop;
-        } while (ele = ele.offsetParent);
-        return parseFloat([curtop]);
-    } else {
-        return false;
-    }
-}
-export function hasClass(elementOrId, c) {
-    if (isElement(elementOrId)) {
-        return elementOrId.classList.contains(c);
-    } else {
-        return getElementById(elementOrId).classList.contains(c);
-    }
-}
 export function setHTML(elementOrId, str, mode = "set") {
     let ele;
     if (typeof (elementOrId) === "string") {
@@ -1945,21 +1802,6 @@ export function trimStringBy(str, trimBy) {
 export function ucFirst(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
-}
-import { Color } from "three";
-export function hexToColor(hex) {
-    hex = hex.replace("0x", "");
-    hex = hex.replace("#", "");
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    // let result = hex.split("");
-    let r = parseInt(result[1], 16);
-    let g = parseInt(result[2], 16);
-    let b = parseInt(result[3], 16);
-    r = convert255(r);
-    g = convert255(g);
-    b = convert255(b);
-    // return new Color(`"rgb(${r}, ${g}, ${b})"`);
-    return new Color(r, g, b);
 }
 export class SwipeHandler {
     // - - - - - - - - - - - - - - - - - - - - - - - -

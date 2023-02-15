@@ -1,4 +1,4 @@
-# <b>AFTC-MODULES v1.17.7</b>
+# <b>AFTC-MODULES v1.17.8</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -17,6 +17,8 @@ Any and all donations to help keep active development and the lights on are more
 
 ## <b>Latest changes</b>
 - Various bug fixes and documentation generation bug fix
+- removed AttachKeysToVec3() // TypeScript only
+- removed VisualDebug() // TypeScript only (use attachDebug for JS projects)
 - optimised various functions and clean up
 - added hexToColor (THREE.Color)
 - added doesUrlKeyExist(string)
@@ -24,8 +26,6 @@ Any and all donations to help keep active development and the lights on are more
 - added rgbToHex3
 - added convert255(124)
 - updated fetchJson(string)
-- added AttachKeysToVec3() // TypeScript only
-- added VisualDebug() // TypeScript only (use attachDebug for JS projects)
 - added getDeviceType()
 ```
 
@@ -112,13 +112,13 @@ npm i aftc-modules
  - <b>isOpera()</b>
  - <b>isSafari()</b>
  - <b>isTouchDevice()</b>
+ - <b>getElementPos(ele)</b>
  - <b>getElementPosition(el)</b>
  - <b>getElementPos(el)</b>
+ - <b>hasClass(elementOrId,ele)</b>
  - <b>isDOM(obj)</b>
  - <b>isElement(ele)</b>
  - <b>isElement2(ele)</b>
- - <b>getElementPos(ele)</b>
- - <b>hasClass(elementOrId,ele)</b>
  - <b>setHTML(elementOrId,str,mode)</b>
  - <b>onReady(fn)</b>
  - <b>wordCountFilter(str,maxWords)</b>
@@ -175,7 +175,6 @@ npm i aftc-modules
  - <b>rTrimBy(str,trimBy)</b>
  - <b>trimStringBy(str,trimBy)</b>
  - <b>ucFirst(s)</b>
- - <b>hexToColor(hex)</b>
  - <b>SwipeHandler({object})</b>
  - <b>doesUrlKeyExist(key)</b>
  - <b>getRoute(url)</b>
@@ -1704,6 +1703,32 @@ const isTouchDevice = isTouchDevice()
 
 <hr><br><br>
 
+## <b>getElementPos(ele))</b>
+### <b>Information</b>
+Gets an elements offset top position.
+
+### <b>Parameters</b>
+
+- <b>ele</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element to get the position of.
+
+### <b>Returns</b>
+
+- <b>Type: </b>Number
+- <b>Info: </b>Returns fall if unable to get offsetTop
+
+### <b>Example</b>
+
+```
+let pos = getElementOffsetTop(myElement)
+```
+
+
+<hr><br><br>
+
 ## <b>getElementPosition(el))</b>
 ### <b>Information</b>
 Gets an elements position.
@@ -1752,6 +1777,35 @@ Gets an elements position.
 
 ```
 let pos = getElementPos(myElement)
+```
+
+
+<hr><br><br>
+
+## <b>hasClass(elementOrId,ele))</b>
+### <b>Information</b>
+Gets an elements offset top position.
+
+### <b>Parameters</b>
+
+- <b>elementOrId</b>
+	- <b>Type:</b> Element||ElementID
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+
+- <b>ele</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element to get the position of.
+
+### <b>Returns</b>
+
+- <b>Type: </b>Boolean
+### <b>Example</b>
+
+```
+let classAttached = hasClass(myElement,'selected')
 ```
 
 
@@ -1815,61 +1869,6 @@ Checks if object is HTMLElement (Method 2).
 
 ```
 let result = isElement2(myElement)
-```
-
-
-<hr><br><br>
-
-## <b>getElementPos(ele))</b>
-### <b>Information</b>
-Gets an elements offset top position.
-
-### <b>Parameters</b>
-
-- <b>ele</b>
-	- <b>Type:</b> Element
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> Element to get the position of.
-
-### <b>Returns</b>
-
-- <b>Type: </b>Number
-- <b>Info: </b>Returns fall if unable to get offsetTop
-
-### <b>Example</b>
-
-```
-let pos = getElementOffsetTop(myElement)
-```
-
-
-<hr><br><br>
-
-## <b>hasClass(elementOrId,ele))</b>
-### <b>Information</b>
-Gets an elements offset top position.
-
-### <b>Parameters</b>
-
-- <b>elementOrId</b>
-	- <b>Type:</b> Element||ElementID
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-
-- <b>ele</b>
-	- <b>Type:</b> Element
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> Element to get the position of.
-
-### <b>Returns</b>
-
-- <b>Type: </b>Boolean
-### <b>Example</b>
-
-```
-let classAttached = hasClass(myElement,'selected')
 ```
 
 
@@ -3353,31 +3352,6 @@ Makes the first letter of a string uppercase.
 
 ```
 let ucFirstString = ucFirst('hello')
-```
-
-
-<hr><br><br>
-
-## <b>hexToColor(hex))</b>
-### <b>Information</b>
-Converts a hex color to THREE.Color.
-
-### <b>Parameters</b>
-
-- <b>hex</b>
-	- <b>Type:</b> String
-	- <b>Required:</b> true
-	- <b>Default:</b> null
-	- <b>Info:</b> Hex color
-
-### <b>Returns</b>
-
-- <b>Type: </b>THREE.Color
-### <b>Example</b>
-
-```
-let color1 = hexToColor('#FFCC00')
-let color2 = hexToColor('0xFFCC00')
 ```
 
 
