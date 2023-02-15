@@ -1,6 +1,3 @@
-import { doesUrlKeyExist } from "../url/doesUrlKeyExist";
-import { getUrlKeyValue } from "../url/getUrlKeyValue";
-
 export enum eVisualDebugPosition {
   "TopLeft" = "top_left",
   "TopCenter" = "top_center",
@@ -9,6 +6,8 @@ export enum eVisualDebugPosition {
   "BtmCenter" = "btm_center",
   "BtmRight" = "btm_right",
 }
+
+
 
 export class VisualDebug {
   private static instance: VisualDebug;
@@ -32,6 +31,26 @@ export class VisualDebug {
   // - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+  doesUrlKeyExist(key: string): boolean {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.has(key);
+
+  }
+
+  getUrlKeyValue(key: string): string | null {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const hasKey = urlParams.has(key);
+
+    if (hasKey) {
+      return urlParams.get(key);
+    } else {
+      // console.warn(`doesUrlKeyExist(): Key: ${key} is not found...`);
+      return null;
+    }
+  }
+
   build(noOfDebugFields = 1, position: eVisualDebugPosition) {
 
     this.debugContainer.id = "aftc_debug_container";
@@ -43,8 +62,8 @@ export class VisualDebug {
     this.debugContainer.style.fontFamily = "sanserif";
     this.debugContainer.style.fontSize = "12px";
 
-    if (doesUrlKeyExist("alpha")) {
-      let a = getUrlKeyValue("alpha");
+    if (this.doesUrlKeyExist("alpha")) {
+      let a = this.getUrlKeyValue("alpha");
       if (a) {
         this.debugContainer.style.opacity = parseFloat(a).toString();
       }
