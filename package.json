@@ -1,6 +1,6 @@
 {
   "name": "aftc-modules",
-  "version": "1.17.8",
+  "version": "1.17.9",
   "description": "A collection of useful utilities / functions for JavaScript and TypeScript.",
   "module": "index.js",
   "main": "index.js",
@@ -10,7 +10,8 @@
   "scripts": {
     "build": "node build",
     "tsc": "npx -p typescript tsc",
-    "buildTypesDocumentedExample": "note above will use tsconfig.json or direct command line via npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types"
+    "buildTypesDocumentedExample": "note above will use tsconfig.json or direct command line via npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types",
+    "tsc2": "npx -p typescript tsc --declaration --declarationDir ./types --rootDir ./src"
   },
   "repository": {
     "type": "git",
