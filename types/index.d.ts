@@ -65,6 +65,7 @@
 /// <reference path="../src/element/getElementOffsetTop.d.ts"/>
 /// <reference path="../src/element/hasClass.d.ts"/>
 /// <reference path="../src/element/setHTML.d.ts"/>
+/// <reference path="../src/element/setHTML.ts"/>
 /// <reference path="../src/events/onReady.d.ts"/>
 /// <reference path="../src/form/limitNoOfWords.d.ts"/>
 /// <reference path="../src/form/setOptionSelectedIndex.d.ts"/>
@@ -74,7 +75,11 @@
 /// <reference path="../src/io/fetchJson.d.ts"/>
 /// <reference path="../src/io/loadAndAttachImage.d.ts"/>
 /// <reference path="../src/io/loadCss.d.ts"/>
+/// <reference path="../src/io/loadCss.ts"/>
+/// <reference path="../src/io/loadHTML.d.ts"/>
+/// <reference path="../src/io/loadHTML.ts"/>
 /// <reference path="../src/io/loadJson.d.ts"/>
+/// <reference path="../src/io/loadJson.ts"/>
 /// <reference path="../src/io/loadScript.d.ts"/>
 /// <reference path="../src/io/promiseLoadCss.d.ts"/>
 /// <reference path="../src/io/promiseLoadImage.d.ts"/>
@@ -136,5 +141,6 @@
 /// <reference path="../src/url/getRoute.d.ts"/>
 /// <reference path="../src/url/getUrlKeyValue.d.ts"/>
 /// <reference path="../src/validation/isEmail.d.ts"/>
+/// <reference path="../src/validation/isEmail.ts"/>
 /// <reference path="../src/video/promiseAttachVideo.d.ts"/>
 /// <reference path="../src/video/promiseVideoEnd.d.ts"/>

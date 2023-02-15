@@ -22,16 +22,24 @@
 //     ]
 // } JSODOC
 
-export function loadCss(href, onComplete){
-    let link = document.createElement("link");
-    link.onload = function () {
-        if (onComplete) {
-            onComplete();
-        }
+async function loadCss(href) {
+  try {
+    const response = await fetch(href);
+    if (response.ok) {
+      const css = await response.text();
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = href;
+      document.getElementsByTagName('head')[0].appendChild(link);
+      return true;
+    } else {
+      throw new Error(`Failed to load ${href}: ${response.status} ${response.statusText}`);
     }
-    link.href = href;
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.media = "screen,print";
-    document.getElementsByTagName("head")[0].appendChild(link);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
+
+

@@ -1,1 +1,1 @@
-export function loadCss(href: any, onComplete: any): void;
+export declare function promiseLoadCss(href: string): Promise<boolean>;

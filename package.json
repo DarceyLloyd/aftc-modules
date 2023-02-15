@@ -1,9 +1,9 @@
 {
   "name": "aftc-modules",
-  "version": "1.16.17",
+  "version": "1.17.0",
   "description": "A collection of useful utilities / functions for JavaScript and TypeScript.",
   "module": "index.js",
-  "main": "aftc-modules.js",
+  "main": "index.js",
   "types": "./types/index.d.ts",
   "filename": "aftc-modules.js",
   "sideEffects": false,

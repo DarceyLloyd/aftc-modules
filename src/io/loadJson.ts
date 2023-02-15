@@ -7,20 +7,6 @@
 //             "required": true,
 //             "default": null,
 //             "info": "Path/URL to the file to load."
-//         },
-//         {
-//             "name": "onComplete",
-//             "type": "Function",
-//             "required": false,
-//             "default": null,
-//             "info": "On complete callback, sends json response back as a parameter."
-//         },
-//         {
-//             "name": "onError",
-//             "type": "Function",
-//             "required": false,
-//             "default": null,
-//             "info": "On error callback function handler"
 //         }
 //     ],
 //     "info": "Loads a JSON file and returns it via the onComplete callback function.",
@@ -29,9 +15,11 @@
 //     ]
 // } JSODOC
 
-export async function loadJSON(url) {
+export async function loadJson(url: string): Promise<any> {
     const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
     return data;
-  }
-  
+}

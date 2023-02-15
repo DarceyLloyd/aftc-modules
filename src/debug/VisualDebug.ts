@@ -1,7 +1,7 @@
 import { doesUrlKeyExist } from "../url/doesUrlKeyExist";
 import { getUrlKeyValue } from "../url/getUrlKeyValue";
 
-export enum ePosition {
+export enum eVisualDebugPosition {
   "TopLeft" = "top_left",
   "TopCenter" = "top_center",
   "TopRight" = "top_right",
@@ -32,7 +32,7 @@ export class VisualDebug {
   // - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-  build(noOfDebugFields = 1, position: ePosition) {
+  build(noOfDebugFields = 1, position: eVisualDebugPosition) {
 
     this.debugContainer.id = "aftc_debug_container";
     this.debugContainer.style.zIndex = "99999";
@@ -43,9 +43,9 @@ export class VisualDebug {
     this.debugContainer.style.fontFamily = "sanserif";
     this.debugContainer.style.fontSize = "12px";
 
-    if (doesUrlKeyExist("alpha")){
+    if (doesUrlKeyExist("alpha")) {
       let a = getUrlKeyValue("alpha");
-      if (a){
+      if (a) {
         this.debugContainer.style.opacity = parseFloat(a).toString();
       }
     } else {
@@ -108,15 +108,10 @@ export class VisualDebug {
         const ele: HTMLDivElement = e.currentTarget as HTMLDivElement;
         let msg: string | null = ele.getAttribute("v");
 
-        if (msg) {
-          // let msg!: string = v;
-          msg = msg.replaceAll("\n", "");
-          msg = msg.replaceAll("\r", "");
-          msg = msg.replaceAll("\t", " ");
-          msg = msg.replaceAll("    ", " ");
-          msg = msg.replaceAll("  ", " ");
-          console.log(msg);
-          navigator.clipboard.writeText(msg);
+        if (msg !== null) {
+          let formattedMsg: string = msg.replace(/\n|\r|\t/g, ' ').replace(/ {2,}/g, ' ');
+          console.log(formattedMsg);
+          navigator.clipboard.writeText(formattedMsg);
         } else {
           console.log(null);
           navigator.clipboard.writeText("");
@@ -147,7 +142,7 @@ export class VisualDebug {
       ele.innerHTML = value;
     }
 
-    if (fontSizeOveride !== null){
+    if (fontSizeOveride !== null) {
       ele.style.fontSize = fontSizeOveride + "px";
     }
   }

@@ -16,7 +16,7 @@
 //         "let isValidEmail = isEmail('darcey.lloyd@gmail.com')"
 //     ]
 // } JSODOC
-export function isEmail(email) {
+export function isEmail(email: string): boolean {
     if (!email) {
         return false;
     }

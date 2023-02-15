@@ -17,7 +17,7 @@
 //         },
 //         {
 //             "name": "mode",
-//             "type": "String (set|append|prepend)",
+//             "type": "eNum (set|append|prepend)",
 //             "required": false,
 //             "default": "Set",
 //             "info": "The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content."
@@ -34,40 +34,40 @@
 //         "setHTML('my-element-id-3','hello world','prepend')"
 //     ]
 // } JSODOC
-
-export function setHTML(elementOrId, str, mode = "set") {
-    let ele;
-    if (typeof (elementOrId) === "string") {
-        ele = document.getElementById(elementOrId);
-        if (!ele) {
-            ele = document.querySelector(elementOrId);
-        }
+enum SetHTMLMode {
+    SET = "set",
+    APPEND = "append",
+    PREPEND = "prepend"
+  }
+  
+  function setHTML(elementOrId: HTMLElement | string, str: string, mode: SetHTMLMode = SetHTMLMode.SET) {
+    let ele: HTMLElement | null;
+  
+    if (typeof elementOrId === "string") {
+      ele = document.getElementById(elementOrId);
+      if (!ele) {
+        ele = document.querySelector<HTMLElement>(elementOrId);
+      }
     } else {
-        ele = elementOrId;
+      ele = elementOrId;
     }
-
+  
     if (ele) {
-
-        if (mode){
-            mode = mode.toLowerCase();
-        }
-
-        switch (mode) {
-            case "append":
-                if (ele.innerHTML == ""){
-                    ele.innerHTML += str;
-                } else {
-                    ele.innerHTML += "<br>" + str;
-                }
-
-                break;
-            case "prepend":
-                ele.innerHTML = str + "<br>" + ele.innerHTML;
-                break;
-            default:
-                ele.innerHTML = str;
-                break;
-        }
-
+      switch (mode) {
+        case SetHTMLMode.APPEND:
+          if (ele.innerHTML === "") {
+            ele.innerHTML += str;
+          } else {
+            ele.innerHTML += "<br>" + str;
+          }
+          break;
+        case SetHTMLMode.PREPEND:
+          ele.innerHTML = str + "<br>" + ele.innerHTML;
+          break;
+        default:
+          ele.innerHTML = str;
+          break;
+      }
     } 
-}
+  }
+  

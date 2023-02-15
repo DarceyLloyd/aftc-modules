@@ -1,1 +1,1 @@
-export function isEmail(email: any): boolean;
+export declare function isEmail(email: string): boolean;

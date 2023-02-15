@@ -75,8 +75,7 @@ import { XHR } from 'aftc-modules/src/io/XHR.js';
 import { fetchHtml } from 'aftc-modules/src/io/fetchHtml.js';
 import { getJson } from 'aftc-modules/src/io/fetchJson.js';
 import { loadAndAttachImage } from 'aftc-modules/src/io/loadAndAttachImage.js';
-import { loadCss } from 'aftc-modules/src/io/loadCss.js';
-import { loadJson } from 'aftc-modules/src/io/loadJson.js';
+import { loadJSON } from 'aftc-modules/src/io/loadJson.js';
 import { loadScript } from 'aftc-modules/src/io/loadScript.js';
 import { promiseLoadCss } from 'aftc-modules/src/io/promiseLoadCss.js';
 import { promiseLoadImage } from 'aftc-modules/src/io/promiseLoadImage.js';
@@ -213,8 +212,7 @@ export {
 	fetchHtml,
 	getJson,
 	loadAndAttachImage,
-	loadCss,
-	loadJson,
+	loadJSON,
 	loadScript,
 	promiseLoadCss,
 	promiseLoadImage,

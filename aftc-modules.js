@@ -862,9 +862,7 @@ export function setHTML(elementOrId, str, mode = "set") {
                 ele.innerHTML = str;
                 break;
         }
-    } else {
-        return "setHTML(): Usage error: Unable to retrieve element id or use element [" + elementOrId + "]";
-    }
+    } 
 }
 export function onReady(fn) {
     // IE9+
@@ -1287,45 +1285,32 @@ export function loadAndAttachImage(imgElement, src) {
         imgElement.src = src;
     });
 }
-export function loadCss(href, onComplete){
-    let link = document.createElement("link");
-    link.onload = function () {
-        if (onComplete) {
-            onComplete();
-        }
+async function loadCss(href) {
+  try {
+    const response = await fetch(href);
+    if (response.ok) {
+      const css = await response.text();
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = href;
+      document.getElementsByTagName('head')[0].appendChild(link);
+      return true;
+    } else {
+      throw new Error(`Failed to load ${href}: ${response.status} ${response.statusText}`);
     }
-    link.href = href;
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.media = "screen,print";
-    document.getElementsByTagName("head")[0].appendChild(link);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
-export function loadJson(url, onComplete, onError) {
-    let xhr = new XMLHttpRequest();
-    let method = "GET";
-    xhr.open(method, url);
-    xhr.onload = function () {
-        if (this.status >= 200 && this.status < 300) {
-            if (onComplete) {
-                onComplete(JSON.parse(xhr.response))
-            }
-        } else {
-            if (onError) {
-                onError({
-                    status: this.status,
-                    statusText: xhr.statusText
-                })
-            }
-        }
-    }
-    xhr.onerror = function () {
-        reject({
-            status: this.status,
-            statusText: xhr.statusText
-        });
-    };
-    xhr.send();
-};
+
+export async function loadJSON(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  }
+  
 export function loadScript(src, onComplete, onProgress){
     let head = document.getElementsByTagName("head")[0] || document.body;
     if (!head){
@@ -2005,9 +1990,16 @@ export const getUrlKeyValue = (key) => {
       return undefined;
     }
   }
-export function isEmail (email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+export function isEmail(email) {
+    if (!email) {
+        return false;
+    }
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+        return false;
+    }
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(trimmedEmail);
 }
 
 export function promiseAttachVideo(video, src) {

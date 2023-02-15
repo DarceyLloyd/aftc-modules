@@ -1,1 +1,1 @@
-export function loadJson(url: any, onComplete: any, onError: any): void;
+export declare function loadJson(url: string): Promise<any>;
