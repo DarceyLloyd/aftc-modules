@@ -342,7 +342,7 @@ function buildDocs() {
         "[[version]]": version
     }
 
-    new JSODoc({
+    const jsoDoc= new JSODoc({
         dir: './src',
         recursive: true,
         ext: ['js','ts'],
@@ -351,6 +351,8 @@ function buildDocs() {
         substitutions: subs,
         output: './readme.md'
     })
+
+    jsoDoc.start();
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
