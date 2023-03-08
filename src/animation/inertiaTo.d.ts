@@ -1,1 +1,1 @@
-export function inertiaTo(current: any, target: any, amount: any): any;
+export function inertiaTo(current: number, target: number, amount: number): number;

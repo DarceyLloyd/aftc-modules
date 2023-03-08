@@ -95,6 +95,9 @@ declare module "aftc-modules/src/conversion/stringToBool" {
 declare module "aftc-modules/src/cookies/getCookie" {
     export function getCookie(name: any): string | null;
 }
+declare module "aftc-modules/src/cookies/CookieManager" {
+    export function CookieManager(): void;
+}
 declare module "aftc-modules/src/cookies/listCookies" {
     export function listCookies(): void;
 }

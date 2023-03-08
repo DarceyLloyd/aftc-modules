@@ -29,6 +29,7 @@
 /// <reference path="../src/conversion/rgbToHex3.d.ts"/>
 /// <reference path="../src/conversion/stringToBool.d.ts"/>
 /// <reference path="../src/cookies/getCookie.d.ts"/>
+/// <reference path="../src/cookies/CookieManager.d.ts"/>
 /// <reference path="../src/cookies/listCookies.d.ts"/>
 /// <reference path="../src/cookies/setCookie.d.ts"/>
 /// <reference path="../src/datetime/getDaysBetween.d.ts"/>

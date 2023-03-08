@@ -1,4 +1,4 @@
-# AFTC-MODULES v1.17.9
+# AFTC-MODULES v1.17.12
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
@@ -16,6 +16,13 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## Latest changes
+- Added cookie manager
+```
+const cm:CookieManager = new CookieManager();
+cm.set(key,value,expiryInSeconds)
+cm.get(key)
+cm.remove(key); // alias's del, rem
+```
 - Various bug fixes and documentation generation bug fix
 - removed AttachKeysToVec3() // TypeScript only
 - removed VisualDebug() // TypeScript only (use attachDebug for JS projects)

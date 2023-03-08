@@ -29,6 +29,7 @@ import { rgbToHex2 } from 'aftc-modules/src/conversion/rgbToHex2.js';
 import { rgbToHex3 } from 'aftc-modules/src/conversion/rgbToHex3.js';
 import { stringToBool } from 'aftc-modules/src/conversion/stringToBool.js';
 import { getCookie } from 'aftc-modules/src/cookies/getCookie.js';
+import { CookieManager } from 'aftc-modules/src/cookies/CookieManager.js';
 import { listCookies } from 'aftc-modules/src/cookies/listCookies.js';
 import { setCookie } from 'aftc-modules/src/cookies/setCookie.js';
 import { getDaysBetween } from 'aftc-modules/src/datetime/getDaysBetween.js';
@@ -165,6 +166,7 @@ export {
 	rgbToHex3,
 	stringToBool,
 	getCookie,
+	CookieManager,
 	listCookies,
 	setCookie,
 	getDaysBetween,
