@@ -69,7 +69,7 @@ export class CookieManager {
     setExpiryTime(expiryTimeInSeconds: number) {
         const now = new Date();
         this.expiryTimeInSeconds = new Date(now.getTime() + (expiryTimeInSeconds * 1000));
-        console.warn(this.expiryTimeInSeconds);
+        // console.warn(this.expiryTimeInSeconds);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -81,7 +81,7 @@ export class CookieManager {
         expiryTimeInSeconds: number,
         path: string | null = null,
         domain: string | null = null
-    ) {
+    ): void {
 
         if (name === "" || name.length === 0) {
             console.error("CookieManager.getCookie(name): Usage error - come on, I need the name of the cookie to set!");
@@ -136,7 +136,7 @@ export class CookieManager {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 
-    deleteCookie(name: string) {
+    deleteCookie(name: string): void {
         if (name === "" || name.length === 0) {
             console.error("CookieManager.deleteCookie(name): Usage error - come on, I need the name of the cookie to delete!");
             return;
