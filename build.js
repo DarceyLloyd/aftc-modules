@@ -2,6 +2,7 @@ const { log, cls, getFilesSync, writeFile, concatFiles } = require("aftc-node-to
 const { JSODoc } = require("jsodoc")
 const fs = require("fs")
 const p = require("path")
+const path = require('path');
 const fse = require("fs-extra")
 const version = require("./package.json").version
 
@@ -12,6 +13,7 @@ log("AFTC-MODULES: Build starting...".yellow);
 // Get files to work on
 let jsFiles = getFilesSync("./src", ".js", true);
 let tsFiles = getFilesSync("./src", ".ts", true);
+let dtsFiles = getDTSFiles("./src");
 // log(jsFiles);
 // log(tsFiles);
 
@@ -44,9 +46,9 @@ async function start() {
     cleanConcatinatedFile();
 
     // Docs
-    buildDocs()
+    // buildDocs()
 
-    
+
 
 
 
@@ -55,6 +57,32 @@ async function start() {
     log("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #".green);
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+function getDTSFiles(currentDir) {
+    let dtsFiles = [];
+
+    function findFiles(dir) {
+        const files = fs.readdirSync(dir);
+
+        files.forEach(file => {
+            const fullPath = path.join(dir, file);
+            const stat = fs.statSync(fullPath);
+
+            if (stat.isDirectory()) {
+                findFiles(fullPath); // Recursive call
+            } else if (file.endsWith('.d.ts')) {
+                dtsFiles.push(fullPath);
+            }
+        });
+    }
+
+    findFiles(currentDir);
+    return dtsFiles;
+}
+
+
 
 
 
@@ -105,7 +133,7 @@ async function cleanConcatinatedFile() {
 
 async function buildIndexTs() {
 
-    let outputFile = p.resolve("./types/index.d.ts");
+    let outputFile = p.resolve("./index.d.ts");
     let fileContents = "";
 
     let currentDirName = p.basename(process.cwd())
@@ -117,13 +145,15 @@ async function buildIndexTs() {
     // jsImportPath = jsImportPath.replace(/\\/g, '/')
     let tsFilePath = "";
 
-    for (const f of tsFiles) {
+    log(dtsFiles);
+
+    for (const f of dtsFiles) {
         tsFilePath = "";
         tsFilePath = f.replace(pathStringToRemove, "");
-        tsFilePath = "..\\" + tsFilePath;
+        tsFilePath = ".\\" + tsFilePath;
         tsFilePath = tsFilePath.replace(/\\/g, '/')
 
-        // log(tsFilePath)
+        log(tsFilePath)
 
         // /// <reference path="../src/array/arrayGetMax.d.ts"/>
         fileContents += `/// <reference path="${tsFilePath}"/>` + "\n";
@@ -163,8 +193,8 @@ async function buildIndexJs() {
         jsImportPath = jsImportPath.replace(/\\/g, '/')
         // log(jsImportPath);
 
-        if (jsImportPath.includes("does")){
-            log(jsImportPath);
+        if (jsImportPath.includes("does")) {
+            // log(jsImportPath);
         }
 
         const allFileContents = await fs.readFileSync(f, 'utf-8');
@@ -254,7 +284,7 @@ async function getJsImportsAndExportsFromFile(f) {
     // jsImportPath = replaceAll("\\", "/",jsImportPath)
     jsImportPath = jsImportPath.replace(/\\/g, '/')
     // jsImportPath = jsImportPath.replace("\\\\","/")
-    // log(jsImportPath);
+    log(jsImportPath);
 
     const allFileContents = await fs.readFileSync(f, 'utf-8');
     allFileContents.split(/\r?\n/).forEach(line => {
@@ -342,10 +372,10 @@ function buildDocs() {
         "[[version]]": version
     }
 
-    const jsoDoc= new JSODoc({
+    const jsoDoc = new JSODoc({
         dir: './src',
         recursive: true,
-        ext: ['js','ts'],
+        ext: ['js', 'ts'],
         // files: ['./aftc-modules.js'],
         template: './docs/template.md',
         substitutions: subs,

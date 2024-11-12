@@ -18,9 +18,13 @@
 // } JSODOC
 
 export function getUID(len) {
-    if (len > 34){
-        console.error("getUID(length): Limit error: Length must be 34 or lower");
-    } else {
-        return Math.random().toString(36).substr(2, len);
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+
+    for (var i = 0; i < len; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
+
+    return result;
 }

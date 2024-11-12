@@ -1,28 +1,22 @@
-# AFTC-MODULES v1.17.14
+# <b>AFTC-MODULES v1.17.15</b>
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## A collection of useful everyday utilities / functions for JavaScript & TypeScript.
 
 
-<h3>Find AFTC-MODULES useful? Please Donate...</h3>
+<h3><b>Find AFTC-MODULES useful? Please Donate...</b></h3>
 Any and all donations to help keep active development and the lights on are more than welcome.
 
 [![paypal](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Darcey%2eLloyd%40gmail%2ecom&lc=GB&item_name=Darcey%20Lloyd%20Developer%20Donation&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 
- 
- 
+ <hr>
+ <br>
 
 
 
-## Latest changes
-- Added cookie manager
-```
-const cm:CookieManager = new CookieManager();
-cm.set(key,value,expiryInSeconds)
-cm.get(key)
-cm.remove(key); // alias's del, rem
-```
+## <b>Latest changes</b>
+- Added VirtualDebug
 - Various bug fixes and documentation generation bug fix
 - removed AttachKeysToVec3() // TypeScript only
 - removed VisualDebug() // TypeScript only (use attachDebug for JS projects)
@@ -34,612 +28,611 @@ cm.remove(key); // alias's del, rem
 - added convert255(124)
 - updated fetchJson(string)
 - added getDeviceType()
+```
+
+<hr><br><br>
 
 
 
 
-
-
-### Want the ES5 (old) version?
+### <b>Want the ES5 (old) version?</b>
 Your looking for aftc.js. Visit: https://github.com/DarceyLloyd/AFTC.js
 
+<hr><br><br>
 
 
 
-
-### Installation
+### <b>Installation</b>
 ```
 npm i aftc-modules
 ```
 
+<hr><br><br>
+
+
+## <b>Available Methods & Class's:</b>
+
+
+ - <b>inertiaTo(current,target,amount)</b>
+ - <b>arrayClear(arr)</b>
+ - <b>arrayContains(needle,haystack)</b>
+ - <b>arrayEmpty(arr)</b>
+ - <b>arrayGetMax(arr)</b>
+ - <b>arrayGetMin(arr)</b>
+ - <b>arrayRemoveIndex(arr,index)</b>
+ - <b>arrayRemoveValue(arr,value)</b>
+ - <b>arrayShuffle(arr)</b>
+ - <b>arrayShuffle2(arr)</b>
+ - <b>isArrayInString(input,arr)</b>
+ - <b>isInArray(needle,haystack)</b>
+ - <b>isStringInArray(needle,haystack)</b>
+ - <b>getBrowser()</b>
+ - <b>getBrowserX()</b>
+ - <b>getBrowserY()</b>
+ - <b>isInViewport(el)</b>
+ - <b>argsToObject({object},{object},strict)</b>
+ - <b>boolToInt(bool)</b>
+ - <b>boolToString(bool)</b>
+ - <b>boolToYesNo(bool)</b>
+ - <b>degToRad(input)</b>
+ - <b>hexToRgb(hex)</b>
+ - <b>numToHex(num)</b>
+ - <b>objectToObject({object},{object},strict)</b>
+ - <b>radToDeg(input)</b>
+ - <b>rgbToHex(r,g,b)</b>
+ - <b>rgbToHex2(r,g,b)</b>
+ - <b>rgbToHex3(r,g,b)</b>
+ - <b>stringToBool(str)</b>
+ - <b>getCookie(name)</b>
+ - <b>listCookies()</b>
+ - <b>setCookie(name,cvalue,exdays)</b>
+ - <b>getDaysBetween(startDateTime,endDateTime)</b>
+ - <b>getMySQLDateTimeString()</b>
+ - <b>getUKDate(dte,separator)</b>
+ - <b>getUKDateFromDbDateTime(dbDateString,separator)</b>
+ - <b>getUKDateTime(dte,separator)</b>
+ - <b>getUkDateTimeFromDbDateTime(dte,separator)</b>
+ - <b>getUSDate(dte,separator)</b>
+ - <b>appendTo(elementOrId,msg,endOfLine)</b>
+ - <b>attachDebug(no,position,ele)</b>
+ - <b>debugTo(index,str)</b>
+ - <b>log(arg)</b>
+ - <b>logDisable()</b>
+ - <b>logEnable()</b>
+ - <b>Logger()</b>
+ - <b>logTo(elementOrId,msg,append,endOfLine)</b>
+ - <b>warn(arg)</b>
+ - <b>getDeviceType()</b>
+ - <b>getOS()</b>
+ - <b>isAndroid()</b>
+ - <b>isChrome()</b>
+ - <b>isEdge()</b>
+ - <b>isFireFox()</b>
+ - <b>isIOS()</b>
+ - <b>isMobile()</b>
+ - <b>isSafari()</b>
+ - <b>isTouchDevice()</b>
+ - <b>getElementPos(ele)</b>
+ - <b>getElementPosition(el)</b>
+ - <b>getElementPos(el)</b>
+ - <b>hasClass(elementOrId,ele)</b>
+ - <b>isDOM(obj)</b>
+ - <b>isElement(ele)</b>
+ - <b>isElement2(ele)</b>
+ - <b>setHTML(elementOrId,str,mode)</b>
+ - <b>onReady(fn)</b>
+ - <b>wordCountFilter(str,maxWords)</b>
+ - <b>setOptionSelectedIndex(selectElement,selectedValue)</b>
+ - <b>imageToCanvas(url)</b>
+ - <b>fetchHtml(url)</b>
+ - <b>fetchJson(url)</b>
+ - <b>loadAndAttachImage(imgElement,src)</b>
+ - <b>loadScript(src,onComplete,onProgress)</b>
+ - <b>promiseLoadCss(href)</b>
+ - <b>promiseLoadImage(ele,src)</b>
+ - <b>promiseLoadJson(url)</b>
+ - <b>promiseLoadScript(src)</b>
+ - <b>getRandomBoolean()</b>
+ - <b>getRandomFloat(min,max)</b>
+ - <b>getRandomInt(min,max)</b>
+ - <b>getRange(value 1,Value 2)</b>
+ - <b>isEven(n)</b>
+ - <b>isOdd(n)</b>
+ - <b>normaliseRange(min,max,v)</b>
+ - <b>parseArrayToFloat(arr)</b>
+ - <b>parseArrayToInt(arr)</b>
+ - <b>roundTo(v,dec)</b>
+ - <b>getGUID()</b>
+ - <b>getUID(len)</b>
+ - <b>isAlphaNumeric(v)</b>
+ - <b>isArray(input)</b>
+ - <b>isBool(input)</b>
+ - <b>isBoolean(input)</b>
+ - <b>isNumber(n)</b>
+ - <b>isNumeric(n)</b>
+ - <b>MouseScrollHandler(onScrollUp,onScrollDown)</b>
+ - <b>getObjectPropByKey({object},key)</b>
+ - <b>getObjectPropByKey({object},key)</b>
+ - <b>cutStringTo(str,len)</b>
+ - <b>escapeHTML(str)</b>
+ - <b>getAnchor(url)</b>
+ - <b>getCleanJSONString(s)</b>
+ - <b>getFileExtension(str)</b>
+ - <b>getLastPartOfUrl(url)</b>
+ - <b>getRandomString(len)</b>
+ - <b>getStringBetween(source,start,end)</b>
+ - <b>getStringBetween2(source,start,end)</b>
+ - <b>getWordCount(str)</b>
+ - <b>inString(needle,haystack)</b>
+ - <b>isInString(needle,haystack)</b>
+ - <b>lTrimBy(str,by)</b>
+ - <b>regExReplaceAll(needle,rep,haystack)</b>
+ - <b>removeFileFromPath(path)</b>
+ - <b>replaceAll(needle,replace,haystack)</b>
+ - <b>replaceDoubleBackSlash(str,rep)</b>
+ - <b>replaceDoubleForwardSlash(str,rep)</b>
+ - <b>rTrimBy(str,trimBy)</b>
+ - <b>trimStringBy(str,trimBy)</b>
+ - <b>ucFirst(s)</b>
+ - <b>SwipeHandler({object})</b>
+ - <b>getRoute(url)</b>
+ - <b>promiseAttachVideo(video,src)</b>
+ - <b>promiseVideoEnd(video)</b>
+
+<hr><br><br>
 
 
 
-## Available Methods & Class's:
-
-
- - inertiaTo(current,target,amount)
- - arrayClear(arr)
- - arrayContains(needle,haystack)
- - arrayEmpty(arr)
- - arrayGetMax(arr)
- - arrayGetMin(arr)
- - arrayRemoveIndex(arr,index)
- - arrayRemoveValue(arr,value)
- - arrayShuffle(arr)
- - arrayShuffle2(arr)
- - isArrayInString(input,arr)
- - isInArray(needle,haystack)
- - isStringInArray(needle,haystack)
- - getBrowser()
- - getBrowserX()
- - getBrowserY()
- - isInViewport(el)
- - argsToObject({object},{object},strict)
- - boolToInt(bool)
- - boolToString(bool)
- - boolToYesNo(bool)
- - degToRad(input)
- - hexToRgb(hex)
- - numToHex(num)
- - objectToObject({object},{object},strict)
- - radToDeg(input)
- - rgbToHex(r,g,b)
- - rgbToHex2(r,g,b)
- - rgbToHex3(r,g,b)
- - stringToBool(str)
- - getCookie(name)
- - listCookies()
- - setCookie(name,cvalue,exdays)
- - getDaysBetween(startDateTime,endDateTime)
- - getMySQLDateTimeString()
- - getUKDate(dte,separator)
- - getUKDateFromDbDateTime(dbDateString,separator)
- - getUKDateTime(dte,separator)
- - getUkDateTimeFromDbDateTime(dte,separator)
- - getUSDate(dte,separator)
- - appendTo(elementOrId,msg,endOfLine)
- - attachDebug(no,position,ele)
- - debugTo(index,str)
- - log(arg)
- - logDisable()
- - logEnable()
- - Logger()
- - logTo(elementOrId,msg,append,endOfLine)
- - warn(arg)
- - getDeviceType()
- - getOS()
- - isAndroid()
- - isChrome()
- - isEdge()
- - isFireFox()
- - isIOS()
- - isMobile()
- - isOpera()
- - isSafari()
- - isTouchDevice()
- - getElementPos(ele)
- - getElementPosition(el)
- - getElementPos(el)
- - hasClass(elementOrId,ele)
- - isDOM(obj)
- - isElement(ele)
- - isElement2(ele)
- - setHTML(elementOrId,str,mode)
- - onReady(fn)
- - wordCountFilter(str,maxWords)
- - setOptionSelectedIndex(selectElement,selectedValue)
- - imageToCanvas(url)
- - fetchHtml(url)
- - fetchJson(url)
- - loadAndAttachImage(imgElement,src)
- - loadCss(href,onComplete)
- - loadJson(url,onComplete,onError)
- - loadScript(src,onComplete,onProgress)
- - promiseLoadCss(href)
- - promiseLoadImage(ele,src)
- - promiseLoadJson(url)
- - promiseLoadScript(src)
- - getRandomBoolean()
- - getRandomFloat(min,max)
- - getRandomInt(min,max)
- - getRange(value 1,Value 2)
- - isEven(n)
- - isOdd(n)
- - normaliseRange(min,max,v)
- - parseArrayToFloat(arr)
- - parseArrayToInt(arr)
- - roundTo(v,dec)
- - getGUID()
- - getUID(len)
- - isAlphaNumeric(v)
- - isArray(input)
- - isBool(input)
- - isBoolean(input)
- - isNumber(n)
- - isNumeric(n)
- - MouseScrollHandler(onScrollUp,onScrollDown)
- - getObjectPropByKey({object},key)
- - cutStringTo(str,len)
- - escapeHTML(str)
- - getAnchor(url)
- - getCleanJSONString(s)
- - getFileExtension(str)
- - getLastPartOfUrl(url)
- - getRandomString(len)
- - getStringBetween(source,start,end)
- - getStringBetween2(source,start,end)
- - getWordCount(str)
- - inString(needle,haystack)
- - isInString(needle,haystack)
- - lTrimBy(str,by)
- - regExReplaceAll(needle,rep,haystack)
- - removeFileFromPath(path)
- - replaceAll(needle,replace,haystack)
- - replaceDoubleBackSlash(str,rep)
- - replaceDoubleForwardSlash(str,rep)
- - rTrimBy(str,trimBy)
- - trimStringBy(str,trimBy)
- - ucFirst(s)
- - SwipeHandler({object})
- - doesUrlKeyExist(key)
- - getRoute(url)
- - getUrlKeyValue(key)
- - isEmail(email)
- - promiseAttachVideo(video,src)
- - promiseVideoEnd(video)
-
-
-
-
-
+<hr><br><br>
 
 
 
 
+# <b>Documentation</b>
 
-# Documentation
-
-## inertiaTo(current,target,amount))
-### Information
+## <b>inertiaTo(current,target,amount))</b>
+### <b>Information</b>
 Calculates the target value of inertia in a loop/requestAnimationFrame from 1 value to another at speed.
 
-### Parameters
+### <b>Parameters</b>
 
-- current
-	- Type: Number
-	- Required: true
-	- Info: Current value.
+- <b>current</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Current value.
 
-- target
-	- Type: Number
-	- Required: true
-	- Info: Value to reach.
+- <b>target</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Value to reach.
 
-- amount
-	- Type: Number
-	- Required: true
-	- Info: Inertia speed (dec/inc speed).
+- <b>amount</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Inertia speed (dec/inc speed).
 
-### Example
+### <b>Returns</b>
+
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let newX = inertiaTo(curX,targetX,0.5)
 ```
 
 
+<hr><br><br>
 
-
-## arrayClear(arr))
-### Information
+## <b>arrayClear(arr))</b>
+### <b>Information</b>
 Clears an array
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to clear / empty
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to clear / empty
 
-### Example
+### <b>Example</b>
 
 ```
 arrayClear(myArray)
 ```
 
 
+<hr><br><br>
 
-
-## arrayContains(needle,haystack))
-### Information
+## <b>arrayContains(needle,haystack))</b>
+### <b>Information</b>
 Finds a needle in a haystack.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: string
-	- Required: true
-	- Default: null
-	- Info: What you are looking for.
+- <b>needle</b>
+	- <b>Type:</b> string
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> What you are looking for.
 
-- haystack
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to search.
-
-
+- <b>haystack</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to search.
 
 
 
-## arrayEmpty(arr))
-### Information
+<hr><br><br>
+
+## <b>arrayEmpty(arr))</b>
+### <b>Information</b>
 Clears an array
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to clear / empty
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to clear / empty
 
-### Example
+### <b>Example</b>
 
 ```
 arrayEmpty(myArray)
 ```
 
 
+<hr><br><br>
 
-
-## arrayGetMax(arr))
-### Information
+## <b>arrayGetMax(arr))</b>
+### <b>Information</b>
 Gets the maximum value from the supplied array.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to get the maximum value within.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to get the maximum value within.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let max = arrayGetMax(myArray)
 ```
 
 
+<hr><br><br>
 
-
-## arrayGetMin(arr))
-### Information
+## <b>arrayGetMin(arr))</b>
+### <b>Information</b>
 Gets the minimum value from the supplied array.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to get the minimum value from.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to get the minimum value from.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let max = arrayGetMin(myArray)
 ```
 
 
+<hr><br><br>
 
-
-## arrayRemoveIndex(arr,index))
-### Information
+## <b>arrayRemoveIndex(arr,index))</b>
+### <b>Information</b>
 Removes an index from the supplied array.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to remove the index from.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to remove the index from.
 
-- index
-	- Type: number
-	- Required: true
-	- Default: null
-	- Info: The index which you want to remove.
+- <b>index</b>
+	- <b>Type:</b> number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The index which you want to remove.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-### Example
+- <b>Type: </b>Array
+### <b>Example</b>
 
 ```
 let max = arrayRemoveIndex(arr,index)
 ```
 
 
+<hr><br><br>
 
-
-## arrayRemoveValue(arr,value))
-### Information
+## <b>arrayRemoveValue(arr,value))</b>
+### <b>Information</b>
 Removes a value from the supplied array.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to remove the value from.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to remove the value from.
 
-- value
-	- Type: string || number
-	- Required: true
-	- Default: null
-	- Info: The value which you want to remove from the array.
+- <b>value</b>
+	- <b>Type:</b> string || number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The value which you want to remove from the array.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-### Example
+- <b>Type: </b>Array
+### <b>Example</b>
 
 ```
 let max = arrayRemoveValue(arr, value)
 ```
 
 
+<hr><br><br>
 
-
-## arrayShuffle(arr))
-### Information
+## <b>arrayShuffle(arr))</b>
+### <b>Information</b>
 Shuffles / Randomizes an array.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to shuffle.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to shuffle.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-### Example
+- <b>Type: </b>Array
+### <b>Example</b>
 
 ```
 let shuffledArray = arrayShuffle(myArray)
 ```
 
 
+<hr><br><br>
 
-
-## arrayShuffle2(arr))
-### Information
+## <b>arrayShuffle2(arr))</b>
+### <b>Information</b>
 Shuffles / Randomizes an array (method 2).
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to shuffle.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to shuffle.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-### Example
+- <b>Type: </b>Array
+### <b>Example</b>
 
 ```
 let shuffledArray = arrayShuffle2(myArray)
 ```
 
 
+<hr><br><br>
 
-
-## isArrayInString(input,arr))
-### Information
+## <b>isArrayInString(input,arr))</b>
+### <b>Information</b>
 Searches the array for a string.
 
-### Parameters
+### <b>Parameters</b>
 
-- input
-	- Type: string
-	- Required: true
-	- Default: null
-	- Info: String you want to look for matches in.
+- <b>input</b>
+	- <b>Type:</b> string
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> String you want to look for matches in.
 
-- arr
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array of strings you want to search for in input.
+- <b>arr</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array of strings you want to search for in input.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let found = isStringInArray(needle, haystack)
 ```
 
 
+<hr><br><br>
 
-
-## isInArray(needle,haystack))
-### Information
+## <b>isInArray(needle,haystack))</b>
+### <b>Information</b>
 Searches the array for your value.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: *
-	- Required: true
-	- Default: null
-	- Info: What you are looking for.
+- <b>needle</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> What you are looking for.
 
-- haystack
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to search.
+- <b>haystack</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to search.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let found = isInArray(needle, haystack)
 ```
 
 
+<hr><br><br>
 
-
-## isStringInArray(needle,haystack))
-### Information
+## <b>isStringInArray(needle,haystack))</b>
+### <b>Information</b>
 Searches the array for a string.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: string
-	- Required: true
-	- Default: null
-	- Info: String you are looking for.
+- <b>needle</b>
+	- <b>Type:</b> string
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> String you are looking for.
 
-- haystack
-	- Type: array
-	- Required: true
-	- Default: null
-	- Info: The array you want to search.
+- <b>haystack</b>
+	- <b>Type:</b> array
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The array you want to search.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let found = isStringInArray(needle, haystack)
 ```
 
 
+<hr><br><br>
 
-
-## getBrowser())
-### Information
+## <b>getBrowser())</b>
+### <b>Information</b>
 Gets the name of the browser you are using (opera | chrome | safari | firefox | msie | trident | edge).
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let browser = getBrowser()
 ```
 
 
+<hr><br><br>
 
-
-## getBrowserX())
-### Information
+## <b>getBrowserX())</b>
+### <b>Information</b>
 Gets the viewport x position.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let x = getBrowserX()
 ```
 
 
+<hr><br><br>
 
-
-## getBrowserY())
-### Information
+## <b>getBrowserY())</b>
+### <b>Information</b>
 Gets the viewport y position.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let x = getBrowserY()
 ```
 
 
+<hr><br><br>
 
-
-## isInViewport(el))
-### Information
+## <b>isInViewport(el))</b>
+### <b>Information</b>
 Checks whether an element is in view.
 
-### Parameters
+### <b>Parameters</b>
 
-- el
-	- Type: element
-	- Required: true
-	- Default: null
-	- Info: The element you want to check is in view
+- <b>el</b>
+	- <b>Type:</b> element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The element you want to check is in view
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let isInView = isInViewport(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## argsToObject({object},{object},strict))
-### Information
+## <b>argsToObject({object},{object},strict))</b>
+### <b>Information</b>
 Parses arguments to an object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).
 
-### Parameters
+### <b>Parameters</b>
 
-- src
-	- Type: Object
-	- Required: true
-	- Default: null
-	- Info: The object from the function or class. Eg: Use arguments[0] from constructor in a class. Or any object.
+- <b>src</b>
+	- <b>Type:</b> Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The object from the function or class. Eg: Use arguments[0] from constructor in a class. Or any object.
 
-- dest
-	- Type: Object
-	- Required: true
-	- Default: null
-	- Info: The arguments object you wish to assign arguments to.
+- <b>dest</b>
+	- <b>Type:</b> Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The arguments object you wish to assign arguments to.
 
-- strict
-	- Type: Boolean
-	- Required: false
-	- Default: true
-	- Info: Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported.
+- <b>strict</b>
+	- <b>Type:</b> Boolean
+	- <b>Required:</b> false
+	- <b>Default:</b> true
+	- <b>Info:</b> Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 /* Class based example */
@@ -655,186 +648,186 @@ new MyApp({a:1,b:3,c:4});
 ```
 
 
+<hr><br><br>
 
-
-## boolToInt(bool))
-### Information
+## <b>boolToInt(bool))</b>
+### <b>Information</b>
 Converts a boolean to a number.
 
-### Parameters
+### <b>Parameters</b>
 
-- bool
-	- Type: Boolean
-	- Required: true
-	- Default: null
-	- Info: The variable you wish to convert.
+- <b>bool</b>
+	- <b>Type:</b> Boolean
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The variable you wish to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let strBool = boolToInt(isMobile)
 ```
 
 
+<hr><br><br>
 
-
-## boolToString(bool))
-### Information
+## <b>boolToString(bool))</b>
+### <b>Information</b>
 Converts a boolean to a string of true || false.
 
-### Parameters
+### <b>Parameters</b>
 
-- bool
-	- Type: Boolean
-	- Required: true
-	- Default: null
-	- Info: The variable you wish to convert.
+- <b>bool</b>
+	- <b>Type:</b> Boolean
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The variable you wish to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let strBool = boolToString(isMobile)
 ```
 
 
+<hr><br><br>
 
-
-## boolToYesNo(bool))
-### Information
+## <b>boolToYesNo(bool))</b>
+### <b>Information</b>
 Converts a boolean to a string of yes || no.
 
-### Parameters
+### <b>Parameters</b>
 
-- bool
-	- Type: Boolean
-	- Required: true
-	- Default: null
-	- Info: The variable you wish to convert.
+- <b>bool</b>
+	- <b>Type:</b> Boolean
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The variable you wish to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let answer = boolToYesNo(boolAnswer)
 ```
 
 
+<hr><br><br>
 
-
-## degToRad(input))
-### Information
+## <b>degToRad(input))</b>
+### <b>Information</b>
 Converts degrees to radians.
 
-### Parameters
+### <b>Parameters</b>
 
-- input
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>input</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let rad = degToRad(deg)
 ```
 
 
+<hr><br><br>
 
-
-## hexToRgb(hex))
-### Information
+## <b>hexToRgb(hex))</b>
+### <b>Information</b>
 Converts hex color to an object with r,g,b props.
 
-### Parameters
+### <b>Parameters</b>
 
-- hex
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Hex color string eg #FFCC00
+- <b>hex</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Hex color string eg #FFCC00
 
-### Returns
+### <b>Returns</b>
 
-- Object
-	- r
-		- Type: Number
-	- g
-		- Type: Number
-	- b
-		- Type: Number
-### Example
+- <b>Object</b>
+	- <b>r</b>
+		- <b>Type: </b>Number
+	- <b>g</b>
+		- <b>Type: </b>Number
+	- <b>b</b>
+		- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let rgb = hexToRgb('#FFCC00')
 ```
 
 
+<hr><br><br>
 
-
-## numToHex(num))
-### Information
+## <b>numToHex(num))</b>
+### <b>Information</b>
 Converts a number to hexadecimal.
 
-### Parameters
+### <b>Parameters</b>
 
-- num
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>num</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let hex = numToHex(12)
 ```
 
 
+<hr><br><br>
 
-
-## objectToObject({object},{object},strict))
-### Information
+## <b>objectToObject({object},{object},strict))</b>
+### <b>Information</b>
 Parses an object to another object of your choice with strict or relaxed assigning features (good for defaults and instantiation processing).
 
-### Parameters
+### <b>Parameters</b>
 
-- src
-	- Type: Object
-	- Required: true
-	- Default: null
-	- Info: The source object. Eg: Use arguments[0] from constructor in a class.
+- <b>src</b>
+	- <b>Type:</b> Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The source object. Eg: Use arguments[0] from constructor in a class.
 
-- dest
-	- Type: Object
-	- Required: true
-	- Default: null
-	- Info: The target object you wish to assign arguments to.
+- <b>dest</b>
+	- <b>Type:</b> Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The target object you wish to assign arguments to.
 
-- strict
-	- Type: Boolean
-	- Required: false
-	- Default: true
-	- Info: Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported.
+- <b>strict</b>
+	- <b>Type:</b> Boolean
+	- <b>Required:</b> false
+	- <b>Default:</b> true
+	- <b>Info:</b> Whether you want to enable strict assignments only. Enabling strict will warn users of the function that the argument supplied is not supported.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 /* Class based example */
@@ -850,156 +843,156 @@ new MyApp({a:1,b:3,c:4});
 ```
 
 
+<hr><br><br>
 
-
-## radToDeg(input))
-### Information
+## <b>radToDeg(input))</b>
+### <b>Information</b>
 Converts radians to degrees.
 
-### Parameters
+### <b>Parameters</b>
 
-- input
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>input</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let rad = radToDeg(deg)
 ```
 
 
+<hr><br><br>
 
-
-## rgbToHex(r,g,b))
-### Information
+## <b>rgbToHex(r,g,b))</b>
+### <b>Information</b>
 Converts an RGB value to a hex color value.
 
-### Parameters
+### <b>Parameters</b>
 
-- r
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>r</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-- g
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>g</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-- b
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>b</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let hex = RGBToHex(255,100,55);
 ```
 
 
+<hr><br><br>
 
-
-## rgbToHex2(r,g,b))
-### Information
+## <b>rgbToHex2(r,g,b))</b>
+### <b>Information</b>
 Converts an RGB value to a hex color value (Method 2).
 
-### Parameters
+### <b>Parameters</b>
 
-- r
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>r</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-- g
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>g</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-- b
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>b</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let hex = rgbToHex2(255,100,55);
 ```
 
 
+<hr><br><br>
 
-
-## rgbToHex3(r,g,b))
-### Information
+## <b>rgbToHex3(r,g,b))</b>
+### <b>Information</b>
 Converts an RGB value to a hex color value (Method 3).
 
-### Parameters
+### <b>Parameters</b>
 
-- r
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>r</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-- g
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>g</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-- b
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number you want to convert.
+- <b>b</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let hex = rgbToHex3(255,100,55);
 ```
 
 
+<hr><br><br>
 
-
-## stringToBool(str))
-### Information
+## <b>stringToBool(str))</b>
+### <b>Information</b>
 Converts a String to Boolean.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The value you want to convert.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The value you want to convert.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let answer1 = stringToBool('yes');
@@ -1011,70 +1004,70 @@ let answer6 = stringToBool('0');
 ```
 
 
+<hr><br><br>
 
-
-## getCookie(name))
-### Information
+## <b>getCookie(name))</b>
+### <b>Information</b>
 Fetches a cookie by name.
 
-### Parameters
+### <b>Parameters</b>
 
-- name
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The name of the cookie you want to retrieve.
+- <b>name</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The name of the cookie you want to retrieve.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let email = getCookie('email')
 ```
 
 
+<hr><br><br>
 
-
-## listCookies())
-### Information
+## <b>listCookies())</b>
+### <b>Information</b>
 Lists all available cookie.
 
-### Example
+### <b>Example</b>
 
 ```
 listCookies()
 ```
 
 
+<hr><br><br>
 
-
-## setCookie(name,cvalue,exdays))
-### Information
+## <b>setCookie(name,cvalue,exdays))</b>
+### <b>Information</b>
 Fetches a cookie by name.
 
-### Parameters
+### <b>Parameters</b>
 
-- name
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The name of the cookie you want to retrieve.
+- <b>name</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The name of the cookie you want to retrieve.
 
-- cvalue
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The value you want to put in the cookie.
+- <b>cvalue</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The value you want to put in the cookie.
 
-- exdays
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number of days you want the cookie to expire in.
+- <b>exdays</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number of days you want the cookie to expire in.
 
-### Example
+### <b>Example</b>
 
 ```
 let name = 'email';
@@ -1084,30 +1077,30 @@ setCookie(name,value,lifeInMins)
 ```
 
 
+<hr><br><br>
 
-
-## getDaysBetween(startDateTime,endDateTime))
-### Information
+## <b>getDaysBetween(startDateTime,endDateTime))</b>
+### <b>Information</b>
 Gets the number of days between 2 dates.
 
-### Parameters
+### <b>Parameters</b>
 
-- startDateTime
-	- Type: Date
-	- Required: true
-	- Default: null
-	- Info: The start date.
+- <b>startDateTime</b>
+	- <b>Type:</b> Date
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The start date.
 
-- endDateTime
-	- Type: Date
-	- Required: true
-	- Default: null
-	- Info: The end date.
+- <b>endDateTime</b>
+	- <b>Type:</b> Date
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The end date.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 /* NOTE: Month is indexed at 0 */
@@ -1118,232 +1111,232 @@ let days = getDaysBetween('startDateTime, endDateTime')
 ```
 
 
+<hr><br><br>
 
-
-## getMySQLDateTimeString())
-### Information
+## <b>getMySQLDateTimeString())</b>
+### <b>Information</b>
 Gets the date as a mysql injectable string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let dte = getMySQLDateTimeString()
 ```
 
 
+<hr><br><br>
 
-
-## getUKDate(dte,separator))
-### Information
+## <b>getUKDate(dte,separator))</b>
+### <b>Information</b>
 Gets a UK formatted date string from a supplied date.
 
-### Parameters
+### <b>Parameters</b>
 
-- dte
-	- Type: Date || String
-	- Required: true
-	- Default: null
-	- Info: The date you wish to get the UK format date string from.
+- <b>dte</b>
+	- <b>Type:</b> Date || String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The date you wish to get the UK format date string from.
 
-- separator
-	- Type: String
-	- Required: false
-	- Default: -
-	- Info: What the date string segments will be separated by.
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let ukDate = getUKDate(new Date(),'-')
 ```
 
 
+<hr><br><br>
 
-
-## getUKDateFromDbDateTime(dbDateString,separator))
-### Information
+## <b>getUKDateFromDbDateTime(dbDateString,separator))</b>
+### <b>Information</b>
 Gets a UK formatted date string from a supplied db date string.
 
-### Parameters
+### <b>Parameters</b>
 
-- dbDateString
-	- Type: Date || String
-	- Required: true
-	- Default: null
-	- Info: This should be a datetime string from a db query.
+- <b>dbDateString</b>
+	- <b>Type:</b> Date || String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> This should be a datetime string from a db query.
 
-- separator
-	- Type: String
-	- Required: false
-	- Default: -
-	- Info: What the date string segments will be separated by.
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let ukDate = getUkDateFromDbDateTime(dbDateString)
 ```
 
 
+<hr><br><br>
 
-
-## getUKDateTime(dte,separator))
-### Information
+## <b>getUKDateTime(dte,separator))</b>
+### <b>Information</b>
 Gets a UK formatted date string from a supplied date.
 
-### Parameters
+### <b>Parameters</b>
 
-- dte
-	- Type: Date || String
-	- Required: true
-	- Default: null
-	- Info: The date you wish to get the UK format date string from.
+- <b>dte</b>
+	- <b>Type:</b> Date || String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The date you wish to get the UK format date string from.
 
-- separator
-	- Type: String
-	- Required: false
-	- Default: -
-	- Info: What the date string segments will be separated by.
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let ukDate = getUKDate(new Date(),'-')
 ```
 
 
+<hr><br><br>
 
-
-## getUkDateTimeFromDbDateTime(dte,separator))
-### Information
+## <b>getUkDateTimeFromDbDateTime(dte,separator))</b>
+### <b>Information</b>
 Gets a UK formatted date and time string from a supplied db date time string.
 
-### Parameters
+### <b>Parameters</b>
 
-- dte
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: This should be a datetime string from a db query.
+- <b>dte</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> This should be a datetime string from a db query.
 
-- separator
-	- Type: String
-	- Required: false
-	- Default: -
-	- Info: What the date string segments will be separated by.
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let ukDate = getUkDateTimeFromDbDateTime(dte)
 ```
 
 
+<hr><br><br>
 
-
-## getUSDate(dte,separator))
-### Information
+## <b>getUSDate(dte,separator))</b>
+### <b>Information</b>
 Gets a US formatted date string from a supplied date.
 
-### Parameters
+### <b>Parameters</b>
 
-- dte
-	- Type: Date
-	- Required: true
-	- Default: null
-	- Info: The date you wish to get the US format date string from.
+- <b>dte</b>
+	- <b>Type:</b> Date
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The date you wish to get the US format date string from.
 
-- separator
-	- Type: String
-	- Required: false
-	- Default: -
-	- Info: What the date string segments will be separated by.
+- <b>separator</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> -
+	- <b>Info:</b> What the date string segments will be separated by.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let usDate = getUKDate(new Date(),'-')
 ```
 
 
+<hr><br><br>
 
-
-## appendTo(elementOrId,msg,endOfLine))
-### Information
+## <b>appendTo(elementOrId,msg,endOfLine))</b>
+### <b>Information</b>
 Appends a string to an element, with or without a < BR > tag.
 
-### Parameters
+### <b>Parameters</b>
 
-- elementOrId
-	- Type: Element||ElementID
-	- Required: true
-	- Default: null
-	- Info: The element or element id of the element you wish to append the string within.
+- <b>elementOrId</b>
+	- <b>Type:</b> Element||ElementID
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The element or element id of the element you wish to append the string within.
 
-- msg
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The string you wish to append to the html element.
+- <b>msg</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The string you wish to append to the html element.
 
-- endOfLine
-	- Type: String
-	- Required: false
-	- Default: < br >
-	- Info: The end of the string that will be appended to the element, set to '' if you dont want the < br >
+- <b>endOfLine</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> < br >
+	- <b>Info:</b> The end of the string that will be appended to the element, set to '' if you dont want the < br >
 
-### Example
+### <b>Example</b>
 
 ```
 appendTo(elementOrId,msg,'')
 ```
 
 
+<hr><br><br>
 
+## <b>attachDebug(no,position,ele))</b>
+### <b>Information</b>
+Displays a visual debug list so you can watch variables change in real time (Most excellent for debug with keys, animations etc). Click row to inject that value into copy and paste buffer. See <b>debugTo</b> to use attachDebug, usage example below.
 
-## attachDebug(no,position,ele))
-### Information
-Displays a visual debug list so you can watch variables change in real time (Most excellent for debug with keys, animations etc). Click row to inject that value into copy and paste buffer. See debugTo to use attachDebug, usage example below.
+### <b>Parameters</b>
 
-### Parameters
+- <b>no</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The number of debug elements you want available.
 
-- no
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The number of debug elements you want available.
+- <b>position</b>
+	- <b>Type:</b> String (tl, top left, tr, top right, bl, btm left, br, btm right)
+	- <b>Required:</b> true
+	- <b>Default:</b> top left
+	- <b>Info:</b> Position of the debug list.
 
-- position
-	- Type: String (tl, top left, tr, top right, bl, btm left, br, btm right)
-	- Required: true
-	- Default: top left
-	- Info: Position of the debug list.
+- <b>ele</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> false
+	- <b>Default:</b> document.body
+	- <b>Info:</b> The debug list will be appended to this element
 
-- ele
-	- Type: Element
-	- Required: false
-	- Default: document.body
-	- Info: The debug list will be appended to this element
-
-### Example
+### <b>Example</b>
 
 ```
 attachDebug(3)
@@ -1353,27 +1346,27 @@ debugTo(2,'hello world 3')
 ```
 
 
+<hr><br><br>
 
-
-## debugTo(index,str))
-### Information
+## <b>debugTo(index,str))</b>
+### <b>Information</b>
 Sets a visual debug element so you can visually track variables without the use of the console, excellent for working with the graphical side of things, animations, webgl etc.
 
-### Parameters
+### <b>Parameters</b>
 
-- index
-	- Type: Number
-	- Required: true
-	- Default: null
-	- Info: The debug container index to write to (setup via attachDebug).
+- <b>index</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The debug container index to write to (setup via <b>attachDebug</b>).
 
-- str
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The string you want to write to the debug container.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The string you want to write to the debug container.
 
-### Example
+### <b>Example</b>
 
 ```
 attachDebug(3)
@@ -1383,21 +1376,21 @@ debugTo(2,'hello world 3')
 ```
 
 
+<hr><br><br>
 
-
-## log(arg))
-### Information
+## <b>log(arg))</b>
+### <b>Information</b>
 Lazy version of console.log, no more typing console!
 
-### Parameters
+### <b>Parameters</b>
 
-- arg
-	- Type: *
-	- Required: true
-	- Default: null
-	- Info: arg gets injected into console.log
+- <b>arg</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> arg gets injected into console.log
 
-### Example
+### <b>Example</b>
 
 ```
 log('Once you use me, you will never stop using me')
@@ -1407,13 +1400,13 @@ log(`a = ${a}`)
 ```
 
 
+<hr><br><br>
 
-
-## logDisable())
-### Information
+## <b>logDisable())</b>
+### <b>Information</b>
 Disable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.
 
-### Example
+### <b>Example</b>
 
 ```
 log('You will see this in console')
@@ -1422,13 +1415,13 @@ log('You wont see this in console')
 ```
 
 
+<hr><br><br>
 
-
-## logEnable())
-### Information
+## <b>logEnable())</b>
+### <b>Information</b>
 Enable log() globally. Good for keeping all your log commands without having to comment them out in your projects. You should really you should comment them all out for removal in the packaging process.
 
-### Example
+### <b>Example</b>
 
 ```
 log('You will see this in console')
@@ -1439,21 +1432,21 @@ log('You will see this in console')
 ```
 
 
+<hr><br><br>
 
-
-## Logger())
-### Information
+## <b>Logger())</b>
+### <b>Information</b>
 A substitute for console.log, allowing you to keep your comments and enable them on a class by class or function by function basis, or globally on all class's or functions implemented in.
 
-### Methods
+### <b>Methods</b>
 
-- enable()
-- disable()
-- enableAll()
-- disableAll()
-- enableGlobally()
-- disableGlobally()
-### Example
+- <b>enable()</b>
+- <b>disable()</b>
+- <b>enableAll()</b>
+- <b>disableAll()</b>
+- <b>enableGlobally()</b>
+- <b>disableGlobally()</b>
+### <b>Example</b>
 
 ```
 this.logger = new Logger()
@@ -1467,60 +1460,60 @@ this.logger.disableAll()
 ```
 
 
+<hr><br><br>
 
-
-## logTo(elementOrId,msg,append,endOfLine))
-### Information
+## <b>logTo(elementOrId,msg,append,endOfLine))</b>
+### <b>Information</b>
 Appends a string to an element, with or without a < BR > tag.
 
-### Parameters
+### <b>Parameters</b>
 
-- elementOrId
-	- Type: Element||ElementID
-	- Required: true
-	- Default: null
-	- Info: The element or element id of the element you wish to append the string within.
+- <b>elementOrId</b>
+	- <b>Type:</b> Element||ElementID
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The element or element id of the element you wish to append the string within.
 
-- msg
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: The string you wish to append to the html element.
+- <b>msg</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The string you wish to append to the html element.
 
-- append
-	- Type: Boolean
-	- Required: false
-	- Default: false
-	- Info: Method of attaching the logging message, append (true) or prepend (false) aka top vs bottom.
+- <b>append</b>
+	- <b>Type:</b> Boolean
+	- <b>Required:</b> false
+	- <b>Default:</b> false
+	- <b>Info:</b> Method of attaching the logging message, append (true) or prepend (false) aka top vs bottom.
 
-- endOfLine
-	- Type: String
-	- Required: false
-	- Default: 
-	- Info: The end of the string that will be appended to the element, set to '< br >' if you want a line break
+- <b>endOfLine</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> 
+	- <b>Info:</b> The end of the string that will be appended to the element, set to '< br >' if you want a line break
 
-### Example
+### <b>Example</b>
 
 ```
 logTo(elementOrId,msg,true)
 ```
 
 
+<hr><br><br>
 
-
-## warn(arg))
-### Information
+## <b>warn(arg))</b>
+### <b>Information</b>
 Lazy version of console.warn, no more typing console!
 
-### Parameters
+### <b>Parameters</b>
 
-- arg
-	- Type: *
-	- Required: true
-	- Default: null
-	- Info: arg gets injected into console.warn
+- <b>arg</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> arg gets injected into console.warn
 
-### Example
+### <b>Example</b>
 
 ```
 warn('Once you use me, you will never stop using me')
@@ -1530,381 +1523,365 @@ warn(`a = ${a}`)
 ```
 
 
+<hr><br><br>
 
-
-## getDeviceType())
-### Information
+## <b>getDeviceType())</b>
+### <b>Information</b>
 Returns the device type mobile || tablet || desktop
 
-### Parameters
+### <b>Parameters</b>
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let deviceType = getDeviceType()
 ```
 
 
+<hr><br><br>
 
-
-## getOS())
-### Information
+## <b>getOS())</b>
+### <b>Information</b>
 Gets what OS is in use
 
-### Returns
+### <b>Returns</b>
 
-- Type: String (Mac OS, iOS, Windows, Android, Linux
-### Example
+- <b>Type: </b>String (Mac OS, iOS, Windows, Android, Linux
+### <b>Example</b>
 
 ```
 let os = getOS()
 ```
 
 
+<hr><br><br>
 
-
-## isAndroid())
-### Information
+## <b>isAndroid())</b>
+### <b>Information</b>
 Detects if Android or not.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let test = isAndroid()
 ```
 
 
+<hr><br><br>
 
-
-## isChrome())
-### Information
+## <b>isChrome())</b>
+### <b>Information</b>
 Detects if Chrome or not.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let test = isChrome()
 ```
 
 
+<hr><br><br>
 
-
-## isEdge())
-### Information
+## <b>isEdge())</b>
+### <b>Information</b>
 Detects if Edge or not.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let test = isEdge()
 ```
 
 
+<hr><br><br>
 
-
-## isFireFox())
-### Information
+## <b>isFireFox())</b>
+### <b>Information</b>
 Detects if FireFox or not.
 
-### Example
+### <b>Example</b>
 
 ```
 let test = isFireFox()
 ```
 
 
+<hr><br><br>
 
-
-## isIOS())
-### Information
+## <b>isIOS())</b>
+### <b>Information</b>
 Detects if iOS or not.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let test = isIOS()
 ```
 
 
+<hr><br><br>
 
-
-## isMobile())
-### Information
+## <b>isMobile())</b>
+### <b>Information</b>
 Detects if mobile or not.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let mobile = isMobile()
 ```
 
 
+<hr><br><br>
 
-
-## isOpera())
-### Information
-Detects if Opera or not.
-
-### Returns
-
-- Type: Boolean
-### Example
-
-```
-let test = isOpera()
-```
-
-
-
-
-## isSafari())
-### Information
+## <b>isSafari())</b>
+### <b>Information</b>
 Detects if Safari or not.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let test = isSafari()
 ```
 
 
+<hr><br><br>
 
-
-## isTouchDevice())
-### Information
+## <b>isTouchDevice())</b>
+### <b>Information</b>
 Returns boolean of whether the deivce is touch enabled.
 
-### Parameters
+### <b>Parameters</b>
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 const isTouchDevice = isTouchDevice()
 ```
 
 
+<hr><br><br>
 
-
-## getElementPos(ele))
-### Information
+## <b>getElementPos(ele))</b>
+### <b>Information</b>
 Gets an elements offset top position.
 
-### Parameters
+### <b>Parameters</b>
 
-- ele
-	- Type: Element
-	- Required: true
-	- Default: null
-	- Info: Element to get the position of.
+- <b>ele</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element to get the position of.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-- Info: Returns fall if unable to get offsetTop
+- <b>Type: </b>Number
+- <b>Info: </b>Returns fall if unable to get offsetTop
 
-### Example
+### <b>Example</b>
 
 ```
 let pos = getElementOffsetTop(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## getElementPosition(el))
-### Information
+## <b>getElementPosition(el))</b>
+### <b>Information</b>
 Gets an elements position.
 
-### Parameters
+### <b>Parameters</b>
 
-- el
-	- Type: Element
-	- Required: true
-	- Default: null
-	- Info: Element to get the position of.
+- <b>el</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element to get the position of.
 
-### Returns
+### <b>Returns</b>
 
-### Example
+### <b>Example</b>
 
 ```
 let pos = getElementPosition(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## getElementPos(el))
-### Information
+## <b>getElementPos(el))</b>
+### <b>Information</b>
 Gets an elements position.
 
-### Parameters
+### <b>Parameters</b>
 
-- el
-	- Type: Element
-	- Required: true
-	- Default: null
-	- Info: Element to get the position of.
+- <b>el</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element to get the position of.
 
-### Returns
+### <b>Returns</b>
 
-- Object
-	- left
-		- Type: Number
-		- Info: x or left
-	- top
-		- Type: Number
-		- Info: y or top
-### Example
+- <b>Object</b>
+	- <b>left</b>
+		- <b>Type: </b>Number
+		- <b>Info: </b>x or left
+	- <b>top</b>
+		- <b>Type: </b>Number
+		- <b>Info: </b>y or top
+### <b>Example</b>
 
 ```
 let pos = getElementPos(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## hasClass(elementOrId,ele))
-### Information
+## <b>hasClass(elementOrId,ele))</b>
+### <b>Information</b>
 Gets an elements offset top position.
 
-### Parameters
+### <b>Parameters</b>
 
-- elementOrId
-	- Type: Element||ElementID
-	- Required: true
-	- Default: null
+- <b>elementOrId</b>
+	- <b>Type:</b> Element||ElementID
+	- <b>Required:</b> true
+	- <b>Default:</b> null
 
-- ele
-	- Type: Element
-	- Required: true
-	- Default: null
-	- Info: Element to get the position of.
+- <b>ele</b>
+	- <b>Type:</b> Element
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element to get the position of.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let classAttached = hasClass(myElement,'selected')
 ```
 
 
+<hr><br><br>
 
-
-## isDOM(obj))
-### Information
+## <b>isDOM(obj))</b>
+### <b>Information</b>
 Checks if object is HTMLElement.
 
-### Parameters
+### <b>Parameters</b>
 
-- obj
-	- Type: Element||Object
-	- Required: true
-	- Default: null
-	- Info: Element / Object to check.
+- <b>obj</b>
+	- <b>Type:</b> Element||Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element / Object to check.
 
-### Example
+### <b>Example</b>
 
 ```
 let result = isDOM(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## isElement(ele))
-### Information
+## <b>isElement(ele))</b>
+### <b>Information</b>
 Checks if object is HTMLElement.
 
-### Parameters
+### <b>Parameters</b>
 
-- ele
-	- Type: Element||Object
-	- Required: true
-	- Default: null
-	- Info: Element / Object to check.
+- <b>ele</b>
+	- <b>Type:</b> Element||Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element / Object to check.
 
-### Example
+### <b>Example</b>
 
 ```
 let result = isElement(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## isElement2(ele))
-### Information
+## <b>isElement2(ele))</b>
+### <b>Information</b>
 Checks if object is HTMLElement (Method 2).
 
-### Parameters
+### <b>Parameters</b>
 
-- ele
-	- Type: Element||Object
-	- Required: true
-	- Default: null
-	- Info: Element / Object to check.
+- <b>ele</b>
+	- <b>Type:</b> Element||Object
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Element / Object to check.
 
-### Example
+### <b>Example</b>
 
 ```
 let result = isElement2(myElement)
 ```
 
 
+<hr><br><br>
 
-
-## setHTML(elementOrId,str,mode))
-### Information
+## <b>setHTML(elementOrId,str,mode))</b>
+### <b>Information</b>
 Set a an elements HTML content.
 
-### Parameters
+### <b>Parameters</b>
 
-- elementOrId
-	- Type: Element||ElementID
-	- Required: true
-	- Default: null
-	- Info: The element or the element ID.
+- <b>elementOrId</b>
+	- <b>Type:</b> Element||ElementID
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The element or the element ID.
 
-- str
-	- Type: String||Number
-	- Required: true
-	- Default: null
-	- Info: The content you want to put into the html element.
+- <b>str</b>
+	- <b>Type:</b> String||Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The content you want to put into the html element.
 
-- mode
-	- Type: String (set|append|prepend)
-	- Required: false
-	- Default: Set
-	- Info: The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content.
+- <b>mode</b>
+	- <b>Type:</b> String (set|append|prepend)
+	- <b>Required:</b> false
+	- <b>Default:</b> Set
+	- <b>Info:</b> The method in which to set the HTML of the targeted element, set it clearing all content or to append or prepend you content.
 
-### Example
+### <b>Example</b>
 
 ```
 setHTML(myElement,'hello world')
@@ -1917,20 +1894,20 @@ setHTML('my-element-id-3','hello world','prepend')
 ```
 
 
+<hr><br><br>
 
-
-## onReady(fn))
-### Information
+## <b>onReady(fn))</b>
+### <b>Information</b>
 Checks if the DOM is ready and then executes a function.
 
-### Parameters
+### <b>Parameters</b>
 
-- fn
-	- Type: Function
-	- Required: true
-	- Default: null
+- <b>fn</b>
+	- <b>Type:</b> Function
+	- <b>Required:</b> true
+	- <b>Default:</b> null
 
-### Example
+### <b>Example</b>
 
 ```
 onReady(function()){
@@ -1944,153 +1921,153 @@ onReady(() =>{
 ```
 
 
+<hr><br><br>
 
-
-## wordCountFilter(str,maxWords))
-### Information
+## <b>wordCountFilter(str,maxWords))</b>
+### <b>Information</b>
 Takes a string, checks it for number of words and returns the string but cuts it to the max number of words you set.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Default: null
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
 
-- maxWords
-	- Type: Number
-	- Required: true
-	- Default: null
+- <b>maxWords</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Default:</b> null
 
-### Returns
+### <b>Returns</b>
 
-- Object
-### Example
+- <b>Object</b>
+### <b>Example</b>
 
 ```
 let limitedSentence = wordCountFilter(source,20)
 ```
 
 
+<hr><br><br>
 
-
-## setOptionSelectedIndex(selectElement,selectedValue))
-### Information
+## <b>setOptionSelectedIndex(selectElement,selectedValue))</b>
+### <b>Information</b>
 Sets an option of HTML select element by value.
 
-### Parameters
+### <b>Parameters</b>
 
-- selectElement
-	- Type: HTML Select Element
-	- Required: true
+- <b>selectElement</b>
+	- <b>Type:</b> HTML Select Element
+	- <b>Required:</b> true
 
-- selectedValue
-	- Type: String
-	- Required: true
+- <b>selectedValue</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
 
-### Example
+### <b>Example</b>
 
 ```
 let limitedSentence = wordCountFilter(source,20)
 ```
 
 
+<hr><br><br>
 
-
-## imageToCanvas(url))
-### Information
+## <b>imageToCanvas(url))</b>
+### <b>Information</b>
 Loads an image and places it on a canvas of matching dimensions.
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the image to load and place on the canvas
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the image to load and place on the canvas
 
-### Returns
+### <b>Returns</b>
 
-- Type: HTMLCanvasElement
-### Example
+- <b>Type: </b>HTMLCanvasElement
+### <b>Example</b>
 
 ```
 let canvas1 = await imageToCanvas('./assets/photo.webp')
 ```
 
 
+<hr><br><br>
 
-
-## fetchHtml(url))
-### Information
+## <b>fetchHtml(url))</b>
+### <b>Information</b>
 Loads a html file and returns it as a string
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let data = await fetchHtml('./pages/modal-user-content.html')
 ```
 
 
+<hr><br><br>
 
-
-## fetchJson(url))
-### Information
+## <b>fetchJson(url))</b>
+### <b>Information</b>
 Loads a json file and returns it as an object
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
 
-### Returns
+### <b>Returns</b>
 
-- Object
-### Example
+- <b>Object</b>
+### <b>Example</b>
 
 ```
 let data = await fetchJson('./data/config.json')
 ```
 
 
+<hr><br><br>
 
-
-## loadAndAttachImage(imgElement,src))
-### Information
+## <b>loadAndAttachImage(imgElement,src))</b>
+### <b>Information</b>
 Loads an image file and auto attaches it to the head section of the document.
 
-### Parameters
+### <b>Parameters</b>
 
-- imgElement
-	- Type: String
-	- Required: false
-	- Default: null
-	- Info: Image element to load the image into.
+- <b>imgElement</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> Image element to load the image into.
 
-- src
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load
+- <b>src</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise
-### Example
+- <b>Type: </b>Promise
+### <b>Example</b>
 
 ```
 loadAndAttachImage(imgElement1,'./assets/images/products/001.jpg')
@@ -2099,117 +2076,57 @@ loadAndAttachImage(imgElement1,'./assets/images/products/001.jpg')
 ```
 
 
+<hr><br><br>
 
-
-## loadCss(href,onComplete))
-### Information
-Loads a css file and auto attaches it to the head section of the document.
-
-### Parameters
-
-- href
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the css file to load
-
-- onComplete
-	- Type: Function
-	- Required: false
-	- Default: null
-	- Info: On complete callback
-
-### Example
-
-```
-loadCss('./include/css/style-sheet-5.css',onStyleSheet5Loaded)
-```
-
-
-
-
-## loadJson(url,onComplete,onError))
-### Information
-Loads a JSON file and returns it via the onComplete callback function.
-
-### Parameters
-
-- url
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load.
-
-- onComplete
-	- Type: Function
-	- Required: false
-	- Default: null
-	- Info: On complete callback, sends json response back as a parameter.
-
-- onError
-	- Type: Function
-	- Required: false
-	- Default: null
-	- Info: On error callback function handler
-
-### Example
-
-```
-loadJson('./data/config.json',onLoadedHandler)
-```
-
-
-
-
-## loadScript(src,onComplete,onProgress))
-### Information
+## <b>loadScript(src,onComplete,onProgress))</b>
+### <b>Information</b>
 Loads a JavaScript file and auto attaches it to the head section of the document.
 
-### Parameters
+### <b>Parameters</b>
 
-- src
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the js file to load
+- <b>src</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the js file to load
 
-- onComplete
-	- Type: Function
-	- Required: false
-	- Default: null
-	- Info: On complete callback
+- <b>onComplete</b>
+	- <b>Type:</b> Function
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> On complete callback
 
-- onProgress
-	- Type: Function
-	- Required: false
-	- Default: null
-	- Info: On progress callback, sends back the percentage loaded
+- <b>onProgress</b>
+	- <b>Type:</b> Function
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> On progress callback, sends back the percentage loaded
 
-### Example
+### <b>Example</b>
 
 ```
 loadScript('./include/js/script-5.js',onLoadedHandler)
 ```
 
 
+<hr><br><br>
 
-
-## promiseLoadCss(href))
-### Information
+## <b>promiseLoadCss(href))</b>
+### <b>Information</b>
 Loads a css file and auto attaches it to the head section of the document.
 
-### Parameters
+### <b>Parameters</b>
 
-- href
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the css file to load
+- <b>href</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the css file to load
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise
-### Example
+- <b>Type: </b>Promise
+### <b>Example</b>
 
 ```
 promiseLoadCss('./include/css/style-sheet-5.css')
@@ -2218,30 +2135,30 @@ promiseLoadCss('./include/css/style-sheet-5.css')
 ```
 
 
+<hr><br><br>
 
-
-## promiseLoadImage(ele,src))
-### Information
+## <b>promiseLoadImage(ele,src))</b>
+### <b>Information</b>
 Loads an image file and auto attaches it to the head section of the document.
 
-### Parameters
+### <b>Parameters</b>
 
-- ele
-	- Type: String
-	- Required: false
-	- Default: null
-	- Info: Image element to load the image into.
+- <b>ele</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Default:</b> null
+	- <b>Info:</b> Image element to load the image into.
 
-- src
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load
+- <b>src</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise
-### Example
+- <b>Type: </b>Promise
+### <b>Example</b>
 
 ```
 PromiseLoadImage(imgElement1,'./assets/images/products/001.jpg')
@@ -2250,24 +2167,24 @@ PromiseLoadImage(imgElement1,'./assets/images/products/001.jpg')
 ```
 
 
+<hr><br><br>
 
-
-## promiseLoadJson(url))
-### Information
+## <b>promiseLoadJson(url))</b>
+### <b>Information</b>
 Loads a json file and returns it via promise resolve
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise
-### Example
+- <b>Type: </b>Promise
+### <b>Example</b>
 
 ```
 PromiseLoadJson('./data/config.json')
@@ -2276,24 +2193,24 @@ PromiseLoadJson('./data/config.json')
 ```
 
 
+<hr><br><br>
 
-
-## promiseLoadScript(src))
-### Information
+## <b>promiseLoadScript(src))</b>
+### <b>Information</b>
 Loads a JavaScript file and attaches it to the document head
 
-### Parameters
+### <b>Parameters</b>
 
-- src
-	- Type: String
-	- Required: true
-	- Default: null
-	- Info: Path/URL to the file to load
+- <b>src</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> Path/URL to the file to load
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise
-### Example
+- <b>Type: </b>Promise
+### <b>Example</b>
 
 ```
 promiseLoadScript('./includes/js/onDemandFile1.js')
@@ -2302,179 +2219,179 @@ promiseLoadScript('./includes/js/onDemandFile1.js')
 ```
 
 
+<hr><br><br>
 
-
-## getRandomBoolean())
-### Information
+## <b>getRandomBoolean())</b>
+### <b>Information</b>
 Returns a random boolean.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let randomBoolean = getRandomBoolean()
 ```
 
 
+<hr><br><br>
 
-
-## getRandomFloat(min,max))
-### Information
+## <b>getRandomFloat(min,max))</b>
+### <b>Information</b>
 Returns a number (float) between 2 numbers.
 
-### Parameters
+### <b>Parameters</b>
 
-- min
-	- Type: Number
-	- Required: true
-	- Info: Min value.
+- <b>min</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Min value.
 
-- max
-	- Type: Number
-	- Required: true
-	- Info: Max value.
+- <b>max</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Max value.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let randomFloat = getRandomFloat(1.4,42.232)
 ```
 
 
+<hr><br><br>
 
-
-## getRandomInt(min,max))
-### Information
+## <b>getRandomInt(min,max))</b>
+### <b>Information</b>
 Returns a number (int) between 2 numbers.
 
-### Parameters
+### <b>Parameters</b>
 
-- min
-	- Type: Number
-	- Required: true
-	- Info: Min value.
+- <b>min</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Min value.
 
-- max
-	- Type: Number
-	- Required: true
-	- Info: Max value.
+- <b>max</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Max value.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let randomInt = getRandomInt(0,100)
 ```
 
 
+<hr><br><br>
 
-
-## getRange(value 1,Value 2))
-### Information
+## <b>getRange(value 1,Value 2))</b>
+### <b>Information</b>
 Returns absolute value of the range between 2 numbers.
 
-### Parameters
+### <b>Parameters</b>
 
-- value 1
-	- Type: Number
-	- Required: true
-	- Info: Value 1.
+- <b>value 1</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Value 1.
 
-- Value 2
-	- Type: Number
-	- Required: true
-	- Info: Value 2.
+- <b>Value 2</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Value 2.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let range = getRange(0,100)
 ```
 
 
+<hr><br><br>
 
-
-## isEven(n))
-### Information
+## <b>isEven(n))</b>
+### <b>Information</b>
 Detects if a number is even or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- n
-	- Type: Number
-	- Required: true
-	- Info: Number to check.
+- <b>n</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Number to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let even = isEven(3)
 ```
 
 
+<hr><br><br>
 
-
-## isOdd(n))
-### Information
+## <b>isOdd(n))</b>
+### <b>Information</b>
 Detects if a number is odd or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- n
-	- Type: Number
-	- Required: true
-	- Info: Number to check.
+- <b>n</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Number to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let odd = isOdd(3)
 ```
 
 
+<hr><br><br>
 
-
-## normaliseRange(min,max,v))
-### Information
+## <b>normaliseRange(min,max,v))</b>
+### <b>Information</b>
 Normalises a value to be between 0 and 1, based on a range between min and max. min being 0 and max being 1.
 
-### Parameters
+### <b>Parameters</b>
 
-- min
-	- Type: Number
-	- Required: true
-	- Info: Min value.
+- <b>min</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Min value.
 
-- max
-	- Type: Number
-	- Required: true
-	- Info: Max value.
+- <b>max</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Max value.
 
-- v
-	- Type: Number
-	- Required: true
-	- Info: Value to normalise.
+- <b>v</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Value to normalise.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let n1 = normaliseRange(0,100,50)
@@ -2486,739 +2403,767 @@ let n3 = normaliseRange(0,100,-200)
 ```
 
 
+<hr><br><br>
 
-
-## parseArrayToFloat(arr))
-### Information
+## <b>parseArrayToFloat(arr))</b>
+### <b>Information</b>
 Parses each entry in the supplied array with Math.float and returns it.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: Array
-	- Required: true
-	- Info: Array to parse.
+- <b>arr</b>
+	- <b>Type:</b> Array
+	- <b>Required:</b> true
+	- <b>Info:</b> Array to parse.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-### Example
+- <b>Type: </b>Array
+### <b>Example</b>
 
 ```
 let floatParsedArray = parseArrayToFloat(arr)
 ```
 
 
+<hr><br><br>
 
-
-## parseArrayToInt(arr))
-### Information
+## <b>parseArrayToInt(arr))</b>
+### <b>Information</b>
 Parses each entry in the supplied array with Math.int and returns it.
 
-### Parameters
+### <b>Parameters</b>
 
-- arr
-	- Type: Array
-	- Required: true
-	- Info: Array to parse.
+- <b>arr</b>
+	- <b>Type:</b> Array
+	- <b>Required:</b> true
+	- <b>Info:</b> Array to parse.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-### Example
+- <b>Type: </b>Array
+### <b>Example</b>
 
 ```
 let intParsedArray = parseArrayToInt(arr)
 ```
 
 
+<hr><br><br>
 
-
-## roundTo(v,dec))
-### Information
+## <b>roundTo(v,dec))</b>
+### <b>Information</b>
 Rounds a value to a set number of decimal places.
 
-### Parameters
+### <b>Parameters</b>
 
-- v
-	- Type: Number
-	- Required: true
-	- Info: Value to round.
+- <b>v</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Value to round.
 
-- dec
-	- Type: Number
-	- Required: true
-	- Info: Number of decimal places to round to.
+- <b>dec</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Number of decimal places to round to.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let r = roundTo(3.142,2)
 ```
 
 
+<hr><br><br>
 
-
-## getGUID())
-### Information
+## <b>getGUID())</b>
+### <b>Information</b>
 Returns a GUI string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let guid = getGUID()
 ```
 
 
+<hr><br><br>
 
-
-## getUID(len))
-### Information
+## <b>getUID(len))</b>
+### <b>Information</b>
 Generates a unique id. NOTE: Max length of 34.
 
-### Parameters
+### <b>Parameters</b>
 
-- len
-	- Type: Number
-	- Required: true
-	- Info: Length of the unique id to generate.
+- <b>len</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Length of the unique id to generate.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let uid = getUID(12)
 ```
 
 
+<hr><br><br>
 
-
-## isAlphaNumeric(v))
-### Information
+## <b>isAlphaNumeric(v))</b>
+### <b>Information</b>
 Checks if the input is alphanumeric or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- v
-	- Type: String|Number
-	- Required: true
-	- Info: Param to check.
+- <b>v</b>
+	- <b>Type:</b> String|Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Param to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let an = isAlphaNumeric('a43-')
 ```
 
 
+<hr><br><br>
 
-
-## isArray(input))
-### Information
+## <b>isArray(input))</b>
+### <b>Information</b>
 Checks if the input is an array or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- input
-	- Type: *
-	- Required: true
-	- Info: Param to check.
+- <b>input</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Info:</b> Param to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let check = isArray(4)
 ```
 
 
+<hr><br><br>
 
-
-## isBool(input))
-### Information
+## <b>isBool(input))</b>
+### <b>Information</b>
 Checks if the input is a boolean or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- input
-	- Type: *
-	- Required: true
-	- Info: Param to check.
+- <b>input</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Info:</b> Param to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let check = isBool(4)
 ```
 
 
+<hr><br><br>
 
-
-## isBoolean(input))
-### Information
+## <b>isBoolean(input))</b>
+### <b>Information</b>
 Checks if the input is a boolean or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- input
-	- Type: *
-	- Required: true
-	- Info: Param to check.
+- <b>input</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Info:</b> Param to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let check = isBoolean(4)
 ```
 
 
+<hr><br><br>
 
-
-## isNumber(n))
-### Information
+## <b>isNumber(n))</b>
+### <b>Information</b>
 Checks if the input is number or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- n
-	- Type: *
-	- Required: true
-	- Info: Param to check.
+- <b>n</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Info:</b> Param to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let check = isNumber('a')
 ```
 
 
+<hr><br><br>
 
-
-## isNumeric(n))
-### Information
+## <b>isNumeric(n))</b>
+### <b>Information</b>
 Checks if the input is numeric or not.
 
-### Parameters
+### <b>Parameters</b>
 
-- n
-	- Type: *
-	- Required: true
-	- Info: Param to check.
+- <b>n</b>
+	- <b>Type:</b> *
+	- <b>Required:</b> true
+	- <b>Info:</b> Param to check.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let check = isNumeric('a')
 ```
 
 
+<hr><br><br>
 
-
-## MouseScrollHandler(onScrollUp,onScrollDown))
-### Information
+## <b>MouseScrollHandler(onScrollUp,onScrollDown))</b>
+### <b>Information</b>
 Nukes the moon.
 
-### Link
+### <b>Link</b>
 <a href='jsonData.link' target='_blank'>https://aftc.io</a>
 
-### Parameters
+### <b>Parameters</b>
 
-- onScrollUp
-	- Type: Function
-	- Required: true
-	- Default: null
-	- Info: The function to call when mouse wheel scroll up is detected
+- <b>onScrollUp</b>
+	- <b>Type:</b> Function
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The function to call when mouse wheel scroll up is detected
 
-- onScrollDown
-	- Type: Function
-	- Required: true
-	- Default: null
-	- Info: The function to call when mouse wheel scroll down is detected
+- <b>onScrollDown</b>
+	- <b>Type:</b> Function
+	- <b>Required:</b> true
+	- <b>Default:</b> null
+	- <b>Info:</b> The function to call when mouse wheel scroll down is detected
 
-### Example
+### <b>Example</b>
 
 ```
 new MouseScrollHandler(onScrollUpHandler,onScrollDownHandler);
 ```
 
 
+<hr><br><br>
 
-
-## getObjectPropByKey({object},key))
-### Information
+## <b>getObjectPropByKey({object},key))</b>
+### <b>Information</b>
 Returns the /property of the supplied object by name/key.
 
-### Parameters
+### <b>Parameters</b>
 
-- obj
-	- Type: Object
-	- Required: true
-	- Info: The object you want to get the property in.
+- <b>obj</b>
+	- <b>Type:</b> Object
+	- <b>Required:</b> true
+	- <b>Info:</b> The object you want to get the property in.
 
-- key
-	- Type: String
-	- Required: true
-	- Info: The name of the property in the object you want to fetch.
+- <b>key</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The name of the property in the object you want to fetch.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Any
-### Example
+- <b>Type: </b>Any
+### <b>Example</b>
 
 ```
 let colourDefinitions = getObjectPropByKey(myObj,'colours')
 ```
 
 
+<hr><br><br>
+
+## <b>getObjectPropByKey({object},key))</b>
+### <b>Information</b>
+Returns the /property of the supplied object by name/key.
+
+### <b>Parameters</b>
+
+- <b>obj</b>
+	- <b>Type:</b> Object
+	- <b>Required:</b> true
+	- <b>Info:</b> The object you want to get the property in.
+
+- <b>key</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The name of the property in the object you want to fetch.
+
+### <b>Returns</b>
+
+- <b>Type: </b>Any
+### <b>Example</b>
+
+```
+let colourDefinitions = getObjectPropByKey(myObj,'colours')
+```
 
 
-## cutStringTo(str,len))
-### Information
+<hr><br><br>
+
+## <b>cutStringTo(str,len))</b>
+### <b>Information</b>
 Returns a string at the desired length.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: String to cut.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> String to cut.
 
-- len
-	- Type: Number
-	- Required: true
-	- Info: Number of characters to return / Length of string to return.
+- <b>len</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> Number of characters to return / Length of string to return.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let cutString = cutStringTo('abcd',2)
 ```
 
 
+<hr><br><br>
 
-
-## escapeHTML(str))
-### Information
+## <b>escapeHTML(str))</b>
+### <b>Information</b>
 Returns a string that has the standard html tags escaped.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: String to escape html tags.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> String to escape html tags.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
-let newString = escapeHTML('some html')
+let newString = escapeHTML('<b>some html</b>')
 ```
 
 
+<hr><br><br>
 
-
-## getAnchor(url))
-### Information
+## <b>getAnchor(url))</b>
+### <b>Information</b>
 Returns the anchor from a url string.
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: true
-	- Info: String to get anchor from.
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> String to get anchor from.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let anchor = getAnchor(url)
 ```
 
 
+<hr><br><br>
 
-
-## getCleanJSONString(s))
-### Information
+## <b>getCleanJSONString(s))</b>
+### <b>Information</b>
 Attempts to clean up special characters in a JSON string and make it JSON valid.
 
-### Parameters
+### <b>Parameters</b>
 
-- s
-	- Type: String
-	- Required: true
-	- Info: JSON String to parse.
+- <b>s</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> JSON String to parse.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let newString = getCleanJSONString(oldString)
 ```
 
 
+<hr><br><br>
 
-
-## getFileExtension(str))
-### Information
+## <b>getFileExtension(str))</b>
+### <b>Information</b>
 Attempts to get the file extension from a supplied string.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to get the file extension from.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to get the file extension from.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let ext = getFileExtension(path)
 ```
 
 
+<hr><br><br>
 
-
-## getLastPartOfUrl(url))
-### Information
+## <b>getLastPartOfUrl(url))</b>
+### <b>Information</b>
 Returns the last segment of a url split by slashes.
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: true
-	- Info: The url string to get the last part from.
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The url string to get the last part from.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let lastSegment = getLastPartOfUrl(url)
 ```
 
 
+<hr><br><br>
 
-
-## getRandomString(len))
-### Information
+## <b>getRandomString(len))</b>
+### <b>Information</b>
 Returns a random string of letters A-Z a-z of a specified length.
 
-### Parameters
+### <b>Parameters</b>
 
-- len
-	- Type: Number
-	- Required: true
-	- Info: The length of the random string to generate.
+- <b>len</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> The length of the random string to generate.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let randomLetterString = getRandomString(256)
 ```
 
 
+<hr><br><br>
 
-
-## getStringBetween(source,start,end))
-### Information
+## <b>getStringBetween(source,start,end))</b>
+### <b>Information</b>
 Returns the string between a start and end string marker matches from the source string.
 
-### Parameters
+### <b>Parameters</b>
 
-- source
-	- Type: String
-	- Required: true
-	- Info: The length to parse.
+- <b>source</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The length to parse.
 
-- start
-	- Type: String
-	- Required: true
-	- Info: The starting string marker in the source string.
+- <b>start</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The starting string marker in the source string.
 
-- end
-	- Type: String
-	- Required: true
-	- Info: The ending string marker in the source string.
+- <b>end</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The ending string marker in the source string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let strBetween = getStringBetween(sourceString,'start-marker','end-marker')
 ```
 
 
+<hr><br><br>
 
-
-## getStringBetween2(source,start,end))
-### Information
+## <b>getStringBetween2(source,start,end))</b>
+### <b>Information</b>
 Returns an array of all the strings found between a start and end markers. Max of 500 items in array returned.
 
-### Parameters
+### <b>Parameters</b>
 
-- source
-	- Type: String
-	- Required: true
-	- Info: The length to parse.
+- <b>source</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The length to parse.
 
-- start
-	- Type: String
-	- Required: true
-	- Info: The starting string marker in the source string.
+- <b>start</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The starting string marker in the source string.
 
-- end
-	- Type: String
-	- Required: true
-	- Info: The ending string marker in the source string.
+- <b>end</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The ending string marker in the source string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Array
-- Info: Max 500 results
+- <b>Type: </b>Array
+- <b>Info: </b>Max 500 results
 
-### Example
+### <b>Example</b>
 
 ```
 let found = getStringsBetween2(sourceString,'start-marker','end-marker')
 ```
 
 
+<hr><br><br>
 
-
-## getWordCount(str))
-### Information
+## <b>getWordCount(str))</b>
+### <b>Information</b>
 Returns the number of words in a string based on spaces.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to count word from.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to count word from.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Number
-### Example
+- <b>Type: </b>Number
+### <b>Example</b>
 
 ```
 let wordCount = getWordCount(sourceString)
 ```
 
 
+<hr><br><br>
 
-
-## inString(needle,haystack))
-### Information
+## <b>inString(needle,haystack))</b>
+### <b>Information</b>
 Looks for a string in a string.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: String
-	- Required: true
-	- Info: The string to find.
+- <b>needle</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to find.
 
-- haystack
-	- Type: String
-	- Required: true
-	- Info: The string to search.
+- <b>haystack</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to search.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let stringFound = inString(needle,haystack)
 ```
 
 
+<hr><br><br>
 
-
-## isInString(needle,haystack))
-### Information
+## <b>isInString(needle,haystack))</b>
+### <b>Information</b>
 Looks for a string in a string.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: String
-	- Required: true
-	- Info: The string to find.
+- <b>needle</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to find.
 
-- haystack
-	- Type: String
-	- Required: true
-	- Info: The string to search.
+- <b>haystack</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to search.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Boolean
-### Example
+- <b>Type: </b>Boolean
+### <b>Example</b>
 
 ```
 let stringFound = isInString(needle,haystack)
 ```
 
 
+<hr><br><br>
 
-
-## lTrimBy(str,by))
-### Information
+## <b>lTrimBy(str,by))</b>
+### <b>Information</b>
 Trims a string from the left (start) by a specified number of characters.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to find.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to find.
 
-- by
-	- Type: Number
-	- Required: true
-	- Info: The number of characters to trim from the left (start) of a string.
+- <b>by</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> The number of characters to trim from the left (start) of a string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let trimmedString = lTrimBy(str,4)
 ```
 
 
+<hr><br><br>
 
-
-## regExReplaceAll(needle,rep,haystack))
-### Information
+## <b>regExReplaceAll(needle,rep,haystack))</b>
+### <b>Information</b>
 Uses regex to replace all instances of a string in a string with what you specify.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: String
-	- Required: true
-	- Info: The string to replace.
+- <b>needle</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to replace.
 
-- rep
-	- Type: String
-	- Required: true
-	- Info: The string to replace the needle (found) string with.
+- <b>rep</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to replace the needle (found) string with.
 
-- haystack
-	- Type: String
-	- Required: true
-	- Info: The string to parse.
+- <b>haystack</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to parse.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let newString = regExReplaceAll(needle, rep, haystack)
 ```
 
 
+<hr><br><br>
 
-
-## removeFileFromPath(path))
-### Information
+## <b>removeFileFromPath(path))</b>
+### <b>Information</b>
 Removes the file from a file path.
 
-### Parameters
+### <b>Parameters</b>
 
-- path
-	- Type: String
-	- Required: true
-	- Info: The file path to process.
+- <b>path</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The file path to process.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let path = removeFileFromPath(fullPath)
 ```
 
 
+<hr><br><br>
 
-
-## replaceAll(needle,replace,haystack))
-### Information
+## <b>replaceAll(needle,replace,haystack))</b>
+### <b>Information</b>
 Uses a split join method to replace all occurrences of a string. See regExReplaceAll for an alternate method.
 
-### Parameters
+### <b>Parameters</b>
 
-- needle
-	- Type: String
-	- Required: true
-	- Info: The string to replace.
+- <b>needle</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to replace.
 
-- replace
-	- Type: String
-	- Required: true
-	- Info: The string to replace the needle (found) string with.
+- <b>replace</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to replace the needle (found) string with.
 
-- haystack
-	- Type: String
-	- Required: true
-	- Info: The string to parse.
+- <b>haystack</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to parse.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let newString1 = replaceAll(needle, repWith, haystack)
@@ -3226,238 +3171,212 @@ let newString2 = regExReplaceAll(needle, repWith, haystack)
 ```
 
 
+<hr><br><br>
 
-
-## replaceDoubleBackSlash(str,rep))
-### Information
+## <b>replaceDoubleBackSlash(str,rep))</b>
+### <b>Information</b>
 Replaces double back slashes in a string via regex with your specified string.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to process.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to process.
 
-- rep
-	- Type: String
-	- Required: true
-	- Info: The string to replace double back slashes with.
+- <b>rep</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to replace double back slashes with.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let processedString = replaceDoubleBackSlash(str,replaceWith)
 ```
 
 
+<hr><br><br>
 
-
-## replaceDoubleForwardSlash(str,rep))
-### Information
+## <b>replaceDoubleForwardSlash(str,rep))</b>
+### <b>Information</b>
 Replaces double forward slashes in a string via regex with your specified string.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to process.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to process.
 
-- rep
-	- Type: String
-	- Required: true
-	- Info: The string to replace double forward slashes with.
+- <b>rep</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to replace double forward slashes with.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let processedString = replaceDoubleForwardSlash(str,replaceWith)
 ```
 
 
+<hr><br><br>
 
-
-## rTrimBy(str,trimBy))
-### Information
+## <b>rTrimBy(str,trimBy))</b>
+### <b>Information</b>
 Trims a string from the right (end) by a specified number of characters.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to find.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to find.
 
-- trimBy
-	- Type: Number
-	- Required: true
-	- Info: The number of characters to trim from the right (end) of a string.
+- <b>trimBy</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> The number of characters to trim from the right (end) of a string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let trimmedString = rTrimBy(str,4)
 ```
 
 
+<hr><br><br>
 
-
-## trimStringBy(str,trimBy))
-### Information
+## <b>trimStringBy(str,trimBy))</b>
+### <b>Information</b>
 Trims a string from the right (end) by a specified number of characters.
 
-### Parameters
+### <b>Parameters</b>
 
-- str
-	- Type: String
-	- Required: true
-	- Info: The string to find.
+- <b>str</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to find.
 
-- trimBy
-	- Type: Number
-	- Required: true
-	- Info: The number of characters to trim from the right (end) of a string.
+- <b>trimBy</b>
+	- <b>Type:</b> Number
+	- <b>Required:</b> true
+	- <b>Info:</b> The number of characters to trim from the right (end) of a string.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let trimmedString = trimStringBy(str,4)
 ```
 
 
+<hr><br><br>
 
-
-## ucFirst(s))
-### Information
+## <b>ucFirst(s))</b>
+### <b>Information</b>
 Makes the first letter of a string uppercase.
 
-### Parameters
+### <b>Parameters</b>
 
-- s
-	- Type: String
-	- Required: true
-	- Info: The string to make the first letter upper case.
+- <b>s</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The string to make the first letter upper case.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let ucFirstString = ucFirst('hello')
 ```
 
 
+<hr><br><br>
 
-
-## SwipeHandler({object}))
-### Information
+## <b>SwipeHandler({object}))</b>
+### <b>Information</b>
 Swipe handler, currently detects left & right swipes.
 
-### Parameters
+### <b>Parameters</b>
 
-- Object:
+- <b>Object:</b>
 
-	- onSwipeLeft
-		- Required: false
-		- Default: false
-		- Info: The function you want to call when a swipe left is detected.
-	- onSwipeRight
-		- Required: false
-		- Default: false
-		- Info: The function you want to call when a swipe right is detected.
-	- onSwipeUp
-		- Required: false
-		- Default: false
-		- Info: The function you want to call when a swipe up is detected.
-	- onSwipeDown
-		- Required: false
-		- Default: false
-		- Info: The function you want to call when a swipe down is detected.
-	- horizontalTolerance
-		- Required: false
-		- Default: 50
-		- Info: The distance your finger has to travel on the horizontal axis for a swipe left or right to be detected.
-	- onSwipeUp
-		- Required: false
-		- Default: false
-		- Info: The function you want to call when a swipe left is detected.
-	- onSwipeDown
-		- Required: false
-		- Default: false
-		- Info: The function you want to call when a swipe right is detected.
-	- verticalTolerance
-		- Required: false
-		- Default: 50
-		- Info: The distance your finger has to travel on the vertical axis for a swipe up or down to be detected.
-	- swipeThrottleTimeout
-		- Required: false
-		- Default: 250
-		- Info: The amount of milliseconds before another swipe event can be fired.
+	- <b>onSwipeLeft</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe left is detected.
+	- <b>onSwipeRight</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe right is detected.
+	- <b>onSwipeUp</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe up is detected.
+	- <b>onSwipeDown</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe down is detected.
+	- <b>horizontalTolerance</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> 50
+		- <b>Info:</b> The distance your finger has to travel on the horizontal axis for a swipe left or right to be detected.
+	- <b>onSwipeUp</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe left is detected.
+	- <b>onSwipeDown</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> false
+		- <b>Info:</b> The function you want to call when a swipe right is detected.
+	- <b>verticalTolerance</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> 50
+		- <b>Info:</b> The distance your finger has to travel on the vertical axis for a swipe up or down to be detected.
+	- <b>swipeThrottleTimeout</b>
+		- <b>Required:</b> false
+		- <b>Default:</b> 250
+		- <b>Info:</b> The amount of milliseconds before another swipe event can be fired.
 
-### Example
+### <b>Example</b>
 
 ```
 new SwipeHandler({config})
 ```
 
 
+<hr><br><br>
 
-
-## doesUrlKeyExist(key))
-### Information
-Returns a string.
-
-### Parameters
-
-- key
-	- Type: String
-	- Required: true
-	- Info: URL Parameter key to look for
-
-### Returns
-
-- Type: Boolean
-### Example
-
-```
-let debug = doesUrlKeyExist('debug')
-if (debug) {
-   // do something
-}
-```
-
-
-
-
-## getRoute(url))
-### Information
+## <b>getRoute(url))</b>
+### <b>Information</b>
 Returns a route string.
 
-### Parameters
+### <b>Parameters</b>
 
-- url
-	- Type: String
-	- Required: false
-	- Info: String to parse into a route, if left out it will get the current url/uri.
+- <b>url</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> false
+	- <b>Info:</b> String to parse into a route, if left out it will get the current url/uri.
 
-### Returns
+### <b>Returns</b>
 
-- Type: String
-### Example
+- <b>Type: </b>String
+### <b>Example</b>
 
 ```
 let usersRoute = getRoute('https://domain.com/users')
@@ -3465,77 +3384,28 @@ let currentRoute = getRoute()
 ```
 
 
+<hr><br><br>
 
-
-## getUrlKeyValue(key))
-### Information
-Returns the value of a url key value pair.
-
-### Parameters
-
-- key
-	- Type: String
-	- Required: true
-	- Info: URL key value to obtain
-
-### Returns
-
-- Type: String | null
-### Example
-
-```
-let page = getUrlKeyValue('page')
-if (debug) {
-   // do something
-}
-```
-
-
-
-
-## isEmail(email))
-### Information
-Validates an email address via regex.
-
-### Parameters
-
-- email
-	- Type: String
-	- Required: true
-	- Info: The email string to validate.
-
-### Returns
-
-- Type: Boolean
-### Example
-
-```
-let isValidEmail = isEmail('darcey.lloyd@gmail.com')
-```
-
-
-
-
-## promiseAttachVideo(video,src))
-### Information
+## <b>promiseAttachVideo(video,src))</b>
+### <b>Information</b>
 Attaches a video file to a video and once it's meta data is available it will resolve the promise. Useful for getting width, height and duration.
 
-### Parameters
+### <b>Parameters</b>
 
-- video
-	- Type: Video
-	- Required: true
-	- Info: The video to attach to.
+- <b>video</b>
+	- <b>Type:</b> Video
+	- <b>Required:</b> true
+	- <b>Info:</b> The video to attach to.
 
-- src
-	- Type: String
-	- Required: true
-	- Info: The src of the video file to attach to the video element or video javascript instance.
+- <b>src</b>
+	- <b>Type:</b> String
+	- <b>Required:</b> true
+	- <b>Info:</b> The src of the video file to attach to the video element or video javascript instance.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise with object with props {width,height,duration}
-### Example
+- <b>Type: </b>Promise with object with props {width,height,duration}
+### <b>Example</b>
 
 ```
 promiseAttachVideo(vid,vidSrc)
@@ -3543,23 +3413,23 @@ then((res)=>{ console.log('video attached and ready') })
 ```
 
 
+<hr><br><br>
 
-
-## promiseVideoEnd(video))
-### Information
+## <b>promiseVideoEnd(video))</b>
+### <b>Information</b>
 Returns a promise resolve on video end.
 
-### Parameters
+### <b>Parameters</b>
 
-- video
-	- Type: Video
-	- Required: true
-	- Info: The video to attach to.
+- <b>video</b>
+	- <b>Type:</b> Video
+	- <b>Required:</b> true
+	- <b>Info:</b> The video to attach to.
 
-### Returns
+### <b>Returns</b>
 
-- Type: Promise resolve on video end
-### Example
+- <b>Type: </b>Promise resolve on video end
+### <b>Example</b>
 
 ```
 promiseVideoEnd(vid)
@@ -3567,5 +3437,5 @@ then((res)=>{ console.log('video playback complete') })
 ```
 
 
-
+<hr><br><br>
 

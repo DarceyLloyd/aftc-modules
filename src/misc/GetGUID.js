@@ -10,12 +10,12 @@
 // } JSODOC
 
 export function getGUID() {
-    function Amiga() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
+    function randomHex() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .padStart(4, '0');
     }
-
-    return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
-        Amiga() + '-' + Amiga() + Amiga() + Amiga();
-}
+  
+    return `${randomHex()}${randomHex()}-${randomHex()}-${randomHex()}-${randomHex()}-${randomHex()}${randomHex()}${randomHex()}`;
+  }
+  

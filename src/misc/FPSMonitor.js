@@ -1,75 +1,35 @@
 export class FPSMonitor {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
-
     constructor(ele) {
-
-        this.dom = {
-            fps: false
-        }
-
-        this.fpsStack = false;
-        this.stackSize = 60;
-        this.index = 0;
-
-        this.last = 0;
-        this.now = 0;
-
-        this.delta = 0;
-
-        this.currentFrameFps = 0;
-
-        this.total = 0;
-        this.averageFps = 0;
-
-        this.i = 0;
-
-        if (ele){
-            this.dom.fps = ele;
-        }
-
-        this.fpsStack = new Float32Array(this.stackSize);
-
-        this.update();
+      this.dom = { fps: ele || false };
+      this.stackSize = 60;
+      this.index = 0;
+      this.last = 0;
+      this.total = 0;
+      this.averageFps = 0;
+      this.fpsStack = new Float32Array(this.stackSize);
+      this.update();
     }
-
-
-
-
-    update(){
-        this.now = performance.now();
-
-        this.delta = (this.now - this.last) / 1000;
-        this.currentFrameFps = 1/this.delta;
-        // log("currentFrameFps = " + this.currentFrameFps);
-
-        this.fpsStack[this.index] = this.currentFrameFps;
-
-        this.total = 0;
-        for(this.i=0; this.i < this.stackSize; this.i++){
-            this.total += this.fpsStack[this.i];
-        }
-
-        this.averageFps = Math.round( this.total/this.stackSize );
-
-        if (this.dom.fps){
-            this.dom.fps.innerText = this.averageFps;
-        }
-
-        this.last = this.now;
-
-        this.index++;
-        if (this.index >= this.stackSize){
-            this.index = 0;
-        }
-
-        requestAnimationFrame(()=>{
-            this.update();
-        });
+  
+    update() {
+      const now = performance.now();
+      const delta = (now - this.last) / 1000;
+      const currentFrameFps = 1 / delta;
+  
+      this.fpsStack[this.index] = currentFrameFps;
+      this.total += currentFrameFps - (this.fpsStack[this.index === 0 ? this.stackSize - 1 : this.index - 1]);
+      this.averageFps = Math.round(this.total / this.stackSize);
+  
+      if (this.dom.fps) {
+        this.dom.fps.innerText = this.averageFps;
+      }
+  
+      this.last = now;
+      this.index = (this.index + 1) % this.stackSize;
+      requestAnimationFrame(() => this.update());
     }
-
-
-    getFps(){
-        return this.averageFps;
+  
+    getFps() {
+      return this.averageFps;
     }
-}
+  }
+  

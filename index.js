@@ -28,8 +28,8 @@ import { rgbToHex } from 'aftc-modules/src/conversion/rgbToHex.js';
 import { rgbToHex2 } from 'aftc-modules/src/conversion/rgbToHex2.js';
 import { rgbToHex3 } from 'aftc-modules/src/conversion/rgbToHex3.js';
 import { stringToBool } from 'aftc-modules/src/conversion/stringToBool.js';
-import { getCookie } from 'aftc-modules/src/cookies/getCookie.js';
 import { CookieManager } from 'aftc-modules/src/cookies/CookieManager.js';
+import { getCookie } from 'aftc-modules/src/cookies/getCookie.js';
 import { listCookies } from 'aftc-modules/src/cookies/listCookies.js';
 import { setCookie } from 'aftc-modules/src/cookies/setCookie.js';
 import { getDaysBetween } from 'aftc-modules/src/datetime/getDaysBetween.js';
@@ -40,6 +40,7 @@ import { getUKDateTime } from 'aftc-modules/src/datetime/getUKDateTime.js';
 import { getUKDateTimeFromDbDateTime } from 'aftc-modules/src/datetime/getUKDateTimeFromDbDateTime.js';
 import { getUSDate } from 'aftc-modules/src/datetime/getUSDate.js';
 import { Logger } from 'aftc-modules/src/debug/Logger.js';
+import { VisualDebug } from 'aftc-modules/src/debug/VisualDebug.js';
 import { appendTo } from 'aftc-modules/src/debug/appendTo.js';
 import { attachDebug } from 'aftc-modules/src/debug/attachDebug.js';
 import { debugTo } from 'aftc-modules/src/debug/debugTo.js';
@@ -76,7 +77,9 @@ import { XHR } from 'aftc-modules/src/io/XHR.js';
 import { fetchHtml } from 'aftc-modules/src/io/fetchHtml.js';
 import { getJson } from 'aftc-modules/src/io/fetchJson.js';
 import { loadAndAttachImage } from 'aftc-modules/src/io/loadAndAttachImage.js';
-import { loadJSON } from 'aftc-modules/src/io/loadJson.js';
+import { promiseLoadCss } from 'aftc-modules/src/io/loadCss.js';
+import { loadHTML } from 'aftc-modules/src/io/loadHTML.js';
+import { loadJson } from 'aftc-modules/src/io/loadJson.js';
 import { loadScript } from 'aftc-modules/src/io/loadScript.js';
 import { promiseLoadCss } from 'aftc-modules/src/io/promiseLoadCss.js';
 import { promiseLoadImage } from 'aftc-modules/src/io/promiseLoadImage.js';
@@ -105,6 +108,7 @@ import { isNumber } from 'aftc-modules/src/misc/isNumber.js';
 import { isNumeric } from 'aftc-modules/src/misc/isNumeric.js';
 import { sleep } from 'aftc-modules/src/misc/sleep.js';
 import { MouseScrollHandler } from 'aftc-modules/src/mouse/MouseScrollHandler.js';
+import { getObjectPropByKey } from 'aftc-modules/src/object/getObjectEntryByKey.js';
 import { cutStringTo } from 'aftc-modules/src/string/cutStringTo.js';
 import { escapeHTML } from 'aftc-modules/src/string/escapeHTML.js';
 import { getAnchor } from 'aftc-modules/src/string/getAnchor.js';
@@ -165,8 +169,8 @@ export {
 	rgbToHex2,
 	rgbToHex3,
 	stringToBool,
-	getCookie,
 	CookieManager,
+	getCookie,
 	listCookies,
 	setCookie,
 	getDaysBetween,
@@ -177,6 +181,7 @@ export {
 	getUKDateTimeFromDbDateTime,
 	getUSDate,
 	Logger,
+	VisualDebug,
 	appendTo,
 	attachDebug,
 	debugTo,
@@ -213,7 +218,9 @@ export {
 	fetchHtml,
 	getJson,
 	loadAndAttachImage,
-	loadJSON,
+	promiseLoadCss,
+	loadHTML,
+	loadJson,
 	loadScript,
 	promiseLoadCss,
 	promiseLoadImage,
@@ -242,6 +249,7 @@ export {
 	isNumeric,
 	sleep,
 	MouseScrollHandler,
+	getObjectPropByKey,
 	cutStringTo,
 	escapeHTML,
 	getAnchor,

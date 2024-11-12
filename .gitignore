@@ -27,6 +27,7 @@ composer.lock
 .vscode
 prepros-6.config
 package-lock.json
+pnpm-lock.yaml
 
 
 # Misc #

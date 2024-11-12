@@ -252,6 +252,129 @@ export function stringToBool (str) {
     }
 }
 
+export class CookieManager {
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    constructor() {
+        this.path = "/";
+        this.domain = "";
+        this.httpOnly = false;
+        this.secureCookies = false;
+        this.sameSite = false;
+        this.securityStr = "";
+        const now = new Date();
+        this.expiryTimeInSeconds = new Date(now.getTime() + (3600 * 1000));
+        this.buildSecurityString();
+        // this.log(this.expiryTimeInSeconds);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setDomain(domain) {
+        this.domain = domain;
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setPath(path) {
+        this.path = path;
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setHttpOnly(enableHttpOnly) {
+        this.httpOnly = enableHttpOnly;
+        this.buildSecurityString();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setSecure(useSecureCookies) {
+        this.secureCookies = useSecureCookies;
+        this.buildSecurityString();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setSameSiteStrict(useSameSiteStrict) {
+        this.sameSite = useSameSiteStrict;
+        this.buildSecurityString();
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    buildSecurityString() {
+        if (this.httpOnly) {
+            this.securityStr = "HttpOnly;";
+        }
+        if (this.secureCookies) {
+            this.securityStr += "Secure;";
+        }
+        if (this.sameSite) {
+            this.securityStr += "SameSite=Strict;";
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setExpiryTime(expiryTimeInSeconds) {
+        const now = new Date();
+        this.expiryTimeInSeconds = new Date(now.getTime() + (expiryTimeInSeconds * 1000));
+        // console.warn(this.expiryTimeInSeconds);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    setCookie(name, value, expiryTimeInSeconds, path = null, domain = null) {
+        if (name === "" || name.length === 0) {
+            console.error("CookieManager.getCookie(name): Usage error - come on, I need the name of the cookie to set!");
+            return;
+        }
+        // Local vars for override
+        let localExpiryTime = this.expiryTimeInSeconds;
+        if (expiryTimeInSeconds != null) {
+            const now = new Date();
+            localExpiryTime = new Date(now.getTime() + (expiryTimeInSeconds * 1000));
+            ;
+        }
+        let localPath = this.path;
+        if (path != null) {
+            localPath = path;
+        }
+        let localDomain = this.domain;
+        if (domain != null) {
+            localDomain = domain;
+        }
+        const cookie = `${name}=${value};expires=${localExpiryTime.toUTCString()};path=${localPath};domain=${localDomain};${this.securityStr}`;
+        // console.warn(cookie);
+        document.cookie = cookie;
+    }
+    // Alias
+    set(name, value, expiryTimeInSeconds, path = null, domain = null) {
+        this.setCookie(name, value, expiryTimeInSeconds, path, domain);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    getCookie(name) {
+        if (name === "" || name.length === 0) {
+            console.error("CookieManager.getCookie(name): Usage error - come on, I need the name of the cookie to get!");
+            return undefined;
+        }
+        const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return cookieValue ? cookieValue.pop() : undefined;
+    }
+    // Alias's
+    get(name) {
+        return this.getCookie(name);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    deleteCookie(name) {
+        if (name === "" || name.length === 0) {
+            console.error("CookieManager.deleteCookie(name): Usage error - come on, I need the name of the cookie to delete!");
+            return;
+        }
+        const cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=${this.path};domain=${this.domain};${this.securityStr}`;
+        // document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+        document.cookie = cookie;
+    }
+    // Alias's
+    del(name) { this.deleteCookie(name); }
+    rem(name) { this.deleteCookie(name); }
+    remove(name) { this.deleteCookie(name); }
+    delete(name) { this.deleteCookie(name); }
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    logCookies() {
+        const cookies = document.cookie.split(";");
+        console.log("\nCookies:");
+        for (let i = 0; i < cookies.length; i++) {
+            console.log(cookies[i]);
+        }
+        console.log("");
+    }
+}
+
 export function getCookie(name) {
  //return .cookie(name);
  var keyValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|)');
@@ -474,6 +597,205 @@ export class Logger {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
+export var ePosition;
+(function (ePosition) {
+    ePosition["TopLeft"] = "top_left";
+    ePosition["TopCenter"] = "top_center";
+    ePosition["TopRight"] = "top_right";
+    ePosition["BtmLeft"] = "btm_left";
+    ePosition["BtmCenter"] = "btm_center";
+    ePosition["BtmRight"] = "btm_right";
+})(ePosition || (ePosition = {}));
+export class VisualDebug {
+    constructor() {
+        this.ids = [];
+        this.debugRow = [];
+        this.dragOffsetX = 0;
+        this.dragOffsetY = 0;
+        this.isDragging = false;
+        this.enabled = true;
+        this.containerOpacity = 1;
+        this.rowOpacity = 1;
+        this.rowBg = "#000000";
+        this.rowFontColor = "#FFFFFF";
+        this.rowMargin = 0;
+        this.fontSizeString = "12px";
+        this.debugContainer = document.createElement("div");
+        this.createDraggableBar();
+    }
+    static getInstance() {
+        if (!VisualDebug.instance) {
+            VisualDebug.instance = new VisualDebug();
+        }
+        return VisualDebug.instance;
+    }
+    createDraggableBar() {
+        const dragBar = document.createElement("div");
+        dragBar.style.display = "flex";
+        dragBar.style.height = "20px";
+        dragBar.style.width = "100%";
+        dragBar.style.backgroundColor = "#333";
+        dragBar.style.cursor = "move";
+        dragBar.style.userSelect = "none";
+        this.debugContainer.appendChild(dragBar);
+        dragBar.addEventListener("mousedown", (e) => {
+            this.isDragging = true;
+            this.dragOffsetX = e.clientX - this.debugContainer.offsetLeft;
+            this.dragOffsetY = e.clientY - this.debugContainer.offsetTop;
+        });
+        document.addEventListener("mousemove", (e) => {
+            if (!this.isDragging)
+                return;
+            this.debugContainer.style.left = `${e.clientX - this.dragOffsetX}px`;
+            this.debugContainer.style.top = `${e.clientY - this.dragOffsetY}px`;
+        });
+        document.addEventListener("mouseup", () => {
+            this.isDragging = false;
+        });
+        document.addEventListener("mouseleave", () => {
+            this.isDragging = false;
+        });
+    }
+    enable() {
+        this.enabled = true;
+    }
+    disable() {
+        this.enabled = false;
+    }
+    setContainerOpacity(opacity) {
+        this.containerOpacity = opacity;
+    }
+    setRowOpacity(opacity) {
+        this.rowOpacity = opacity;
+    }
+    setRowBg(hex) {
+        this.rowBg = hex;
+    }
+    setRowFontColor(hex) {
+        this.rowFontColor = hex;
+    }
+    setRowMargin(margin) {
+        this.rowMargin = margin;
+    }
+    setFontSize(size) {
+        this.fontSizeString = size + "px";
+    }
+    build(noOfDebugFields = 6, position = ePosition.TopRight) {
+        if (this.enabled === false) {
+            return;
+        }
+        this.debugContainer.id = "aftc_debug_container";
+        this.debugContainer.style.zIndex = "99999";
+        this.debugContainer.style.display = "table";
+        this.debugContainer.style.position = "fixed";
+        this.debugContainer.style.minWidth = "100px";
+        this.debugContainer.style.minHeight = "25px";
+        this.debugContainer.style.fontFamily = "sans-serif";
+        // this.debugContainer.style.background = "#990000";
+        this.debugContainer.style.fontSize = this.fontSizeString;
+        this.debugContainer.style.opacity = this.containerOpacity.toString();
+        this.setPosition(position);
+        for (let i = 1; i <= noOfDebugFields; i++) {
+            const id = "aftc_debug_field_" + Math.round(Math.random() * 9999999999);
+            const div = document.createElement("div");
+            div.id = id;
+            div.style.minWidth = "50px";
+            div.style.marginBottom = this.rowMargin + "px";
+            div.style.border = "1px dashed #999999";
+            div.style.padding = "1px 2px 2px 4px";
+            div.style.background = this.rowBg;
+            div.style.color = this.rowFontColor;
+            div.style.fontSize = this.fontSizeString;
+            div.style.opacity = this.rowOpacity.toString();
+            div.classList.add("aftc_debug_row");
+            this.debugContainer.appendChild(div);
+            div.addEventListener("click", (e) => {
+                const ele = e.currentTarget;
+                const msg = ele.getAttribute("v");
+                if (msg) {
+                    const sanitizedMsg = msg.replace(/\n|\r|\t| {2,}/g, " ");
+                    navigator.clipboard.writeText(sanitizedMsg).catch((err) => console.error("Clipboard error:", err));
+                }
+                else {
+                    navigator.clipboard.writeText("").catch((err) => console.error("Clipboard error:", err));
+                }
+            });
+            this.ids.push(id);
+        }
+        document.body.appendChild(this.debugContainer);
+    }
+    setPosition(position) {
+        if (this.enabled === false) {
+            return;
+        }
+        switch (position) {
+            case ePosition.TopLeft:
+                this.debugContainer.style.left = "5px";
+                this.debugContainer.style.top = "5px";
+                break;
+            case ePosition.TopCenter:
+                this.debugContainer.style.left = "50%";
+                this.debugContainer.style.top = "5px";
+                this.debugContainer.style.transform = "translateX(-50%)";
+                break;
+            case ePosition.TopRight:
+                this.debugContainer.style.right = "5px";
+                this.debugContainer.style.top = "5px";
+                break;
+            case ePosition.BtmLeft:
+                this.debugContainer.style.left = "5px";
+                this.debugContainer.style.bottom = "5px";
+                break;
+            case ePosition.BtmCenter:
+                this.debugContainer.style.left = "50%";
+                this.debugContainer.style.bottom = "5px";
+                this.debugContainer.style.transform = "translateX(-50%)";
+                break;
+            case ePosition.BtmRight:
+                this.debugContainer.style.right = "5px";
+                this.debugContainer.style.bottom = "5px";
+                break;
+        }
+    }
+    debugTo(debugFieldIndex = 0, label, value, fontSizeOverride = null) {
+        if (this.enabled === false) {
+            return;
+        }
+        const id = this.ids[debugFieldIndex];
+        const ele = document.getElementById(id);
+        if (!ele)
+            return;
+        ele.setAttribute("v", value);
+        ele.innerHTML = label ? `${label} ${value}` : `${value}`;
+        if (fontSizeOverride !== null) {
+            ele.style.fontSize = fontSizeOverride + "px";
+        }
+    }
+    clear() {
+        if (this.enabled === false) {
+            return;
+        }
+        this.ids.forEach((id) => {
+            const ele = document.getElementById(id);
+            if (ele) {
+                ele.innerHTML = "";
+            }
+        });
+    }
+    hide() {
+        this.debugContainer.style.display = "none";
+    }
+    show() {
+        this.debugContainer.style.display = "block";
+    }
+    destroy() {
+        if (this.debugContainer.parentElement) {
+            this.debugContainer.parentElement.removeChild(this.debugContainer);
+        }
+        this.ids = [];
+    }
+}
+
 export function appendTo(elementOrId,msg,endOfLine="<br>"){
     // WARNING: IE11 Wont play nice even with webpack babel on defaults of args
     // WARNING: This will not be built for IE compatibility - please use aftc.js for that npm i aftc.js
@@ -738,12 +1060,12 @@ export function isMobile(){
     }
 }
 export function isOpera() {
-    // let isChromium = window.chrome;
-    // let isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
-    // let isOpera = (navigator.userAgent.match(/Opera|OPR\//) ? true : false);
-    let isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-    return isOpera;
+    const userAgent = window.navigator.userAgent;
+    const isOperaOld = userAgent.includes("Opera");
+    const isOperaNew = userAgent.includes("OPR/") || (typeof window.opr !== 'undefined' && window.opr.addons);
+    return isOperaOld || isOperaNew;
 }
+
 export function isSafari() {
     // let is_safari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
     // return is_safari;
@@ -865,17 +1187,15 @@ export function setHTML(elementOrId, str, mode = "set") {
     } 
 }
 export function onReady(fn) {
-    // IE9+
-    if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
-        setTimeout(fn, 10);
-    } else {
-        if (document.addEventListener) {
-            document.addEventListener("DOMContentLoaded", function(){
-                window.setTimeout(fn, 10);
-            });
-        }
+    function executeFnWithDelay() {
+      setTimeout(fn, 10);
     }
-}
+    if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+      executeFnWithDelay();
+    } else {
+      document.addEventListener("DOMContentLoaded", executeFnWithDelay);
+    }
+  }
 
 export function limitNoOfWords(str, maxWords) {
     let wordCount = str.split(/\S+/).length - 1;
@@ -922,71 +1242,48 @@ export async function imageToCanvas(src) {
     return await imageToCanvasLoadImage(src, canvas, ctx)
 }
 export class ApiRequest {
-    // Var defs
-    // - - - - - - - - - - - - -
-    constructor() {
-        // log("ApiRequest()");
-    }
-    // - - - - - - - - - - - - -
+    constructor() { }
     async get(route) {
-        // log("ApiRequest.get(route): " + route);
-        // Fetch the data
         const response = await fetch(route, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
             }
-        })
-        // log(response);
-        const body = await response.json();
-        return body;
-    }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    async post(route,data,onSuccess,onError) {
-        // log("ApiRequest.post(route): " + route);
-        const fetchPromise = fetch(route, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-            },
-            body: JSON.stringify(data)
-        })
-        fetchPromise.then(response => {
-            return response.json();
-        }).then(data => {
-            // log(data);
-            // log(data.success);
-            if (data.success === false) {
-                onError(data);
-            } else {
-                onSuccess(data);
-            }
         });
+        return await response.json();
     }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
-    async patch(route,data,onSuccess,onError) {
-        // log("ApiRequest.post(route): " + route);
-        const fetchPromise = fetch(route, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-            },
-            body: JSON.stringify(data)
-        })
-        fetchPromise.then(response => {
-            return response.json();
-        }).then(data => {
-            // log(data);
-            // log(data.success);
-            if (data.success === false) {
-                onError(data);
-            } else {
-                onSuccess(data);
-            }
-        });
+    async post(route, data, onSuccess, onError) {
+        try {
+            const response = await fetch(route, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                },
+                body: JSON.stringify(data)
+            });
+            const responseData = await response.json();
+            responseData.success === false ? onError(responseData) : onSuccess(responseData);
+        } catch (error) {
+            onError(error);
+        }
     }
-    // - - - - - - - - - - - - - - - - - - - - - - - -
+    async patch(route, data, onSuccess, onError) {
+        try {
+            const response = await fetch(route, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                },
+                body: JSON.stringify(data)
+            });
+            const responseData = await response.json();
+            responseData.success === false ? onError(responseData) : onSuccess(responseData);
+        } catch (error) {
+            onError(error);
+        }
+    }
 }
+
 export class XHR {
     constructor() {
         //https://javascript.info/xmlhttprequest
@@ -1285,32 +1582,74 @@ export function loadAndAttachImage(imgElement, src) {
         imgElement.src = src;
     });
 }
-async function loadCss(href) {
-  try {
-    const response = await fetch(href);
-    if (response.ok) {
-      const css = await response.text();
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = href;
-      document.getElementsByTagName('head')[0].appendChild(link);
-      return true;
-    } else {
-      throw new Error(`Failed to load ${href}: ${response.status} ${response.statusText}`);
-    }
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+export function promiseLoadCss(href) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield fetch(href, { method: 'GET' });
+            if (!response.ok) {
+                throw new Error(`Failed to load CSS: ${response.status} ${response.statusText}`);
+            }
+            const link = document.createElement('link');
+            link.href = href;
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            link.media = 'screen,print';
+            document.getElementsByTagName('head')[0].appendChild(link);
+            return true;
+        }
+        catch (error) {
+            console.error(error);
+            return false;
+        }
+    });
 }
 
-export async function loadJSON(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  }
-  
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+export function loadHTML(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(url);
+        const html = yield response.text();
+        return html;
+    });
+}
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+export function loadJson(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = yield response.json();
+        return data;
+    });
+}
+
 export function loadScript(src, onComplete, onProgress){
     let head = document.getElementsByTagName("head")[0] || document.body;
     if (!head){
@@ -1533,71 +1872,52 @@ export function roundTo(v, dec) {
 }
 
 export class FPSMonitor {
-    // WARNING: export class will not work for transpile to IE11 (DELETE CLASS IF YOU STILL NEED aftc-modules or use SRC file includes)
-    // NOTE: Alternatively use aftc.js for ES5 - npm i aftc.js
     constructor(ele) {
-        this.dom = {
-            fps: false
-        }
-        this.fpsStack = false;
-        this.stackSize = 60;
-        this.index = 0;
-        this.last = 0;
-        this.now = 0;
-        this.delta = 0;
-        this.currentFrameFps = 0;
-        this.total = 0;
-        this.averageFps = 0;
-        this.i = 0;
-        if (ele){
-            this.dom.fps = ele;
-        }
-        this.fpsStack = new Float32Array(this.stackSize);
-        this.update();
+      this.dom = { fps: ele || false };
+      this.stackSize = 60;
+      this.index = 0;
+      this.last = 0;
+      this.total = 0;
+      this.averageFps = 0;
+      this.fpsStack = new Float32Array(this.stackSize);
+      this.update();
     }
-    update(){
-        this.now = performance.now();
-        this.delta = (this.now - this.last) / 1000;
-        this.currentFrameFps = 1/this.delta;
-        // log("currentFrameFps = " + this.currentFrameFps);
-        this.fpsStack[this.index] = this.currentFrameFps;
-        this.total = 0;
-        for(this.i=0; this.i < this.stackSize; this.i++){
-            this.total += this.fpsStack[this.i];
-        }
-        this.averageFps = Math.round( this.total/this.stackSize );
-        if (this.dom.fps){
-            this.dom.fps.innerText = this.averageFps;
-        }
-        this.last = this.now;
-        this.index++;
-        if (this.index >= this.stackSize){
-            this.index = 0;
-        }
-        requestAnimationFrame(()=>{
-            this.update();
-        });
+    update() {
+      const now = performance.now();
+      const delta = (now - this.last) / 1000;
+      const currentFrameFps = 1 / delta;
+      this.fpsStack[this.index] = currentFrameFps;
+      this.total += currentFrameFps - (this.fpsStack[this.index === 0 ? this.stackSize - 1 : this.index - 1]);
+      this.averageFps = Math.round(this.total / this.stackSize);
+      if (this.dom.fps) {
+        this.dom.fps.innerText = this.averageFps;
+      }
+      this.last = now;
+      this.index = (this.index + 1) % this.stackSize;
+      requestAnimationFrame(() => this.update());
     }
-    getFps(){
-        return this.averageFps;
+    getFps() {
+      return this.averageFps;
     }
-}
-
+  }
+  
 export function getGUID() {
-    function Amiga() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
+    function randomHex() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .padStart(4, '0');
     }
-    return Amiga() + Amiga() + '-' + Amiga() + '-' + Amiga() + '-' +
-        Amiga() + '-' + Amiga() + Amiga() + Amiga();
-}
+    return `${randomHex()}${randomHex()}-${randomHex()}-${randomHex()}-${randomHex()}-${randomHex()}${randomHex()}${randomHex()}`;
+  }
+  
 export function getUID(len) {
-    if (len > 34){
-        console.error("getUID(length): Limit error: Length must be 34 or lower");
-    } else {
-        return Math.random().toString(36).substr(2, len);
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < len; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
+    return result;
 }
 export function isAlphaNumeric(v) {
     return !(/\W/.test(v));
@@ -1655,6 +1975,10 @@ export class MouseScrollHandler {
     }
     // - - - - - - - - - - - - - - - - - - - - - - - -
 }
+export function getObjectPropByKey(obj, key) {
+    return obj[key];
+}
+
 export function cutStringTo(input, len) {
     return input.substring(0, len);
 }
@@ -1957,7 +2281,8 @@ export const doesUrlKeyExist = (key) => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.has(key);
-  }
+};
+
 export function getRoute(url) {
     if (!url || url == null || url == undefined) {
         url = window.location.href;
@@ -1965,16 +2290,18 @@ export function getRoute(url) {
     return url.replace(/.*\/\/[^\/]*/, '')
 }
 export const getUrlKeyValue = (key) => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const hasKey = urlParams.has(key);
-  if (hasKey) {
-    return urlParams.get(key);
-  } else {
-    // console.warn(`doesUrlKeyExist(): Key: ${key} is not found...`);
-    return null;
-  }
-}
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const hasKey = urlParams.has(key);
+    if (hasKey) {
+        return urlParams.get(key);
+    }
+    else {
+        // console.warn(`doesUrlKeyExist(): Key: ${key} is not found...`);
+        return null;
+    }
+};
+
 export function isEmail(email) {
     if (!email) {
         return false;

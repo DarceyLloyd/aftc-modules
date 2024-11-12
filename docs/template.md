@@ -16,6 +16,7 @@ Any and all donations to help keep active development and the lights on are more
 
 
 ## <b>Latest changes</b>
+- Added VirtualDebug
 - Various bug fixes and documentation generation bug fix
 - removed AttachKeysToVec3() // TypeScript only
 - removed VisualDebug() // TypeScript only (use attachDebug for JS projects)

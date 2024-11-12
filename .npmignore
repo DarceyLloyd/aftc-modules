@@ -16,6 +16,11 @@ node_modules
 build.js
 aftc-modules-clean.js
 aftc-modules-debug.js
+cleanFolders.js
+build.js
+pnpm-lock.yaml
+*.7z
+*.rar
 tsconfig.json
 info.txt
 /info
