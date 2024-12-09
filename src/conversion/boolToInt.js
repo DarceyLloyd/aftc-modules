@@ -21,7 +21,7 @@
 export function boolToInt(bool) {
 
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
-        console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
+        console.log("AFTC.js: boolToInt(str): Error - input is not a boolean!");
         return "error";
     }
 

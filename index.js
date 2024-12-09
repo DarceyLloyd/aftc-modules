@@ -28,6 +28,8 @@ import { rgbToHex } from 'aftc-modules/src/conversion/rgbToHex.js';
 import { rgbToHex2 } from 'aftc-modules/src/conversion/rgbToHex2.js';
 import { rgbToHex3 } from 'aftc-modules/src/conversion/rgbToHex3.js';
 import { stringToBool } from 'aftc-modules/src/conversion/stringToBool.js';
+import { toFloat } from 'aftc-modules/src/conversion/toFloat.js';
+import { toInt } from 'aftc-modules/src/conversion/toInt.js';
 import { CookieManager } from 'aftc-modules/src/cookies/CookieManager.js';
 import { getCookie } from 'aftc-modules/src/cookies/getCookie.js';
 import { listCookies } from 'aftc-modules/src/cookies/listCookies.js';
@@ -169,6 +171,8 @@ export {
 	rgbToHex2,
 	rgbToHex3,
 	stringToBool,
+	toFloat,
+	toInt,
 	CookieManager,
 	getCookie,
 	listCookies,

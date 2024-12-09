@@ -147,7 +147,7 @@ export function argsToObject(src, dest, strict = true) {
 }
 export function boolToInt(bool) {
     if (!bool || bool === undefined || typeof (bool) != "boolean") {
-        console.log("AFTC.js: getBoolToString(str): Error - input is not a boolean!");
+        console.log("AFTC.js: boolToInt(str): Error - input is not a boolean!");
         return "error";
     }
     if (bool) {
@@ -250,6 +250,28 @@ export function stringToBool (str) {
             return false;
             break;
     }
+}
+
+export function toFloat(value) {
+    if (typeof value === "string") {
+        const parsed = parseFloat(value);
+        return isNaN(parsed) ? null : parsed;
+    }
+    if (typeof value === "boolean") {
+        return value ? 1.0 : 0.0;
+    }
+    return null;
+}
+
+export function toInt(value) {
+    if (typeof value === "string") {
+        const parsed = parseInt(value, 10);
+        return isNaN(parsed) ? null : parsed;
+    }
+    if (typeof value === "boolean") {
+        return value ? 1 : 0;
+    }
+    return null;
 }
 
 export class CookieManager {
