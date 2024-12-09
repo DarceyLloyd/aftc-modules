@@ -18,6 +18,10 @@
 //     ]
 // }
 export function toFloat(value) {
+    if (typeof value === "number") {
+        return isFinite(value) ? value : null;
+    }
+
     if (typeof value === "string") {
         const parsed = parseFloat(value);
         return isNaN(parsed) ? null : parsed;

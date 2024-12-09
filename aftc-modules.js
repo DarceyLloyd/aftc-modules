@@ -253,6 +253,9 @@ export function stringToBool (str) {
 }
 
 export function toFloat(value) {
+    if (typeof value === "number") {
+        return isFinite(value) ? value : null;
+    }
     if (typeof value === "string") {
         const parsed = parseFloat(value);
         return isNaN(parsed) ? null : parsed;
@@ -262,8 +265,10 @@ export function toFloat(value) {
     }
     return null;
 }
-
 export function toInt(value) {
+    if (typeof value === "number") {
+        return isFinite(value) ? Math.trunc(value) : null;
+    }
     if (typeof value === "string") {
         const parsed = parseInt(value, 10);
         return isNaN(parsed) ? null : parsed;

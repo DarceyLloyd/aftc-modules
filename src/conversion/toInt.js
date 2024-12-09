@@ -18,6 +18,10 @@
 //     ]
 // }
 export function toInt(value) {
+    if (typeof value === "number") {
+        return isFinite(value) ? Math.trunc(value) : null;
+    }
+
     if (typeof value === "string") {
         const parsed = parseInt(value, 10);
         return isNaN(parsed) ? null : parsed;
